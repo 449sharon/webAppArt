@@ -1,0 +1,128 @@
+<ion-content>
+  <div class="main-content">
+    <div class="content">
+      <div class=" left-side">
+
+      </div>
+      <div class="top-side" >
+        <div class="logo-side" >
+          <img src="../../../assets/pitseng Logo.png" alt="">
+
+
+        </div>
+        <div class="form-side" >
+          <form [formGroup]="signupForm">
+          <div class="title" >
+            <ion-title>Sign Up</ion-title>
+          </div>
+          <div class="text-field" >
+            
+              <ion-item class="first" >
+                <ion-input placeholder="Email address" formControlName="email" type="email" placeholder="Your email address"
+                [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched"> <ion-icon name="mail" color="dark"  slot="end"></ion-icon> </ion-input>
+              </ion-item>
+              <ion-item lines="none" color="transparent" class="error-message" *ngIf="!signupForm.controls['email'].valid
+          && signupForm.controls['email'].touched">
+          <div>    <ion-title class="error-message" >Please enter a valid email.</ion-title></div>
+      
+        </ion-item>
+              <ion-item>
+                <ion-input placeholder="password" formControlName="password" type="password" placeholder="Your password"
+                [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched"> <ion-icon name="lock" color="dark" slot="end" class="lock" ></ion-icon> </ion-input>
+              </ion-item>
+              <ion-item lines="none"  color="transparent" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
+          signupForm.controls['password'].touched">
+          <div>  <ion-title class="error-message" >Your password needs more than 6 characters.</ion-title></div>
+        
+        </ion-item>
+  
+          
+          </div>
+          <div class="buttons" >
+              <div  >
+              <ion-button color="primary" expand="block" (click)="signupUser(signupForm)" (click)="dismiss()" [disabled]="!signupForm.valid" >register </ion-button>
+
+            </div>
+                  <div  >
+              <ion-button color="primary" expand="block" fill="outline" (click)="dismiss()" (click)="openLogin()"  >Login </ion-button>
+
+            </div>
+
+          </div>  <div class="social-section" >
+
+              <div> <ion-title>or</ion-title> </div>
+              <div class="social" >
+                <div> <img src="../../../assets/icons8-facebook-96.png" alt=""></div>
+                <div><img src="../../../assets/icons8-google-96.png" alt=""></div>
+
+
+              </div>
+            </div>
+
+          
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</ion-content>
+
+
+
+<!-- <div  class="mainContainer" >
+
+
+  
+  <div class="content" >
+       
+    <div class="formContainer">
+        <div  class="formContainer2" >
+            <div class="logo">
+                <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="100" height="100" >
+              </div>
+              <div class="text" >
+                          <form [formGroup]="signupForm">
+        <ion-item  lines="none" color="transparent">
+            <ion-label><ion-icon color="medium" name="contact"></ion-icon> </ion-label>
+          <ion-input color="medium"  formControlName="email" type="email" placeholder="Your email address"
+            [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none" color="transparent" class="error-message" *ngIf="!signupForm.controls['email'].valid
+          && signupForm.controls['email'].touched">
+          <ion-title>Please enter a valid email.</ion-title>
+        </ion-item>
+    
+        <ion-item lines="none" color="transparent">
+            <ion-label ><ion-icon name="lock" color="medium" ></ion-icon> </ion-label>
+          <ion-input  color="medium"  formControlName="password" type="password" placeholder="Your password"
+            [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none"  color="transparent" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
+          signupForm.controls['password'].touched">
+          <ion-title>Your password needs more than 6 characters.</ion-title>
+        </ion-item>
+    <div class="buttons">
+        <ion-button color="warning"  padding shape="block"  (click)="signupUser(signupForm)" (click)="dismiss()" [disabled]="!signupForm.valid"> REGISTER</ion-button>
+        <ion-button padding  (click)="loginuser()"  fill="clear" color="medium" padding shape="block" >Have an account? Login</ion-button>
+    </div>
+      
+      </form>
+              </div>
+
+    </div>
+  
+    </div>
+  <div class="imageside" >
+      <img src="../../../assets/" alt="">
+    </div>
+  </div>
+  
+</div>     
+
+ -->

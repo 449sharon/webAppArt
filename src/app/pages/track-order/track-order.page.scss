@@ -1,0 +1,384 @@
+.heading{
+    // border:  solid blue;
+    height: 8%;
+
+}
+.heading > ion-fab > ion-icon {
+    font-size: xx-large;
+}
+
+.itemList{
+    // border: solid red;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    // overflow: scroll;
+    overflow: hidden;
+}
+.item-dsiplay{
+    // border: solid blue;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    
+   
+}
+.main-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    width: 95%;
+    // height: 100px;
+    margin: 0 auto;
+    // border: solid black;
+    overflow: hidden;
+}
+
+
+
+
+
+.image-container{
+    // border: 0.2px solid #707070a9;
+    height: 400px;
+   width: 100%;
+    margin: 0 auto;
+}
+.image-container > img{
+    object-fit: cover;
+    margin-bottom: 116px;
+    border-radius: 10px;
+      border: 0.2px solid #707070a9;
+    
+}
+.image-container > ion-fab{
+    margin-right: 75px;
+}
+
+.image-container > ion-fab > ion-icon{
+
+    font-size: xx-large;
+}
+.product-details{
+    // border: solid khaki;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  
+
+}
+.firstItems{
+    // border: solid rgb(15, 255, 67);
+      display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    justify-content: space-between;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #707070;
+    text-transform: capitalize;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.productcode{
+    // border: solid red;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #707070;
+    text-transform: capitalize;
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // justify-content: space-around;
+    // margin: 0 auto;
+}
+.productcode > div {
+width: 50%;
+// border: solid red;
+margin: 0 auto;
+}
+.Productselection{
+    // border: solid blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #707070;
+    text-transform: capitalize;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.productDescription{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #707070;
+    text-align: center;
+   
+}
+
+
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #b9b6b6;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color:rgba(183, 49, 37, 0.226);
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #B73225;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+.size{
+    // border: solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    // width: 50%;
+}
+.size > p {
+  margin-top: 1%;
+}
+.quantity{
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    // border: solid rgb(16, 196, 151);
+    // width: 50%;
+  
+    
+}
+.quantity > div >  ion-icon {
+    font-size: xx-large;
+    // justify-content: baseline;
+    
+}
+
+.quantity > div > p {
+    font-size: large;
+   text-align: center;
+   color: #707070;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   text-transform: capitalize;
+   padding: 0%;
+   margin-top: 1.5%;
+
+}
+.cartButton{
+    padding-top: 8px;
+}
+
+.tacking-heading{
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    color: #707070; 
+}
+
+.pedding-oders{
+    
+    // border: 0.5px solid rgb(74, 189, 17);
+    width: 90%;
+    height: 143px;
+    display: flex; 
+    flex-direction: row; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+    margin-top: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.image{
+    // border:  solid blue;
+    width: 129px;
+    height: 143px;
+
+}
+.image > img {
+    height: 129px;
+    width: 129px;
+    object-fit: cover; 
+       margin-bottom: 16px;
+}
+.details{
+    // border: solid black;
+    // width: 100%;
+    padding-left: 16px;
+}
+.invoice > ion-label {
+    color: black;
+    font-size: 19px;
+    font-weight: 600;
+}
+.purchase-date > ion-label {
+    color: #707070;
+}
+.expected-date > ion-label{
+    color: #707070;
+
+}
+.track-button{
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 16px;
+}
+.scroll{
+    // border: solid blueviolet;
+    height: 480px;
+    overflow: auto;
+    // margin-bottom: 1100px;
+}
+ion-content{
+    --overflow:hidden;
+}
+
+.tracking-progress-bar{
+      margin: 10px 0;
+}
+
+
+.tracking-progress-bar__item{
+     background: #E5E7ED;
+  border-radius: 50%;
+  color: #707070;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 17px;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  text-align: center;
+  width: 31px;
+  z-index: 9 ;
+}
+
+
+
+.tracking-progress-bar__item__bar{
+    background: #E5E7ED;
+  display: inline-block;
+  margin: 0 -5px;
+  height: 12px;
+  width: 70px;
+  z-index: 2;
+}
+.tracking-oder-labels{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+}
+.one,.two, .three , .four{
+    width: 20%;
+    // border: solid rgb(9, 255, 0);
+
+}
+  
+
+.tracking-progress-bar__item__bar--active{
+     background: #B73225;
+}
+ 
+
+.tracking-progress-bar__item--first{
+    margin-left: 0 ;
+}
+ 
+
+.tracking-progress-bar__item--active{
+   background: #B73225;
+  color: #fff  ;
+}
+.active {
+  transform: scaleX(1.2);
+  background-color: #eeeeee3a;
+    color: #fff;
+}
+
+.total-amount{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #707070;
+    text-align: center;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+.pdf{
+width: 40%;
+margin: 0 auto;
+text-align: center;
+}
+
+
+ 
+
+
+
+
+
+
+
+
+
+

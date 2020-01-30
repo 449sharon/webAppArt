@@ -1,0 +1,450 @@
+.header-md:after {
+    left: 0;
+    bottom: -5px;
+    background-position: left 0 top -2px;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMV…h/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);
+    background-repeat: repeat-x;
+    content: "";
+    z-index: 0;
+  }
+  ion-header{
+  height:5px;
+  }
+  
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .navigation-bar{
+    width: 75%;
+    margin: auto;
+  }
+  
+  nav {
+    // background: whitesmoke;
+    padding: 5px 20px;
+    // overflow: hidden;
+  }
+  ul {
+    list-style-type: none;
+  }
+  a {
+    color: #777777;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .logo a:hover {
+    text-decoration: none;
+  }
+  .menu > li {
+    font-size: 16px;
+    padding: 15px 5px;
+    white-space: nowrap;
+  }
+  .logo a,
+  .toggle a {
+    font-size: 20px;
+  }
+  .button.secondary {
+    border-bottom: 1px #444 solid;
+  }
+  
+  /* Tablet menu */
+  @media all and (min-width: 600px) {
+    .menu {
+      justify-content: center;
+    }
+    .logo {
+      flex: 1;
+    }
+    .toggle {
+      flex: 1;
+      text-align: right;
+    }
+    .item.button {
+      width: auto;
+      order: 1;
+      display: block;
+  
+    }
+    .toggle {
+      order: 2;
+    }
+    .button.secondary {
+      border: 0;
+    }
+    .button.secondary a {
+      background: transparent;
+    }
+    .button a:hover {
+      text-decoration: none;
+    }
+    .button:not(.secondary) a:hover {
+      background: #feffff;
+      border-color: #feffff;
+    }
+    .button.secondary a:hover {
+      color: #ddd;
+    }
+  }
+  /* Mobile menu */
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toggle {
+    order: 1;
+  }
+  .item.button {
+    order: 2;
+  }
+  .item {
+    width: 100%;
+    text-align: center;
+    order: 3;
+    display: none;
+    list-style-type: none;
+    color: #777777;
+    text-decoration: none;
+    text-transform: capitalize;
+  //   border: solid rgb(175, 10, 18);
+  }
+  .item.active {
+    display: block;
+  }
+  /* Tablet menu */
+  @media all and (min-width: 600px) {
+    .menu {
+      justify-content: center;
+    }
+    .logo {
+      flex: 1;
+    }
+    .toggle {
+      flex: 1;
+      text-align: right;
+    }
+    .item.button {
+      width: auto;
+      order: 1;
+      display: block;
+    }
+    .toggle {
+      order: 2;
+    }
+    .button.secondary {
+      border: 0;
+    }
+    .button a {
+      padding: 7.5px 15px;
+      // background: teal;
+      // border: 1px #006d6d solid;
+    }
+    .button.secondary a {
+      background: transparent;
+    }
+    .button a:hover {
+      text-decoration: none;
+    }
+    .button:not(.secondary) a:hover {
+      background: #feffff;
+      border-color: #feffff;
+    }
+    .button.secondary a:hover {
+      color: #ddd;
+    }
+  }
+  /* Desktop menu */
+  @media all and (min-width: 900px) {
+    .item {
+      display: block;
+      width: auto;
+    }
+    .toggle {
+      display: none;
+    }
+    .logo {
+      order: 0;
+    }
+    .item {
+      order: 1;
+    }
+    .button {
+      order: 2;
+    }
+    .menu li {
+      padding: 15px 10px;
+    }
+    .menu li.button {
+      padding-left: 0;
+    }
+  }
+  
+  ion-title {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+ 
+  
+  .text{
+    padding-top: 8px;
+  }
+  .title > div {
+    padding-left: 18px;
+    text-align: center;
+  
+  }
+  
+  ion-content{
+      top: 20%;
+  }
+  .content-container {
+      // height: 100%;
+      width: 75%;
+      // border: solid blue;
+      margin: 0 auto;
+      margin-bottom: 5%;
+    }
+  .categorySection{
+      // border: solid red;
+      height: 100%;
+      margin-bottom: 40px;
+    }
+    .categoryList{
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+  
+    }
+    
+  .cards-section {
+      width: 90%;
+      // border: solid rgb(3, 163, 255);
+      height: 100%;
+      // display: flex;
+      margin: 0 auto;
+    }
+    .specials-title {
+      text-align: left;
+      // border-bottom: solid black;
+      border-bottom: 0.5px solid #7070709d;
+    }
+    .cards-container {
+      display: flex;
+      margin: 0 auto;
+      margin-top: 16px;
+      // border: solid rgb(6, 238, 199);
+      width: 100%;
+      // height: 50%;
+      justify-content: space-evenly;
+      justify-content: space-around;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cards {
+      width: 234px;
+      height: 367px;
+      // border:  solid rgb(10, 66, 250);
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      margin-bottom: 3%;
+      border-radius: 10px;
+      border: 0.5px solid #70707042;
+      // max-width: 200px;
+      // &:hover{
+      //   transform: scale3d(1.006, 1.006, 1);
+    
+      //   &::after {
+      //     opacity: 1;
+      //   }
+      // }
+  
+      &:hover {
+        animation-name:pulse;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-out;
+        animation-iteration-count:infinite;
+        animation-direction:reverse;
+      }
+  }
+    .cards > img {
+      width: 222px;
+      height: 268px;
+      border-radius: 6px;
+      border: 0.5px solid #7070703a;
+      margin: 0 auto;
+      margin-top: 5px;
+    }
+    .cards > ion-label {
+      text-align: center;
+    }
+    .cards > .price {
+      font-weight: bolder;
+      color: #4e4e4e;
+      font-size: 18px;
+    }
+    .name {
+      font-size: 12px;
+      font-weight: lighter;
+      color: #4e4e4e;
+    }
+    .stars {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    .wishListIcon{
+      // position: relative;
+      text-align: right;
+      margin-right: 16px;
+      bottom: 200%;
+      font-size: xx-large;
+      // padding-bottom: 500px;
+   
+      }
+      .products-section{
+        // border: solid lightcoral;
+        display: flex;
+        margin: auto;
+        justify-content: center;
+        justify-content: space-around;
+        margin-bottom: 3%;
+      }
+      
+      .active {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        color: #fff;
+    }
+    .icon-wish{
+      position: relative;
+     margin-left: 200px;
+      font-size: x-large;
+      color: #777777;
+  
+    }
+  
+    .contactUs-section{
+      width: 100%;
+     //  height: 100%;
+     //  border: solid black;
+       // margin-top: 2%;
+       margin-bottom: 200px;
+   }
+   .contactus{
+        width: 100%;
+       height: 370px;
+       padding-top: 20px;
+       // border: solid rgb(238, 255, 3);
+      padding-bottom: 150px;
+       background:linear-gradient(0deg, rgba(14, 13, 13, 0.836), rgba(0, 0, 0, 0.836)), url("../../../assets/photo-1493106641515-6b5631de4bb9.png");
+       background-repeat: no-repeat;
+       background-size: cover;
+   }
+   .contactUs-section > div > ion-title {
+       padding-top: 60px;
+       padding-bottom: 15px;
+       color: #4E4E4E;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       font-weight: 400;
+       font-size: 35px;
+   }
+   .contactUs-labels{
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       justify-content: space-between;
+       justify-content: space-evenly;
+       // border: solid red;
+       color: white;
+       margin: auto;
+   }
+   .contactUs-labels > div{
+       width: 30%;
+       // border: solid blue;
+       margin: 0 auto;
+   }
+   .contactus > div >{
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   }
+   .messageInputs{
+       padding-top: 25px;
+       
+   }
+   .messageInputs > ion-item { 
+       height: 40px;
+       border-radius: 10px;
+       margin-bottom: 20px;
+   }
+   .messageInputs > ion-item > ion-input {
+   text-align: left;
+   }
+   .messageInputs  >  div > ion-list > ion-item > ion-textarea {
+       text-align: left;
+       height: 100px;
+       margin-bottom: 20px;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       }
+       .messageInputs  > div > ion-button {
+           margin-top: 20px;
+       }
+       .callUs-labels {
+           padding-top: 25px;
+       }
+       .callUs-labels > div {
+           margin-bottom: 30px;
+       }
+       .callUs-labels > div > span > ion-icon{
+           margin-right: 30px;
+       }
+       ion-label, ion-title {
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           
+       }
+       .heading{
+           font-weight: 600;
+           font-size: 1rem;
+          
+       }
+       .title > div > img {
+           left: 0%;
+           text-align: left;
+       }
+       .footer{
+           font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+           font-weight: lighter;
+           letter-spacing: 3px;
+           text-align: center;
+           display: flex;
+           flex-direction: row;
+           // justify-content: space-around;
+           justify-content: center;
+           margin: auto;
+       }
+       .footer > div  {
+           margin: 0 auto;
+           margin-top: 10px;
+         
+       }
+       .footer  > img {
+         margin-left: 10px;
+       
+       }
+     

@@ -1,0 +1,145 @@
+
+
+<ion-content>
+  <div class="content" >
+    <div class="main-cover" >
+      <div class="whoWeAre" >
+        <div class="image-section" >
+          <img src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
+
+
+        </div>
+        <div class="description-section" >
+          <div><ion-title>I'm ben</ion-title></div>
+          <div> <ion-label>So nice to meet you</ion-label></div>
+          <div>
+            <p>Lorem ipsum dolor sit amet,
+               consetetur sadipscing elitr, 
+               sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd 
+                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+              Lorem ipsum dolor sit amet, consetetur
+               sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+               liquyam erat, sed diam voluptua. At vero eos et accusam et justo 
+               duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+              </p>
+              
+          </div>
+        </div>
+
+      </div>
+
+      <div  class="services" >
+        <div class="services-description-section" >
+          <div>   <ion-title>My services</ion-title></div>
+          <div> <ion-label>what I can  do for you</ion-label></div>
+          <div>
+            <p>Lorem ipsum dolor sit amet,
+               consetetur sadipscing elitr, 
+               sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd 
+                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+              Lorem ipsum dolor sit amet, consetetur
+               sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+               liquyam erat, sed diam voluptua. At vero eos et accusam et justo 
+               duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+              </p>
+              
+          </div>
+       
+         
+
+
+        </div>
+        <div class="services-image-section" >
+          <img src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
+
+        </div>
+      </div>
+      
+
+    </div>
+
+  </div>
+  <div class="contactus-sections" name="footer">
+    <div class="contactUs-section">
+      <div>
+        <ion-title>Contact Us</ion-title>
+      </div>
+      <div class="contactus">
+        <div class="contactUs-labels">
+          <div >
+            <ion-label class="heading">Call Us</ion-label>
+            <div *ngFor = "let admin of Info" class="callUs-labels">
+              <div>
+                <span>
+                  <ion-icon padding name="call"></ion-icon>
+                </span>
+                <span>
+                  <ion-label>{{admin.phoneNumber}} </ion-label>
+                </span>
+              </div>
+              <div>
+                <span>
+                  <ion-icon padding name="mail"></ion-icon>
+                </span>
+                <span>
+                  <ion-label>{{admin.email}}</ion-label>
+                </span>
+  
+              </div>
+              <div>
+                <span>
+                  <ion-icon padding name="pin"></ion-icon>
+                </span>
+                <span>
+                  <ion-label>{{admin.address}}</ion-label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <ion-label class="heading">Leave Us a Message</ion-label>
+            <div class="messageInputs">
+             
+        
+                    <ion-item color="light">
+                      <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
+                    </ion-item>
+                    <ion-item>
+                      <ion-input type="email"   [(ngModel)]="message.email"  placeholder="Email address" required>
+                      </ion-input>
+                    </ion-item>
+                    <div>
+                      <ion-list>
+                        <ion-item>
+                          <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message" required></ion-textarea>
+                        </ion-item>
+                      </ion-list>
+                    </div>
+                    <div>
+                      <ion-button  (click)="addMessage()">Submit</ion-button>
+                    </div>
+                  <!-- </form> -->
+                </div>
+                <div>
+                
+              <!-- </form> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <ion-toolbar color="primary">
+        <div class="footer">
+          <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
+          <div>
+            &copy; Pitseng Arts &amp; Crafts 2019
+          </div>
+        </div>
+      </ion-toolbar>
+    </div>
+
+  </div>
+  
+
+</ion-content>

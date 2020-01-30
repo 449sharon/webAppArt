@@ -1,0 +1,93 @@
+<div padding class="heading" >
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+   
+      <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
+ 
+  </ion-fab>
+  <hr>
+</div>
+<div class="loader-container" *ngIf="loader">
+  <div class="loader">Loading...</div>
+</div>
+<!-- width="100px" height="100px" -->
+<ion-content>
+  <div class="main-content" >
+    <div class="cartTitle" >
+      <ion-title>WishList <ion-icon name="heart" ></ion-icon> </ion-title>
+    </div>
+    <div class="ng-for-goes-here" *ngFor="let p of cart; let j=index" >
+      <div class="checkBox-add-to-cart" >
+        <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
+      </div>
+      
+  
+    <div class="cart-item-section" >
+
+      <div class="image-section" >
+        <!-- <img src="../../../assets/Frame.jpg"  alt=""> -->
+        <img src="{{p.product.image}}">
+      </div>
+      <div class="prodactDetails-section" >
+        <div class="name" >
+          <ion-label>{{ p.product.product_name }}</ion-label>
+        </div>
+        <div class="price" >
+          <ion-label>{{ p.product.price | currency:'R':'symbol' }}</ion-label>
+        </div>
+        <div class="code">
+          <!-- <ion-label>Code: FSG2112377</ion-label> -->
+          <ion-label>Code: {{ p.product.productCode }}</ion-label>
+        </div>
+        <div class="Productselection">
+          <div class="size">
+            <p  >size:</p>
+
+            <div >
+              <label  class="container">S
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div >
+              <label class="container">M
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div >
+            <label class="container">L
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+
+          </div>
+          <div class="quantity">
+            <div  ><p no-padding >Qty:  {{ p.product.quantity }}</p></div>
+            <div> <ion-icon name="remove-circle" color="danger" (click)="decreaseCartItem(j)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="increaseCartItem(j)"></ion-icon></div>
+           
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="delete-section" >
+        <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="removeCartItem(p.id)"> 
+          <ion-icon name="trash"></ion-icon>
+         </ion-button>
+      </div>
+
+    </div>
+    <p class="divided">
+      <span></span>
+      <span class="divider"></span>
+      <span></span>
+    </p>
+  </div>
+    <div class="cartButton" >
+      <ion-button color="primary" expand="block" >add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
+    </div>
+  </div>
+</ion-content>
