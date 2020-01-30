@@ -25,6 +25,7 @@
     "@ionic/angular": "^4.7.1",
     "core-js": "^2.5.4",
     "firebase": "^7.7.0",
+    "ionic4-star-rating": "^1.1.1",
     "moment": "^2.24.0",
     "rxjs": "~6.5.1",
     "sweetalert2": "^9.7.1",

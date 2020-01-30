@@ -3,6 +3,7 @@ import { ModalController, ToastController, AlertController } from '@ionic/angula
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import { CartServiceService } from 'src/app/services/cart-service.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-to-wish-list',
@@ -14,7 +15,7 @@ export class AddToWishListPage implements OnInit {
   private wishItemCount = new BehaviorSubject(0);
   //db = firebase.firestore();
    db = firebase.database();
-  
+   dbCart = firebase.firestore().collection('Cart');
   cart = [];
   myArr = [];
   mysize: string = '';
@@ -34,8 +35,25 @@ export class AddToWishListPage implements OnInit {
   dbUser = firebase.firestore().collection('UserProfile');
   cartProduct = [];
   orderProd = [];
-  private currentNumber = 0;
-  constructor(public modalController: ModalController ,public toastController : ToastController,private cartService: CartServiceService, private alertCtrl: AlertController) {
+  currentNumber = 1;
+  event = {
+    image: '',
+    categories: '',
+    name: '',
+    price: 0,
+    productno: '',
+    desc: null,
+    small: '',
+    medium: '',
+    large: '',
+    quantity: 1,
+    amount: 0,
+    total: 0
+  };
+  constructor(public modalController: ModalController,
+    public toastController : ToastController,
+    private cartService: CartServiceService,
+    private alertCtrl: AlertController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
       this.name = element.data().name
@@ -47,58 +65,81 @@ export class AddToWishListPage implements OnInit {
     }, 2000);
   }
   ngOnInit() {
-    //this.cart = this.cartService.getCart();
     this.getProducts();
   }
   getProducts() {
     console.log("mylist....");
     
-    this.dbWishlist.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+      this.dbWishlist.onSnapshot((res)=>{
       this.cart = [];
-      console.log("inside....mylist");
+      let obj = {obj : {}, id : ""}
       res.forEach((doc)=>{
-        this.cart.push({id: doc.id, product: doc.data()});
 
+        obj.obj = doc.data()
+        obj.id = doc.id
+
+        this.cart.push(obj);
+        obj = {obj : {}, id : ""}
         let i = this.cart.length
-        this.cart[i -1]['productID'] = doc.id
+        this.cart[i -1]['productID'] 
 console.log("vvv", this.cart);
-
-     // return  this.total = this.getTotal();
-    // return this.total = this.total + parseFloat(doc.data().price) * parseFloat(doc.data().quantity);
-    ///
-   
       })
     })
   }
- 
-  decreaseCartItem(p) {
+  addToCart(i) {
+
+    // let customerUid = firebase.auth().currentUser.uid;
+
+    console.log(i);
+    this.dbCart.add({
+      timestamp: new Date().getTime(),
+      // customerUid: customerUid,
+      product_name: i.name,
+      productCode: i.event.productCode,
+      desc: i.desc,
+      size: this.sizes,
+      price: i.price,
+      quantity: this.event.quantity,
+      image: i.image,
+      amount: i.price * this.event.quantity
+    })
+    this.cartItemCount.next(this.cartItemCount.value + 1);
+    this.dismiss();
+  }
+  getCartItemCount() {
+    return this.cartItemCount;
+  }
   
-    this.cart[p].product.quantity--;
+  dismiss(){
+    this.modalController.dismiss({
+      'dismissed':true
+    });
+  }
+  decreaseCartItem() {
+    if (this.currentNumber > 1) {
+      this.currentNumber = this.currentNumber - 1;
+      this.quantity = this.currentNumber;
+    }
+    return this.currentNumber;
   }
  
-  increaseCartItem(p) {
-    console.log(p);
-    this.cart[p].product.quantity++;
-
+  increaseCartItem() {
+   this.currentNumber = this.currentNumber + 1;
+    this.quantity = this.currentNumber
   }
  
-  removeCartItem(id) {
-
-    this.dbWishlist.doc(id).delete();
+  removeCartItem(o) {
+    // firebase.firestore().collection('Wishlist').doc(o.id).delete()
+    this.dbWishlist.doc(o.id).delete();
   }
  
   getTotal() {
-    return this.cart.reduce((i, j) => i + j.product.price * j.product.quantity, 0);
+    return this.cart.reduce((i, j) => i + j.price * j.quantity, 0);
     
   }
   sizeSelect(i, val, y) {
     this.sizes = i.detail.value;
    }
 
-  dismiss(){
-    this.modalController.dismiss({
-      'dismissed':true
-    });
-  }
 
 }

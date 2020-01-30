@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs';
 import { ProductService } from 'src/app/services/product-service.service';
-// import { CartService } from 'src/app/cart.service';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 import { Popover2Component } from 'src/app/components/popover2/popover2.component';
 
@@ -19,6 +18,7 @@ export class ViewProductDetailsPage implements OnInit {
   wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
+  dbRating = firebase.firestore().collection('Rating');
   private cartItemCount = new BehaviorSubject(0);
 
   dbCart = firebase.firestore().collection('Cart');
@@ -61,7 +61,6 @@ export class ViewProductDetailsPage implements OnInit {
   ngOnInit() {
     this.wishItemCount = this.cartService.getWishCount();
     // console.log(this.data.data.image);
-
   }
 
    increment(p) {
@@ -145,12 +144,20 @@ export class ViewProductDetailsPage implements OnInit {
     throw new Error("Method not implemented.");
   }
 
-  dismiss() {
-    this.modalController.dismiss({
-      'dismissed': true
-    });
-  }
-
+  dismiss(){
+  this.modalController.dismiss({
+    'dismissed':true
+  });
+}
+logRatingChange(rating, id){
+ // console.log("changed rating: ",rating);
+  // do your stuff
+  this.dbRating.add({
+    rate: rating,
+    user: firebase.auth().currentUser.uid,
+    prod: id
+  })
+}
 
   ////////
   /////
@@ -160,23 +167,20 @@ export class ViewProductDetailsPage implements OnInit {
   // }
 
   addWishlist(i) {
-    //
-    if (firebase.auth().currentUser) {
-      let customerUid = firebase.auth().currentUser.uid;
-      console.log(i);
-      this.dbWishlist.add({
-        timestamp: new Date().getTime(),
-        customerUid: customerUid,
-        name: i.obj.name,
-        price: i.obj.price,
-        // size:i.obj.size,
-        productCode: i.obj.productCode,
-        quantity: i.obj.quantity,
-        percentage: i.obj.percentage,
-        totalprice: i.obj.totalprice,
-        image: i.obj.image
+   
+
+        this.dbWishlist.add({
+          timestamp: new Date().getTime(),
+          product_name: i.name,
+          productCode: i.productCode,
+          size: this.sizes,
+          price: i.price,
+          quantity: this.event.quantity,
+          image: i.image,
       }).then(() => {
-        this.toastController('product Added to wishlist')
+        this.presentToast()
+        this.dismiss();
+        // ('product Added to wishlist')
       })
         .catch(err => {
           console.error(err);
@@ -184,10 +188,11 @@ export class ViewProductDetailsPage implements OnInit {
 
       //  this.wishItemCount.next(this.wishItemCount.value + 1);
 
-    } else {
-      // this.createModalLogin();
-    }
-  }
+    } 
+  //   else {
+  //     // this.createModalLogin();
+  //   }
+  // }
   async toastPopover(ev) {
     const popover = await this.popoverController.create({
       component:Popover2Component,
@@ -202,5 +207,17 @@ export class ViewProductDetailsPage implements OnInit {
     
     
   }
-
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Item added successfully',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    // toast.onDidDismiss(() => {
+    //   console.log('Dismissed toast');
+    // });
+  
+    toast.present();
+  }
 }

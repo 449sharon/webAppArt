@@ -15,7 +15,7 @@
     <div class="cartTitle" >
       <ion-title>WishList <ion-icon name="heart" ></ion-icon> </ion-title>
     </div>
-    <div class="ng-for-goes-here" *ngFor="let p of cart; let j=index" >
+    <div class="ng-for-goes-here" *ngFor="let p of cart" >
       <div class="checkBox-add-to-cart" >
         <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
       </div>
@@ -25,18 +25,18 @@
 
       <div class="image-section" >
         <!-- <img src="../../../assets/Frame.jpg"  alt=""> -->
-        <img src="{{p.product.image}}">
+        <img src="{{p.obj.image}}">
       </div>
       <div class="prodactDetails-section" >
         <div class="name" >
-          <ion-label>{{ p.product.product_name }}</ion-label>
+          <ion-label>{{ p.obj.product_name }}</ion-label>
         </div>
         <div class="price" >
-          <ion-label>{{ p.product.price | currency:'R':'symbol' }}</ion-label>
+          <ion-label>{{ p.obj.price | currency:'R':'symbol' }}</ion-label>
         </div>
         <div class="code">
           <!-- <ion-label>Code: FSG2112377</ion-label> -->
-          <ion-label>Code: {{ p.product.productCode }}</ion-label>
+          <ion-label>Code: {{ p.obj.productCode }}</ion-label>
         </div>
         <div class="Productselection">
           <div class="size">
@@ -63,9 +63,9 @@
 
           </div>
           <div class="quantity">
-            <div  ><p no-padding >Qty:  {{ p.product.quantity }}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="decreaseCartItem(j)"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increaseCartItem(j)"></ion-icon></div>
+            <div  ><p no-padding >Qty:  {{ currentNumber }}</p></div>
+            <div> <ion-icon name="remove-circle" color="danger" (click)="decreaseCartItem()"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="increaseCartItem()"></ion-icon></div>
            
           </div>
         </div>
@@ -74,7 +74,7 @@
       </div>
 
       <div class="delete-section" >
-        <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="removeCartItem(p.id)"> 
+        <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="removeCartItem(p)"> 
           <ion-icon name="trash"></ion-icon>
          </ion-button>
       </div>
@@ -87,7 +87,7 @@
     </p>
   </div>
     <div class="cartButton" >
-      <ion-button color="primary" expand="block" >add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
+      <ion-button color="primary" expand="block" (click)="addToCart(p)">add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
     </div>
   </div>
 </ion-content>
