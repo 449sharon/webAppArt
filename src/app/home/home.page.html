@@ -70,11 +70,11 @@
                 <div   class="products-section" *ngFor="let event of proSales; let i=index;" (click)="allSpecials(event)">
                 <div class="cards"  [ngClass]="{'active': active==i}" (click)="showList(i)" >
                   <div class="percent-off" >
-                    <p>-80%</p>
+                    <p>{{event.obj.percentage}} %</p>
   
                   </div>
                   <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
-                  <ion-label class="price"> R{{event.obj.price}} <span class="span-tsrike" >R &nbsp;400</span>  </ion-label>
+                  <ion-label class="price"> R{{event.obj.totalprice}} <span class="span-tsrike" >{{event.obj.price}}</span>  </ion-label>
                   <ion-label class="name">  {{event.obj.name}} </ion-label>
                   <div class="stars">
                     <ion-icon name="star" color="warning"></ion-icon>
