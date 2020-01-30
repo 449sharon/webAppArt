@@ -15,7 +15,7 @@ export class CartServiceService {
     return this.cartItemCount;
   }
 
-  getWishCount(){
+  getWishItemCount(){
     return this.wishItemCount;
   }
 }

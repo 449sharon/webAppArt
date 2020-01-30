@@ -17,12 +17,12 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./view-product-details.page.scss'],
 })
 export class ViewProductDetailsPage implements OnInit {
-  //cartItemCount:BehaviorSubject<number>;
+  cartItemCount:BehaviorSubject<number>;
   wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbRating = firebase.firestore().collection('Rating');
-  private cartItemCount = new BehaviorSubject(0);
+ 
   customerUid: any;
   dbCart = firebase.firestore().collection('Cart');
    
@@ -62,7 +62,8 @@ export class ViewProductDetailsPage implements OnInit {
     public popoverController: PopoverController) { }
 
   ngOnInit() {
-    this.wishItemCount = this.cartService.getWishCount();
+    this.wishItemCount = this.cartService.getWishItemCount();
+    this.cartItemCount = this.cartService.getCartItemCount();
     // console.log(this.data.data.image);
   }
 
@@ -157,13 +158,16 @@ export class ViewProductDetailsPage implements OnInit {
       amount: i.price * this.event.quantity
     })
     this.cartItemCount.next(this.cartItemCount.value + 1);
-    // this.dismiss();
+     this.dismiss();
     this.toastPopover('ev')
     }
 
  
   }
   getCartItemCount() {
+    return this.cartItemCount;
+  }
+  getWishItemCount() {
     return this.cartItemCount;
   }
   createModalLogin() {
@@ -215,7 +219,7 @@ logRatingChange(rating, id){
           console.error(err);
         });
 
-      //  this.wishItemCount.next(this.wishItemCount.value + 1);
+        this.wishItemCount.next(this.wishItemCount.value + 1);
 
     } 
   //   else {
