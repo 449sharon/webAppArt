@@ -201,7 +201,7 @@ logRatingChange(rating, id){
    if(firebase.auth().currentUser == null){
      console.log('please like this');
      this.ConfirmationAlertWish();
-     this.createModalLogins()
+    //  this.createModalLogins()
 
    }else{
     this.customerUid = firebase.auth().currentUser.uid; 
@@ -274,6 +274,8 @@ logRatingChange(rating, id){
     this.dismiss()
    this.createModalLogins();
    }
+
+
    ConfirmationAlertWish(){
     Swal.fire({
       title: 'Please login/sign up before adding items to your wishlist',
