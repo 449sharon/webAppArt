@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 import * as firebase from 'firebase'
   import { from } from 'rxjs';
@@ -68,12 +68,12 @@ export class LoginPage implements OnInit {
     .then(res => {
       console.log(res);
       this.errorMessage = "";
-      this.navCtrl.navigateForward('/');
+      // this.navCtrl.navigateForward('/');
     }, err => {
       this.errorMessage = err.message;
     });
     // this.loader();
-   
+   this.success()
   }
   googleSignin() {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -142,4 +142,18 @@ export class LoginPage implements OnInit {
       'dismissed': true
     });
   }
+  success(){
+    Swal.fire({
+      icon: 'success',
+      title: 'Logged in successfully ',
+      showClass: {
+        popup: 'animated fadeInDown faster'
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster'
+      },
+      showConfirmButton: false,
+      timer: 500
+    })
+   }
 }

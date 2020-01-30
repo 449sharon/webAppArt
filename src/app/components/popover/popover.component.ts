@@ -110,5 +110,20 @@ logOut(){
     }
   })
  }
+ 
+ success(){
+  Swal.fire({
+    icon: 'success',
+    title: 'Logged in successfully ',
+    showClass: {
+      popup: 'animated fadeInDown faster'
+    },
+    hideClass: {
+      popup: 'animated fadeOutUp faster'
+    },
+    showConfirmButton: false,
+    timer: 500
+  })
+ }
 
 }

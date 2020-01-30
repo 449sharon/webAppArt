@@ -7,6 +7,8 @@ import { ProductService } from 'src/app/services/product-service.service';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 import { Popover2Component } from 'src/app/components/popover2/popover2.component';
 import { LoginPage } from '../login/login.page';
+import Swal from 'sweetalert2';
+import { ThrowStmt } from '@angular/compiler';
 
 
 @Component({
@@ -119,16 +121,22 @@ export class ViewProductDetailsPage implements OnInit {
   async createModalLogins() {
     const modal = await this.modalController.create({
       component: LoginPage,
+      cssClass: 'login-register',
+      
+
       
     });
+    // this.success()
     return await modal.present();
+    
   }
   
   addToCart(i) {
     
     if(firebase.auth().currentUser == null) {
-      console.log('please login');
-    this.createModalLogins();
+      // console.log('please login');
+      this.ConfirmationAlert();
+    // this.createModalLogins();
 
       
     }else {
@@ -149,7 +157,8 @@ export class ViewProductDetailsPage implements OnInit {
       amount: i.price * this.event.quantity
     })
     this.cartItemCount.next(this.cartItemCount.value + 1);
-    this.dismiss();
+    // this.dismiss();
+    this.toastPopover('ev')
     }
 
  
@@ -240,4 +249,33 @@ logRatingChange(rating, id){
   
     toast.present();
   }
+
+  ConfirmationAlert(){
+    Swal.fire({
+      title: 'Please login/sign up before adding items to your cart',
+      showClass: {
+        popup: 'animated fadeInDown faster'
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster'
+      }
+    })
+    this.dismiss()
+   this.createModalLogins();
+   }
+
+   success(){
+    Swal.fire({
+      icon: 'success',
+      title: 'Logged in successfully ',
+      showClass: {
+        popup: 'animated fadeInDown faster'
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster'
+      },
+      showConfirmButton: false,
+      timer: 500
+    })
+   }
 }

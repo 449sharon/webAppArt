@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ProfilePage } from '../profile/profile.page';
 import { LoginPage } from '../login/login.page';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -69,6 +70,7 @@ export class RegisterPage implements OnInit {
       this.loading = await this.loadingCtrl.create();
       await this.loading.present();
     }
+   this.loading
   }
   async createProfile() {
     const modal = await this.modalController.create({
@@ -105,6 +107,19 @@ async createModalRegister() {
     });
     return await modal.present();
 }
- 
+success(){
+  Swal.fire({
+    icon: 'success',
+    title: 'Account  in successfully ',
+    showClass: {
+      popup: 'animated fadeInDown faster'
+    },
+    hideClass: {
+      popup: 'animated fadeOutUp faster'
+    },
+    showConfirmButton: false,
+    timer: 500
+  })
+ }
 }
 
