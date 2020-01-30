@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/product-service.service';
 // import { CartService } from 'src/app/cart.service';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 import { Popover2Component } from 'src/app/components/popover2/popover2.component';
+import { LoginPage } from '../login/login.page';
 
 
 @Component({
@@ -20,9 +21,9 @@ export class ViewProductDetailsPage implements OnInit {
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   private cartItemCount = new BehaviorSubject(0);
-
+  customerUid: any;
   dbCart = firebase.firestore().collection('Cart');
-
+   
    currentNumber: number = 1;
   Products = [];
   proSales = [];
@@ -61,7 +62,7 @@ export class ViewProductDetailsPage implements OnInit {
   ngOnInit() {
     this.wishItemCount = this.cartService.getWishCount();
     // console.log(this.data.data.image);
-
+    
   }
 
    increment(p) {
@@ -115,14 +116,30 @@ export class ViewProductDetailsPage implements OnInit {
     }
 
   }
-  addToCart(i) {
 
-    let customerUid = firebase.auth().currentUser.uid;
+  async createModalLogins() {
+    const modal = await this.modalController.create({
+      component: LoginPage,
+      
+    });
+    return await modal.present();
+  }
+  
+  addToCart(i) {
+    
+    if(firebase.auth().currentUser == null) {
+      console.log('please login');
+    this.createModalLogins();
+
+      
+    }else {
+      this.customerUid = firebase.auth().currentUser.uid;
+         // let customerUid = firebase.auth().currentUser.uid;
 
     console.log(i);
     this.dbCart.add({
       timestamp: new Date().getTime(),
-      customerUid: customerUid,
+      customerUid: this.customerUid,
       product_name: i.name,
       productCode: i.productCode,
       desc: i.desc,
@@ -134,6 +151,9 @@ export class ViewProductDetailsPage implements OnInit {
     })
     this.cartItemCount.next(this.cartItemCount.value + 1);
     this.dismiss();
+    }
+
+ 
   }
   getCartItemCount() {
     return this.cartItemCount;
@@ -166,7 +186,7 @@ export class ViewProductDetailsPage implements OnInit {
       console.log(i);
       this.dbWishlist.add({
         timestamp: new Date().getTime(),
-        customerUid: customerUid,
+        // customerUid: customerUid,
         name: i.obj.name,
         price: i.obj.price,
         // size:i.obj.size,

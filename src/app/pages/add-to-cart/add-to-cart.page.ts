@@ -13,6 +13,7 @@ import { ConfirmationPage } from '../confirmation/confirmation.page';
 export class AddToCartPage implements OnInit {
   private cartItemCount = new BehaviorSubject(0);
   private currentNumber: number = 1;
+  //  customerUid = firebase.auth().currentUser.uid;
   mysize: string = '';
  sizes = [];
 ​ quantity = 1;
@@ -32,10 +33,10 @@ export class AddToCartPage implements OnInit {
 ​
 
   constructor(public modalController: ModalController) {
-    this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
-      console.log(element.data());
-     this.name = element.data().name
-    })
+    // this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
+    //   console.log(element.data());
+    //  this.name = element.data().name
+    // })
    }
 
    ionViewWillEnter() {
