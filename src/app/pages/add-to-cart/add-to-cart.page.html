@@ -109,7 +109,7 @@
   <!-- <button *ngFor="let button of [1,2,3,4]; let i = index" " (click)="placeOrder()"  
   [ngClass]="{'active':isClicked[i]}" (click)="isClicked[i] = (isClicked[i]? false :true )">collection</button> -->
     <div class="cartButton" >
-      <ion-button color="primary" expand="block" (click)="dismiss()"  (click)="SuccessModal(key)" (click)="placeOrder()" >Place order {{ getTotal() | currency: '&#82;'}} </ion-button>
+      <ion-button color="primary" expand="block" (click)="dismiss()"   (click)="placeOrder()" >Place order {{ getTotal() | currency: '&#82;'}} </ion-button>
     </div>
 
   </div>

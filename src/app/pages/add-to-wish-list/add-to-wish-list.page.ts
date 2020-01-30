@@ -30,7 +30,7 @@ export class AddToWishListPage implements OnInit {
   amount: number;
   dbWishlist = firebase.firestore().collection('Wishlist');
   ///
-  productis = [];
+  myProd = [];
   dbOrder = firebase.firestore().collection('Order');
   dbUser = firebase.firestore().collection('UserProfile');
   cartProduct = [];
@@ -50,6 +50,7 @@ export class AddToWishListPage implements OnInit {
     amount: 0,
     total: 0
   };
+  productCode: any;
   constructor(public modalController: ModalController,
     public toastController : ToastController,
     private cartService: CartServiceService,
@@ -88,24 +89,46 @@ console.log("vvv", this.cart);
   }
   addToCart(i) {
 
+    console.log("my list");
+    
     // let customerUid = firebase.auth().currentUser.uid;
 
-    console.log(i);
-    this.dbCart.add({
-      timestamp: new Date().getTime(),
-      // customerUid: customerUid,
-      product_name: i.name,
-      productCode: i.event.productCode,
-      desc: i.desc,
-      size: this.sizes,
-      price: i.price,
-      quantity: this.event.quantity,
-      image: i.image,
-      amount: i.price * this.event.quantity
-    })
-    this.cartItemCount.next(this.cartItemCount.value + 1);
-    this.dismiss();
+    // console.log(i);
+    // this.dbCart.add({
+    //   timestamp: new Date().getTime(),
+    //   // customerUid: customerUid,
+    //   product_name: i.name,
+    //   productCode: i.event.productCode,
+    //   desc: i.desc,
+    //   size: this.sizes,
+    //   price: i.price,
+    //   quantity: this.event.quantity,
+    //   image: i.image,
+    //   amount: i.price * this.event.quantity
+    // })
+    // this.cartItemCount.next(this.cartItemCount.value + 1);
+    // this.dismiss();
+
+        this.myProd=[];
+       for (let j = 0; j < this.cart.length; j++) {
+        console.log('Products ', this.cart[j]);
+        this.myProd.push(this.cart[j]);
+       }
+       this.dbCart.doc().set({
+         product: this.myProd
+        }).then(() => {
+          
+              this.dbWishlist.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+                res.forEach((i)=>{
+                  console.log("Delete all the items on my wishlist", i);
+                  this.dbWishlist.doc(i.id).delete();
+                })
+            })
+       })
+        console.log('My prod ', this.myProd);
+         this.dismiss(); 
   }
+
   getCartItemCount() {
     return this.cartItemCount;
   }
