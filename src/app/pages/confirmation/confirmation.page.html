@@ -8,33 +8,28 @@
     <h1>Your Order</h1>
 
   
-    <div *ngFor="let b of conArray" class="line">
+    <div class="line">
 
-      <div class="content">
-        <div *ngFor="let li of b.product; let u=index" class="oderDetails">
+      <div class="content" *ngFor="let b of conArray">
+        <div  class="oderDetails">
           <div class="items">
             <!-- <ion-title>item</ion-title>*ngFor="let b of conArray"  *ngFor="let li of b.product" -->
             <div>
               <ion-label class="ionLabels">Item name</ion-label>
             </div>
-            <div class="itemsDetails">
-
-              <div class="itemName">
+              <div class="itemName" *ngFor="let li of b.product; let u=index">
                 <div>
                   <ion-label class="ionLabel">{{li.prod.product_name}}</ion-label>
                 </div>
-                
-
-
-
+        
               </div>
-            </div>
+           
           </div>
-          <div class="qty">
+          <div class="qty" >
             <div>
               <ion-label class="ionLabels">Quantity </ion-label>
             </div>
-            <div class="qtyNo">
+            <div class="qtyNo"*ngFor="let li of b.product; let u=index">
               <div>
                 <ion-label class="ionLabel">{{li.prod.quantity}}</ion-label>
               </div>
@@ -50,7 +45,7 @@
             <div>
               <ion-label class="ionLabels">Price</ion-label>
             </div>
-            <div class="priceNo">
+            <div class="priceNo" *ngFor="let li of b.product; let u=index">
               <div>
                 <ion-label class="ionLabel">R &nbsp; {{li.prod.price}}</ion-label>
               </div>
@@ -64,7 +59,7 @@
             <div>
               <ion-label class="ionLabels"> Amount </ion-label>
             </div>
-            <div class="amountNo">
+            <div class="amountNo" *ngFor="let li of b.product; let u=index">
               <div><ion-label class="ionLabel">R &nbsp; {{li.prod.amount}}</ion-label></div>
               <!-- <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div>
               <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div> -->
