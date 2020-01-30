@@ -151,7 +151,7 @@ ion-content {
      height: 370px;
      padding-top: 20px;
      // border: solid rgb(238, 255, 3);
-    padding-bottom: 150px;
+    padding-bottom: 400px;
      background:linear-gradient(0deg, rgba(14, 13, 13, 0.836), rgba(0, 0, 0, 0.836)), url("../../../assets/photo-1493106641515-6b5631de4bb9.png");
      background-repeat: no-repeat;
      background-size: cover;
@@ -185,23 +185,24 @@ ion-content {
   }
   .messageInputs{
      padding-top: 25px;
+     padding-bottom: 25px;
      
   }
-  .messageInputs > form > ion-item { 
+  .messageInputs  > ion-item { 
      height: 40px;
      border-radius: 10px;
      margin-bottom: 20px;
   }
-  .messageInputs > form > ion-item > ion-input {
+  .messageInputs  > ion-item > ion-input {
   text-align: left;
   }
-  .messageInputs  > form > div > ion-list > ion-item > ion-textarea {
+  .messageInputs   > div > ion-list > ion-item > ion-textarea {
      text-align: left;
      height: 100px;
      margin-bottom: 20px;
      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
      }
-     .messageInputs  > form > div > ion-button {
+     .messageInputs   > div > ion-button {
          margin-top: 20px;
      }
      .callUs-labels {
