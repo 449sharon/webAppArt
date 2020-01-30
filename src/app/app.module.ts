@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Popover2Component } from './components/popover2/popover2.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ViewProductDetailsPageModule } from './pages/view-product-details/view-product-details.module';
+import { Popover3Component } from './components/popover3/popover3.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
@@ -35,8 +36,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   @NgModule({
-    declarations: [AppComponent,PopoverComponent,Popover2Component],
-    entryComponents: [PopoverComponent,Popover2Component],
+    declarations: [AppComponent,PopoverComponent,Popover2Component,Popover3Component],
+    entryComponents: [PopoverComponent,Popover2Component,Popover3Component],
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
       AddToCartPageModule,
       AddToWishListPageModule,ProfilePageModule,

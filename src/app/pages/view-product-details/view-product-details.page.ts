@@ -9,6 +9,7 @@ import { Popover2Component } from 'src/app/components/popover2/popover2.componen
 import { LoginPage } from '../login/login.page';
 import Swal from 'sweetalert2';
 import { ThrowStmt } from '@angular/compiler';
+import { Popover3Component } from 'src/app/components/popover3/popover3.component';
 
 
 @Component({
@@ -196,9 +197,15 @@ logRatingChange(rating, id){
   // }
 
   addWishlist(i) {
-   
+    
+   if(firebase.auth().currentUser == null){
+     console.log('please like this');
+     this.ConfirmationAlertWish();
+     this.createModalLogins()
 
-        this.dbWishlist.add({
+   }else{
+    this.customerUid = firebase.auth().currentUser.uid; 
+       this.dbWishlist.add({
           timestamp: new Date().getTime(),
           product_name: i.name,
           productCode: i.productCode,
@@ -207,21 +214,25 @@ logRatingChange(rating, id){
           quantity: this.event.quantity,
           image: i.image,
       }).then(() => {
-        this.presentToast()
-        this.dismiss();
-        // ('product Added to wishlist')
+        this.presentToast('ev')
       })
         .catch(err => {
           console.error(err);
         });
+   }
 
-      //  this.wishItemCount.next(this.wishItemCount.value + 1);
-
+    
     } 
-  //   else {
-  //     // this.createModalLogin();
-  //   }
-  // }
+
+
+    //   if(firebase.auth().currentUser == null) {
+      // console.log('please login');
+      // this.ConfirmationAlert();
+      // this.createModalLogins();
+  
+        
+      // }else {
+      //   this.customerUid = firebase.auth().currentUser.uid;
   async toastPopover(ev) {
     const popover = await this.popoverController.create({
       component:Popover2Component,
@@ -236,23 +247,36 @@ logRatingChange(rating, id){
     
     
   }
-  async presentToast() {
-    let toast = await this.toastCtrl.create({
-      message: 'Item added successfully',
-      duration: 3000,
-      position: 'top'
+  async presentToast(ev) {
+    const popover = await this.popoverController.create({
+      component:Popover3Component,
+      event: ev,
+      
+      // cssClass: 'pop-over-style',
+      translucent: true,
     });
-  
-    // toast.onDidDismiss(() => {
-    //   console.log('Dismissed toast');
-    // });
-  
-    toast.present();
+    
+   popover.present();
+    setTimeout(()=>popover.dismiss(),500);
+    
   }
 
   ConfirmationAlert(){
     Swal.fire({
       title: 'Please login/sign up before adding items to your cart',
+      showClass: {
+        popup: 'animated fadeInDown faster'
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster'
+      }
+    })
+    this.dismiss()
+   this.createModalLogins();
+   }
+   ConfirmationAlertWish(){
+    Swal.fire({
+      title: 'Please login/sign up before adding items to your wishlist',
       showClass: {
         popup: 'animated fadeInDown faster'
       },

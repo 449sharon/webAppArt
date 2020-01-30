@@ -72,6 +72,7 @@ export class HomePage  {
      vase: null
    }
    SpecialScrin = []
+   sizes = null;
   
 
   constructor( public toastCtrl: ToastController, private data: ProductService,private router: Router, private cartService: CartServiceService, private render: Renderer2, public modalController: ModalController,) {
@@ -392,4 +393,29 @@ showList(i) {
  
   
 }
+
+
+// addWishlist(i) {
+   
+
+//   this.dbWishlist.add({
+//     timestamp: new Date().getTime(),
+//     product_name: i.name,
+//     productCode: i.productCode,
+//     size: this.sizes,
+//     price: i.price,
+//     quantity: this.event.quantity,
+//     image: i.image,
+// }).then(() => {
+//   this.presentToast('ev')
+//   // this.dismiss();
+//   // ('product Added to wishlist')
+// })
+//   .catch(err => {
+//     console.error(err);
+//   });
+
+// //  this.wishItemCount.next(this.wishItemCount.value + 1);
+
+// } 
 }

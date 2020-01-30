@@ -11,13 +11,13 @@
     <div *ngFor="let b of conArray" class="line">
 
       <div class="content">
-        <div *ngFor="let li of b.product; let u=index" class="oderDetails">
+        <div  class="oderDetails">
           <div class="items">
             <!-- <ion-title>item</ion-title>*ngFor="let b of conArray"  *ngFor="let li of b.product" -->
             <div>
               <ion-label class="ionLabels">Item name</ion-label>
             </div>
-            <div class="itemsDetails">
+            <div class="itemsDetails" *ngFor="let li of b.product; let u=index">
 
               <div class="itemName">
                 <div>
@@ -30,7 +30,7 @@
               </div>
             </div>
           </div>
-          <div class="qty">
+          <div class="qty"  *ngFor="let li of b.product; let u=index">
             <div>
               <ion-label class="ionLabels">Quantity </ion-label>
             </div>
@@ -46,7 +46,7 @@
           </div>
           <div>
           </div>
-          <div class="price">
+          <div class="price"  *ngFor="let li of b.product; let u=index">
             <div>
               <ion-label class="ionLabels">Price</ion-label>
             </div>
