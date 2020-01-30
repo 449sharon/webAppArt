@@ -90,24 +90,6 @@ console.log("vvv", this.cart);
   addToCart(i) {
 
     console.log("my list");
-    
-    // let customerUid = firebase.auth().currentUser.uid;
-
-    // console.log(i);
-    // this.dbCart.add({
-    //   timestamp: new Date().getTime(),
-    //   // customerUid: customerUid,
-    //   product_name: i.name,
-    //   productCode: i.event.productCode,
-    //   desc: i.desc,
-    //   size: this.sizes,
-    //   price: i.price,
-    //   quantity: this.event.quantity,
-    //   image: i.image,
-    //   amount: i.price * this.event.quantity
-    // })
-    // this.cartItemCount.next(this.cartItemCount.value + 1);
-    // this.dismiss();
 
         this.myProd=[];
        for (let j = 0; j < this.cart.length; j++) {
@@ -117,7 +99,7 @@ console.log("vvv", this.cart);
        this.dbCart.doc().set({
          product: this.myProd
         }).then(() => {
-          
+          this.myProd=[];
               this.dbWishlist.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
                 res.forEach((i)=>{
                   console.log("Delete all the items on my wishlist", i);

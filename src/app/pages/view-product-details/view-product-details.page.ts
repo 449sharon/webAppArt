@@ -157,7 +157,7 @@ export class ViewProductDetailsPage implements OnInit {
       amount: i.price * this.event.quantity
     })
     this.cartItemCount.next(this.cartItemCount.value + 1);
-    // this.dismiss();
+    this.dismiss();
     this.toastPopover('ev')
     }
 
