@@ -36,10 +36,10 @@ export class AddToWishListPage implements OnInit {
   orderProd = [];
   private currentNumber = 0;
   constructor(public modalController: ModalController ,public toastController : ToastController,private cartService: CartServiceService, private alertCtrl: AlertController) {
-    this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
-      console.log(element.data());
-      this.name = element.data().name
-    })
+    // this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
+    //   console.log(element.data());
+    //   this.name = element.data().name
+    // })
    }
    ionViewWillEnter() {
     setTimeout(() => {
