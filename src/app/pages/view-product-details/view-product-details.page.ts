@@ -214,6 +214,7 @@ logRatingChange(rating, id){
           quantity: this.event.quantity,
           image: i.image,
       }).then(() => {
+        this.dismiss();
         this.presentToast('ev')
       })
         .catch(err => {
