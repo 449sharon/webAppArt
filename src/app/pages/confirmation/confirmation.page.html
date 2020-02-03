@@ -19,7 +19,7 @@
             </div>
               <div class="itemName" *ngFor="let li of b.product; let u=index">
                 <div>
-                  <ion-label class="ionLabel">{{li.prod.product_name}}</ion-label>
+                  <ion-label class="ionLabel">{{li.product_name}}</ion-label>
                 </div>
         
               </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="qtyNo"*ngFor="let li of b.product; let u=index">
               <div>
-                <ion-label class="ionLabel">{{li.prod.quantity}}</ion-label>
+                <ion-label class="ionLabel">{{li.quantity}}</ion-label>
               </div>
               
 
@@ -47,7 +47,7 @@
             </div>
             <div class="priceNo" *ngFor="let li of b.product; let u=index">
               <div>
-                <ion-label class="ionLabel">R &nbsp; {{li.prod.price}}</ion-label>
+                <ion-label class="ionLabel">R &nbsp; {{li.price}}</ion-label>
               </div>
              
 
@@ -60,7 +60,7 @@
               <ion-label class="ionLabels"> Amount </ion-label>
             </div>
             <div class="amountNo" *ngFor="let li of b.product; let u=index">
-              <div><ion-label class="ionLabel">R &nbsp; {{li.prod.amount}}</ion-label></div>
+              <div><ion-label class="ionLabel">R &nbsp; {{li.amount}}</ion-label></div>
               <!-- <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div>
               <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div> -->
         

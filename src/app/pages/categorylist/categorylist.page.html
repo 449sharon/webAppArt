@@ -11,9 +11,9 @@
              
               <div  class="products-section" *ngFor="let event of Products; let i=index;">
               <div *ngIf="Products" class="cards"(click)=" createViewProduct(event)"   [ngClass]="{'active': active==i}" (click)="showList(i)" >
-                <img class="animated fadeInDown 2s" src="{{event.image}}" alt="">
-                <ion-label class="price">R &nbsp; {{event.price}}</ion-label>
-                <ion-label class="name"> {{event.name}} </ion-label>
+                <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
+                <ion-label class="price">R &nbsp; {{event.obj.price}}</ion-label>
+                <ion-label class="name"> {{event.obj.name}} </ion-label>
                 <div class="stars">
                   <ion-icon name="star" color="warning"></ion-icon>
                   <ion-icon name="star" color="warning"></ion-icon>
