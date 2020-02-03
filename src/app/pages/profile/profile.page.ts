@@ -25,7 +25,7 @@ export class ProfilePage implements OnInit {
     number:'',
     address: '',
   
-    email: firebase.auth().currentUser.email,
+    email:'',
    
     uid: '',
     
@@ -56,18 +56,18 @@ export class ProfilePage implements OnInit {
   }
  
   ngOnInit() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        console.log('Got admin', user);
-        this.admin.uid = user.uid
-        this.admin.email = user.email
-        this.GetOrders();
-      this.getProfile();
-      } else {
-        console.log('no admin');
+    // firebase.auth().onAuthStateChanged(user => {
+    //   if (user) {
+    //     console.log('Got admin', user);
+    //     this.admin.uid = user.uid
+    //     this.admin.email = user.email
+    //     this.GetOrders();
+    //   this.getProfile();
+    //   } else {
+    //     console.log('no admin');
         
-      }
-    })
+    //   }
+    // })
   }
   async getImage(image){
     let imagetosend = image.item(0);
@@ -140,9 +140,8 @@ export class ProfilePage implements OnInit {
           this.profile.address = doc.data().address;
           this.profile.image= doc.data().image
           this.profile.name=doc.data().name
-        
           this.profile.number=doc.data().number
-          this.profile.email=doc.data().email
+           this.profile.email=doc.data().email
           
         })
       }

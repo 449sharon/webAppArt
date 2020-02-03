@@ -47,6 +47,7 @@ export class AddToCartPage implements OnInit {
 
    ngOnInit() {
     this.getProducts();
+    
   }
 ​
   ionViewWillLeave(){

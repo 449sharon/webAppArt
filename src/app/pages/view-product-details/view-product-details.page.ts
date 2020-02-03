@@ -18,12 +18,12 @@ import { Popover3Component } from 'src/app/components/popover3/popover3.componen
   styleUrls: ['./view-product-details.page.scss'],
 })
 export class ViewProductDetailsPage implements OnInit {
-  //cartItemCount:BehaviorSubject<number>;
+  cartItemCount:BehaviorSubject<number>;
   wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbRating = firebase.firestore().collection('Rating');
-  private cartItemCount = new BehaviorSubject(0);
+ 
   customerUid: any;
   dbCart = firebase.firestore().collection('Cart');
    
@@ -63,7 +63,8 @@ export class ViewProductDetailsPage implements OnInit {
     public popoverController: PopoverController) { }
 
   ngOnInit() {
-    this.wishItemCount = this.cartService.getWishCount();
+    this.wishItemCount = this.cartService.getWishItemCount();
+    this.cartItemCount = this.cartService.getCartItemCount();
     // console.log(this.data.data.image);
   }
 
@@ -167,6 +168,9 @@ export class ViewProductDetailsPage implements OnInit {
   getCartItemCount() {
     return this.cartItemCount;
   }
+  getWishItemCount() {
+    return this.cartItemCount;
+  }
   createModalLogin() {
     throw new Error("Method not implemented.");
   }
@@ -201,7 +205,7 @@ logRatingChange(rating, id){
    if(firebase.auth().currentUser == null){
      console.log('please like this');
      this.ConfirmationAlertWish();
-     this.createModalLogins()
+    //  this.createModalLogins()
 
    }else{
     this.customerUid = firebase.auth().currentUser.uid; 
@@ -222,7 +226,8 @@ logRatingChange(rating, id){
         });
    }
 
-    
+        this.wishItemCount.next(this.wishItemCount.value + 1);
+
     } 
 
 
@@ -275,6 +280,8 @@ logRatingChange(rating, id){
     this.dismiss()
    this.createModalLogins();
    }
+
+
    ConfirmationAlertWish(){
     Swal.fire({
       title: 'Please login/sign up before adding items to your wishlist',
