@@ -51,12 +51,9 @@ export class AddToWishListPage implements OnInit {
     amount: 0,
     total: 0
   };
-
   value : boolean 
   tempIndex = [] 
   addToTheCart = []
-
-
   productCode: any;
   constructor(public modalController: ModalController,
     public toastController : ToastController,

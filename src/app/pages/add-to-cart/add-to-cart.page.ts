@@ -47,7 +47,6 @@ export class AddToCartPage implements OnInit {
 
    ngOnInit() {
     this.getProducts();
-    
   }
 ​
   ionViewWillLeave(){
@@ -55,7 +54,6 @@ export class AddToCartPage implements OnInit {
   }
 ​
   getProducts() {
-
     firebase.firestore().collection("Cart").onSnapshot(data => {
       this.cartProduct = [];
       data.forEach(item => {
