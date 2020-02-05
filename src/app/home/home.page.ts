@@ -222,7 +222,7 @@ export class HomePage  {
       this.data.data.name = event.obj.name;
       this.data.data.price = event.obj.price;
       this.data.data.desc = event.obj.desc
-      // this.data.data.productCode = event.obj.productCode
+      this.data.data.productno = event.obj.productCode
      })
     this.data.data = event
     const modal = await this.modalController.create({

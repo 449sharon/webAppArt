@@ -86,12 +86,13 @@ adminInfo(){
   }
   
   async createViewProduct(event) {
+    console.log('My details ', event);
     
     this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css'
-    
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
     });
     return await modal.present();
   }

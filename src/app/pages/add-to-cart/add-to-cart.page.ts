@@ -21,8 +21,8 @@ export class AddToCartPage implements OnInit {
   productCode;
   key;
   total = 0;
-  cart = [];
-  myArr = [];
+  // cart = [];
+  // myArr = [];
   amount: number;
   dbCart = firebase.firestore().collection('Cart');
   dbOrder = firebase.firestore().collection('Order');
@@ -30,6 +30,8 @@ export class AddToCartPage implements OnInit {
   cartProduct = [];
   orderProd = [];
   loader: boolean = true;
+  tempIndex: any;
+  myProduct: boolean;
 ​
 
   constructor(public modalController: ModalController) {
@@ -54,23 +56,31 @@ export class AddToCartPage implements OnInit {
   }
 ​
   getProducts() {
-    firebase.firestore().collection("Cart").onSnapshot(data => {
-      this.cartProduct = [];
-      data.forEach(item => {
-        if(item.data().obj.uid == firebase.auth().currentUser.uid){
-          this.cartProduct.push(item.data().obj)
-        }
-      })
-    })
 
-    // this.dbCart.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+    let obj = { obj : {},id : ''};
+    firebase.firestore().collection("Cart").get().then(snapshot => {
+      this.cartProduct = [];
+    if (snapshot.empty) {
+              this.myProduct = false;
+            } else {
+              this.myProduct = true;
+              snapshot.forEach(doc =>{
+                obj.obj = doc.data();
+                obj.id = doc.id;
+                this.cartProduct.push(doc.data())
+              });
+            }
+          });
+          
+          //////////////////////////////////////////////////////////////
+    // firebase.firestore().collection("Cart").onSnapshot(data => {
     //   this.cartProduct = [];
-    //   res.forEach((doc)=>{
-    //     this.cartProduct.push({id: doc.id,prod:doc.data()});
-    //     console.log("oooh", this.cartProduct );
+    //   data.forEach(item => {
+    //     if(item.data().obj.uid == firebase.auth().currentUser.uid){
+    //       this.cartProduct.push(item.data().obj)
+    //     }
     //   })
     // })
-
 
   }
  
@@ -126,14 +136,25 @@ export class AddToCartPage implements OnInit {
      product: this.orderProd,
      name: this.name,
      size : this.sizes,
-    //  productCode:this.productCode,
+     productCode:this.productCode,
      userID: firebase.auth().currentUser.uid,
      pdfLink : "",
      orderNumber:'Pitseng'+key
     }).then(() => {
+      setTimeout(() => {
           this.dbCart.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
             res.forEach((i)=>{
               this.dbCart.doc(i.id).delete();
+            }, 3000)
+             
+
+                this.tempIndex.forEach(key => {
+                  firebase.firestore().collection("WishList").doc(key).delete()
+               })
+          
+              
+             
+
             })
         })
    })

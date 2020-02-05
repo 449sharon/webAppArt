@@ -25,22 +25,22 @@
     <div class="cart-item-section" >
 
       <div class="image-section" >
-        <img src="{{p.image}}"  alt="">
+        <img src="{{p.obj.image}}"  alt="">
 
       </div>
       <div class="prodactDetails-section" >
         <div class="name" >
-          <ion-label>{{ p.product_name }}</ion-label>
+          <ion-label>{{ p.obj.product_name }}</ion-label>
         </div>
         <div class="price" >
-          <ion-label>{{ p.price | currency:'R':'symbol' }} </ion-label>
+          <ion-label>{{ p.obj.price | currency:'R':'symbol' }} </ion-label>
         </div>
         <div class="code">
-          <ion-label>Code: {{ p.productCode }}</ion-label>
+          <ion-label>Code: {{ p.obj.productCode }}</ion-label>
         </div>
         <div class="Productselection">
           <div class="size">
-            <p  >Size:{{ p.size }} </p>
+            <p  >Size:{{ p.obj.size }} </p>
 
              <!-- <div >
               <label  class="container">S
@@ -63,7 +63,7 @@
 
           </div>
           <div class="quantity">
-            <div  ><p no-padding >Qty:   {{ p.quantity }}</p></div>
+            <div  ><p no-padding >Qty:   {{ p.obj.quantity }}</p></div>
             <div> <ion-icon name="remove-circle" color="danger" (click)="decreaseCartItem(j)"></ion-icon>
               <ion-icon name="add-circle" color="success" (click)="increaseCartItem(j)"></ion-icon></div>
            
