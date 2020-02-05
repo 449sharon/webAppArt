@@ -94,8 +94,6 @@ export class AddToCartPage implements OnInit {
                 this.cartProduct.push(obj)
 
               });
-              console.log("rrrerrrrr", this.cartProduct);
-              
             }
           });
           
@@ -141,11 +139,12 @@ export class AddToCartPage implements OnInit {
   removeCartItem(id) {
     this.dbCart.doc(id).delete();
     console.log("I am deleting you", id);
+    this.cartItemCount.next(this.cartItemCount.value - 1);
     
   }
  
   getTotal() {
-    return this.cartProduct.reduce((i, j) => i + j.price * j.quantity, 0); 
+    return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0); 
   }
    ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.

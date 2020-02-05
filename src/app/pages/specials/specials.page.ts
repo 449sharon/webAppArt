@@ -65,18 +65,19 @@ adminInfo(){
 
   
   getSpecials(){
-    let obj = { obj : {},id : ''};
+  //   let obj = { 
+  //     obj : {},
+  //   id : ''
+  // };
     this.db.collection('sales').get().then(snapshot => {
       this.Products = [];
-      if (snapshot.empty) {
-              this.myProduct = false;
-            } else {
-              this.myProduct = true;
-              // let obj = {obj : {}, id : ''}
+      if (snapshot.size > 0) {
+              let obj = {obj : {}, id : ''}
               snapshot.forEach(doc =>{
                 obj.obj = doc.data();
                 obj.id = doc.id;
                 this.Products.push(obj)
+                obj = {obj : {}, id : ''}
               });
             }
     });

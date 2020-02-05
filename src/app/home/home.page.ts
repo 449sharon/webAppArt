@@ -78,7 +78,7 @@ export class HomePage  {
   constructor( public toastCtrl: ToastController, private data: ProductService,private router: Router, private cartService: CartServiceService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
-
+   
 
     //////
     this.getPictures();
@@ -224,11 +224,13 @@ export class HomePage  {
       this.data.data.desc = event.obj.desc
       this.data.data.productno = event.obj.productCode
      })
+    }
+    async createViewProduct(event){
     this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css'
-    
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
     });
     return await modal.present();
   }
@@ -237,19 +239,22 @@ export class HomePage  {
   }
      ///////////////// for sales
     getSpecials(){
-      let obj = {id : '', obj : {}};
-    this.db.collection('sales').limit(5).get().then(snapshot => {
+      let obj = {
+        obj : {},
+        id : ''
+      };
+    this.db.collection("sales").limit(5).onSnapshot(snapshot => {
       this.proSales = [];
       if (snapshot.empty) {
               this.myProduct = false;
             } else {
               this.myProduct = true;
               snapshot.forEach(doc => {
-                obj.id = doc.id;
-                obj.obj = doc.data();
-                this.proSales.push(obj);
-                obj = {id : '', obj : {}};
-                
+                obj = {
+                  obj : doc.data(),
+                  id : doc.id
+                };
+                this.proSales.push(obj)
               });
               this.SpecialScrin.push(this.proSales[0])
             }
@@ -345,8 +350,7 @@ async toastController(message) {
 }
 
 ngOnInit() {
-  // this.cartItemCount = this.cartService.getCartItemCount();
-  // this.wishItemCount = this.cartService.getWishCount();
+  this.allSpecials(this.event);
 }
 ////////
 /////
@@ -361,7 +365,7 @@ ngOnInit() {
         customerUid: customerUid,
         name : i.obj.name,
         price: i.obj.price,
-        // size:i.obj.size,
+        size:i.obj.size,
         productCode: i.obj.productCode,
         quantity: i.obj.quantity,
         percentage:i.obj.percentage,
