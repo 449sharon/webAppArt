@@ -32,7 +32,7 @@ export class HomePage  {
     categories:'',
     name:'',
     price:null,
-    productno:'',
+    productCode:'',
     desc: null,
     small:'',
     medium:'',
@@ -217,7 +217,14 @@ export class HomePage  {
     //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
     //  console.log('Image in the service ', this.data.data.image);
     
-    // this.data.data = event
+     this.db.collection('sales').get().then(snapshot => {
+      this.data.data.image = event.obj.image;
+      this.data.data.name = event.obj.name;
+      this.data.data.price = event.obj.price;
+      this.data.data.desc = event.obj.desc
+      this.data.data.productno = event.obj.productCode
+     })
+    this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
       cssClass: 'my-custom-modal-css'
@@ -225,7 +232,9 @@ export class HomePage  {
     });
     return await modal.present();
   }
-
+  specialsAlso(event){
+    this.router.navigateByUrl('/specials');
+  }
      ///////////////// for sales
     getSpecials(){
       let obj = {id : '', obj : {}};

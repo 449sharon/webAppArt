@@ -177,10 +177,10 @@ export class ProfilePage implements OnInit {
       cssClass: 'track-order',
       componentProps: { ref: item.ref,
         totalPrice: item.info.totalPrice,
-        name: item.info.product[0].prod.product_name,
-        price: item.info.product[0].prod.price,
-        quantity: item.info.product[0].prod.quantity,
-        image: item.info.product[0].prod.image,
+       name: item.info.product[0].product_name,
+        price: item.info.product[0].price,
+        quantity: item.info.product[0].quantity,
+        image: item.info.product[0].image,
       arr:item.info.product },
     },);
     return await modal.present();

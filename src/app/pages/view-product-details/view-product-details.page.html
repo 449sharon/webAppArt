@@ -21,25 +21,25 @@
       <ion-icon color="dark" name="heart" (click)="addWishlist(p)"></ion-icon>
     
   </ion-fab>
-          <img src={{p.image}} width="100%" height="100%" alt="">
+          <img src={{p.obj.image}} width="100%" height="100%" alt="">
         </div>
       </div>
       <div class="product-details">
         <div class="firstItems">
           <div  class="product-name">
-            <ion-label>{{p.name}}</ion-label>
+            <ion-label>{{p.obj.name}}</ion-label>
           </div>
           <div class="product-price">
-            <ion-label>{{p.price | currency: '&#82;'}}</ion-label>
+            <ion-label>{{p.obj.price | currency: '&#82;'}}</ion-label>
 
           </div>
 
         </div>
         <div class="productcode">
-          <ion-label>Product Code: {{p.productCode}}</ion-label>
+          <ion-label>Product Code: {{p.obj.productCode}}</ion-label>
         </div>
         <div  class="productDescription">
-          <p>{{p.desc}}</p>
+          <p>{{p.obj.desc}}</p>
         </div>
 
         <div class="Productselection">

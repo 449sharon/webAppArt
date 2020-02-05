@@ -71,9 +71,14 @@ adminInfo(){
     this.db.collection('Products').where('categories', '==', this.value).get().then((snapshot) =>{
       this.Products = []
       if(snapshot.size > 0){
+        let obj = {obj : {}, id : ''}
         snapshot.forEach(doc =>{
-          this.Products.push(doc.data())
-          console.log(this.Products);
+
+          obj.obj = doc.data();
+          obj.id = doc.id
+          this.Products.push(obj)
+          obj = {obj : {}, id : ''}
+          console.log("key key ",  this.Products);
           
         })
       }
@@ -81,12 +86,13 @@ adminInfo(){
   }
   
   async createViewProduct(event) {
+    console.log('My details ', event);
     
     this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css'
-    
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
     });
     return await modal.present();
   }

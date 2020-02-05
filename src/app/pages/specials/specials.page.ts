@@ -39,6 +39,10 @@ export class SpecialsPage {
   }
 
   ngOnInit() {
+    this.activatedRouter.queryParams.subscribe(params =>{
+      console.log('value', this.router.getCurrentNavigation().extras.state.parms);
+      this.value = this.router.getCurrentNavigation().extras.state.parms;
+    })
     this.getSpecials(); 
   }
 
@@ -61,26 +65,30 @@ adminInfo(){
 
   
   getSpecials(){
-    let obj = {id : '', obj : {}};
+    let obj = { obj : {},id : ''};
     this.db.collection('sales').get().then(snapshot => {
       this.Products = [];
       if (snapshot.empty) {
               this.myProduct = false;
             } else {
               this.myProduct = true;
+              // let obj = {obj : {}, id : ''}
               snapshot.forEach(doc =>{
-                this.Products.push(doc.data())
+                obj.obj = doc.data();
+                obj.id = doc.id;
+                this.Products.push(obj)
               });
             }
     });
   }
   async createViewProduct(event) {
+    console.log('My details ', event);
     
     this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css'
-    
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
     });
     return await modal.present();
   }

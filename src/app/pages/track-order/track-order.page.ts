@@ -45,7 +45,7 @@ MyPdf = "";
   loader: boolean = true;
 
   trackOrders =  {
-    product_name: '',
+    name: '',
     size: '',
     quantity: 0,
     total: 0,
@@ -144,14 +144,14 @@ MyPdf = "";
     console.log('year', p);
 
 
-    this.trackOrders.product_name = p.prod.product_name;
-    this.trackOrders.quantity = p.prod.quantity;
-    this.trackOrders.size = p.prod.size;
-    this.trackOrders.total = p.prod.total;
-    this.trackOrders.image = p.prod.image;
-    this.trackOrders.productCode = p.prod.productCode;
-    this.trackOrders.desc = p.prod.desc;
-    this.trackOrders.amount =p.prod.amount;
+    this.trackOrders.name = p.name;
+    this.trackOrders.quantity = p.quantity;
+    this.trackOrders.size = p.size;
+    this.trackOrders.total = p.total;
+    this.trackOrders.image = p.image;
+    this.trackOrders.productCode = p.productCode;
+    this.trackOrders.desc = p.desc;
+    this.trackOrders.amount =p.amount;
     
    
     this.list = !this.list;

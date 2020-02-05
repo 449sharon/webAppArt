@@ -12,13 +12,13 @@
               <div  class="products-section" *ngFor="let event of Products">
               <div *ngIf="Products" class="cards ">
                 <div class="percent-off" >
-                  <p>{{event.percentage}} %</p>
+                  <p>{{event.obj.percentage}} %</p>
 
                 </div>
             
-                <img class="animated fadeInDown 2s" src="{{event.image}}" width="222" height="268" (click)=" createViewProduct(event)" alt="">
-                <ion-label class="price">R &nbsp; {{event.price}} &nbsp; <span class="span-tsrike" >R &nbsp; 400</span> </ion-label>
-                <ion-label class="name"> {{event.name}} </ion-label>
+                <img class="animated fadeInDown 2s" src="{{event.obj.image}}" width="222" height="268" (click)=" createViewProduct(event)" alt="">
+                <ion-label class="price">R &nbsp; {{event.obj.totalprice}} &nbsp; <span class="span-tsrike" >R &nbsp; {{event.obj.price}}</span> </ion-label>
+                <ion-label class="name"> {{event.obj.name}} </ion-label>
                 <div class="stars">
                   <ion-icon name="star" color="warning"></ion-icon>
                   <ion-icon name="star" color="warning"></ion-icon>
