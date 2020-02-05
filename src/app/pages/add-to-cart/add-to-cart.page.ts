@@ -58,29 +58,29 @@ export class AddToCartPage implements OnInit {
   getProducts() {
 
     let obj = { obj : {},id : ''};
-    firebase.firestore().collection("Cart").get().then(snapshot => {
-      this.cartProduct = [];
-    if (snapshot.empty) {
-              this.myProduct = false;
-            } else {
-              this.myProduct = true;
-              snapshot.forEach(doc =>{
-                obj.obj = doc.data();
-                obj.id = doc.id;
-                this.cartProduct.push(doc.data())
-              });
-            }
-          });
+    // firebase.firestore().collection("Cart").get().then(snapshot => {
+    //   this.cartProduct = [];
+    // if (snapshot.empty) {
+    //           this.myProduct = false;
+    //         } else {
+    //           this.myProduct = true;
+    //           snapshot.forEach(doc =>{
+    //             obj.obj = doc.data();
+    //             obj.id = doc.id;
+    //             this.cartProduct.push(doc.data())
+    //           });
+    //         }
+    //       });
           
           //////////////////////////////////////////////////////////////
-    // firebase.firestore().collection("Cart").onSnapshot(data => {
-    //   this.cartProduct = [];
-    //   data.forEach(item => {
-    //     if(item.data().obj.uid == firebase.auth().currentUser.uid){
-    //       this.cartProduct.push(item.data().obj)
-    //     }
-    //   })
-    // })
+    firebase.firestore().collection("Cart").onSnapshot(data => {
+      this.cartProduct = [];
+      data.forEach(item => {
+        if(item.data().obj.uid == firebase.auth().currentUser.uid){
+          this.cartProduct.push(item.data().obj)
+        }
+      })
+    })
 
   }
  
