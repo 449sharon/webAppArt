@@ -33,10 +33,11 @@ storage;
 key: any;
 loading: any;
 orderNumber :any;
-pdfLink :any;
+
 delType: string = '';
 delCost: number = 0;
 status: string = '';
+pdfLink = null;
 MyPdf = "";
 
   listDiv: any = document.getElementsByClassName('item-dsiplay');
@@ -56,23 +57,7 @@ MyPdf = "";
 
 
   constructor(public modalController: ModalController,private render: Renderer2,public route: ActivatedRoute, ) { 
-  //   this.route.queryParams.subscribe((res : any)=>{
-  //     console.log(JSON.parse(res.order));
-  //     let array : Array<any> = JSON.parse(res.order)
-  //     console.log(array);
-  //     this.conArray = array['info']
-  //     console.log(this.conArray);
-
-      
-  //   ///////
-  //      this.PList.push(array['info'].pdfLink);
-
-      
-
-  //      console.log(this.PList);
-       
-
-  // });
+  
   this.name = `${this.name}`;
   this.amount = `${this.amount}`;
   this.quantity = `${this.quantity}`;
@@ -88,10 +73,7 @@ MyPdf = "";
     })
     console.log(`${this.ref} ${this.name}`)
   }
-/*  modal.onDidDismiss()
-      .then((data) => {
-        const user = data['data']; // Here's your selected user!
-    }); */
+
   dismiss(){
     this.modalController.dismiss({
       'dismissed':true
@@ -107,6 +89,18 @@ MyPdf = "";
       console.log(file.data(), '55555');
       this.Orders.push(file.data())
       }) 
+  }
+  orderReady() {
+    this.dbOrder.doc(this.key).onSnapshot((res) => {
+      if (res.data().status === 'ready') {
+        //console.log('Collect');
+        this.dbHistory.doc(this.key).set({ date: new Date().getTime(), pdfLink: null }).then(() => {
+          this.dbOrder.doc(this.key).delete();
+        })
+      } else {
+        console.log('Wait until it is');
+      }
+    })
   }
   // dismiss() {
   //   this.modalController.dismiss({
@@ -161,16 +155,7 @@ MyPdf = "";
     
    
     this.list = !this.list;
-      // this.loader = true;
-
-          // if(this.list) {
-          //   this.render.setStyle(this.listDiv[0], 'display', 'block');
-      
-          // }else {
-          //   setTimeout(() => {
-          //     this.render.setStyle(this.listDiv[0], 'display', 'none');
-          //   }, 500);
-          // }
+     
           this.loader = false;
        
  }

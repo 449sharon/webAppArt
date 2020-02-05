@@ -87,7 +87,7 @@ console.log("vvv", this.cart);
       })
     })
   }
-  addToCart(i) {
+  addToCart() {
 
     console.log("my list");
     

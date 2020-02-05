@@ -22,8 +22,8 @@ import { CartServiceService } from './services/cart-service.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  private cartItemCount = new BehaviorSubject(0);
-  private wishItemCount = new BehaviorSubject(0);
+   cartItemCount = new BehaviorSubject(0);
+ wishItemCount = new BehaviorSubject(0);
   loader: boolean = true;
   dbMessages = firebase.firestore().collection('Messages');
   message = {
