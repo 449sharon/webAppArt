@@ -51,7 +51,7 @@ export class ViewProductDetailsPage implements OnInit {
     medium: false,
     large: false
   }
-
+  id
   image = ""
   constructor(public modalController: ModalController,
     public productService: ProductService,
@@ -191,6 +191,7 @@ export class ViewProductDetailsPage implements OnInit {
 
     console.log(i);
     this.dbCart.add({
+      id: this.id,
       timestamp: new Date().getTime(),
       customerUid: this.customerUid,
       product_name: i.obj.name,
