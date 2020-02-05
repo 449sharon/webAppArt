@@ -170,7 +170,7 @@ export class AddToWishListPage implements OnInit {
 //       })
 //     })
   }
-  addToCart(i) {
+  addToCart() {
 
 
     this.addToTheCart.forEach(item => {

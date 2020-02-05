@@ -194,7 +194,7 @@ export class ViewProductDetailsPage implements OnInit {
       id: this.id,
       timestamp: new Date().getTime(),
       customerUid: this.customerUid,
-      product_name: i.obj.name,
+       product_name: i.obj.name,
       productCode: i.obj.productCode,
       desc: i.obj.desc,
       size: this.sizes,

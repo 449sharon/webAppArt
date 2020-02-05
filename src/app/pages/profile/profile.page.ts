@@ -56,18 +56,18 @@ export class ProfilePage implements OnInit {
   }
  
   ngOnInit() {
-    // firebase.auth().onAuthStateChanged(user => {
-    //   if (user) {
-    //     console.log('Got admin', user);
-    //     this.admin.uid = user.uid
-    //     this.admin.email = user.email
-    //     this.GetOrders();
-    //   this.getProfile();
-    //   } else {
-    //     console.log('no admin');
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log('Got admin', user);
+        this.admin.uid = user.uid
+        this.admin.email = user.email
+        this.GetOrders();
+      this.getProfile();
+      } else {
+        console.log('no admin');
         
-    //   }
-    // })
+      }
+    })
   }
   async getImage(image){
     let imagetosend = image.item(0);
@@ -175,7 +175,12 @@ export class ProfilePage implements OnInit {
     const modal = await this.modalController.create({
       component:TrackOrderPage,
       cssClass: 'track-order',
-      componentProps: { ref: item.ref,totalPrice: item.info.totalPrice,name: item.info.product[0].prod.product_name,price: item.info.product[0].prod.price,quantity: item.info.product[0].prod.quantity,image: item.info.product[0].prod.image,
+      componentProps: { ref: item.ref,
+        totalPrice: item.info.totalPrice,
+       name: item.info.product[0].product_name,
+        price: item.info.product[0].price,
+        quantity: item.info.product[0].quantity,
+        image: item.info.product[0].image,
       arr:item.info.product },
     },);
     return await modal.present();

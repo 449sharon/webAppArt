@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import * as moment from 'moment'
@@ -34,7 +34,8 @@ export class AddToCartPage implements OnInit {
   myProduct: boolean;
 ​id
 
-  constructor(public modalController: ModalController) {
+  constructor(public modalController: ModalController,
+    public toastCtrl: ToastController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
      this.name = element.data().name
@@ -49,10 +50,28 @@ export class AddToCartPage implements OnInit {
 
    ngOnInit() {
     this.getProducts();
+    this.trackOrder();
+    
   }
 ​
   ionViewWillLeave(){
 ​
+  }
+  value
+  trackOrder(){
+    this.dbOrder.onSnapshot(res =>{
+      console.log('I am a snapshot',res);
+      
+      for(let key in res.docChanges()){
+        let change = res.docChanges()[key]
+        if(change.type === 'modified'){
+          console.log(change.doc.data().date);
+          this.value = change.doc.data().date
+          console.log(this.value);
+          
+        }
+      }
+    })
   }
 ​
   getProducts() {
@@ -131,48 +150,71 @@ export class AddToCartPage implements OnInit {
    ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.
   placeOrder(){
-    ​  
-    let inside = this.getTotal();
-    this.orderProd=[];
-    let key = Math.floor(Math.random()*100000);
-   for (let j = 0; j < this.cartProduct.length; j++) {
-    this.orderProd.push(this.cartProduct[j]);
-    console.log('my order', this.cartProduct);
-   }
-   
-   this.dbOrder.doc('Pitseng'+ key).set({
-     totalPrice:inside,
-     date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-     product: this.orderProd,
-     name: this.name,
-     size : this.sizes,
-     productCode:this.productCode,
-     userID: firebase.auth().currentUser.uid,
-     pdfLink : "",
-     orderNumber:'Pitseng'+key
-    })
-    .then(() => {
-      setTimeout(() => {
-          this.dbCart.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
-            res.forEach((i)=>{
-              this.dbCart.doc(i.id).delete();
-            }, 3000)
-
-            })
+    ​    let inside = this.getTotal();
+        console.log('hereTtooo ', inside);
+        this.orderProd=[];
+        let key = Math.floor(Math.random()*100000);
+       for (let j = 0; j < this.cartProduct.length; j++) {
+        console.log('Products ', this.cartProduct[j]);
+        this.orderProd.push(this.cartProduct[j]);
+       } 
+      if(this.cartProduct.length === 0){
+        this.toastController('You cannot place order with empty Cart');
+      }else{
+        this.dbOrder.doc('Pitseng'+ key).set({
+          totalPrice:inside,
+          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+          product: this.orderProd,
+          name: this.name,
+          size : this.sizes,
+          // productCode:this.productCode,
+          userID: firebase.auth().currentUser.uid,
+          pdfLink : "",
+          status:'received',
+          orderNumber:'Pitseng'+key
+         }).then(() => {
+               this.dbCart.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+                 res.forEach((i)=>{
+                   this.dbCart.doc(i.id).delete();
+                 })
+             })
         })
-   })
-    console.log('My prod ', this.orderProd);
-     this.dismiss(); 
-     this.SuccessModal(key);
-  }
-  async SuccessModal(key) {
-    const modal = await this.modalController.create({
-      component: ConfirmationPage,
-      componentProps: {id : key, total : this.total },
-      cssClass: 'confirmation',
-    });
-    return await modal.present();
-  }
+         console.log('My prod ', this.orderProd);
+          this.dismiss(); 
+          this.SuccessModal(key);
+       }
+      }
+       
+      
+    //   if (this.prodCart.length === 0) {
+    //     this.toastController('You cannot place order with empty basket');
+    //   } else {
+    //     let docname = 'ZXY' + Math.floor(Math.random() * 10000000);
+    //     this.dbOrder.doc(docname).set({ 
+    //       product: myArr, 
+    //       timestamp: new Date().getTime(), 
+    //       status: 'received', 
+    //       userID: firebase.auth().currentUser.uid, 
+    //       totalPrice: this.getTotal() }).then(() => {
+    //       doc.forEach((id) => {
+    //         this.dbCart.doc(id).delete();
+    //       })
+    //       this.router.navigate(['payment', docname])
+    //     })
+    //   }
+    // }
+    async toastController(message) {
+      let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+      return toast.present();
+    }
+      async SuccessModal(key) {
+        const modal = await this.modalController.create({
+          component: ConfirmationPage,
+          componentProps: {id : key, total : this.total },
+          cssClass: 'confirmation',
+        });
+        return await modal.present();
+      }
       
 
       // async createConfirmation() {
