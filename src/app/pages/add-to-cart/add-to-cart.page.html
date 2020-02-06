@@ -19,7 +19,7 @@
     <div class="cartTitle" >
       <ion-title>Cart</ion-title>
     </div>
-    <div  *ngFor="let p of cartProduct; let j=index" class="ng-for-goes-here" >
+    <div  *ngFor="let p of cartProduct; let j of index" class="ng-for-goes-here" >
       
   
     <div class="cart-item-section" >
@@ -45,8 +45,8 @@
           </div>
           <div class="quantity">
             <div  ><p no-padding >Qty:   {{ p.obj.quantity }}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="decreaseCartItem(j)"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increaseCartItem(j)"></ion-icon></div>
+            <div> <ion-icon name="remove-circle" color="danger" (click)="minus(p, j)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="plus(p, j)"></ion-icon></div>
            
           </div>
         </div>
