@@ -60,14 +60,14 @@ export class AddToCartPage implements OnInit {
   value
   trackOrder() {
     this.dbOrder.onSnapshot(res => {
-      console.log('I am a snapshot', res);
+    //  console.log('I am a snapshot', res);
 
       for (let key in res.docChanges()) {
         let change = res.docChanges()[key]
         if (change.type === 'modified') {
-          console.log(change.doc.data().date);
+       //   console.log(change.doc.data().date);
           this.value = change.doc.data().date
-          console.log(this.value);
+        //  console.log(this.value);
 
         }
       }

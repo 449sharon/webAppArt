@@ -139,7 +139,6 @@ export class ViewProductDetailsPage implements OnInit {
   }
   
   addToCart(i) {
-    
     // console.log("qqqqqqq  ", i);
 
     // let obj = {obj : {

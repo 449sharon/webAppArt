@@ -73,7 +73,6 @@ export class HomePage  {
    }
    SpecialScrin = []
    sizes = null;
-  
 
   constructor( public toastCtrl: ToastController, private data: ProductService,private router: Router, private cartService: CartServiceService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
@@ -211,7 +210,27 @@ export class HomePage  {
     }
     this.router.navigate(['categorylist'],navigationExtras)   
   }
-
+  addToWishlist(prod, id) {
+     console.log("Product Info ",prod);
+     this.dbWishlist.doc(id).set({
+     /*   name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
+      id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories */
+      id: id,
+      timestamp: new Date().getTime(),
+      uid : firebase.auth().currentUser.uid,
+      product_name: prod.name,
+      productCode: prod.productCode,
+      desc: prod.desc,
+      size: this.sizes,
+      price: prod.price,
+      quantity: 1,
+      image: prod.image,
+      }).then(()=>{
+    
+    }).then(()=>{
+        this.toastController("Added to wishlist");
+      })
+  }
   async allSpecials(event){
 
     //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);

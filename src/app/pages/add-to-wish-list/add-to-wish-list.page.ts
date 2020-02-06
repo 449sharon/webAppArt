@@ -87,22 +87,22 @@ export class AddToWishListPage implements OnInit {
 
       setTimeout(() => {
 
-        firebase.firestore().collection("WishList").doc(data.id).update({
-          categories : data.obj.obj.categories,
+        this.dbWishlist.doc(data.id).update({
+          categories : data.obj.categories,
           checked : true,
-          desc : data.obj.obj.desc,
-          image :data.obj.obj.image,
-          items : data.obj.obj.items,
-          lastcreated : data.obj.obj.lastcreated,
-          name : data.obj.obj.name,
-          price : data.obj.obj.price,
-          productCode : data.obj.obj.productCode,
-          quantity : data.obj.obj.quantity,
-          size : data.obj.obj.size,
-          uid : data.obj.obj.uid
+          desc : data.obj.desc,
+          image :data.obj.image,
+          items : data.obj.items,
+          lastcreated : data.obj.lastcreated,
+          name : data.obj.name,
+          price : data.obj.price,
+          productCode : data.obj.productCode,
+          quantity : data.obj.quantity,
+          size : data.obj.size,
+          uid : data.obj.uid
         })
 
-      }, 3000)
+      }, 2000)
 
     this.tempIndex.push(data.id)
 
@@ -128,27 +128,14 @@ export class AddToWishListPage implements OnInit {
           uid : data.obj.obj.uid
         })
       }, 3000)
-  
     }
-    
-    
   }
   getProducts() {
-
-
-    firebase.firestore().collection("WishList").onSnapshot(data => {
-
+    this.dbWishlist.where("uid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
       this.cart = []
       data.forEach(item => {
-        console.log("Sir, Your data is here ", item.data());
-
-
-        if(item.data().obj.checked == false && item.data().obj.uid){
-
-          this.cart.push({obj : item.data(), id : item.id})
-         
-        }
-        
+        // console.log("Sir, Your data is here ", item.data());
+          this.cart.push({obj : item.data(), id : item.id})  
       })
     })
 
@@ -232,7 +219,7 @@ export class AddToWishListPage implements OnInit {
   }
  
   removeCartItem(o) {
-    firebase.firestore().collection('WishList').doc(o.id).delete()
+    this.dbWishlist.doc(o).delete()
     // this.dbWishlist.doc(o.id).delete();
   }
  
