@@ -73,6 +73,7 @@ export class AddToWishListPage implements OnInit {
     this.getProducts();
   }
 
+/*ADDING MY ITEMS FROM WISHLIST TO THE CART*/
 
   CheckBox(data){
 
@@ -130,11 +131,11 @@ export class AddToWishListPage implements OnInit {
       }, 3000)
     }
   }
+
   getProducts() {
     this.dbWishlist.where("uid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
       this.cart = []
       data.forEach(item => {
-        // console.log("Sir, Your data is here ", item.data());
           this.cart.push({obj : item.data(), id : item.id})  
       })
     })
