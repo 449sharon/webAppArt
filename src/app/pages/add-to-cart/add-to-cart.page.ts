@@ -183,25 +183,7 @@ export class AddToCartPage implements OnInit {
           this.SuccessModal(key);
        }
       }
-       
-      
-    //   if (this.prodCart.length === 0) {
-    //     this.toastController('You cannot place order with empty basket');
-    //   } else {
-    //     let docname = 'ZXY' + Math.floor(Math.random() * 10000000);
-    //     this.dbOrder.doc(docname).set({ 
-    //       product: myArr, 
-    //       timestamp: new Date().getTime(), 
-    //       status: 'received', 
-    //       userID: firebase.auth().currentUser.uid, 
-    //       totalPrice: this.getTotal() }).then(() => {
-    //       doc.forEach((id) => {
-    //         this.dbCart.doc(id).delete();
-    //       })
-    //       this.router.navigate(['payment', docname])
-    //     })
-    //   }
-    // }
+    
     async toastController(message) {
       let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
       return toast.present();
