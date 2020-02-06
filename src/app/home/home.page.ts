@@ -32,7 +32,7 @@ export class HomePage  {
     categories:'',
     name:'',
     price:null,
-    productno:'',
+    productCode:'',
     desc: null,
     small:'',
     medium:'',
@@ -73,12 +73,11 @@ export class HomePage  {
    }
    SpecialScrin = []
    sizes = null;
-  
 
   constructor( public toastCtrl: ToastController, private data: ProductService,private router: Router, private cartService: CartServiceService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
-
+   
 
     //////
     this.getPictures();
@@ -211,39 +210,72 @@ export class HomePage  {
     }
     this.router.navigate(['categorylist'],navigationExtras)   
   }
-
+  addToWishlist(prod, id) {
+     console.log("Product Info ",prod);
+     this.dbWishlist.doc(id).set({
+     /*   name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
+      id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories */
+      id: id,
+      timestamp: new Date().getTime(),
+      uid : firebase.auth().currentUser.uid,
+      product_name: prod.name,
+      productCode: prod.productCode,
+      desc: prod.desc,
+      size: this.sizes,
+      price: prod.price,
+      quantity: 1,
+      image: prod.image,
+      }).then(()=>{
+    
+    }).then(()=>{
+        this.toastController("Added to wishlist");
+      })
+  }
   async allSpecials(event){
 
     //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
     //  console.log('Image in the service ', this.data.data.image);
-    
-    // this.data.data = event
+    this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css'
-    
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
     });
     return await modal.present();
+  /*    this.db.collection('sales').get().then(snapshot => {
+      this.data.data.image = event.obj.image;
+      this.data.data.name = event.obj.name;
+      this.data.data.price = event.obj.price;
+      this.data.data.desc = event.obj.desc
+      this.data.data.productno = event.obj.productCode
+     })
+    }
+    async createViewProduct(event){
+    this.data.data = event
+    const modal = await this.modalController.create({
+      component:ViewProductDetailsPage,
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
+    });
+    return await modal.present(); */
   }
-
+  specialsAlso(){
+    this.router.navigateByUrl('/specials');
+  }
      ///////////////// for sales
     getSpecials(){
-      let obj = {id : '', obj : {}};
-    this.db.collection('sales').limit(5).get().then(snapshot => {
+    //  let obj = {id : '', obj : {}};
+    this.db.collection('sales').limit(5).onSnapshot(snapshot => {
       this.proSales = [];
-      if (snapshot.empty) {
-              this.myProduct = false;
-            } else {
-              this.myProduct = true;
               snapshot.forEach(doc => {
-                obj.id = doc.id;
-                obj.obj = doc.data();
-                this.proSales.push(obj);
-                obj = {id : '', obj : {}};
+               // obj.id = doc.id;
+               // obj.obj = doc.data();
+                this.proSales.push({id : doc.id, obj : doc.data()});
+               // obj = {id : '', obj : {}};
                 
               });
               this.SpecialScrin.push(this.proSales[0])
-            }
+           // }
        });
   }
 
@@ -291,9 +323,7 @@ adminInfo(){
        }
    })
 }
-specialsAlso(){
-  this.router.navigateByUrl('/specials');
-}
+
 openAboutUS(){
     this.router.navigateByUrl('/about-us');
 }
@@ -338,8 +368,7 @@ async toastController(message) {
 }
 
 ngOnInit() {
-  // this.cartItemCount = this.cartService.getCartItemCount();
-  // this.wishItemCount = this.cartService.getWishCount();
+  // this.allSpecials(this.event);
 }
 ////////
 /////
@@ -354,7 +383,7 @@ ngOnInit() {
         customerUid: customerUid,
         name : i.obj.name,
         price: i.obj.price,
-        // size:i.obj.size,
+        size:i.obj.size,
         productCode: i.obj.productCode,
         quantity: i.obj.quantity,
         percentage:i.obj.percentage,
@@ -386,8 +415,6 @@ ngOnInit() {
 
 showList(i) {
   this.active = i;
- 
-  
 }
 
 

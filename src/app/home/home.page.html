@@ -73,7 +73,7 @@
                     <p>{{event.obj.percentage}} % off</p>
   
                   </div>
-                  <img class="animated fadeInDown 2s" src="{{event.obj.image}}"(click)="showList(i)" (click)="allSpecials(event)" alt="">
+                  <img class="animated fadeInDown 2s" src="{{event.obj.image}}" (click)="allSpecials(event)" alt="">
                   <ion-label class="price"> R{{event.obj.totalprice}} <span class="span-tsrike" >{{event.obj.price}}</span>  </ion-label>
                   <ion-label class="name">  {{event.obj.name}} </ion-label>
                   <div class="stars">
@@ -83,15 +83,15 @@
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star-outline" color="warning"></ion-icon>
                   </div>
-                  <div class="icon-wish" >
-                    <ion-icon name="heart"  (click)="addWishlist()" ></ion-icon>
+                  <div class="icon-wish" (click)="addToWishlist(event.obj, event.id)">
+                    <ion-icon name="heart"  ></ion-icon>
                   </div>
                
                 </div>
               </div>
               </div>
 
-              <div class="special-section"  (click)="specialsAlso(event)">
+              <div class="special-section" (click) = specialsAlso()>
                 <div *ngFor="let me of SpecialScrin" >
                 <div class="specials">
                   <img src="{{me.obj.image}}">

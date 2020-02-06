@@ -29,7 +29,7 @@ export class CategorylistPage implements OnInit {
     email: '',
     message:''
  }
-
+ dbWishlist = firebase.firestore().collection('Wishlist');
   constructor(private router: Router,  public modalController: ModalController,
     private data: ProductService, private activatedRouter : ActivatedRoute,
     public popoverController: PopoverController,  public toastCtrl: ToastController) { }
@@ -48,7 +48,13 @@ export class CategorylistPage implements OnInit {
     })
     this.getProducts(); 
   }
-
+  addToWishlist(prod, id) {
+    console.log("Product Info ",prod);
+    this.dbWishlist.doc(id).set({name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
+     id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories}).then(()=>{
+       this.toastController("Added to wishlist");
+     })
+ }
   Info = []
 adminInfo(){
   this.db.collection('admins').get().then(snapshot => {
@@ -71,9 +77,13 @@ adminInfo(){
     this.db.collection('Products').where('categories', '==', this.value).get().then((snapshot) =>{
       this.Products = []
       if(snapshot.size > 0){
+        let obj = {obj : {}, id : ''}
         snapshot.forEach(doc =>{
-          this.Products.push(doc.data())
-          console.log(this.Products);
+
+          obj.obj = doc.data();
+          obj.id = doc.id
+          this.Products.push(obj)
+          obj = {obj : {}, id : ''}
           
         })
       }
@@ -81,12 +91,13 @@ adminInfo(){
   }
   
   async createViewProduct(event) {
+    console.log('My details ', event);
     
     this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css'
-    
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
     });
     return await modal.present();
   }

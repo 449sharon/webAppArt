@@ -18,12 +18,12 @@ import { Popover3Component } from 'src/app/components/popover3/popover3.componen
   styleUrls: ['./view-product-details.page.scss'],
 })
 export class ViewProductDetailsPage implements OnInit {
-  //cartItemCount:BehaviorSubject<number>;
+  cartItemCount:BehaviorSubject<number>;
   wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbRating = firebase.firestore().collection('Rating');
-  private cartItemCount = new BehaviorSubject(0);
+ 
   customerUid: any;
   dbCart = firebase.firestore().collection('Cart');
    
@@ -51,7 +51,7 @@ export class ViewProductDetailsPage implements OnInit {
     medium: false,
     large: false
   }
-
+  id
   image = ""
   constructor(public modalController: ModalController,
     public productService: ProductService,
@@ -63,7 +63,11 @@ export class ViewProductDetailsPage implements OnInit {
     public popoverController: PopoverController) { }
 
   ngOnInit() {
-    this.wishItemCount = this.cartService.getWishCount();
+    this.wishItemCount = this.cartService.getWishItemCount();
+    this.cartItemCount = this.cartService.getCartItemCount();
+    console.log("Data in the view Details ", this.data.data);
+    // console.log('$(event)');
+    
     // console.log(this.data.data.image);
   }
 
@@ -82,6 +86,8 @@ export class ViewProductDetailsPage implements OnInit {
 
   ionViewWillEnter(event) {
     this.Products.push(this.data.data)
+    console.log("rrtrtrtrt", this.Products);
+    
     this.proSales.push(this.data.data)
   }
   selectedSize(size) {
@@ -133,38 +139,80 @@ export class ViewProductDetailsPage implements OnInit {
   }
   
   addToCart(i) {
+    // console.log("qqqqqqq  ", i);
+
+    // let obj = {obj : {
+    //   categories : i.obj.categories,
+    //   desc : i.obj.desc,
+    //   image : i.obj.image,
+    //   items : i.obj.items,
+    //   lastcreated : i.obj.lastcreated,
+    //   name : i.obj.name,
+    //   price : i.obj.price,
+    //   productCode : i.obj.productCode,
+    //   quantity : i.obj.quantity,
+    //   size : i.obj.size,
+    //   uid : firebase.auth().currentUser.uid
+    // }}
+
+    // firebase.firestore().collection("Cart").doc().set(obj)
+
+    // setTimeout(() => {
+
+    //   obj = {obj : {
+    //     categories :"",
+    //     desc :"",
+    //     image  :"",
+    //     items  :"",
+    //     lastcreated :"" ,
+    //     name :"",
+    //     price  :"",
+    //     productCode :"",
+    //     quantity : "" ,
+    //     size : [],
+    //     uid : ""
+    //   }}
+      
+    // }, 2000);
+
+
+    // this.dismiss();
     
     if(firebase.auth().currentUser == null) {
-      // console.log('please login');
+      console.log('please login');
       this.ConfirmationAlert();
-    // this.createModalLogins();
+    this.createModalLogins();
 
       
     }else {
       this.customerUid = firebase.auth().currentUser.uid;
-         // let customerUid = firebase.auth().currentUser.uid;
+         let customerUid = firebase.auth().currentUser.uid;
 
     console.log(i);
     this.dbCart.add({
+      id: this.id,
       timestamp: new Date().getTime(),
       customerUid: this.customerUid,
-      product_name: i.name,
-      productCode: i.productCode,
-      desc: i.desc,
+       product_name: i.obj.name,
+      productCode: i.obj.productCode,
+      desc: i.obj.desc,
       size: this.sizes,
-      price: i.price,
+      price: i.obj.price,
       quantity: this.event.quantity,
-      image: i.image,
-      amount: i.price * this.event.quantity
+      image: i.obj.image,
+      amount: i.obj.price * this.event.quantity
     })
     this.cartItemCount.next(this.cartItemCount.value + 1);
-    // this.dismiss();
+    this.dismiss();
     this.toastPopover('ev')
     }
 
  
   }
   getCartItemCount() {
+    return this.cartItemCount;
+  }
+  getWishItemCount() {
     return this.cartItemCount;
   }
   createModalLogin() {
@@ -197,31 +245,70 @@ logRatingChange(rating, id){
   // }
 
   addWishlist(i) {
-    
-   if(firebase.auth().currentUser == null){
-     console.log('please like this');
-     this.ConfirmationAlertWish();
-    //  this.createModalLogins()
 
-   }else{
-    this.customerUid = firebase.auth().currentUser.uid; 
-       this.dbWishlist.add({
-          timestamp: new Date().getTime(),
-          product_name: i.name,
-          productCode: i.productCode,
-          size: this.sizes,
-          price: i.price,
-          quantity: this.event.quantity,
-          image: i.image,
-      }).then(() => {
-        this.presentToast('ev')
-      })
-        .catch(err => {
-          console.error(err);
-        });
-   }
+    console.log("Method Called ", i);
+      if(firebase.auth().currentUser == null){
+         console.log('please like this');
+         this.ConfirmationAlertWish();
+         this.createModalLogins()
+       }else{
+        this.customerUid = firebase.auth().currentUser.uid;
+        firebase.firestore().collection("WishList").doc().set({
+  
+          obj : {
+            uid : firebase.auth().currentUser.uid,
+            checked : false,
+            categories : i.obj.categories,
+            desc : i.obj.desc,
+            image : i.obj.image,
+            items : i.obj.items,
+            lastcreated : i.obj.lastcreated,
+            name : i.obj.name,
+            price : i.obj.price,
+            productCode : i.obj.productCode,
+            quantity : i.obj.quantity,
+            size : i.obj.size
+          },
+         
+        })
+       }
+       this.wishItemCount.next(this.wishItemCount.value + 1);
+       this.dismiss();
+  //  if(firebase.auth().currentUser == null){
+  //    console.log('please like this');
+  //    this.ConfirmationAlertWish();
+  //   //  this.createModalLogins()
 
-    
+  //  }else{
+  //   this.customerUid = firebase.auth().currentUser.uid; 
+  //     this.dbWishlist.add({
+  //     timestamp: new Date().getTime(),
+  //     customerUid: this.customerUid,
+  //     product_name: i.name,
+  //     productCode: i.productCode,
+  //     desc: i.desc,
+  //     size: this.sizes,
+  //     price: i.price,
+  //     quantity: this.event.quantity,
+  //     image: i.image,
+  //     amount: i.price * this.event.quantity
+  //         // product_name: i.name,
+  //         // productCode: i.productCode,
+  //         // size: this.sizes,
+  //         // price: i.price,
+  //         // quantity: this.event.quantity,
+  //         // image: i.image,
+  //     }).then(() => {
+  //       this.dismiss();
+  //       this.presentToast('ev')
+  //     })
+  //       .catch(err => {
+  //         console.error(err);
+  //       });
+  //  }
+
+  //       this.wishItemCount.next(this.wishItemCount.value + 1);
+
     } 
 
 

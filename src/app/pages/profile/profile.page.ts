@@ -25,7 +25,7 @@ export class ProfilePage implements OnInit {
     number:'',
     address: '',
   
-    email: firebase.auth().currentUser.email,
+    email:'',
    
     uid: '',
     
@@ -140,9 +140,8 @@ export class ProfilePage implements OnInit {
           this.profile.address = doc.data().address;
           this.profile.image= doc.data().image
           this.profile.name=doc.data().name
-        
           this.profile.number=doc.data().number
-          this.profile.email=doc.data().email
+           this.profile.email=doc.data().email
           
         })
       }
@@ -176,7 +175,12 @@ export class ProfilePage implements OnInit {
     const modal = await this.modalController.create({
       component:TrackOrderPage,
       cssClass: 'track-order',
-      componentProps: { ref: item.ref,totalPrice: item.info.totalPrice,name: item.info.product[0].prod.product_name,price: item.info.product[0].prod.price,quantity: item.info.product[0].prod.quantity,image: item.info.product[0].prod.image,
+      componentProps: { ref: item.ref,
+        totalPrice: item.info.totalPrice,
+       name: item.info.product[0].product_name,
+        price: item.info.product[0].price,
+        quantity: item.info.product[0].quantity,
+        image: item.info.product[0].image,
       arr:item.info.product },
     },);
     return await modal.present();

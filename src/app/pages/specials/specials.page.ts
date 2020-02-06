@@ -21,6 +21,7 @@ export class SpecialsPage {
   myProduct = false;
   loader: boolean = true;
   dbMessages = firebase.firestore().collection('Messages');
+  dbWishlist = firebase.firestore().collection('Wishlist');
   message = {
     fullname: '',
     email: '',
@@ -39,6 +40,10 @@ export class SpecialsPage {
   }
 
   ngOnInit() {
+  /*   this.activatedRouter.queryParams.subscribe(params =>{
+      console.log('value', this.router.getCurrentNavigation().extras.state.parms);
+      this.value = this.router.getCurrentNavigation().extras.state.parms;
+    }) */
     this.getSpecials(); 
   }
 
@@ -61,26 +66,28 @@ adminInfo(){
 
   
   getSpecials(){
-    let obj = {id : '', obj : {}};
-    this.db.collection('sales').get().then(snapshot => {
-      this.Products = [];
-      if (snapshot.empty) {
-              this.myProduct = false;
-            } else {
-              this.myProduct = true;
+    this.db.collection('sales').onSnapshot(snapshot => {
+             this.Products = [];
               snapshot.forEach(doc =>{
-                this.Products.push(doc.data())
+                this.Products.push({ obj :doc.data(),id : doc.id})
               });
-            }
     });
   }
+  addToWishlist(prod, id) {
+    console.log("Product Info ",prod);
+    this.dbWishlist.doc(id).set({name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
+     id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories}).then(()=>{
+       this.toastController("Added to wishlist");
+     })
+ }
   async createViewProduct(event) {
+    console.log('My details ', event);
     
     this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css'
-    
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
     });
     return await modal.present();
   }

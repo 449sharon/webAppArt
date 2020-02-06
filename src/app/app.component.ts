@@ -13,6 +13,8 @@ import * as firebase from 'firebase';
 
 import { SpecialsPage } from './pages/specials/specials.page';
 import { PopoverComponent } from './components/popover/popover.component';
+import { BehaviorSubject } from 'rxjs';
+import { CartServiceService } from './services/cart-service.service';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +22,8 @@ import { PopoverComponent } from './components/popover/popover.component';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+   cartItemCount = new BehaviorSubject(0);
+ wishItemCount = new BehaviorSubject(0);
   loader: boolean = true;
   dbMessages = firebase.firestore().collection('Messages');
   message = {
@@ -34,11 +38,15 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
+    private cartService: CartServiceService,
     public modalController: ModalController,
     public popoverController: PopoverController,
     public toastCtrl: ToastController
   ) {
     this.initializeApp();
+    // this.cartItemCount.next(this.cartItemCount.value + 1);
+    this.cartItemCount = this.cartService.getCartItemCount();
+    this.wishItemCount = this.cartService.getWishItemCount();
   }
 
   initializeApp() {
@@ -161,6 +169,12 @@ export class AppComponent {
     }else{
       //this.createModalLogin();
     }
+  }
+  getCartItemCount() {
+    return this.cartItemCount;
+  }
+  getWishItemCount(){
+    return this.wishItemCount;
   }
 
 }
