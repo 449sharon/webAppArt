@@ -216,8 +216,14 @@ export class HomePage  {
 
     //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
     //  console.log('Image in the service ', this.data.data.image);
-    
-     this.db.collection('sales').get().then(snapshot => {
+    this.data.data = event
+    const modal = await this.modalController.create({
+      component:ViewProductDetailsPage,
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
+    });
+    return await modal.present();
+  /*    this.db.collection('sales').get().then(snapshot => {
       this.data.data.image = event.obj.image;
       this.data.data.name = event.obj.name;
       this.data.data.price = event.obj.price;
@@ -230,29 +236,25 @@ export class HomePage  {
       cssClass: 'my-custom-modal-css'
     
     });
-    return await modal.present();
+    return await modal.present(); */
   }
   specialsAlso(event){
     this.router.navigateByUrl('/specials');
   }
      ///////////////// for sales
     getSpecials(){
-      let obj = {id : '', obj : {}};
-    this.db.collection('sales').limit(5).get().then(snapshot => {
+    //  let obj = {id : '', obj : {}};
+    this.db.collection('sales').limit(5).onSnapshot(snapshot => {
       this.proSales = [];
-      if (snapshot.empty) {
-              this.myProduct = false;
-            } else {
-              this.myProduct = true;
               snapshot.forEach(doc => {
-                obj.id = doc.id;
-                obj.obj = doc.data();
-                this.proSales.push(obj);
-                obj = {id : '', obj : {}};
+               // obj.id = doc.id;
+               // obj.obj = doc.data();
+                this.proSales.push({id : doc.id, obj : doc.data()});
+               // obj = {id : '', obj : {}};
                 
               });
               this.SpecialScrin.push(this.proSales[0])
-            }
+           // }
        });
   }
 
@@ -393,8 +395,6 @@ ngOnInit() {
 
 showList(i) {
   this.active = i;
- 
-  
 }
 
 

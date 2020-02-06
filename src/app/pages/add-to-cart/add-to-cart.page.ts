@@ -77,46 +77,27 @@ export class AddToCartPage implements OnInit {
   getProducts() {
     firebase.firestore().collection("Cart").where("customerUid", "==", firebase.auth().currentUser.uid).onSnapshot(snapshot => {
       this.cartProduct = [];
-        snapshot.forEach(doc => {
-          this.cartProduct.push({ obj: doc.data(), id: doc.id })
-        });
+      snapshot.forEach(doc => {
+        this.cartProduct.push({ obj: doc.data(), id: doc.id })
+      });
     });
   }
   plus(prod, index) {
-    // console.log("Prod ", prod.obj.quantity," index ", index);
-    let num = prod.obj.quantity++;
-
     let id = prod.id
-    
-    this.dbCart.doc(id).update({ quantity: prod.obj.quantity++ }).then(res => {
+    this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
 
     })
-    
+
   }
   minus(prod, index) {
-
-    // product.push[prod]
-    // this.dbCart.doc(id).onSnapshot((res)=>{
-    // if ( prod.obj.quantity === 1) {
-      // console.log('You are about to delete your product');
-      //this.presentAlertConfirm(index.id);
-    // } else {
-      // let num = index.data.product[0].quantity--
-      // index.data.product[0].cost = index.data.product[0].cost
-      let id = prod.id
-      // console.log('Prod ', prod, ' index', index );
-      // let product = [prod]
-      setTimeout(() => {
-        this.dbCart.doc(id).update({ quantity: prod.obj.quantity-- }).then(res => {
+    let id = prod.id
+    if (prod.obj.quantity === 1) {
+     this.toastController("You have reached minimum quantity");
+    } else {
+      this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
 
       })
-      }, 1000);
-      
-    // }
-
-    // this.prodCount = quantity+1
-    // this.dbCart.doc(id).update({product:{quantity: this.prodCount}})
-    //console.log('Quan decr ', quan);
+    }
   }
 
   dismiss() {
