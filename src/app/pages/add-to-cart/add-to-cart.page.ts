@@ -132,7 +132,7 @@ export class AddToCartPage implements OnInit {
   }
 
   getTotal() {
-    return this.cartProduct.reduce((i, j) => i + j.price * j.quantity, 0);
+    return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
   }
   ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.

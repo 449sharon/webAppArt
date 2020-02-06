@@ -240,7 +240,7 @@ export class HomePage  {
     });
     return await modal.present(); */
   }
-  specialsAlso(event){
+  specialsAlso(){
     this.router.navigateByUrl('/specials');
   }
      ///////////////// for sales
@@ -349,7 +349,7 @@ async toastController(message) {
 }
 
 ngOnInit() {
-  this.allSpecials(this.event);
+  // this.allSpecials(this.event);
 }
 ////////
 /////
