@@ -129,11 +129,10 @@ export class AddToCartPage implements OnInit {
   removeCartItem(id) {
     this.dbCart.doc(id).delete();
     console.log("I am deleting you", id);
-
   }
 
   getTotal() {
-    return this.cartProduct.reduce((i, j) => i + j.price * j.quantity, 0);
+    return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
   }
   ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.

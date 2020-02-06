@@ -84,7 +84,6 @@ adminInfo(){
           obj.id = doc.id
           this.Products.push(obj)
           obj = {obj : {}, id : ''}
-          console.log("key key ",  this.Products);
           
         })
       }

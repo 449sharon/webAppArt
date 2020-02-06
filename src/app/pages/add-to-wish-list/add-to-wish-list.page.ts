@@ -172,7 +172,8 @@ export class AddToWishListPage implements OnInit {
      })
 
     }, 3000)
-   
+    this.cartItemCount.next(this.cartItemCount.value + 1);
+
 
     // console.log("my list");
 

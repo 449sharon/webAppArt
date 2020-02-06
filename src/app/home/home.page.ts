@@ -77,7 +77,7 @@ export class HomePage  {
   constructor( public toastCtrl: ToastController, private data: ProductService,private router: Router, private cartService: CartServiceService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
-
+   
 
     //////
     this.getPictures();
@@ -249,15 +249,17 @@ export class HomePage  {
       this.data.data.desc = event.obj.desc
       this.data.data.productno = event.obj.productCode
      })
+    }
+    async createViewProduct(event){
     this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css'
-    
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
     });
     return await modal.present(); */
   }
-  specialsAlso(event){
+  specialsAlso(){
     this.router.navigateByUrl('/specials');
   }
      ///////////////// for sales
@@ -366,8 +368,7 @@ async toastController(message) {
 }
 
 ngOnInit() {
-  // this.cartItemCount = this.cartService.getCartItemCount();
-  // this.wishItemCount = this.cartService.getWishCount();
+  // this.allSpecials(this.event);
 }
 ////////
 /////
@@ -382,7 +383,7 @@ ngOnInit() {
         customerUid: customerUid,
         name : i.obj.name,
         price: i.obj.price,
-        // size:i.obj.size,
+        size:i.obj.size,
         productCode: i.obj.productCode,
         quantity: i.obj.quantity,
         percentage:i.obj.percentage,
