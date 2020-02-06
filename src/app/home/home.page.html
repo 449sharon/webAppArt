@@ -70,7 +70,7 @@
                 <div   class="products-section" *ngFor="let event of proSales; let i=index;" >
                 <div class="cards"  [ngClass]="{'active': active==i}"  >
                   <div class="percent-off" >
-                    <p>{{event.obj.percentage}} %</p>
+                    <p>{{event.obj.percentage}} % off</p>
   
                   </div>
                   <img class="animated fadeInDown 2s" src="{{event.obj.image}}"(click)="showList(i)" (click)="allSpecials(event)" alt="">
