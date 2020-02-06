@@ -39,10 +39,10 @@ export class SpecialsPage {
   }
 
   ngOnInit() {
-    this.activatedRouter.queryParams.subscribe(params =>{
+  /*   this.activatedRouter.queryParams.subscribe(params =>{
       console.log('value', this.router.getCurrentNavigation().extras.state.parms);
       this.value = this.router.getCurrentNavigation().extras.state.parms;
-    })
+    }) */
     this.getSpecials(); 
   }
 
@@ -65,21 +65,11 @@ adminInfo(){
 
   
   getSpecials(){
-  //   let obj = { 
-  //     obj : {},
-  //   id : ''
-  // };
-    this.db.collection('sales').get().then(snapshot => {
-      this.Products = [];
-      if (snapshot.size > 0) {
-              let obj = {obj : {}, id : ''}
+    this.db.collection('sales').onSnapshot(snapshot => {
+             this.Products = [];
               snapshot.forEach(doc =>{
-                obj.obj = doc.data();
-                obj.id = doc.id;
-                this.Products.push(obj)
-                obj = {obj : {}, id : ''}
+                this.Products.push({ obj :doc.data(),id : doc.id})
               });
-            }
     });
   }
   async createViewProduct(event) {
