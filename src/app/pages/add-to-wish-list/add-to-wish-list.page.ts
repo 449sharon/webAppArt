@@ -86,50 +86,49 @@ export class AddToWishListPage implements OnInit {
     if(this.value){
       console.log("My method is called ", this.value);
 
-      setTimeout(() => {
+      // setTimeout(() => {
 
-        this.dbWishlist.doc(data.id).update({
-          categories : data.obj.categories,
-          checked : true,
-          desc : data.obj.desc,
-          image :data.obj.image,
-          items : data.obj.items,
-          lastcreated : data.obj.lastcreated,
-          name : data.obj.name,
-          price : data.obj.price,
-          productCode : data.obj.productCode,
-          quantity : data.obj.quantity,
-          size : data.obj.size,
-          uid : data.obj.uid
-        })
+      //   this.dbWishlist.doc(data.id).update({
+      //     categories : data.obj.categories,
+      //     checked : true,
+      //     desc : data.obj.desc,
+      //     image :data.obj.image,
+      //     items : data.obj.items,
+      //     lastcreated : data.obj.lastcreated,
+      //     name : data.obj.name,
+      //     price : data.obj.price,
+      //     productCode : data.obj.productCode,
+      //     quantity : data.obj.quantity,
+      //     size : data.obj.size,
+      //   })
 
-      }, 2000)
+      // }, 2000)
 
-    this.tempIndex.push(data.id)
+    // this.tempIndex.push(data.id)
 
-    this.addToTheCart.push(data.obj)
+    // this.addToTheCart.push(data.obj)
   
-    }else{
-      console.log("My method is called ", this.value);
-    
-      setTimeout(() => {
-
-        firebase.firestore().collection("WishList").doc(data.id).update({
-          categories : data.obj.obj.categories,
-          checked : false,
-          desc : data.obj.obj.desc,
-          image :data.obj.obj.image,
-          items : data.obj.obj.items,
-          lastcreated : data.obj.obj.lastcreated,
-          name : data.obj.obj.name,
-          price : data.obj.obj.price,
-          productCode : data.obj.obj.productCode,
-          quantity : data.obj.obj.quantity,
-          size : data.obj.obj.size,
-          uid : data.obj.obj.uid
-        })
-      }, 3000)
     }
+    // else{
+    //   console.log("My method is called ", this.value);
+    
+    //   setTimeout(() => {
+
+    //     firebase.firestore().collection("WishList").doc(data.id).update({
+    //       categories : data.obj.obj.categories,
+    //       checked : false,
+    //       desc : data.obj.obj.desc,
+    //       image :data.obj.obj.image,
+    //       items : data.obj.obj.items,
+    //       lastcreated : data.obj.obj.lastcreated,
+    //       name : data.obj.obj.name,
+    //       price : data.obj.obj.price,
+    //       productCode : data.obj.obj.productCode,
+    //       quantity : data.obj.obj.quantity,
+    //       size : data.obj.obj.size,
+    //     })
+    //   }, 3000)
+    // }
   }
 
   getProducts() {

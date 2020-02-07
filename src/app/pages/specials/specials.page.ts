@@ -66,7 +66,7 @@ adminInfo(){
 
   
   getSpecials(){
-    this.db.collection('sales').onSnapshot(snapshot => {
+    this.db.collection('Sales').onSnapshot(snapshot => {
              this.Products = [];
               snapshot.forEach(doc =>{
                 this.Products.push({ obj :doc.data(),id : doc.id})
