@@ -217,7 +217,7 @@ export class HomePage  {
     //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
     //  console.log('Image in the service ', this.data.data.image);
     
-     this.db.collection('sales').get().then(snapshot => {
+     this.db.collection('Sales').get().then(snapshot => {
       this.data.data.image = event.obj.image;
       this.data.data.name = event.obj.name;
       this.data.data.price = event.obj.price;
@@ -238,7 +238,7 @@ export class HomePage  {
      ///////////////// for sales
     getSpecials(){
       let obj = {id : '', obj : {}};
-    this.db.collection('sales').limit(5).get().then(snapshot => {
+    this.db.collection('Sales').limit(5).get().then(snapshot => {
       this.proSales = [];
       if (snapshot.empty) {
               this.myProduct = false;

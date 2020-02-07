@@ -66,7 +66,7 @@ adminInfo(){
   
   getSpecials(){
     let obj = { obj : {},id : ''};
-    this.db.collection('sales').get().then(snapshot => {
+    this.db.collection('Sales').get().then(snapshot => {
       this.Products = [];
       if (snapshot.empty) {
               this.myProduct = false;
