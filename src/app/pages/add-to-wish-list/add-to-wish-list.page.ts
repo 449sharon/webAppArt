@@ -86,49 +86,49 @@ export class AddToWishListPage implements OnInit {
     if(this.value){
       console.log("My method is called ", this.value);
 
-      // setTimeout(() => {
+      setTimeout(() => {
 
-      //   this.dbWishlist.doc(data.id).update({
-      //     categories : data.obj.categories,
-      //     checked : true,
-      //     desc : data.obj.desc,
-      //     image :data.obj.image,
-      //     items : data.obj.items,
-      //     lastcreated : data.obj.lastcreated,
-      //     name : data.obj.name,
-      //     price : data.obj.price,
-      //     productCode : data.obj.productCode,
-      //     quantity : data.obj.quantity,
-      //     size : data.obj.size,
-      //   })
+        this.dbWishlist.doc(data.id).update({
+          categories : data.obj.categories,
+          checked : true,
+          desc : data.obj.desc,
+          image :data.obj.image,
+          // items : data.obj.items,
+          // lastcreated : data.obj.lastcreated,
+          name : data.obj.name,
+          price : data.obj.price,
+          //  productCode : data.obj.productCode,
+          // quantity : data.obj.quantity,
+          // size : data.obj.size,
+        })
 
-      // }, 2000)
+      }, 2000)
 
-    // this.tempIndex.push(data.id)
+    this.tempIndex.push(data.id)
 
-    // this.addToTheCart.push(data.obj)
+    this.addToTheCart.push(data.obj)
   
     }
-    // else{
-    //   console.log("My method is called ", this.value);
+    else{
+      console.log("My method is called ", this.value);
     
-    //   setTimeout(() => {
+      setTimeout(() => {
 
-    //     firebase.firestore().collection("WishList").doc(data.id).update({
-    //       categories : data.obj.obj.categories,
-    //       checked : false,
-    //       desc : data.obj.obj.desc,
-    //       image :data.obj.obj.image,
-    //       items : data.obj.obj.items,
-    //       lastcreated : data.obj.obj.lastcreated,
-    //       name : data.obj.obj.name,
-    //       price : data.obj.obj.price,
-    //       productCode : data.obj.obj.productCode,
-    //       quantity : data.obj.obj.quantity,
-    //       size : data.obj.obj.size,
-    //     })
-    //   }, 3000)
-    // }
+        firebase.firestore().collection("Wishlist").doc(data.id).update({
+          categories : data.obj.obj.categories,
+          checked : false,
+          desc : data.obj.obj.desc,
+          image :data.obj.obj.image,
+          // items : data.obj.obj.items,
+          // lastcreated : data.obj.obj.lastcreated,
+          name : data.obj.obj.name,
+          price : data.obj.obj.price,
+        //  productCode : data.obj.obj.productCode,
+          // quantity : data.obj.obj.quantity,
+          // size : data.obj.obj.size,
+        })
+      }, 3000)
+    }
   }
 
   getProducts() {
@@ -168,7 +168,7 @@ export class AddToWishListPage implements OnInit {
     setTimeout(() => {
 
       this.tempIndex.forEach(key => {
-        firebase.firestore().collection("WishList").doc(key).delete()
+        firebase.firestore().collection("Wishlist").doc(key).delete()
      })
 
     }, 3000)
