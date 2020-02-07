@@ -144,14 +144,14 @@ MyPdf = "";
     console.log('year', p);
 
 
-    this.trackOrders.name = p.name;
-    this.trackOrders.quantity = p.quantity;
-    this.trackOrders.size = p.size;
-    this.trackOrders.total = p.total;
-    this.trackOrders.image = p.image;
-    this.trackOrders.productCode = p.productCode;
-    this.trackOrders.desc = p.desc;
-    this.trackOrders.amount =p.amount;
+    this.trackOrders.name = p.obj.name;
+    this.trackOrders.quantity = p.obj.quantity;
+    this.trackOrders.size = p.obj.size;
+    this.trackOrders.total = p.obj.total;
+    this.trackOrders.image = p.obj.image;
+    this.trackOrders.productCode = p.obj.productCode;
+    this.trackOrders.desc = p.obj.desc;
+    this.trackOrders.amount =p.obj.amount;
     
    
     this.list = !this.list;
