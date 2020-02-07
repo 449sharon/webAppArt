@@ -52,6 +52,15 @@ const routes: Routes = [
     path: 'view-product-details',
     loadChildren: () => import('./pages/view-product-details/view-product-details.module').then( m => m.ViewProductDetailsPageModule)
   },
+  {
+    path: 'privacy-policy',
+    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+  },
+  {
+    path: 'terms-and-conditions',
+    loadChildren: () => import('./pages/terms-and-conditions/terms-and-conditions.module').then( m => m.TermsAndConditionsPageModule)
+  },
+
 ];
 
 @NgModule({

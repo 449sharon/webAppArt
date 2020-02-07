@@ -22,7 +22,9 @@ export class AboutUsPage implements OnInit {
     message:''
  }
  myProduct = false;
-  constructor(private router: Router,  public modalController: ModalController,public toastCtrl: ToastController) { }
+  constructor(private router: Router,  public modalController: ModalController,public toastCtrl: ToastController) { 
+    this.adminInfo();
+  }
 
 
   ngOnInit() {

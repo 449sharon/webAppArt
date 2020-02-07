@@ -246,8 +246,19 @@
 
 }
 
-.empty{
-  margin-top: 20%;
+.empty-cart{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 80%;
+  height: 200px;
+  text-align: center;
+  margin: 0 auto;
+  z-index: 9999999999999;
+  border: solid red;
+  // margin-top: 20%;
   font-weight: bold;
   font-family: serif;
   font-weight: 10px ;

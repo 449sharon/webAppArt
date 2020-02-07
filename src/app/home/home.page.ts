@@ -12,6 +12,8 @@ import { ProfilePage } from '../pages/profile/profile.page';
 import { ViewProductDetailsPage } from '../pages/view-product-details/view-product-details.page';
 import { ProductService } from '../services/product-service.service';
 import { CartServiceService } from '../services/cart-service.service';
+import { FaqsPage } from '../pages/faqs/faqs.page';
+import { ExpectedConditions } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -166,6 +168,15 @@ export class HomePage  {
     });
     return await modal.present();
   }
+  async createFaqs() {
+    const modal = await this.modalController.create({
+      component:FaqsPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
   // showList() {
   //   this.list = !this.list;
   //   this.loader = true;
@@ -261,6 +272,12 @@ export class HomePage  {
   }
   specialsAlso(){
     this.router.navigateByUrl('/specials');
+  }
+  PrivacyPolicy(){
+    this.router.navigateByUrl('/privacy-policy')
+  }
+  TermsAndConditions(){
+    this.router.navigateByUrl('/terms-and-conditions')
   }
      ///////////////// for sales
     getSpecials(){
