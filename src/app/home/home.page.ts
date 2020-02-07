@@ -265,7 +265,7 @@ export class HomePage  {
      ///////////////// for sales
     getSpecials(){
     //  let obj = {id : '', obj : {}};
-    this.db.collection('Sales').limit(5).onSnapshot(snapshot => {
+    this.db.collection('Sales').limit(4).onSnapshot(snapshot => {
       this.proSales = [];
               snapshot.forEach(doc => {
                // obj.id = doc.id;
