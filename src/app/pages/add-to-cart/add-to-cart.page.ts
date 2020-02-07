@@ -21,6 +21,7 @@ export class AddToCartPage implements OnInit {
   productCode;
   key;
   total = 0;
+  myCart = false;
   // cart = [];
   // myArr = [];
   amount: number;
@@ -76,10 +77,16 @@ export class AddToCartPage implements OnInit {
 
   getProducts() {
     firebase.firestore().collection("Cart").where("customerUid", "==", firebase.auth().currentUser.uid).onSnapshot(snapshot => {
-      this.cartProduct = [];
-      snapshot.forEach(doc => {
+      if( this.cartProduct = []){
+        this.myCart = true;
+    snapshot.forEach(doc => {
         this.cartProduct.push({ obj: doc.data(), id: doc.id })
       });
+      }else{
+        this.myCart = false;
+      }
+     
+  
     });
   }
   plus(prod, index) {

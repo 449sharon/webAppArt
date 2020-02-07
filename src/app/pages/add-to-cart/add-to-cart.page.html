@@ -15,14 +15,17 @@
   <!-- <div *ngIf="!myProduct" class="empty" >
     <ion-title >This product is not available  currently.</ion-title>
   </div> -->
-  <div class="main-content" >
+  <div   class="main-content" >
     <div class="cartTitle" >
       <ion-title>Cart</ion-title>
+    </div>
+    <div class="special-section" *ngIf="!myCart"  >
+      <p>add something your cart is empty</p>
     </div>
     <div  *ngFor="let p of cartProduct; let j of index" class="ng-for-goes-here" >
       
   
-    <div class="cart-item-section" >
+    <div  class="cart-item-section" >
 
       <div class="image-section" >
         <img src="{{p.obj.image}}"  alt="">
@@ -88,5 +91,8 @@
     </div>
 
   </div>
-
+  
+  <div class="special-section" >
+  <p>add something your cart is empty</p>
+</div>
 </ion-content>
