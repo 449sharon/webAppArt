@@ -30,7 +30,10 @@ export class SpecialsPage {
 
   constructor(private router: Router,  public modalController: ModalController,
     private data: ProductService, private activatedRouter : ActivatedRoute,
-    public toastCtrl: ToastController) { }
+    public toastCtrl: ToastController) {
+      this.adminInfo();
+      this.getSpecials();
+     }
   
   
   ionViewWillEnter() {

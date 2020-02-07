@@ -33,7 +33,10 @@ export class CategorylistPage implements OnInit {
  dbWishlist = firebase.firestore().collection('Wishlist');
   constructor(private router: Router,  public modalController: ModalController,
     private data: ProductService, private activatedRouter : ActivatedRoute,
-    public popoverController: PopoverController,  public toastCtrl: ToastController) { }
+    public popoverController: PopoverController,  public toastCtrl: ToastController) { 
+      this.adminInfo();
+      // this.getSpecials();
+    }
   
   
   ionViewWillEnter() {
@@ -175,7 +178,15 @@ adminInfo(){
       //this.createModalLogin();
     }
   }
-
+  specialsAlso(){
+    this.router.navigateByUrl('/specials');
+  }
+  PrivacyPolicy(){
+    this.router.navigateByUrl('/privacy-policy')
+  }
+  TermsAndConditions(){
+    this.router.navigateByUrl('/terms-and-conditions')
+  }
 
 
 }
