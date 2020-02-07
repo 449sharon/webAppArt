@@ -139,7 +139,6 @@ export class ViewProductDetailsPage implements OnInit {
   }
   
   addToCart(i) {
-    
     // console.log("qqqqqqq  ", i);
 
     // let obj = {obj : {
@@ -273,8 +272,8 @@ logRatingChange(rating, id){
          
         })
        }
-    
-    this.dismiss();
+       this.wishItemCount.next(this.wishItemCount.value + 1);
+       this.dismiss();
   //  if(firebase.auth().currentUser == null){
   //    console.log('please like this');
   //    this.ConfirmationAlertWish();

@@ -18,6 +18,7 @@ export class CategorylistPage implements OnInit {
   active: boolean;
   db = firebase.firestore();
  value
+ 
 
  Sales = [];
   Products = [];
@@ -29,7 +30,7 @@ export class CategorylistPage implements OnInit {
     email: '',
     message:''
  }
-
+ dbWishlist = firebase.firestore().collection('Wishlist');
   constructor(private router: Router,  public modalController: ModalController,
     private data: ProductService, private activatedRouter : ActivatedRoute,
     public popoverController: PopoverController,  public toastCtrl: ToastController) { }
@@ -48,7 +49,14 @@ export class CategorylistPage implements OnInit {
     })
     this.getProducts(); 
   }
+  addToWishlist(prod, id) {
 
+    console.log("Product Info ",prod);
+    this.dbWishlist.doc(id).set({name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
+     id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories}).then(()=>{
+       this.toastController("Added to wishlist");
+     })
+ }
   Info = []
 adminInfo(){
   this.db.collection('admins').get().then(snapshot => {
@@ -78,7 +86,6 @@ adminInfo(){
           obj.id = doc.id
           this.Products.push(obj)
           obj = {obj : {}, id : ''}
-          console.log("key key ",  this.Products);
           
         })
       }

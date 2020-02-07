@@ -21,6 +21,7 @@ export class AddToCartPage implements OnInit {
   productCode;
   key;
   total = 0;
+  myCart = false;
   // cart = [];
   // myArr = [];
   amount: number;
@@ -60,14 +61,14 @@ export class AddToCartPage implements OnInit {
   value
   trackOrder() {
     this.dbOrder.onSnapshot(res => {
-      console.log('I am a snapshot', res);
+    //  console.log('I am a snapshot', res);
 
       for (let key in res.docChanges()) {
         let change = res.docChanges()[key]
         if (change.type === 'modified') {
-          console.log(change.doc.data().date);
+       //   console.log(change.doc.data().date);
           this.value = change.doc.data().date
-          console.log(this.value);
+        //  console.log(this.value);
 
         }
       }
@@ -76,47 +77,34 @@ export class AddToCartPage implements OnInit {
 
   getProducts() {
     firebase.firestore().collection("Cart").where("customerUid", "==", firebase.auth().currentUser.uid).onSnapshot(snapshot => {
-      this.cartProduct = [];
-        snapshot.forEach(doc => {
-          this.cartProduct.push({ obj: doc.data(), id: doc.id })
-        });
+      if( this.cartProduct = []){
+        this.myCart = true;
+    snapshot.forEach(doc => {
+        this.cartProduct.push({ obj: doc.data(), id: doc.id })
+      });
+      }else{
+        this.myCart = false;
+      }
+     
+  
     });
   }
   plus(prod, index) {
-    // console.log("Prod ", prod.obj.quantity," index ", index);
-    let num = prod.obj.quantity++;
-
     let id = prod.id
-    
-    this.dbCart.doc(id).update({ quantity: prod.obj.quantity++ }).then(res => {
+    this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
 
     })
-    
+
   }
   minus(prod, index) {
-
-    // product.push[prod]
-    // this.dbCart.doc(id).onSnapshot((res)=>{
-    // if ( prod.obj.quantity === 1) {
-      // console.log('You are about to delete your product');
-      //this.presentAlertConfirm(index.id);
-    // } else {
-      // let num = index.data.product[0].quantity--
-      // index.data.product[0].cost = index.data.product[0].cost
-      let id = prod.id
-      // console.log('Prod ', prod, ' index', index );
-      // let product = [prod]
-      setTimeout(() => {
-        this.dbCart.doc(id).update({ quantity: prod.obj.quantity-- }).then(res => {
+    let id = prod.id
+    if (prod.obj.quantity === 1) {
+     this.toastController("You have reached minimum quantity");
+    } else {
+      this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
 
       })
-      }, 1000);
-      
-    // }
-
-    // this.prodCount = quantity+1
-    // this.dbCart.doc(id).update({product:{quantity: this.prodCount}})
-    //console.log('Quan decr ', quan);
+    }
   }
 
   dismiss() {
@@ -148,11 +136,10 @@ export class AddToCartPage implements OnInit {
   removeCartItem(id) {
     this.dbCart.doc(id).delete();
     console.log("I am deleting you", id);
-
   }
 
   getTotal() {
-    return this.cartProduct.reduce((i, j) => i + j.price * j.quantity, 0);
+    return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
   }
   ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.

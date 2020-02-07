@@ -73,6 +73,7 @@ export class AddToWishListPage implements OnInit {
     this.getProducts();
   }
 
+/*ADDING MY ITEMS FROM WISHLIST TO THE CART*/
 
   CheckBox(data){
 
@@ -87,68 +88,54 @@ export class AddToWishListPage implements OnInit {
 
       setTimeout(() => {
 
-        firebase.firestore().collection("WishList").doc(data.id).update({
-          categories : data.obj.obj.categories,
+        this.dbWishlist.doc(data.id).update({
+          categories : data.obj.categories,
           checked : true,
-          desc : data.obj.obj.desc,
-          image :data.obj.obj.image,
-          items : data.obj.obj.items,
-          lastcreated : data.obj.obj.lastcreated,
-          name : data.obj.obj.name,
-          price : data.obj.obj.price,
-          productCode : data.obj.obj.productCode,
-          quantity : data.obj.obj.quantity,
-          size : data.obj.obj.size,
-          uid : data.obj.obj.uid
+          desc : data.obj.desc,
+          image :data.obj.image,
+          // items : data.obj.items,
+          // lastcreated : data.obj.lastcreated,
+          name : data.obj.name,
+          price : data.obj.price,
+          //  productCode : data.obj.productCode,
+          // quantity : data.obj.quantity,
+          // size : data.obj.size,
         })
 
-      }, 3000)
+      }, 2000)
 
     this.tempIndex.push(data.id)
 
     this.addToTheCart.push(data.obj)
   
-    }else{
+    }
+    else{
       console.log("My method is called ", this.value);
     
       setTimeout(() => {
 
-        firebase.firestore().collection("WishList").doc(data.id).update({
+        firebase.firestore().collection("Wishlist").doc(data.id).update({
           categories : data.obj.obj.categories,
           checked : false,
           desc : data.obj.obj.desc,
           image :data.obj.obj.image,
-          items : data.obj.obj.items,
-          lastcreated : data.obj.obj.lastcreated,
+          // items : data.obj.obj.items,
+          // lastcreated : data.obj.obj.lastcreated,
           name : data.obj.obj.name,
           price : data.obj.obj.price,
-          productCode : data.obj.obj.productCode,
-          quantity : data.obj.obj.quantity,
-          size : data.obj.obj.size,
-          uid : data.obj.obj.uid
+        //  productCode : data.obj.obj.productCode,
+          // quantity : data.obj.obj.quantity,
+          // size : data.obj.obj.size,
         })
       }, 3000)
-  
     }
-    
-    
   }
+
   getProducts() {
-
-
-    firebase.firestore().collection("WishList").onSnapshot(data => {
-
+    this.dbWishlist.where("uid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
       this.cart = []
       data.forEach(item => {
-        console.log("Sir, Your data is here ", item.data());
-
-
-        if(item.data().obj.checked == false && item.data().obj.uid){
-
-          this.cart.push({obj : item.data(), id : item.id})
-         
-        }
-        
+          this.cart.push({obj : item.data(), id : item.id})  
       })
     })
 
@@ -181,11 +168,12 @@ export class AddToWishListPage implements OnInit {
     setTimeout(() => {
 
       this.tempIndex.forEach(key => {
-        firebase.firestore().collection("WishList").doc(key).delete()
+        firebase.firestore().collection("Wishlist").doc(key).delete()
      })
 
     }, 3000)
-   
+    this.cartItemCount.next(this.cartItemCount.value + 1);
+
 
     // console.log("my list");
 
@@ -232,7 +220,7 @@ export class AddToWishListPage implements OnInit {
   }
  
   removeCartItem(o) {
-    firebase.firestore().collection('WishList').doc(o.id).delete()
+    this.dbWishlist.doc(o).delete()
     // this.dbWishlist.doc(o.id).delete();
   }
  

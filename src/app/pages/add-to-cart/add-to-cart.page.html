@@ -15,14 +15,17 @@
   <!-- <div *ngIf="!myProduct" class="empty" >
     <ion-title >This product is not available  currently.</ion-title>
   </div> -->
-  <div class="main-content" >
+  <div   class="main-content" >
     <div class="cartTitle" >
       <ion-title>Cart</ion-title>
+    </div>
+    <div class="special-section" *ngIf="!myCart"  >
+      <p>add something your cart is empty</p>
     </div>
     <div  *ngFor="let p of cartProduct; let j of index" class="ng-for-goes-here" >
       
   
-    <div class="cart-item-section" >
+    <div  class="cart-item-section" >
 
       <div class="image-section" >
         <img src="{{p.obj.image}}"  alt="">
@@ -59,12 +62,7 @@
           <ion-icon name="trash"></ion-icon>
          </ion-button>
 
-
       </div>
-
-
-
-
 
     </div>
     <p class="divided">
@@ -73,13 +71,6 @@
       <span></span>
     </p>
   </div>
-  <!-- <div  *ngIf="prodCart.length==0">
-    <p> Oh no! Your Cart is empty</p>
-    <img src="../../assets/empty-cart.svg">
-
-  </div> -->
-
-
   <div class="delivery-method" >
     <ion-segment >
       <ion-segment-button value="python">
@@ -100,5 +91,8 @@
     </div>
 
   </div>
-
+  
+  <div class="special-section" >
+  <p>add something your cart is empty</p>
+</div>
 </ion-content>
