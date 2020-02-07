@@ -40,10 +40,10 @@ export class SpecialsPage {
   }
 
   ngOnInit() {
-  /*   this.activatedRouter.queryParams.subscribe(params =>{
-      console.log('value', this.router.getCurrentNavigation().extras.state.parms);
-      this.value = this.router.getCurrentNavigation().extras.state.parms;
-    }) */
+    //  this.activatedRouter.queryParams.subscribe(params =>{
+    //   console.log('value', this.router.getCurrentNavigation().extras.state.parms);
+    //   this.value = this.router.getCurrentNavigation().extras.state.parms;
+    // }) 
     this.getSpecials(); 
   }
 
@@ -66,13 +66,15 @@ adminInfo(){
 
   
   getSpecials(){
-    this.db.collection('sales').onSnapshot(snapshot => {
+    this.db.collection('Sales').onSnapshot(snapshot => {
              this.Products = [];
               snapshot.forEach(doc =>{
                 this.Products.push({ obj :doc.data(),id : doc.id})
               });
     });
   }
+
+  
   addToWishlist(prod, id) {
     console.log("Product Info ",prod);
     this.dbWishlist.doc(id).set({name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
