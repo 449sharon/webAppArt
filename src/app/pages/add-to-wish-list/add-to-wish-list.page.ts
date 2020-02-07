@@ -157,6 +157,8 @@ export class AddToWishListPage implements OnInit {
 //       })
 //     })
   }
+
+  
   addToCart() {
 
 
@@ -225,7 +227,7 @@ export class AddToWishListPage implements OnInit {
   }
  
   getTotal() {
-    return this.cart.reduce((i, j) => i + j.price * j.quantity, 0);
+    return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
     
   }
   sizeSelect(i, val, y) {
