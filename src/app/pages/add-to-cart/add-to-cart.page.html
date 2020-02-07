@@ -1,8 +1,8 @@
-<div padding class="heading" >
+<div padding class="heading">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
-   
-      <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
- 
+
+    <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
+
   </ion-fab>
   <hr>
 </div>
@@ -15,84 +15,89 @@
   <!-- <div *ngIf="!myProduct" class="empty" >
     <ion-title >This product is not available  currently.</ion-title>
   </div> -->
-  <div   class="main-content" >
-    <div class="cartTitle" >
+  <div class="main-content">
+    
+    <div class="cartTitle">
       <ion-title>Cart</ion-title>
     </div>
-    <div class="special-section" *ngIf="!myCart"  >
-      <p>add something your cart is empty</p>
-    </div>
-    <div  *ngFor="let p of cartProduct; let j of index" class="ng-for-goes-here" >
-      
-  
-    <div  class="cart-item-section" >
 
-      <div class="image-section" >
-        <img src="{{p.obj.image}}"  alt="">
+    <div *ngFor="let p of cartProduct; let j of index" class="ng-for-goes-here">
 
-      </div>
-      <div class="prodactDetails-section" >
-        <div class="name" >
-          <ion-label>{{ p.obj.product_name }}</ion-label>
-        </div>
-        <div class="price" >
-          <ion-label>{{ p.obj.price | currency:'R':'symbol' }} </ion-label>
-        </div>
-        <div class="code">
-          <ion-label>Code: {{ p.obj.productCode }}</ion-label>
-        </div>
-        <div class="Productselection">
-          <div class="size">
-            <p  >Size:{{ p.obj.size }} </p>
 
+
+      <div class="cart-item-section">
+    
+        <div class="image-section">
+          <img src="{{p.obj.image}}" alt="">
+
+        </div>
+        <div class="prodactDetails-section">
+          <div class="name">
+            <ion-label>{{ p.obj.product_name }}</ion-label>
           </div>
-          <div class="quantity">
-            <div  ><p no-padding >Qty:   {{ p.obj.quantity }}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="minus(p, j)"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="plus(p, j)"></ion-icon></div>
-           
+          <div class="price">
+            <ion-label>{{ p.obj.price | currency:'R':'symbol' }} </ion-label>
           </div>
+          <div class="code">
+            <ion-label>Code: {{ p.obj.productCode }}</ion-label>
+          </div>
+          <div class="Productselection">
+            <div class="size">
+              <p>Size:{{ p.obj.size }} </p>
+
+            </div>
+            <div class="quantity">
+              <div>
+                <p no-padding>Qty: {{ p.obj.quantity }}</p>
+              </div>
+              <div>
+                <ion-icon name="remove-circle" color="danger" (click)="minus(p, j)"></ion-icon>
+                <ion-icon name="add-circle" color="success" (click)="plus(p, j)"></ion-icon>
+              </div>
+
+            </div>
+          </div>
+
+
         </div>
 
+        <div class="delete-section">
+          <ion-button class="item" color="medium" fill="clear" (click)="removeCartItem(p.id)" slot="end">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+
+        </div>
 
       </div>
-
-      <div class="delete-section" >
-        <ion-button class="item" color="medium"  fill="clear" (click)="removeCartItem(p.id)" slot="end"> 
-          <ion-icon name="trash"></ion-icon>
-         </ion-button>
-
-      </div>
-
+      <p class="divided">
+        <span></span>
+        <span class="divider"></span>
+        <span></span>
+      </p>
     </div>
-    <p class="divided">
-      <span></span>
-      <span class="divider"></span>
-      <span></span>
-    </p>
-  </div>
-  <div class="delivery-method" >
-    <ion-segment >
-      <ion-segment-button value="python">
-        <ion-label>Delivery</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="javascript">
-        <ion-label>Collection</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-  
+    <div class="delivery-method">
+      <ion-segment>
+        <ion-segment-button value="python">
+          <ion-label>Delivery</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="javascript">
+          <ion-label>Collection</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
 
-  <!---->
-  <!-- <button *ngFor="let button of [1,2,3,4]; let i = index" " (click)="placeOrder()"  
+
+    <!---->
+    <!-- <button *ngFor="let button of [1,2,3,4]; let i = index" " (click)="placeOrder()"  
   [ngClass]="{'active':isClicked[i]}" (click)="isClicked[i] = (isClicked[i]? false :true )">collection</button> -->
-    <div class="cartButton" >
-      <ion-button color="primary" expand="block" (click)="dismiss()"   (click)="placeOrder()" >Place order {{ getTotal() | currency: '&#82;'}} </ion-button>
+    <div class="cartButton">
+      <ion-button color="primary" expand="block" (click)="dismiss()" (click)="placeOrder()">Place order
+        {{ getTotal() | currency: '&#82;'}} </ion-button>
     </div>
-
+    <div class="empty-cart" *ngIf="!myCart"  >
+      <p>add something to your cart is empty</p>
+    </div>
   </div>
+
   
-  <div class="special-section" >
-  <p>add something your cart is empty</p>
-</div>
 </ion-content>

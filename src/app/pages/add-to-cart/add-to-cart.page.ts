@@ -78,13 +78,15 @@ export class AddToCartPage implements OnInit {
   getProducts() {
     firebase.firestore().collection("Cart").where("customerUid", "==", firebase.auth().currentUser.uid).onSnapshot(snapshot => {
       if( this.cartProduct = []){
-        this.myCart = true;
+          this.myCart = true;
     snapshot.forEach(doc => {
         this.cartProduct.push({ obj: doc.data(), id: doc.id })
+       
       });
       }else{
         this.myCart = false;
       }
+      console.log('myCart' ,this.cartProduct= [])
      
   
     });
