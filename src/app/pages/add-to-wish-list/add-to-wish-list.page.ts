@@ -135,8 +135,15 @@ export class AddToWishListPage implements OnInit {
     this.dbWishlist.where("uid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
       this.cart = []
       data.forEach(item => {
-          this.cart.push({obj : item.data(), id : item.id})  
+        let obj = {
+          obj : item.data(), 
+          id : item.id
+        }
+          this.cart.push(obj) 
+           
+          // this.total = this.total + obj.prod.price
       })
+      return this.total
     })
 
 //     console.log("mylist....");
