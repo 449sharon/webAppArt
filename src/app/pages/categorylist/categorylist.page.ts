@@ -53,10 +53,9 @@ export class CategorylistPage implements OnInit {
     this.getProducts(); 
   }
   addToWishlist(prod, id) {
-
     console.log("Product Info ",prod);
-    this.dbWishlist.doc(id).set({product_name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
-     id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories}).then(()=>{
+    this.dbWishlist.doc(id).set({name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
+     id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories }).then(()=>{
        this.toastController("Added to wishlist");
      })
  }

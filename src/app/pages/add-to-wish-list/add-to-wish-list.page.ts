@@ -139,9 +139,9 @@ export class AddToWishListPage implements OnInit {
           obj : item.data(), 
           id : item.id
         }
-          this.cart.push(obj) 
-           
-          // this.total = this.total + obj.prod.price
+         
+        this.cart.push(obj)    
+          this.total = item.data().price 
       })
       return this.total
     })
@@ -233,10 +233,10 @@ export class AddToWishListPage implements OnInit {
     // this.dbWishlist.doc(o.id).delete();
   }
  
-  getTotal() {
-    return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
+  // getTotal() {
+  //   return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
     
-  }
+  // }
   sizeSelect(i, val, y) {
     this.sizes = i.detail.value;
    }
