@@ -8,6 +8,7 @@ import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
 import { AddToWishListPage } from '../add-to-wish-list/add-to-wish-list.page';
 import { ProfilePage } from '../profile/profile.page';
 import { Popover2Component } from 'src/app/components/popover2/popover2.component';
+import { Popover3Component } from 'src/app/components/popover3/popover3.component';
 
 @Component({
   selector: 'app-categorylist',
@@ -54,9 +55,11 @@ export class CategorylistPage implements OnInit {
   }
   addToWishlist(prod, id) {
     console.log("Product Info ",prod);
-    this.dbWishlist.doc(id).set({name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
-     id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories }).then(()=>{
-       this.toastController("Added to wishlist");
+    this.dbWishlist.doc(id).set({product_name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
+     id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories}).then(()=>{
+      //  this.toastController("Added to wishlist");
+      // this. presentToast($event)
+      
      })
  }
   Info = []
@@ -185,6 +188,18 @@ adminInfo(){
   }
   TermsAndConditions(){
     this.router.navigateByUrl('/terms-and-conditions')
+  }
+  async presentToast(ev) {
+    const popover = await this.popoverController.create({
+      component:Popover3Component,
+      event: ev,
+      
+      // cssClass: 'pop-over-style',
+      translucent: true,
+    });
+   popover.present();
+    setTimeout(()=>popover.dismiss(),500);
+    
   }
 
 

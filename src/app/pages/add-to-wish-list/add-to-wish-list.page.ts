@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController, AlertController } from '@ionic/angular';
+import { ModalController, ToastController, AlertController,PopoverController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 import * as moment from 'moment';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
+import { Popover2Component } from 'src/app/components/popover2/popover2.component';
 
 @Component({
   selector: 'app-add-to-wish-list',
@@ -58,6 +59,7 @@ export class AddToWishListPage implements OnInit {
   constructor(public modalController: ModalController,
     public toastController : ToastController,
     private cartService: CartServiceService,
+    public popoverController: PopoverController,
     private alertCtrl: AlertController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
@@ -170,6 +172,7 @@ export class AddToWishListPage implements OnInit {
 
 
     this.addToTheCart.forEach(item => {
+      // this.toastPopover(this.event)
       firebase.firestore().collection("Cart").doc().set(item)
     })
     this.addToTheCart = []
@@ -182,6 +185,7 @@ export class AddToWishListPage implements OnInit {
 
     }, 3000)
     this.cartItemCount.next(this.cartItemCount.value + 1);
+ 
 
 
     // console.log("my list");
@@ -204,6 +208,20 @@ export class AddToWishListPage implements OnInit {
     //    })
     //     console.log('My prod ', this.myProd);
     //      this.dismiss(); 
+  }
+  async toastPopover(ev) {
+    const popover = await this.popoverController.create({
+      component:Popover2Component,
+      event: ev,
+      
+      // cssClass: 'pop-over-style',
+      translucent: true,
+    });
+    
+   popover.present();
+    setTimeout(()=>popover.dismiss(),500);
+    
+    
   }
 
   getCartItemCount() {

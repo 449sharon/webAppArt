@@ -198,16 +198,16 @@
            
       
                   <ion-item color="light">
-                    <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
+                    <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="Full Names" required></ion-input> 
                   </ion-item>
                   <ion-item>
-                    <ion-input type="email"   [(ngModel)]="message.email"  placeholder="Email address" required>
+                    <ion-input type="email"   [(ngModel)]="message.email"  placeholder="Email Address" required>
                     </ion-input>
                   </ion-item>
                   <div>
                     <ion-list>
                       <ion-item>
-                        <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message" required></ion-textarea>
+                        <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="Message" required></ion-textarea>
                       </ion-item>
                     </ion-list>
                   </div>
@@ -220,37 +220,6 @@
               
           </div>
         </div>
-        <!-- <div class="callUs-labels">
-          <ion-label class="heading">Quick Links</ion-label>
-          <div class="messageInputs">
-                  <ion-item color="light">
-                    <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
-                  </ion-item>
-                  <ion-item>
-                    <ion-input type="email"   [(ngModel)]="message.email"  placeholder="Email address" required>
-                    </ion-input>
-                  </ion-item>
-                  <div>
-                    <ion-list>
-                      <ion-item>
-                        <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message" required></ion-textarea>
-                      </ion-item>
-                    </ion-list>
-                  </div>
-                  <div>
-                    <ion-button  (click)="addMessage()">Submit</ion-button>
-                  </div>
-               
-              </div> 
-              <div >
-                <span>
-                  <ion-icon padding name="pin"></ion-icon>
-                </span>
-                <span>
-                  <ion-label *ngFor = "let admin of Info">{{admin.address}}</ion-label>
-                </span>
-              </div>
-        </div> -->
         
       </div>
     </div>
