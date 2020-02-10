@@ -91,7 +91,8 @@ export class AddToCartPage implements OnInit {
       if( this.cartProduct = []){
         this.myCart = true;
     snapshot.forEach(doc => {
-        this.cartProduct.push({ obj: doc.data(), id: doc.id })
+      let obj = { obj: doc.data(), id: doc.id }
+        this.cartProduct.push(obj)
       });
       }else{
         this.myCart = false;
