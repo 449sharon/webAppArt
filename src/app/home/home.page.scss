@@ -107,12 +107,10 @@
   
   }
   .firstSecond-block {
-    // border: solid rgb(107, 70, 1) ;
     height: 50%;
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
-    // margin-bottom: 16px;
     text-shadow: 0 1px 0 #ccc,
     0 2px 0 #c9c9c9,
     0 3px 0 #bbb,
@@ -156,7 +154,7 @@
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
-    // margin-left: 16px;
+
     margin-right: 16px; 
     text-shadow: 0 1px 0 #ccc,
       0 2px 0 #c9c9c9,
@@ -171,7 +169,6 @@
       0 10px 10px rgba(0,0,0,.2),
       0 20px 20px rgba(0,0,0,.15);
       &:hover {
-        // box-shadow: 0px 0px 150px #000000;
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(0.9);
@@ -190,7 +187,6 @@
     object-fit: cover;
   }
   .thirdSecond-block {
-    // border: solid green;
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
@@ -207,9 +203,7 @@
     0 5px 10px rgba(0,0,0,.25),
     0 10px 10px rgba(0,0,0,.2),
     0 20px 20px rgba(0,0,0,.15);
-    // margin-right: 16px;
     &:hover {
-      // box-shadow: 0px 0px 150px #000000;
   z-index: 2;
   -webkit-transition: all 200ms ease-in;
   -webkit-transform: scale(0.9);
@@ -255,7 +249,6 @@
   }
   .description-text {
     height: 120px;
-    // border: solid black;
     width: 60%;
     margin: auto;
   }
@@ -288,9 +281,7 @@
   }
   .cards-section {
     width: 90%;
-    // border: solid rgb(3, 163, 255);
     height: 100%;
-    // display: flex;
     margin: 0 auto;
   }
   .specials-title {
@@ -302,9 +293,7 @@
     display: flex;
     margin: 0 auto;
     margin-top: 16px;
-    // border: solid rgb(6, 238, 199);
     width: 100%;
-    // height: 50%;
     justify-content: space-evenly;
     justify-content: space-around;
     justify-content: center;
@@ -314,16 +303,14 @@
   .cards {
     width: 234px;
     height: 367px;
-    // border:  solid rgb(10, 66, 250);
+
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     margin-bottom: 3%;
     border-radius: 10px;
     border: 0.5px solid #70707042;
-    // max-width: 200px;
     &:hover {
-      // box-shadow: 0px 0px 150px #000000;
   z-index: 2;
   -webkit-transition: all 200ms ease-in;
   -webkit-transform: scale(0.9);
@@ -336,7 +323,6 @@
     }
   }
   .products-section{
-    // border: solid lightcoral;
     display: flex;
     margin: auto;
     justify-content: center;
@@ -373,7 +359,6 @@
   .specials {
     width: 1250px;
     height: 372px;
-    // border: solid rgb(247, 0, 255);
     border-radius: 10px;
     text-align: center;
     margin: auto;
@@ -394,7 +379,6 @@
       height: 100;
       width: 100%;
       box-shadow:         inset 0 0 10px #000000;
-      // box-shadow:0 6px 1px rgba(0,0,0,.1);
   }
   .specials > ion-title{
       color: white;
@@ -422,10 +406,7 @@
   }
   .contactUs-section{
      width: 100%;
-    //  height: 100%;
-    //  border: solid black;
-      // margin-top: 2%;
-      margin-bottom: 12%;
+      margin-bottom: 20%;
   }
   .contactus{
        width: 100%;
@@ -434,9 +415,7 @@
       margin: 0 auto;
       display: flex;
       justify-content: center;
-      // justify-content: space-evenly;
       justify-content: space-between;
-      // border: solid rgb(238, 255, 3);
      padding-bottom: 150px;
       background:linear-gradient(0deg, rgba(14, 13, 13, 0.836), rgba(0, 0, 0, 0.836)), url("../../assets/photo-1493106641515-6b5631de4bb9.png");
       background-repeat: no-repeat;
@@ -457,25 +436,15 @@
       justify-content: space-between;
       width: 100%;
       padding-top: 20px;
-
-     
-      // border: solid red;
       color: white;
       margin: auto;
   }
   .contactUs-labels > div{
       width: 30%;
-      // border: solid blue;
       margin: 0 auto;
-      // margin-bottom: 8px;
-      // justify-content: center;
       display: flex;
       flex-direction: column;
       margin: 0 auto;
-      // span{
-      //   border: solid red;
-      //   margin: 0 auto;
-      // }
   }
 
   .contactus > div {
@@ -545,7 +514,6 @@
   }
   .social-section{
     width: 80%;
-    // border: solid blue;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -555,13 +523,11 @@
   flex-direction: row;
   width: 70%;
   justify-content: space-between;
-  // border: solid blue;
   padding-top: 8px;
 }
 .social > div{
   display: flex;
   flex-direction: row;
-  // border: solid red;
 }
 .social-section > div > ion-title{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -581,7 +547,6 @@
           text-align: center;
           display: flex;
           flex-direction: row;
-          // justify-content: space-around;
           justify-content: center;
           margin: auto;
       }
@@ -595,28 +560,18 @@
       
       }
       .categoryList{
-          // border: solid red;
+ 
           height: 100%;
       }
       .ladingPage-Items{
-        // border:  solid darkgoldenrod;
         height:100% ;
       }
       .content-section{
-        // border:  solid rgb(65, 52, 21);
-        // overflow: auto;
         height: 100%;
       }
       
-      // view by gategory section
-      // .CategoriyList{
-      //     height: 100%;
-      //     border: solid black;
-      //     overflow: auto;
-      //     margin-bottom: 40px;
-      // }
       .categorySection{
-        // border: solid red;
+  
         height: 100%;
         margin-bottom: 39px;
       }
