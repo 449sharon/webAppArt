@@ -137,8 +137,15 @@ export class AddToWishListPage implements OnInit {
     this.dbWishlist.where("uid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
       this.cart = []
       data.forEach(item => {
-          this.cart.push({obj : item.data(), id : item.id})  
+        let obj = {
+          obj : item.data(), 
+          id : item.id
+        }
+          this.cart.push(obj) 
+           
+          // this.total = this.total + obj.prod.price
       })
+      return this.total
     })
 
 //     console.log("mylist....");
@@ -159,6 +166,8 @@ export class AddToWishListPage implements OnInit {
 //       })
 //     })
   }
+
+  
   addToCart() {
 
 
@@ -243,7 +252,7 @@ export class AddToWishListPage implements OnInit {
   }
  
   getTotal() {
-    return this.cart.reduce((i, j) => i + j.price * j.quantity, 0);
+    return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
     
   }
   sizeSelect(i, val, y) {
