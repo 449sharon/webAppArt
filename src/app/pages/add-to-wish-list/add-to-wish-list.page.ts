@@ -125,7 +125,7 @@ export class AddToWishListPage implements OnInit {
           // lastcreated : data.obj.obj.lastcreated,
           name : data.obj.obj.name,
           price : data.obj.obj.price,
-        //  productCode : data.obj.obj.productCode,
+         productCode : data.obj.obj.productCode,
           // quantity : data.obj.obj.quantity,
           // size : data.obj.obj.size,
         })
