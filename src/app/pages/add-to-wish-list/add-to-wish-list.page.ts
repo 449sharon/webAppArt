@@ -143,7 +143,7 @@ export class AddToWishListPage implements OnInit {
         }
          
         this.cart.push(obj)    
-          this.total = item.data().price 
+        this.total+=item.data().price;
       })
       return this.total
     })
