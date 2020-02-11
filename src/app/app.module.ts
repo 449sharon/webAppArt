@@ -22,23 +22,23 @@ import { Popover2Component } from './components/popover2/popover2.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ViewProductDetailsPageModule } from './pages/view-product-details/view-product-details.module';
 import { Popover3Component } from './components/popover3/popover3.component';
-
+import { HttpClientModule } from '@angular/common/http';
 const firebaseConfig = {
   apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
-  authDomain: "pitsengproject.firebaseapp.com",
-  databaseURL: "https://pitsengproject.firebaseio.com",
-  projectId: "pitsengproject",
-  storageBucket: "pitsengproject.appspot.com",
-  messagingSenderId: "359447010965",
-  appId: "1:359447010965:web:30e22a1e055bd366d7c59c",
-  measurementId: "G-T4KR75ZKET"
+    authDomain: "pitsengproject.firebaseapp.com",
+    databaseURL: "https://pitsengproject.firebaseio.com",
+    projectId: "pitsengproject",
+    storageBucket: "pitsengproject.appspot.com",
+    messagingSenderId: "359447010965",
+    appId: "1:359447010965:web:30e22a1e055bd366d7c59c",
+    measurementId: "G-T4KR75ZKET"
 };
 firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   @NgModule({
     declarations: [AppComponent,PopoverComponent,Popover2Component,Popover3Component],
     entryComponents: [PopoverComponent,Popover2Component,Popover3Component],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
+    imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
       AddToCartPageModule,
       AddToWishListPageModule,ProfilePageModule,
       TrackOrderPageModule,FaqsPageModule,
