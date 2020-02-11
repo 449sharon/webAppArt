@@ -12,23 +12,24 @@ import { TrackOrderPage } from '../track-order/track-order.page';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
+  @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   cartItemCount: BehaviorSubject<number>;
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
   customerUid = firebase.auth().currentUser.uid;
   dbOrder = firebase.firestore().collection('Order');
+  dbHistory = firebase.firestore().collection('orderHistory');
   profile = {
     image: '',
     name: '',
-    number:'',
+    number: '',
     address: '',
-  
-    email:'',
-   
+
+    email: '',
+
     uid: '',
-    
+
   }
   Allorders = [];
   loader: boolean = true;
@@ -39,22 +40,22 @@ export class ProfilePage implements OnInit {
   isprofile = false;
   admin = {
     uid: '',
-    email:''
+    email: ''
   }
-  
+  orderHistory = [];
   constructor(public alertCtrl: AlertController,
     private router: Router,
     public modalController: ModalController
-   ) { 
+  ) {
     this.uid = firebase.auth().currentUser.uid;
-    
+
   }
   ionViewWillEnter() {
     setTimeout(() => {
       this.loader = false;
     }, 2000);
   }
- 
+
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -62,14 +63,14 @@ export class ProfilePage implements OnInit {
         this.admin.uid = user.uid
         this.admin.email = user.email
         this.GetOrders();
-      this.getProfile();
+        this.getProfile();
+        this.GetOrderHistory();
       } else {
         console.log('no admin');
-        
       }
     })
   }
-  async getImage(image){
+  async getImage(image) {
     let imagetosend = image.item(0);
     if (!imagetosend) {
       const imgalert = await this.alertCtrl.create({
@@ -92,35 +93,36 @@ export class ProfilePage implements OnInit {
         imgalert.present();
         imagetosend = '';
         return;
-       } else {
+      } else {
         const upload = this.storage.child(image.item(0).name).put(imagetosend);
         upload.on('state_changed', snapshot => {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           this.uploadprogress = progress;
           this.isuploading = true;
-          if (progress==100){
+          if (progress == 100) {
             this.isuploading = false;
-          } 
+          }
         }, error => {
         }, () => {
-          upload.snapshot.ref.getDownloadURL().then(downUrl => {this.ngOnInit
+          upload.snapshot.ref.getDownloadURL().then(downUrl => {
+            this.ngOnInit
             this.profile.image = downUrl;
             this.uploadprogress = 0;
             this.isuploaded = true;
           });
         });
         this.loader
-       }
+      }
     }
   }
-  createAccount(){
-    if (!this.profile.address||!this.profile.name||!this.profile. number){
+  createAccount() {
+    if (!this.profile.address || !this.profile.name || !this.profile.number) {
       this.errtext = 'Fields should not be empty'
     } else {
-      if (!this.profile.image){
+      if (!this.profile.image) {
         this.errtext = 'Profile image still uploading or not selected';
       } else {
-        this.profile.uid =  this.admin.uid;
+        this.profile.uid = this.admin.uid;
         this.db.collection('UserProfile').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => {
           console.log('Profile created');
           this.getProfile();
@@ -130,7 +132,7 @@ export class ProfilePage implements OnInit {
       }
     }
   }
-   getProfile(){
+  getProfile() {
     this.db.collection('UserProfile').where('uid', '==', this.admin.uid).get().then(snapshot => {
       if (snapshot.empty) {
         this.isprofile = false;
@@ -138,11 +140,11 @@ export class ProfilePage implements OnInit {
         this.isprofile = true;
         snapshot.forEach(doc => {
           this.profile.address = doc.data().address;
-          this.profile.image= doc.data().image
-          this.profile.name=doc.data().name
-          this.profile.number=doc.data().number
-           this.profile.email=doc.data().email
-          
+          this.profile.image = doc.data().image
+          this.profile.name = doc.data().name
+          this.profile.number = doc.data().number
+          this.profile.email = doc.data().email
+
         })
       }
     })
@@ -152,39 +154,52 @@ export class ProfilePage implements OnInit {
   edit() {
     this.isprofile = false;
   }
-     ////////////////////////////////// 
-     GetOrders(){
-      this.dbOrder.where('userID','==',firebase.auth().currentUser.uid).onSnapshot((data)=>{
-              console.log("olx", data);
-              this.Allorders = [];
-                data.forEach((item)=>{
-                  this.Allorders.push({ref:item.id,info:item.data(), total:item.data()})
-                })
-                console.log("ccc", this.Allorders);
-    
-          }) 
-      }
-    
-  dismiss(){
+  ////////////////////////////////// 
+  GetOrders() {
+    // console.log("My uid ", firebase.auth().currentUser.uid);
+    this.dbOrder.where('userID', '==', firebase.auth().currentUser.uid).onSnapshot((data) => {
+      // console.log("olx", data);
+      this.Allorders = [];
+      data.forEach((item) => {
+        this.Allorders.push({ ref: item.id, info: item.data(), total: item.data() })
+      })
+      // console.log("ccc", this.Allorders);
+    })
+  }
+  GetOrderHistory() {
+    this.dbHistory.where('userID', '==', firebase.auth().currentUser.uid).onSnapshot((data) => {
+      this.orderHistory = [];
+      data.forEach((item) => {
+        this.orderHistory.push({ ref: item.id, info: item.data(), total: item.data() })
+      })
+    })
+  }
+  dismiss() {
     this.modalController.dismiss({
-      'dismissed':true
+      'dismissed': true
     });
   }
-  async createTrackOder(item) {
+  view(pdf) {
+    window.location.href = pdf;
+  }
+  async createTrackOder(item, name) {
     console.log(item)
     const modal = await this.modalController.create({
-      component:TrackOrderPage,
+      component: TrackOrderPage,
       cssClass: 'track-order',
-      componentProps: { ref: item.ref,
+      componentProps: {
+        ref: item.ref,
+        pageName:name,
         totalPrice: item.info.totalPrice,
-       name: item.info.product[0].product_name,
+        name: item.info.product[0].product_name,
         price: item.info.product[0].price,
         quantity: item.info.product[0].quantity,
         image: item.info.product[0].image,
-      arr:item.info.product },
-    },);
+        arr: item.info.product
+      },
+    });
     return await modal.present();
   }
-  
-  
+
+
 }
