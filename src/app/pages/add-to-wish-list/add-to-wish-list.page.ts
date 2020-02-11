@@ -77,60 +77,81 @@ export class AddToWishListPage implements OnInit {
 
 /*ADDING MY ITEMS FROM WISHLIST TO THE CART*/
 
-  CheckBox(data){
-
-
+  CheckBox(event, data){
+    console.log(event);
+    console.log(data);
+    
+    console.log(event.target.checked);
+    let isChecked = event.target.checked
+    if(isChecked === true){
+      this.addToTheCart.push(data)
+    }else{
+      for(let i in this.addToTheCart){
+        if(this.addToTheCart[i] === data){
+          console.log('there is a matching item in add to the cart');
+          this.addToTheCart.splice(Number(i), 1)
+        }
+      }
+      
+    }
+    console.log(this.addToTheCart);
+    
+    console.log(data);
+    
     console.log("My method is called ", data.obj);
 
+    console.log(this.value);
+    console.log(this.value);
+    
     
     this.value = !this.value
   
-    if(this.value){
-      console.log("My method is called ", this.value);
+    // if(this.value){
+    //   console.log("My method is called ", this.value);
 
-      setTimeout(() => {
+    //   setTimeout(() => {
 
-        this.dbWishlist.doc(data.id).update({
-          categories : data.obj.categories,
-          checked : true,
-          desc : data.obj.desc,
-          image :data.obj.image,
-          // items : data.obj.items,
-          // lastcreated : data.obj.lastcreated,
-          name : data.obj.name,
-          price : data.obj.price,
-          //  productCode : data.obj.productCode,
-          // quantity : data.obj.quantity,
-          // size : data.obj.size,
-        })
+    //     this.dbWishlist.doc(data.id).update({
+    //       categories : data.obj.categories,
+    //       checked : true,
+    //       desc : data.obj.desc,
+    //       image :data.obj.image,
+    //       // items : data.obj.items,
+    //       // lastcreated : data.obj.lastcreated,
+    //       name : data.obj.name,
+    //       price : data.obj.price,
+    //       //  productCode : data.obj.productCode,
+    //       // quantity : data.obj.quantity,
+    //       // size : data.obj.size,
+    //     })
 
-      }, 2000)
+    //   }, 2000)
 
-    this.tempIndex.push(data.id)
+    // this.tempIndex.push(data.id)
 
-    this.addToTheCart.push(data.obj)
+    // this.addToTheCart.push(data.obj)
   
-    }
-    else{
-      console.log("My method is called ", this.value);
+    // }
+    // else{
+    //   console.log("My method is called ", this.value);
     
-      setTimeout(() => {
+    //   setTimeout(() => {
 
-        firebase.firestore().collection("Wishlist").doc(data.id).update({
-          categories : data.obj.obj.categories,
-          checked : false,
-          desc : data.obj.obj.desc,
-          image :data.obj.obj.image,
-          // items : data.obj.obj.items,
-          // lastcreated : data.obj.obj.lastcreated,
-          name : data.obj.obj.name,
-          price : data.obj.obj.price,
-         productCode : data.obj.obj.productCode,
-          // quantity : data.obj.obj.quantity,
-          // size : data.obj.obj.size,
-        })
-      }, 3000)
-    }
+    //     firebase.firestore().collection("Wishlist").doc(data.id).update({
+    //       categories : data.obj.obj.categories,
+    //       checked : false,
+    //       desc : data.obj.obj.desc,
+    //       image :data.obj.obj.image,
+    //       // items : data.obj.obj.items,
+    //       // lastcreated : data.obj.obj.lastcreated,
+    //       name : data.obj.obj.name,
+    //       price : data.obj.obj.price,
+    //      productCode : data.obj.obj.productCode,
+    //       // quantity : data.obj.obj.quantity,
+    //       // size : data.obj.obj.size,
+    //     })
+    //   }, 3000)
+    // }
   }
 
   getProducts() {
@@ -169,22 +190,60 @@ export class AddToWishListPage implements OnInit {
 
   
   addToCart() {
-
-
-    this.addToTheCart.forEach(item => {
+    console.log(this.addToTheCart);
+    let dataInTheCart : Array<any> = []
+    let add : boolean = false
+    //firebase.firestore().collection('Cart')
+    // this.addToTheCart.forEach(item => {
+      
+    // })
+    let exists : boolean
+    //this.addToTheCart.forEach(item => {
       // this.toastPopover(this.event)
-      firebase.firestore().collection("Cart").doc().set(item)
-    })
-    this.addToTheCart = []
+      //console.log(item.obj);
+      firebase.firestore().collection("Cart").where('uid', '==', firebase.auth().currentUser.uid).get().then((result : any) => {
+        console.log(result);
+        
+        for(let key in result.docs){
+          dataInTheCart.push(result.docs[key].data())
+        }
+        for(let i in this.addToTheCart){
+          if(dataInTheCart.length === 0){
+            add = true
+          }
+          for(let j in dataInTheCart){
+            if(dataInTheCart[j].id === this.addToTheCart[i].obj.id){
+              console.log('found a match');
+              add = false
+              break
+            }else{
+              add = true
+            }
+          }
+          if(add === true){
+            firebase.firestore().collection("Cart").add(this.addToTheCart[i].obj).then(result => {
+              firebase.firestore().collection('Wishlist').doc(this.addToTheCart[i].obj.id).delete()
+            })
+          }else{
+            //firebase.firestore().collection('Wishlist').doc(item.obj.id).delete()
+          }
+        }
+      }).then( result => {
+        console.log(dataInTheCart);
+        
+      })
 
-    setTimeout(() => {
+    //})
+    // this.addToTheCart = []
 
-      this.tempIndex.forEach(key => {
-        firebase.firestore().collection("Wishlist").doc(key).delete()
-     })
+    // setTimeout(() => {
 
-    }, 3000)
-    this.cartItemCount.next(this.cartItemCount.value + 1);
+    //   this.tempIndex.forEach(key => {
+    //     firebase.firestore().collection("Wishlist").doc(key).delete()
+    //  })
+
+    // }, 3000)
+    // this.cartItemCount.next(this.cartItemCount.value + 1);
  
 
 

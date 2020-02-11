@@ -54,14 +54,19 @@ export class AddToCartPage implements OnInit {
 
   ngOnInit() {
 
-    firebase.firestore().collection("Cart").onSnapshot(data => {
-      data.forEach(item => {
-        this.dataInTheCart.push(item.data())
-        console.log("dataInTheCart ", item.data());
-        
-      })
+    firebase.firestore().collection("Cart").where('uid', '==', firebase.auth().currentUser.uid).get().then((result : any) => {
+      console.log(result);
+      
+      for(let key in result.docs){
+        this.cartProduct.push(result.docs[key].data())
+      }
+    }).then( result => {
+      console.log(this.cartProduct);
+      
     })
-    this.getProducts();
+
+    
+    //this.getProducts();
     this.trackOrder();
 
   }
