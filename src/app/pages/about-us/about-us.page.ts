@@ -16,6 +16,10 @@ export class AboutUsPage implements OnInit {
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbMessages = firebase.firestore().collection('Messages');
   db = firebase.firestore();
+  about  : any=[];
+  isabout = false;
+  service: any= [];
+  isservice = false;
   message = {
     fullname: '',
     email: '',
@@ -26,6 +30,8 @@ export class AboutUsPage implements OnInit {
 
 
   ngOnInit() {
+    this.getAbout()
+    this.getServices()
   }
   openHome(){
     this.router.navigateByUrl('/')
@@ -108,5 +114,73 @@ adminInfo(){
        }
    })
 }
+// getAbout(){
+   
+//   this.db.collection('AboutUs').get().then(snapshot => {
+//     console.log('aboutUs', this.about);
+    
+//     if( this.about = []){
+// snapshot.forEach(doc => {
+//         this.about.push(doc.data());
+//         console.log('messges', doc.data());
+//       });
+//       this.myProduct = true
+//     }else{
+//       this.myProduct = false
+//     }
+   
+      
+      
+//   })
+    
+// }
+getAbout(){
+  this.about = [];
+  this.db.collection('AboutUs').get().then(snapshot => {
+    if (snapshot.empty !== true) {
+      this.isabout = true;
+      snapshot.forEach(doc => {
+        this.about.push(doc.data());
+      });
+    } else {
+      console.log('No about');
+      
+    }
+   });
+}
+getServices(){
+  this.service = [];
+  this.db.collection('Service').get().then(snapshot => {
+    if (snapshot.empty !== true) {
+      this.isservice = true;
+      snapshot.forEach(doc => {
+        this.service.push(doc.data());
+      });
+    } else {
+      console.log('No service');
+      
+    }
+   });
+}
+// getServices(){
+   
+//   this.db.collection('Service').get().then(snapshot => {
+//     console.log('services', this.service);
+    
+//     if( this.service){
+// snapshot.forEach(doc => {
+//         this.service.push(doc.data());
+//         console.log('services', doc.data());
+//       });
+//       this.myProduct = true
+//     }else{
+//       this.myProduct = false
+//     }
+   
+      
+      
+//   })
+    
+// }
 
 }

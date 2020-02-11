@@ -22,6 +22,7 @@ import { Popover2Component } from './components/popover2/popover2.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ViewProductDetailsPageModule } from './pages/view-product-details/view-product-details.module';
 import { Popover3Component } from './components/popover3/popover3.component';
+import {ResetPasswordPageModule } from './pages/reset-password/reset-password.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
@@ -38,7 +39,7 @@ firebase.initializeApp(firebaseConfig);
   @NgModule({
     declarations: [AppComponent,PopoverComponent,Popover2Component,Popover3Component],
     entryComponents: [PopoverComponent,Popover2Component,Popover3Component],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ResetPasswordPageModule ,ReactiveFormsModule,ViewProductDetailsPageModule,
       AddToCartPageModule,
       AddToWishListPageModule,ProfilePageModule,
       TrackOrderPageModule,FaqsPageModule,
