@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "pitsengartapplication"
+    "default": "pitsengartapplication",
+    "hosting": "grocerylist-795b9",
+    "hosing": "grocerylist-795b9"
   }
 }

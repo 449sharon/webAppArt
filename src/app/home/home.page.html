@@ -3,7 +3,7 @@
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
   </div>
-  <div class=" animated bounce 2s">
+  <div class=" ">
     <div class="content-container">
       <!-- starts landing page content -->
       <div class="content-section">
@@ -54,10 +54,9 @@
                 <ion-title>With us you get to save!</ion-title>
               </div>
               <div>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                  labore et dolore magna aliquyam erat,
-                  sed diam voluptua. At vero eos et accusam et justo duo
-                  dolores et ea rebum. Stet clita kasd gubergren</p>
+                <p > With us every day is a special day for saving! you can never go wrong when you scroll down a litle bit and see what we have instore for you today.
+                  Shop smart and get to save with  Pitseng
+                  the only Arts and Crafts store that will never let you down.</p>
               </div>
             </div>
             <div class="cards-section" >
@@ -83,7 +82,7 @@
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star-outline" color="warning"></ion-icon>
                   </div>
-                  <div class="icon-wish" (click)="addToWishlist(event.obj, event.id)">
+                  <div class="icon-wish" (click)="addToWishlist(event.obj, event.id)"  [ngClass]="{'active': active==i}" >
                     <ion-icon name="heart"  ></ion-icon>
                   </div>
                
@@ -114,7 +113,7 @@
     <div class="contactus">
       <div class="contactUs-labels">
         <div >
-          <ion-label class="heading2">Call Us</ion-label>
+          <ion-label class="heading2">Find Us</ion-label>
           <div *ngFor = "let admin of Info" class="callUs-labels">
             <div>
               <span>
@@ -131,6 +130,15 @@
               <span>
                 <ion-label>{{admin.email}}</ion-label>
               </span>
+              <div class="social-section" >
+
+                <div class="social" >
+                  <div> <img padding src=".././../assets/icons8_facebook_480px.png" width="30" height="30" > </div>
+                  <div> <img padding src="../../assets/icons8_twitter_circled_60px_2.png" width="30" height="30" ></div>
+  
+  
+                </div>
+              </div>
 
             </div>
             <!-- <div>
@@ -166,19 +174,19 @@
               <!-- <span>
                 <ion-icon padding name="pin"></ion-icon>
               </span> -->
-              <span>
+              <span (click)="createFaqs()">
                 <li>
                     <ion-label>FAQ's</ion-label>
               </li>
             
               </span>
-              <span>
+              <span (click)="TermsAndConditions()" >
                 <li>
                    <ion-label>Terms & Conditions</ion-label>
                 </li>
                
               </span> 
-              <span>
+              <span (click)=" PrivacyPolicy()" >
                 <li>
                    <ion-label>Privacy Policy</ion-label>
                 </li>

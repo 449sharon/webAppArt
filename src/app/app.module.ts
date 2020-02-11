@@ -24,15 +24,16 @@ import { ViewProductDetailsPageModule } from './pages/view-product-details/view-
 import { Popover3Component } from './components/popover3/popover3.component';
 import {ResetPasswordPageModule } from './pages/reset-password/reset-password.module';
 
+import { HttpClientModule } from '@angular/common/http';
 const firebaseConfig = {
   apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
-  authDomain: "pitsengproject.firebaseapp.com",
-  databaseURL: "https://pitsengproject.firebaseio.com",
-  projectId: "pitsengproject",
-  storageBucket: "pitsengproject.appspot.com",
-  messagingSenderId: "359447010965",
-  appId: "1:359447010965:web:30e22a1e055bd366d7c59c",
-  measurementId: "G-T4KR75ZKET"
+    authDomain: "pitsengproject.firebaseapp.com",
+    databaseURL: "https://pitsengproject.firebaseio.com",
+    projectId: "pitsengproject",
+    storageBucket: "pitsengproject.appspot.com",
+    messagingSenderId: "359447010965",
+    appId: "1:359447010965:web:30e22a1e055bd366d7c59c",
+    measurementId: "G-T4KR75ZKET"
 };
 firebase.initializeApp(firebaseConfig);
   firebase.analytics();

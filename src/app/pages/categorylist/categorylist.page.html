@@ -21,7 +21,7 @@
                   <ion-icon name="star-half" color="warning"></ion-icon>
                   <ion-icon name="star-outline" color="warning"></ion-icon>
                 </div>
-                <div class="icon-wish" (click)="addToWishlist(event.obj, event.id)">
+                <div class="icon-wish" (click)=" presentToast($event) " (click)="addToWishlist(event.obj, event.id)">
                   <ion-icon name="heart" ></ion-icon>
                 </div>
                 
@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
+      <!-- <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
         <div>
           <ion-title>Contact Us</ion-title>
         </div>
@@ -69,7 +69,115 @@
             </div>
             <div>
               <ion-label class="heading">Leave Us a Message</ion-label>
-              <!-- <div class="messageInputs">
+   
+                  <div>
+                  
+              
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-toolbar color="primary">
+          <div class="footer">
+            <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
+            <div>
+              &copy; Pitseng Arts &amp; Crafts 2019
+            </div>
+          </div>
+        </ion-toolbar>
+      </div>  -->
+      <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
+        <div>
+          <ion-title>Contact Us</ion-title>
+        </div>
+        <div class="contactus">
+          <div class="contactUs-labels">
+            <div >
+              <ion-label class="heading2">Find Us</ion-label>
+              <div *ngFor = "let admin of Info" class="callUs-labels">
+                <div>
+                  <span>
+                    <ion-icon padding name="call"></ion-icon>
+                  </span>
+                  <span>
+                    <ion-label>{{admin.phoneNumber}} </ion-label>
+                  </span>
+                </div>
+                <div>
+                  <span>
+                    <ion-icon padding name="mail"></ion-icon>
+                  </span>
+                  <span>
+                    <ion-label>{{admin.email}}</ion-label>
+                  </span>
+                  <div class="social-section" >
+    
+                    <div class="social" >
+                      <div> <img padding src=".././../assets/icons8_facebook_480px.png" width="30" height="30" > </div>
+                      <div> <img padding src="../../assets/icons8_twitter_circled_60px_2.png" width="30" height="30" ></div>
+      
+      
+                    </div>
+                  </div>
+    
+                </div>
+                <!-- <div>
+                  <span>
+                    <ion-icon padding name="pin"></ion-icon>
+                  </span>
+                  <span>
+                    <ion-label>{{admin.address}}</ion-label>
+                  </span>
+                </div> -->
+              </div>
+            </div>
+            <div >
+              <ion-label class="heading1">Visit Us</ion-label>
+              <div *ngFor = "let admin of Info" class="callUs-labels">
+        
+                <div>
+                  <span>
+                    <ion-icon padding name="pin"></ion-icon>
+                  </span>
+                  <span>
+                    <ion-label>{{admin.address}}</ion-label>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div >
+              <ion-label class="heading">Quick Links </ion-label>
+              <div *ngFor = "let admin of Info" class="callUs-labels">
+            
+        
+                <div>
+                  <!-- <span>
+                    <ion-icon padding name="pin"></ion-icon>
+                  </span> -->
+                  <span >
+                    <li>
+                        <ion-label>FAQ's</ion-label>
+                  </li>
+                
+                  </span>
+                  <span (click)="TermsAndConditions()" >
+                    <li>
+                       <ion-label>Terms & Conditions</ion-label>
+                    </li>
+                   
+                  </span> 
+                  <span (click)=" PrivacyPolicy()" >
+                    <li>
+                       <ion-label>Privacy Policy</ion-label>
+                    </li>
+                   
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="callUs-labels">
+              <ion-label class="heading">Quick Links</ion-label>
+              <div class="messageInputs">
                       <ion-item color="light">
                         <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
                       </ion-item>
@@ -88,12 +196,17 @@
                         <ion-button  (click)="addMessage()">Submit</ion-button>
                       </div>
                    
-                  </div> -->
-                  <div>
-                  
-              
-              </div>
-            </div>
+                  </div> 
+                  <div >
+                    <span>
+                      <ion-icon padding name="pin"></ion-icon>
+                    </span>
+                    <span>
+                      <ion-label *ngFor = "let admin of Info">{{admin.address}}</ion-label>
+                    </span>
+                  </div>
+            </div> -->
+            
           </div>
         </div>
         <ion-toolbar color="primary">
@@ -105,4 +218,4 @@
           </div>
         </ion-toolbar>
       </div> 
-</ion-content>
+    </ion-content>

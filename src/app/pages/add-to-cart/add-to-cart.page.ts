@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import * as moment from 'moment'
 import { ConfirmationPage } from '../confirmation/confirmation.page';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -35,6 +36,8 @@ export class AddToCartPage implements OnInit {
   myProduct: boolean;
   id
 
+  dataInTheCart = []
+
   constructor(public modalController: ModalController,
     public toastCtrl: ToastController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
@@ -50,6 +53,14 @@ export class AddToCartPage implements OnInit {
   }
 
   ngOnInit() {
+
+    firebase.firestore().collection("Cart").onSnapshot(data => {
+      data.forEach(item => {
+        this.dataInTheCart.push(item.data())
+        console.log("dataInTheCart ", item.data());
+        
+      })
+    })
     this.getProducts();
     this.trackOrder();
 
@@ -80,7 +91,9 @@ export class AddToCartPage implements OnInit {
       if( this.cartProduct = []){
         this.myCart = true;
     snapshot.forEach(doc => {
-        this.cartProduct.push({ obj: doc.data(), id: doc.id })
+      let obj = { obj: doc.data(), id: doc.id }
+        this.cartProduct.push(obj)
+       console.log("my products", obj)
       });
       }else{
         this.myCart = false;

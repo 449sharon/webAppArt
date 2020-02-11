@@ -76,6 +76,9 @@ export class LoginPage implements OnInit {
     // this.loader();
    this.success()
   }
+  facebookSignIn(){
+    
+  }
   googleSignin() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().getRedirectResult().then( (result) => {

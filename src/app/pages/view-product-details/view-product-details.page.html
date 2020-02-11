@@ -18,7 +18,7 @@
                
   <ion-fab  vertical="top" horizontal="end" slot="fixed">
     
-      <ion-icon color="dark" name="heart" (click)="addWishlist(p)"></ion-icon>
+      <ion-icon color="dark" name="heart" (click)=" presentToast($event) " (click)="addWishlist(p)"></ion-icon>
     
   </ion-fab>
           <img src={{p.obj.image}} width="100%" height="100%" alt="">

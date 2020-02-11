@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController, AlertController } from '@ionic/angular';
+import { ModalController, ToastController, AlertController,PopoverController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 import * as moment from 'moment';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
+import { Popover2Component } from 'src/app/components/popover2/popover2.component';
 
 @Component({
   selector: 'app-add-to-wish-list',
@@ -58,6 +59,7 @@ export class AddToWishListPage implements OnInit {
   constructor(public modalController: ModalController,
     public toastController : ToastController,
     private cartService: CartServiceService,
+    public popoverController: PopoverController,
     private alertCtrl: AlertController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
@@ -123,7 +125,7 @@ export class AddToWishListPage implements OnInit {
           // lastcreated : data.obj.obj.lastcreated,
           name : data.obj.obj.name,
           price : data.obj.obj.price,
-        //  productCode : data.obj.obj.productCode,
+         productCode : data.obj.obj.productCode,
           // quantity : data.obj.obj.quantity,
           // size : data.obj.obj.size,
         })
@@ -135,8 +137,15 @@ export class AddToWishListPage implements OnInit {
     this.dbWishlist.where("uid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
       this.cart = []
       data.forEach(item => {
-          this.cart.push({obj : item.data(), id : item.id})  
+        let obj = {
+          obj : item.data(), 
+          id : item.id
+        }
+         
+        this.cart.push(obj)    
+        this.total+=item.data().price;
       })
+      return this.total
     })
 
 //     console.log("mylist....");
@@ -157,10 +166,13 @@ export class AddToWishListPage implements OnInit {
 //       })
 //     })
   }
+
+  
   addToCart() {
 
 
     this.addToTheCart.forEach(item => {
+      // this.toastPopover(this.event)
       firebase.firestore().collection("Cart").doc().set(item)
     })
     this.addToTheCart = []
@@ -173,6 +185,7 @@ export class AddToWishListPage implements OnInit {
 
     }, 3000)
     this.cartItemCount.next(this.cartItemCount.value + 1);
+ 
 
 
     // console.log("my list");
@@ -195,6 +208,20 @@ export class AddToWishListPage implements OnInit {
     //    })
     //     console.log('My prod ', this.myProd);
     //      this.dismiss(); 
+  }
+  async toastPopover(ev) {
+    const popover = await this.popoverController.create({
+      component:Popover2Component,
+      event: ev,
+      
+      // cssClass: 'pop-over-style',
+      translucent: true,
+    });
+    
+   popover.present();
+    setTimeout(()=>popover.dismiss(),500);
+    
+    
   }
 
   getCartItemCount() {
@@ -224,10 +251,10 @@ export class AddToWishListPage implements OnInit {
     // this.dbWishlist.doc(o.id).delete();
   }
  
-  getTotal() {
-    return this.cart.reduce((i, j) => i + j.price * j.quantity, 0);
+  // getTotal() {
+  //   return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
     
-  }
+  // }
   sizeSelect(i, val, y) {
     this.sizes = i.detail.value;
    }

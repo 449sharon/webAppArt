@@ -45,7 +45,7 @@
     </div>
 
   </div>
-  <div class="contactus-sections" name="footer">
+  <!-- <div class="contactus-sections" name="footer">
     <div class="contactUs-section">
       <div>
         <ion-title>Contact Us</ion-title>
@@ -104,11 +104,10 @@
                     <div>
                       <ion-button  (click)="addMessage()">Submit</ion-button>
                     </div>
-                  <!-- </form> -->
+                 
                 </div>
                 <div>
                 
-              <!-- </form> -->
             </div>
           </div>
         </div>
@@ -123,7 +122,98 @@
       </ion-toolbar>
     </div>
 
-  </div>
+  </div> -->
   
+  <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
+    <div>
+      <ion-title>Contact Us</ion-title>
+    </div>
+    <div class="contactus">
+      <div class="contactUs-labels">
+        <div >
+          <ion-label class="heading2">Find Us</ion-label>
+          <div *ngFor = "let admin of Info" class="callUs-labels">
+            <div>
+              <span>
+                <ion-icon name="call"></ion-icon>
+              </span>
+              <span>
+                <ion-label>{{admin.phoneNumber}} </ion-label>
+              </span>
+            </div>
+            <div>
+              <span>
+                <ion-icon  name="mail"></ion-icon>
+              </span>
+              <span>
+                <ion-label>{{admin.email}}</ion-label>
+              </span>
 
+            </div>
+            <div class="social-section" >
+
+              <div class="social" >
+                <div> <img src="../../../assets/icons8_facebook_480px.png" width="30"> </div>
+                <div> <img src="../../../assets/icons8_twitter_circled_60px_2.png" width="30" > </div>
+
+
+              </div>
+            </div>
+         
+          </div>
+        </div>
+        <div >
+          <ion-label class="heading1">Visit Us</ion-label>
+          <div *ngFor = "let admin of Info" class="callUs-labels">
+    
+            <div>
+              <span>
+                <ion-icon  name="pin"></ion-icon>
+              </span>
+              <span>
+                <ion-label>{{admin.address}}</ion-label>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <ion-label class="heading">Leave Us a Message</ion-label>
+          <div class="messageInputs">
+           
+      
+                  <ion-item color="light">
+                    <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="Full Names" required></ion-input> 
+                  </ion-item>
+                  <ion-item>
+                    <ion-input type="email"   [(ngModel)]="message.email"  placeholder="Email Address" required>
+                    </ion-input>
+                  </ion-item>
+                  <div>
+                    <ion-list>
+                      <ion-item>
+                        <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="Message" required></ion-textarea>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+                  <div>
+                    <ion-button  (click)="addMessage()">Submit</ion-button>
+                  </div>
+               
+              </div>
+              <div>
+              
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <ion-toolbar color="primary">
+      <div class="footer">
+        <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
+        <div>
+          &copy; Pitseng Arts &amp; Crafts 2019
+        </div>
+      </div>
+    </ion-toolbar>
+  </div> 
 </ion-content>

@@ -5,6 +5,9 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { AddToWishListPage } from '../add-to-wish-list/add-to-wish-list.page';
 import { ProfilePage } from '../profile/profile.page';
 import * as firebase from 'firebase';
+import Swal from 'sweetalert2';
+
+
 
 @Component({
   selector: 'app-about-us',
@@ -26,7 +29,9 @@ export class AboutUsPage implements OnInit {
     message:''
  }
  myProduct = false;
-  constructor(private router: Router,  public modalController: ModalController,public toastCtrl: ToastController) { }
+  constructor(private router: Router,  public modalController: ModalController,public toastCtrl: ToastController) { 
+    this.adminInfo();
+  }
 
 
   ngOnInit() {
@@ -72,31 +77,32 @@ export class AboutUsPage implements OnInit {
     return toast.present();
 }
 
-  addMessage() {
-    if(firebase.auth().currentUser){
-     let customerUid = firebase.auth().currentUser.uid;
-     this.dbMessages.add({
-       customerUid: customerUid,
-       name : this.message.fullname,
-       email : this.message.email,
-       message : this.message.message
- 
-      }).then(() => {
-        this.toastController('Message Sent!')
-     }).catch(err => {
-              console.error(err);
-     });
+addMessage() {
+  if(firebase.auth().currentUser){
+   let customerUid = firebase.auth().currentUser.uid;
+   this.dbMessages.add({
+     customerUid: customerUid,
+     name : this.message.fullname,
+     email : this.message.email,
+     message : this.message.message
 
-     this.message = {
-      fullname: '',
-      email: '',
-      message:''
-   }
+     
+    }).then(() => {
+      this.toastController('Message Sent!')
+   }).catch(err => {
+            console.error(err);
+   });
 
-    }else{
-      //this.createModalLogin();
-    }
+   this.message = {
+    fullname: '',
+    email: '',
+    message:''
+ }
+
+  }else{
+    //this.createModalLogin();
   }
+}
 
   Info = []
 adminInfo(){
@@ -182,5 +188,12 @@ getServices(){
 //   })
     
 // }
+sucessMesssage(){
+  Swal.fire(
+    'Good job!',
+    'You clicked the button!',
+    'success'
+  )
+}
 
 }

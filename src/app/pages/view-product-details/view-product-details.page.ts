@@ -273,6 +273,7 @@ logRatingChange(rating, id){
           },
          
         })
+        // this.presentToast('ev')
        }
        this.wishItemCount.next(this.wishItemCount.value + 1);
        this.dismiss();
