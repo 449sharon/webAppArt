@@ -24,7 +24,9 @@ import { ViewProductDetailsPageModule } from './pages/view-product-details/view-
 import { Popover3Component } from './components/popover3/popover3.component';
 import {ResetPasswordPageModule } from './pages/reset-password/reset-password.module';
 
+
 import { HttpClientModule } from '@angular/common/http';
+
 const firebaseConfig = {
   apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
     authDomain: "pitsengproject.firebaseapp.com",
@@ -44,6 +46,7 @@ firebase.initializeApp(firebaseConfig);
       AddToCartPageModule,
       AddToWishListPageModule,ProfilePageModule,
       TrackOrderPageModule,FaqsPageModule,
+      HttpClientModule,
       RegisterPageModule,LoginPageModule,SpecialsPageModule,
       ConfirmationPageModule,],
     providers: [
