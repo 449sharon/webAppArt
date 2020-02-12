@@ -5,91 +5,33 @@
 <ion-content>
     <div class="content-container">
           <!-- view by categories section -->
-        <div class="categorySection animated fadeInDown 2s "  >
-          <div class=" categoryList">
-            <div class="cards-container" >
+      <div class="categorySection animated fadeInDown 2s "  >
+        <div class=" categoryList">
+          <div class="cards-container" >
              
-              <div  class="products-section" *ngFor="let event of Products; let i=index;">
+            <div  class="products-section" *ngFor="let event of Products; let i=index;">
               <div *ngIf="Products" class="cards"   [ngClass]="{'active': active==i}" (click)="showList(i)" >
                 <img class="animated fadeInDown 2s" (click)=" createViewProduct(event)" src="{{event.obj.image}}" alt="">
                 <ion-label class="price">R &nbsp; {{event.obj.price}}</ion-label>
                 <ion-label class="name"> {{event.obj.name}} </ion-label>
 
 
-                <div class="stars">  
+              <div class="stars">  
                   <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#FFD700"
                     defaultColor="#D3D3D3" readonly="true" rating="{{event.obj.ratings}}" fontSize="32px"
                     (ratingChanged)="getProducts($event)">
                   </ionic4-star-rating>          
-                </div>
-
-                
-
+              </div>
                 <div class="icon-wish" (click)=" presentToast($event) " (click)="addToWishlist(event.obj, event.id)">
                   <ion-icon name="heart" ></ion-icon>
                 </div>
                 
               </div> 
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
-        <div>
-          <ion-title>Contact Us</ion-title>
-        </div>
-        <div class="contactus">
-          <div class="contactUs-labels">
-            <div *ngFor="let my of Info">
-              <ion-label class="heading">Call Us</ion-label>
-              <div *ngFor = "let admin of Info" class="callUs-labels">
-                <div>
-                  <span>
-                    <ion-icon padding name="call"></ion-icon>
-                  </span>
-                  <span>
-                    <ion-label>{{admin.phoneNumber}} </ion-label>
-                  </span>
-                </div>
-                <div>
-                  <span>
-                    <ion-icon padding name="mail"></ion-icon>
-                  </span>
-                  <span>
-                    <ion-label>{{admin.email}}</ion-label>
-                  </span>
-    
-                </div>
-                <div>
-                  <span>
-                    <ion-icon padding name="pin"></ion-icon>
-                  </span>
-                  <span>
-                    <ion-label>{{admin.address}}</ion-label>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <ion-label class="heading">Leave Us a Message</ion-label>
-   
-                  <div>
-                  
-              
-              </div>
-            </div>
-          </div>
-        </div>
-        <ion-toolbar color="primary">
-          <div class="footer">
-            <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
-            <div>
-              &copy; Pitseng Arts &amp; Crafts 2019
-            </div>
-          </div>
-        </ion-toolbar>
-      </div>  -->
+    </div>
       <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
         <div>
           <ion-title>Contact Us</ion-title>
@@ -119,20 +61,10 @@
                     <div class="social" >
                       <div> <img padding src=".././../assets/icons8_facebook_480px.png" width="30" height="30" > </div>
                       <div> <img padding src="../../assets/icons8_twitter_circled_60px_2.png" width="30" height="30" ></div>
-      
-      
                     </div>
                   </div>
     
                 </div>
-                <!-- <div>
-                  <span>
-                    <ion-icon padding name="pin"></ion-icon>
-                  </span>
-                  <span>
-                    <ion-label>{{admin.address}}</ion-label>
-                  </span>
-                </div> -->
               </div>
             </div>
             <div >
@@ -222,4 +154,4 @@
           </div>
         </ion-toolbar>
       </div> 
-    </ion-content>
+</ion-content>
