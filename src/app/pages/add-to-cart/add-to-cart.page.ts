@@ -177,7 +177,7 @@ export class AddToCartPage implements OnInit {
         // productCode:this.productCode,
         userID: firebase.auth().currentUser.uid,
         pdfLink: "",
-        status: 'received',
+        // status: 'received',
         orderNumber: 'Pitseng' + key
       }).then(() => {
         this.dbCart.where('customerUid', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
@@ -192,24 +192,6 @@ export class AddToCartPage implements OnInit {
     }
   }
 
-
-  //   if (this.prodCart.length === 0) {
-  //     this.toastController('You cannot place order with empty basket');
-  //   } else {
-  //     let docname = 'ZXY' + Math.floor(Math.random() * 10000000);
-  //     this.dbOrder.doc(docname).set({ 
-  //       product: myArr, 
-  //       timestamp: new Date().getTime(), 
-  //       status: 'received', 
-  //       userID: firebase.auth().currentUser.uid, 
-  //       totalPrice: this.getTotal() }).then(() => {
-  //       doc.forEach((id) => {
-  //         this.dbCart.doc(id).delete();
-  //       })
-  //       this.router.navigate(['payment', docname])
-  //     })
-  //   }
-  // }
   async toastController(message) {
     let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
     return toast.present();
