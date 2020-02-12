@@ -17,48 +17,62 @@
     <div class="cartTitle">
       <ion-title>Cart</ion-title>
     </div>
-    <div *ngFor="let p of cartProduct; let j of index" class="ng-for-goes-here">
-      <div class="cart-item-section">
-    
-        <div class="image-section">
-          <img src="{{p.obj.image}}" alt="">
-        </div>
-        <div class="prodactDetails-section">
-          <div class="name">
-            <ion-label>{{ p.obj.product_name }}</ion-label>
+
+    <div *ngIf='cartProduct.length > 0'>
+      <div *ngFor="let p of cartProduct" class="ng-for-goes-here">
+
+
+
+        <div class="cart-item-section">
+      
+          <div class="image-section">
+            <img src="{{p.image}}" alt="">
+  
           </div>
-          <div class="price">
-            <ion-label>{{ p.obj.price | currency:'R':'symbol' }} </ion-label>
-          </div>
-          <div class="code">
-            <ion-label>Code: {{ p.obj.productCode }}</ion-label>
-          </div>
-          <div class="Productselection">
-            <div class="size">
-              <p>Size:{{ p.obj.size }} </p>
+          <div class="prodactDetails-section">
+            <div class="name">
+              <ion-label>{{ p.product_name }}</ion-label>
             </div>
-            <div class="quantity">
-              <div>
-                <p no-padding>Qty: {{ p.obj.quantity }}</p>
+            <div class="price">
+              <!-- <ion-label>{{ p.price | currency:'R':'symbol' }} </ion-label> -->
+            </div>
+            <div class="code">
+              <ion-label>Code: {{ p.productCode }}</ion-label>
+            </div>
+            <div class="Productselection">
+              <div class="size">
+                <p>Size:{{ p.size }} </p>
+  
               </div>
-              <div>
-                <ion-icon name="remove-circle" color="danger" (click)="minus(p, j)"></ion-icon>
-                <ion-icon name="add-circle" color="success" (click)="plus(p, j)"></ion-icon>
+              <div class="quantity">
+                <div>
+                  <p no-padding>Qty: {{ p.quantity }}</p>
+                </div>
+                <div>
+                  <ion-icon name="remove-circle" color="danger" (click)="minus(p, j)"></ion-icon>
+                  <ion-icon name="add-circle" color="success" (click)="plus(p, j)"></ion-icon>
+                </div>
+  
               </div>
             </div>
+  
+  
           </div>
+  
+          <div class="delete-section">
+            <ion-button class="item" color="medium" fill="clear" (click)="removeCartItem(p.id)" slot="end">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+  
+          </div>
+  
         </div>
-        <div class="delete-section">
-          <ion-button class="item" color="medium" fill="clear" (click)="removeCartItem(p.id)" slot="end">
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
-        </div>
+        <p class="divided">
+          <span></span>
+          <span class="divider"></span>
+          <span></span>
+        </p>
       </div>
-      <p class="divided">
-        <span></span>
-        <span class="divider"></span>
-        <span></span>
-      </p>
     </div>
     <div class="delivery-method">
       <ion-segment>

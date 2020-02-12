@@ -271,7 +271,7 @@ logRatingChange(rating, id){
         this.customerUid = firebase.auth().currentUser.uid;
         firebase.firestore().collection("WishList").doc().set({
   
-          obj : {
+
             uid : firebase.auth().currentUser.uid,
             checked : false,
             categories : i.obj.categories,
@@ -283,8 +283,8 @@ logRatingChange(rating, id){
             price : i.obj.price,
             productCode : i.obj.productCode,
             quantity : i.obj.quantity,
-            size : i.obj.size
-          },
+            size : i.obj.sizes
+
          
         })
         // this.presentToast('ev')

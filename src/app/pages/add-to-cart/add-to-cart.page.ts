@@ -48,22 +48,25 @@ export class AddToCartPage implements OnInit {
     }, 2000);
   }
   ngOnInit() {
-   
-    firebase.firestore().collection("Cart").onSnapshot(data => {
-      if(this.dataInTheCart.length === 0){
-        this.myCart = false
-      }else{
-        this.myCart = true
-         data.forEach(item => {
-        this.dataInTheCart.push(item.data())
-        console.log("dataInTheCart ", item.data());
-        
-      })
+
+    firebase.firestore().collection("Cart").where('uid', '==', firebase.auth().currentUser.uid).get().then((result : any) => {
+      console.log(result);
+      //this.myCart
+      for(let key in result.docs){
+        this.cartProduct.push(result.docs[key].data())
       }
+      if(this.cartProduct.length > 0){
+        this.myCart = true
+      }else{
+        this.myCart = false
+      }
+    }).then( result => {
+      console.log(this.cartProduct);
       
-     
     })
-    this.getProducts();
+
+    
+    //this.getProducts();
     this.trackOrder();
   }
   ionViewWillLeave() {
@@ -139,7 +142,7 @@ export class AddToCartPage implements OnInit {
     console.log("I am deleting you", id);
   }
   getTotal() {
-    return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
+    return this.cartProduct.reduce((i, j) => i + j.price * j.quantity, 0);
   }
   ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.
@@ -155,6 +158,8 @@ export class AddToCartPage implements OnInit {
     if (this.cartProduct.length === 0) {
       this.toastController('You cannot place order with empty Cart');
     } else {
+      console.log(inside);
+      
       this.dbOrder.doc('Pitseng' + key).set({
         totalPrice: inside,
         date: moment().format('MMMM Do YYYY, h:mm:ss a'),
@@ -169,6 +174,8 @@ export class AddToCartPage implements OnInit {
       }).then(() => {
         this.dbCart.where('customerUid', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
           res.forEach((i) => {
+            console.log(this.dbCart.doc(i.id));
+            
             this.dbCart.doc(i.id).delete();
           })
         })
