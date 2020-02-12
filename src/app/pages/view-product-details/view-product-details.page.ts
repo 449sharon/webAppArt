@@ -206,7 +206,7 @@ export class ViewProductDetailsPage implements OnInit {
     })
     this.cartItemCount.next(this.cartItemCount.value + 1);
     this.dismiss();
-    this.toastPopover('ev')
+    this.toastPopover(event)
     }
 
  
@@ -245,6 +245,19 @@ logRatingChange(rating, id){
   //   let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
   //   return toast.present();
   // }
+
+
+  star1(value, key){
+    console.log("Method called", key.id, "value ", value); 
+
+   
+  
+    firebase.firestore().collection("Products").doc(key.id).set({
+      ratings : value
+    }, {merge : true})
+
+  }
+
 
   addWishlist(i) {
 

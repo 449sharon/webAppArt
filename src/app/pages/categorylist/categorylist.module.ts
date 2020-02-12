@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { CategorylistPageRoutingModule } from './categorylist-routing.module';
 
 import { CategorylistPage } from './categorylist.page';
+import { StarRatingModule } from 'ionic4-star-rating';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    StarRatingModule,
     CategorylistPageRoutingModule
   ],
   declarations: [CategorylistPage]

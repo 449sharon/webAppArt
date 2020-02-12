@@ -1,12 +1,9 @@
 <div padding class="heading">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
-
     <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
-
   </ion-fab>
   <hr>
 </div>
-
 <!-- width="100px" height="100px" -->
 <ion-content>
   <div class="loader-container" *ngIf="loader">
@@ -87,8 +84,6 @@
         </ion-segment-button>
       </ion-segment>
     </div>
-
-
     <!---->
     <!-- <button *ngFor="let button of [1,2,3,4]; let i = index" " (click)="placeOrder()"  
   [ngClass]="{'active':isClicked[i]}" (click)="isClicked[i] = (isClicked[i]? false :true )">collection</button> -->
@@ -96,10 +91,9 @@
       <ion-button color="primary" expand="block" (click)="dismiss()" (click)="placeOrder()">Place order
         {{ getTotal() | currency: '&#82;'}} </ion-button>
     </div>
-    <div class="empty-cart" *ngIf="!myCart"  >
+    <!-- <div class="empty-cart"   >
       <p>add something to your cart is empty</p>
-    </div>
+    </div> -->
   </div>
-
   
 </ion-content>

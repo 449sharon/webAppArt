@@ -43,6 +43,8 @@
         </div>
 
         <div class="Productselection">
+
+
           <div class="size">
             <p  >size:</p>
 
@@ -66,6 +68,18 @@
             </div>
 
           </div>
+
+          <div class="sta">
+
+            <button (click)="star1(1, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(2, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(3, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(4, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(5, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+           
+          </div>
+
+
           <div class="quantity">
             <div  ><p>Qty:{{currentNumber}}</p></div>
             <div> <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>

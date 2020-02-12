@@ -5,7 +5,6 @@ import * as firebase from 'firebase';
 import * as moment from 'moment'
 import { ConfirmationPage } from '../confirmation/confirmation.page';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
 @Component({
   selector: 'app-add-to-cart',
   templateUrl: './add-to-cart.page.html',
@@ -22,7 +21,7 @@ export class AddToCartPage implements OnInit {
   productCode;
   key;
   total = 0;
-  myCart = false;
+  myCart: Boolean = false;
   // cart = [];
   // myArr = [];
   amount: number;
@@ -35,9 +34,7 @@ export class AddToCartPage implements OnInit {
   tempIndex: any;
   myProduct: boolean;
   id
-
   dataInTheCart = []
-
   constructor(public modalController: ModalController,
     public toastCtrl: ToastController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
@@ -45,20 +42,23 @@ export class AddToCartPage implements OnInit {
       this.name = element.data().name
     })
   }
-
   ionViewWillEnter() {
     setTimeout(() => {
       this.loader = false;
     }, 2000);
   }
-
   ngOnInit() {
 
     firebase.firestore().collection("Cart").where('uid', '==', firebase.auth().currentUser.uid).get().then((result : any) => {
       console.log(result);
-      
+      //this.myCart
       for(let key in result.docs){
         this.cartProduct.push(result.docs[key].data())
+      }
+      if(this.cartProduct.length > 0){
+        this.myCart = true
+      }else{
+        this.myCart = false
       }
     }).then( result => {
       console.log(this.cartProduct);
@@ -68,29 +68,23 @@ export class AddToCartPage implements OnInit {
     
     //this.getProducts();
     this.trackOrder();
-
   }
-
   ionViewWillLeave() {
-
   }
   value
   trackOrder() {
     this.dbOrder.onSnapshot(res => {
     //  console.log('I am a snapshot', res);
-
       for (let key in res.docChanges()) {
         let change = res.docChanges()[key]
         if (change.type === 'modified') {
        //   console.log(change.doc.data().date);
           this.value = change.doc.data().date
         //  console.log(this.value);
-
         }
       }
     })
   }
-
   getProducts() {
     firebase.firestore().collection("Cart").where("customerUid", "==", firebase.auth().currentUser.uid).onSnapshot(snapshot => {
       if( this.cartProduct = []){
@@ -101,7 +95,6 @@ export class AddToCartPage implements OnInit {
        console.log("my products", obj)
       });
       }else{
-        this.myCart = false;
       }
      
   
@@ -110,9 +103,7 @@ export class AddToCartPage implements OnInit {
   plus(prod, index) {
     let id = prod.id
     this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
-
     })
-
   }
   minus(prod, index) {
     let id = prod.id
@@ -120,11 +111,9 @@ export class AddToCartPage implements OnInit {
      this.toastController("You have reached minimum quantity");
     } else {
       this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
-
       })
     }
   }
-
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
@@ -134,7 +123,6 @@ export class AddToCartPage implements OnInit {
     this.currentNumber = this.currentNumber + 1;
     this.cartProduct[p].quantity = this.currentNumber
   }
-
   private decrement(p) {
     if (this.currentNumber > 1) {
       this.currentNumber = this.currentNumber - 1;
@@ -145,19 +133,16 @@ export class AddToCartPage implements OnInit {
   decreaseCartItem(p) {
     this.cartProduct[p].prod.quantity--;
   }
-
   increaseCartItem(p) {
     console.log(p);
     this.cartProduct[p].prod.quantity++;
   }
-
   removeCartItem(id) {
     this.dbCart.doc(id).delete();
     console.log("I am deleting you", id);
   }
-
   getTotal() {
-    return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
+    return this.cartProduct.reduce((i, j) => i + j.price * j.quantity, 0);
   }
   ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.
@@ -173,6 +158,8 @@ export class AddToCartPage implements OnInit {
     if (this.cartProduct.length === 0) {
       this.toastController('You cannot place order with empty Cart');
     } else {
+      console.log(inside);
+      
       this.dbOrder.doc('Pitseng' + key).set({
         totalPrice: inside,
         date: moment().format('MMMM Do YYYY, h:mm:ss a'),
@@ -198,6 +185,23 @@ export class AddToCartPage implements OnInit {
       this.SuccessModal(key);
     }
   }
+  //   if (this.prodCart.length === 0) {
+  //     this.toastController('You cannot place order with empty basket');
+  //   } else {
+  //     let docname = 'ZXY' + Math.floor(Math.random() * 10000000);
+  //     this.dbOrder.doc(docname).set({ 
+  //       product: myArr, 
+  //       timestamp: new Date().getTime(), 
+  //       status: 'received', 
+  //       userID: firebase.auth().currentUser.uid, 
+  //       totalPrice: this.getTotal() }).then(() => {
+  //       doc.forEach((id) => {
+  //         this.dbCart.doc(id).delete();
+  //       })
+  //       this.router.navigate(['payment', docname])
+  //     })
+  //   }
+  // }
 
   async toastController(message) {
     let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
@@ -211,16 +215,11 @@ export class AddToCartPage implements OnInit {
     });
     return await modal.present();
   }
-
-
   // async createConfirmation() {
   //   const modal = await this.modalController.create({
   //     component:ConfirmationPage,
   //     cssClass: 'confirmation',
-
-
   //   });
   //   return await modal.present();
   // }
-
 }

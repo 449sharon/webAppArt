@@ -14,7 +14,9 @@
         </div>
         <div class="search">
 
-           <ion-searchbar showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar> 
+
+          
+           <ion-searchbar showCancelButton="focus" placeholder="ask a question" cancelButtonText="Custom Cancel"></ion-searchbar> 
         </div>
       </div>
       <div class="orders">
@@ -82,20 +84,112 @@
                 <input type="checkbox" id="chck2">
                 <label class="tab-label" for="chck2">Returns</label>
                 <div class="tab-content">
-                  <p>
-                    {{return}}
-                  </p>
-             
+
+                  <div class="tab">
+                    <input type="checkbox" id="chck9">
+                    <label class="question tab-label" for="chck9">{{returnQues.question1}}</label>
+                    <div class="tab-content section">
+                      <ion-label>Answers</ion-label>
+                      <div class="answer-section">
+                        <div class="answer-question" >{{returnQues.answer1 }}
+                        </div>
+                        <div class="line" >
+                          <div class="small-line" ></div>
+
+                        </div>
+                        <div class="icon" >
+                          <img src="../../../assets/globe_bulb_240px.png" alt="">
+
+                        </div>
+                      </div>
+
+
+
+
+                    </div>
+                  </div>
+                  <div class="tab">
+                    <input type="checkbox" id="chck10">
+                    <label class="question tab-label" for="chck10">{{returns1Ques.question2}}</label>
+                    <div class="tab-content section ">
+                      <ion-label>Answers</ion-label>
+                      <div class="answer-section">
+                        <div class="answer-question" >{{returns1Ques.answer2}}
+                        </div>
+                        <div class="line" >
+                          <div class="small-line" ></div>
+
+                        </div>
+                        <div class="icon" >
+                          <img src="../../../assets/globe_bulb_240px.png" alt="">
+
+                        </div>
+                      </div>
+
+
+
+
+                    </div>
+                  </div>
+
+
+
                 </div>
               </div>
               <div class="tab">
                 <input type="checkbox" id="chck3">
                 <label class="tab-label" for="chck3">Refunds</label>
                 <div class="tab-content">
-                  <p>
-                    {{refunds}}
-                  </p>
-         
+
+                  <div class="tab">
+                    <input type="checkbox" id="chck11">
+                    <label class="question tab-label" for="chck11">{{refundQues.question1}}</label>
+                    <div class="tab-content section">
+                      <ion-label>Answers</ion-label>
+                      <div class="answer-section">
+                        <div class="answer-question" >{{refundQues.answer1 }}
+                        </div>
+                        <div class="line" >
+                          <div class="small-line" ></div>
+
+                        </div>
+                        <div class="icon" >
+                          <img src="../../../assets/globe_bulb_240px.png" alt="">
+
+                        </div>
+                      </div>
+
+
+
+
+                    </div>
+                  </div>
+                  <div class="tab">
+                    <input type="checkbox" id="chck12">
+                    <label class="question tab-label" for="chck12">{{refunds1Ques.question2}}</label>
+                    <div class="tab-content section ">
+                      <ion-label>Answers</ion-label>
+                      <div class="answer-section">
+                        <div class="answer-question" >{{refunds1Ques.answer2}}
+                        </div>
+                        <div class="line" >
+                          <div class="small-line" ></div>
+
+                        </div>
+                        <div class="icon" >
+                          <img src="../../../assets/globe_bulb_240px.png" alt="">
+
+                        </div>
+                      </div>
+
+
+
+
+                    </div>
+                  </div>
+
+
+
                 </div>
               </div>
               <div class="tab">
@@ -103,9 +197,55 @@
                 <label class="tab-label" for="chck4">Technical</label>
                 <div class="tab-content">
 
-                  <p>
-                    {{technical}}
-                  </p>
+                  <div class="tab">
+                    <input type="checkbox" id="chck13">
+                    <label class="question tab-label" for="chck13">{{technicalQues.question1}}</label>
+                    <div class="tab-content section">
+                      <ion-label>Answers</ion-label>
+                      <div class="answer-section">
+                        <div class="answer-question" >{{technicalQues.answer1 }}
+                        </div>
+                        <div class="line" >
+                          <div class="small-line" ></div>
+
+                        </div>
+                        <div class="icon" >
+                          <img src="../../../assets/globe_bulb_240px.png" alt="">
+
+                        </div>
+                      </div>
+
+
+
+
+                    </div>
+                  </div>
+                  <div class="tab">
+                    <input type="checkbox" id="chck14">
+                    <label class="question tab-label" for="chck14">{{technical1Ques.question2}}</label>
+                    <div class="tab-content section ">
+                      <ion-label>Answers</ion-label>
+                      <div class="answer-section">
+                        <div class="answer-question" >{{technical1Ques.answer2}}
+                        </div>
+                        <div class="line" >
+                          <div class="small-line" ></div>
+
+                        </div>
+                        <div class="icon" >
+                          <img src="../../../assets/globe_bulb_240px.png" alt="">
+
+                        </div>
+                      </div>
+
+
+
+
+                    </div>
+                  </div>
+
+
+
                 </div>
               </div>
             </div>
