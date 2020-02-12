@@ -64,6 +64,7 @@ export class AddToWishListPage implements OnInit {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
       this.name = element.data().name
+      console.log('cartList', this.cartProduct)
     })
    }
    ionViewWillEnter() {

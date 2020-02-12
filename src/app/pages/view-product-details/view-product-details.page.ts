@@ -204,7 +204,7 @@ export class ViewProductDetailsPage implements OnInit {
     })
     this.cartItemCount.next(this.cartItemCount.value + 1);
     this.dismiss();
-    this.toastPopover('ev')
+    this.toastPopover(event)
     }
 
  
