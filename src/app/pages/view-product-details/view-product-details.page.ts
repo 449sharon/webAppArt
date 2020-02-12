@@ -252,7 +252,8 @@ logRatingChange(rating, id){
 
    
   
-    firebase.firestore().collection("Products").doc(key.id).set({
+    firebase.firestore().collection("Rating").doc(key.id).set({
+      id : key,
       ratings : value
     }, {merge : true})
 
