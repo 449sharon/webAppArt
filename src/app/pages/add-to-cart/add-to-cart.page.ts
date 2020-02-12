@@ -187,6 +187,8 @@ export class AddToCartPage implements OnInit {
       }).then(() => {
         this.dbCart.where('customerUid', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
           res.forEach((i) => {
+            console.log(this.dbCart.doc(i.id));
+            
             this.dbCart.doc(i.id).delete();
           })
         })
