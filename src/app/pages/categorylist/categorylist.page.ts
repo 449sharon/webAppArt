@@ -47,14 +47,19 @@ export class CategorylistPage implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.activatedRouter.queryParams.subscribe(params =>{
       console.log('value', this.router.getCurrentNavigation().extras.state.parms);
       this.value = this.router.getCurrentNavigation().extras.state.parms;
     })
     this.getProducts(); 
-  }
-  addToWishlist(prod, id) {
 
+   
+  }
+
+
+  addToWishlist(prod, id) {
     console.log("Product Info ",prod);
     this.dbWishlist.doc(id).set({product_name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
      id: id, uid : firebase.auth().currentUser.uid, timestamp: new Date().getTime(), categories: prod.categories}).then(()=>{
@@ -99,6 +104,7 @@ adminInfo(){
   }
   
   async createViewProduct(event) {
+
     console.log('My details ', event);
     
     this.data.data = event
@@ -108,7 +114,11 @@ adminInfo(){
       componentProps: event
     });
     return await modal.present();
+
+
   }
+
+
   async createAddToWishList() {
     const modal = await this.modalController.create({
       component:AddToWishListPage,
@@ -198,7 +208,6 @@ adminInfo(){
       // cssClass: 'pop-over-style',
       translucent: true,
     });
-    
    popover.present();
     setTimeout(()=>popover.dismiss(),500);
     

@@ -170,7 +170,8 @@ export class ViewProductDetailsPage implements OnInit {
     //     productCode :"",
     //     quantity : "" ,
     //     size : [],
-    //     uid : ""
+    //     uid : "",
+    //     status:''
     //   }}
       
     // }, 2000);
@@ -196,6 +197,7 @@ export class ViewProductDetailsPage implements OnInit {
        product_name: i.obj.name,
       productCode: i.obj.productCode,
       desc: i.obj.desc,
+      status:'received',
       size: this.sizes,
       price: i.obj.price,
       quantity: this.event.quantity,
@@ -243,6 +245,19 @@ logRatingChange(rating, id){
   //   let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
   //   return toast.present();
   // }
+
+
+  star1(value, key){
+    console.log("Method called", key.id, "value ", value); 
+
+   
+  
+    firebase.firestore().collection("Products").doc(key.id).set({
+      ratings : value
+    }, {merge : true})
+
+  }
+
 
   addWishlist(i) {
 

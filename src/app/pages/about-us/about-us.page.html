@@ -3,25 +3,17 @@
 <ion-content>
   <div class="content" >
     <div class="main-cover" >
-      <div class="whoWeAre" >
+      <div class="whoWeAre" *ngFor="let a of about">
         <div class="image-section" >
-          <img src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
+          <img src="{{a.image}}" alt="">
 
 
         </div>
         <div class="description-section" >
-          <div><ion-title>I'm ben</ion-title></div>
-          <div> <ion-label>So nice to meet you</ion-label></div>
+          <div><ion-title>{{a.name}}</ion-title></div>
+          <div> <ion-label>{{a.subject}}</ion-label></div>
           <div>
-            <p>Lorem ipsum dolor sit amet,
-               consetetur sadipscing elitr, 
-               sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd 
-                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
-              Lorem ipsum dolor sit amet, consetetur
-               sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-               liquyam erat, sed diam voluptua. At vero eos et accusam et justo 
-               duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+            <p>{{a.message}}
               </p>
               
           </div>
@@ -29,20 +21,12 @@
 
       </div>
 
-      <div  class="services" >
+      <div  class="services" *ngFor="let s of service">
         <div class="services-description-section" >
-          <div>   <ion-title>My services</ion-title></div>
-          <div> <ion-label>what I can  do for you</ion-label></div>
+          <div>   <ion-title>{{s.service}}</ion-title></div>
+          <div> <ion-label>{{s.job}}</ion-label></div>
           <div>
-            <p>Lorem ipsum dolor sit amet,
-               consetetur sadipscing elitr, 
-               sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd 
-                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
-              Lorem ipsum dolor sit amet, consetetur
-               sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-               liquyam erat, sed diam voluptua. At vero eos et accusam et justo 
-               duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+            <p>{{s.history}}
               </p>
               
           </div>
@@ -52,7 +36,7 @@
 
         </div>
         <div class="services-image-section" >
-          <img src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
+          <img src="{{s.image}}" alt="">
 
         </div>
       </div>

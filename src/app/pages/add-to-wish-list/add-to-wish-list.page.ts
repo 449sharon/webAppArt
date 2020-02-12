@@ -126,7 +126,7 @@ export class AddToWishListPage implements OnInit {
           // lastcreated : data.obj.obj.lastcreated,
           name : data.obj.obj.name,
           price : data.obj.obj.price,
-        //  productCode : data.obj.obj.productCode,
+         productCode : data.obj.obj.productCode,
           // quantity : data.obj.obj.quantity,
           // size : data.obj.obj.size,
         })
@@ -142,9 +142,9 @@ export class AddToWishListPage implements OnInit {
           obj : item.data(), 
           id : item.id
         }
-          this.cart.push(obj) 
-           
-          // this.total = this.total + obj.prod.price
+         
+        this.cart.push(obj)    
+        this.total+=item.data().price;
       })
       return this.total
     })
@@ -252,10 +252,10 @@ export class AddToWishListPage implements OnInit {
     // this.dbWishlist.doc(o.id).delete();
   }
  
-  getTotal() {
-    return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
+  // getTotal() {
+  //   return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
     
-  }
+  // }
   sizeSelect(i, val, y) {
     this.sizes = i.detail.value;
    }

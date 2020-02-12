@@ -9,6 +9,7 @@ import * as firebase from 'firebase'
   import { from } from 'rxjs';
 import { RegisterPage } from '../register/register.page';
 import { Router } from '@angular/router';
+import { ResetPasswordPage } from '../reset-password/reset-password.page';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -139,6 +140,14 @@ export class LoginPage implements OnInit {
     });
     return await modal.present();
   }
+  async resetPassword(){
+    let modal = await this.modalController.create({
+      component : ResetPasswordPage,
+      cssClass: 'resetModal'
+    })
+    
+    return await modal.present();
+   }
   dismiss() {
    console .log("gfgf")
     this.modalController.dismiss({
