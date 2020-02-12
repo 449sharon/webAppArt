@@ -47,12 +47,18 @@ export class CategorylistPage implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.activatedRouter.queryParams.subscribe(params =>{
       console.log('value', this.router.getCurrentNavigation().extras.state.parms);
       this.value = this.router.getCurrentNavigation().extras.state.parms;
     })
     this.getProducts(); 
+
+   
   }
+
+
   addToWishlist(prod, id) {
     console.log("Product Info ",prod);
     this.dbWishlist.doc(id).set({product_name: prod.name, desc: prod.desc, image: prod.image, price: prod.price, 
@@ -98,6 +104,7 @@ adminInfo(){
   }
   
   async createViewProduct(event) {
+
     console.log('My details ', event);
     
     this.data.data = event
@@ -107,7 +114,11 @@ adminInfo(){
       componentProps: event
     });
     return await modal.present();
+
+
   }
+
+
   async createAddToWishList() {
     const modal = await this.modalController.create({
       component:AddToWishListPage,

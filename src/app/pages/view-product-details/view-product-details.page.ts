@@ -246,6 +246,19 @@ logRatingChange(rating, id){
   //   return toast.present();
   // }
 
+
+  star1(value, key){
+    console.log("Method called", key.id, "value ", value); 
+
+   
+  
+    firebase.firestore().collection("Products").doc(key.id).set({
+      ratings : value
+    }, {merge : true})
+
+  }
+
+
   addWishlist(i) {
 
     console.log("Method Called ", i);
