@@ -108,12 +108,13 @@ adminInfo(){
     console.log('My details ', event);
     
     this.data.data = event
-    const modal = await this.modalController.create({
-      component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css',
-      componentProps: event
-    });
-    return await modal.present();
+    this.router.navigateByUrl('view-product-details');
+    // const modal = await this.modalController.create({
+    //   component:ViewProductDetailsPage,
+    //   cssClass: 'my-custom-modal-css',
+    //   componentProps: event
+    // });
+    // return await modal.present();
 
 
   }

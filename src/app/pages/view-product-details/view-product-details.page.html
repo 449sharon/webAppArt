@@ -11,6 +11,22 @@
   <div class="content-section">
 
     <div class="content"*ngFor="let p of Products">
+      <div class="image-views-section" >
+
+        <div>
+          <img src="" alt="">
+        </div>
+        
+        <div>
+          <img src="" alt="">
+        </div>
+
+        <div>
+          <img src="" alt="">
+        </div>
+
+
+      </div>
       <div class="image-section">
     
 
@@ -69,7 +85,7 @@
 
           </div>
 
-          <div class="sta">
+          <!-- <div class="sta">
 
             <button (click)="star1(1, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
             <button (click)="star1(2, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
@@ -77,13 +93,16 @@
             <button (click)="star1(4, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
             <button (click)="star1(5, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
            
-          </div>
+          </div> -->
 
 
           <div class="quantity">
             <div  ><p>Qty:{{currentNumber}}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon></div>
+            <div>
+                 <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>
+               <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
+           
+            </div>
            
           </div>
         </div>
