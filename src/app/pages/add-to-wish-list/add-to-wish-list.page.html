@@ -17,7 +17,7 @@
     </div>
     <div class="ng-for-goes-here" *ngFor="let p of cart" >
       <div class="checkBox-add-to-cart" >
-        <ion-checkbox color="primary"  slot="start" (click)="CheckBox(p)"></ion-checkbox>
+        <ion-checkbox color="primary"  slot="start" (ionChange)="CheckBox($event, p)"></ion-checkbox>
       </div>
     <div class="cart-item-section" >
 
