@@ -58,6 +58,7 @@ export class AddToWishListPage implements OnInit {
   productCode: any;
   price: number;
   productCount=0;
+  myCart: boolean;
   constructor(public modalController: ModalController,
     public toastController : ToastController,
     private cartService: CartServiceService,
@@ -160,19 +161,30 @@ export class AddToWishListPage implements OnInit {
   }
 
   getProducts() {
-    this.dbWishlist.where("uid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
+
+    
+
+    firebase.firestore().collection("WishList").onSnapshot(data => {
       this.cart = []
       data.forEach(item => {
-        let obj = {
-          obj : item.data(), 
-          id : item.id,
-          price: this.price*this.quantity
+        if(item.data().customerUid == firebase.auth().currentUser.uid){
+          this.cart.push(item.data())
+          console.log("my wishlist products", item.data());
         }
-        this.cart.push(obj)    
-        this.total+=(item.data().price);
       })
-      return this.total
     })
+    
+    // this.dbWishlist.where("customerUid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
+      
+    //   this.cart = []
+    //   data.forEach(item => {
+    //     let obj = {
+    //       obj : item.data(), 
+    //       id : item.id
+    //     }
+    //     this.cart.push(obj)    
+    //   })
+    // })
 
 //     console.log("mylist....");
     
@@ -206,7 +218,7 @@ export class AddToWishListPage implements OnInit {
     //this.addToTheCart.forEach(item => {
       // this.toastPopover(this.event)
       //console.log(item.obj);
-      firebase.firestore().collection("Cart").where('uid', '==', firebase.auth().currentUser.uid).get().then((result : any) => {
+      firebase.firestore().collection("Cart").where('customerUid', '==', firebase.auth().currentUser.uid).get().then((result : any) => {
         console.log(result);
         
         for(let key in result.docs){
@@ -297,14 +309,24 @@ export class AddToWishListPage implements OnInit {
       'dismissed':true
     });
   }
-  decreaseCartItem() {
-    if (this.currentNumber > 1) {
-      this.currentNumber = this.currentNumber - 1;
-      this.quantity = this.currentNumber;
-    }
-    return this.currentNumber;
-  }
- 
+
+  // plus(prod, index) {
+  //   let id = prod.id
+  //   this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+
+  //   })
+
+  // }
+  // minus(prod, index) {
+  //   let id = prod.id
+  //   if (prod.obj.quantity === 1) {
+  //   } else {
+  //     this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+
+  //     })
+  //   }
+  // }
+
   increaseCartItem() {
    this.currentNumber = this.currentNumber + 1;
     this.quantity = this.currentNumber

@@ -8,7 +8,7 @@ import * as firebase from 'firebase';
 })
 export class ProductService {
 
-
+id = ""
    data = {   id: '',
    image: '',
    categories:'',

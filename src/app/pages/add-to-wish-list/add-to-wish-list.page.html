@@ -23,48 +23,33 @@
 
       <div class="image-section" >
         <!-- <img src="../../../assets/Frame.jpg"  alt=""> -->
-        <img src="{{p.obj.image}}">
+        <img src="{{p.image}}">
       </div>
       <div class="prodactDetails-section" >
         <div class="name" >
-          <ion-label>{{ p.obj.name }}</ion-label>
+          <ion-label>{{ p.name }}</ion-label>
         </div>
         <div class="price" >
-          <ion-label>{{ p.obj.price | currency:'R':'symbol' }}</ion-label>
+          <ion-label>{{ p.price | currency:'R':'symbol' }}</ion-label>
         </div>
         <div class="code">
-          <ion-label>Code: {{ p.obj.productCode }}</ion-label>
+          <ion-label>Code: {{ p.productno }}</ion-label>
         </div> 
         <div class="Productselection">
-    <!--       <div class="size">
-            <p  >size:</p>
+          <div class="size">
+            <p>Size:{{ p.size }} </p>
 
-            <div >
-              <label  class="container">S
-                <input type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-              </label>
+          </div>
+          <div class="quantity">
+            <div>
+              <p no-padding>Qty: {{ p.quantity }}</p>
             </div>
-            <div >
-              <label class="container">M
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div >
-            <label class="container">L
-              <input type="checkbox">
-              <span class="checkmark"></span>
-            </label>
+            <div>
+              <ion-icon name="remove-circle" color="danger" (click)="minus(p)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="plus(p)"></ion-icon>
             </div>
 
-          </div> -->
-       <!--    <div class="quantity">
-            <div  ><p no-padding >Qty:  {{ currentNumber }}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="decreaseCartItem()"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increaseCartItem()"></ion-icon></div>
-           
-          </div> -->
+          </div>
         </div>
 
 

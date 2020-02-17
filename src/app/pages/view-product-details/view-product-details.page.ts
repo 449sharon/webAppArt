@@ -10,6 +10,7 @@ import { LoginPage } from '../login/login.page';
 import Swal from 'sweetalert2';
 import { ThrowStmt } from '@angular/compiler';
 import { Popover3Component } from 'src/app/components/popover3/popover3.component';
+import * as moment from 'moment';
 
 
 @Component({
@@ -89,12 +90,14 @@ export class ViewProductDetailsPage implements OnInit {
     return this.currentNumber;
   }
 
-  ionViewWillEnter(event) {
+  ionViewWillEnter() {
+
     this.Products.push(this.data.data)
     console.log("rrtrtrtrt", this.Products);
     
     this.proSales.push(this.data.data)
   }
+  
   selectedSize(size) {
     let val = size.toElement.value
     if (this.sizes == val) {
@@ -172,11 +175,13 @@ export class ViewProductDetailsPage implements OnInit {
 
     console.log(i);
     this.dbCart.add({
-      id: this.id,
-      timestamp: new Date().getTime(),
+
+
+      // id: this.id,
+      date: moment().format('MMMM Do YYYY, h:mm:ss a'),
       customerUid: this.customerUid,
-       product_name: i.obj.name,
-      productCode: i.obj.productCode,
+      name: i.obj.name,
+      productno: i.obj.productCode,
       desc: i.obj.desc,
       status:'received',
       size: this.sizes,
@@ -186,7 +191,7 @@ export class ViewProductDetailsPage implements OnInit {
       amount: i.obj.price * this.event.quantity
     })
     this.cartItemCount.next(this.cartItemCount.value + 1);
-    this.dismiss();
+    // this.dismiss();
     this.toastPopover('ev')
     }
 
@@ -252,26 +257,38 @@ logRatingChange(rating, id){
         this.customerUid = firebase.auth().currentUser.uid;
         firebase.firestore().collection("WishList").doc().set({
   
-          obj : {
-            uid : firebase.auth().currentUser.uid,
-            checked : false,
-            categories : i.obj.categories,
-            desc : i.obj.desc,
-            image : i.obj.image,
-            items : i.obj.items,
-            lastcreated : i.obj.lastcreated,
-            name : i.obj.name,
-            price : i.obj.price,
-            productCode : i.obj.productCode,
-            quantity : i.obj.quantity,
-            size : i.obj.size
-          },
+          // obj : {
+          //   uid : firebase.auth().currentUser.uid,
+          //   checked : false,
+          //   categories : i.obj.categories,
+          //   desc : i.obj.desc,
+          //   image : i.obj.image,
+          //   items : i.obj.items,
+          //   lastcreated : i.obj.lastcreated,
+          //   name : i.obj.name,
+          //   price : i.obj.price,
+          //   productno : i.obj.productCode,
+          //   quantity : i.obj.quantity,
+          //   size : i.obj.size
+          // },
+          // id: this.id,
+      timestamp: new Date().getTime(),
+      customerUid: this.customerUid,
+      name: i.obj.name,
+      productno: i.obj.productCode,
+      desc: i.obj.desc,
+      status:'received',
+      size: this.sizes,
+      price: i.obj.price,
+      quantity: this.event.quantity,
+      image: i.obj.image,
+      amount: i.obj.price * this.event.quantity
          
         })
         // this.presentToast('ev')
        }
        this.wishItemCount.next(this.wishItemCount.value + 1);
-       this.dismiss();
+      //  this.dismiss();
   //  if(firebase.auth().currentUser == null){
   //    console.log('please like this');
   //    this.ConfirmationAlertWish();
