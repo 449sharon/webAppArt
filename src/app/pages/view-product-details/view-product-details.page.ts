@@ -24,13 +24,14 @@ export class ViewProductDetailsPage implements OnInit {
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbRating = firebase.firestore().collection('Rating');
- 
+  db = firebase.firestore();
   customerUid: any;
   dbCart = firebase.firestore().collection('Cart');
-   
+  SpecialScrin = []
+  proSales = [];
    currentNumber: number = 1;
   Products = [];
-  proSales = [];
+  myProduct = false;
   sizes = null;
   MyObj = [];
   event = {
@@ -61,7 +62,11 @@ export class ViewProductDetailsPage implements OnInit {
     public toastCtrl: ToastController,
     public cartService: CartServiceService,
     private router: Router,
-    public popoverController: PopoverController) { }
+    public popoverController: PopoverController) { 
+      this.adminInfo();
+      this.getSpecials();
+      this.getSpecials();
+    }
 
   ngOnInit() {
     this.wishItemCount = this.cartService.getWishItemCount();
@@ -139,46 +144,22 @@ export class ViewProductDetailsPage implements OnInit {
     
   }
   
+  getSpecials(){
+    //  let obj = {id : '', obj : {}};
+    this.db.collection('Sales').limit(4).onSnapshot(snapshot => {
+      this.proSales = [];
+              snapshot.forEach(doc => {
+               // obj.id = doc.id;
+               // obj.obj = doc.data();
+                this.proSales.push({id : doc.id, obj : doc.data()});
+               // obj = {id : '', obj : {}};
+                
+              });
+              this.SpecialScrin.push(this.proSales[0])
+           // }
+       });
+  }
   addToCart(i) {
-    // console.log("qqqqqqq  ", i);
-
-    // let obj = {obj : {
-    //   categories : i.obj.categories,
-    //   desc : i.obj.desc,
-    //   image : i.obj.image,
-    //   items : i.obj.items,
-    //   lastcreated : i.obj.lastcreated,
-    //   name : i.obj.name,
-    //   price : i.obj.price,
-    //   productCode : i.obj.productCode,
-    //   quantity : i.obj.quantity,
-    //   size : i.obj.size,
-    //   uid : firebase.auth().currentUser.uid
-    // }}
-
-    // firebase.firestore().collection("Cart").doc().set(obj)
-
-    // setTimeout(() => {
-
-    //   obj = {obj : {
-    //     categories :"",
-    //     desc :"",
-    //     image  :"",
-    //     items  :"",
-    //     lastcreated :"" ,
-    //     name :"",
-    //     price  :"",
-    //     productCode :"",
-    //     quantity : "" ,
-    //     size : [],
-    //     uid : "",
-    //     status:''
-    //   }}
-      
-    // }, 2000);
-
-
-    // this.dismiss();
     
     if(firebase.auth().currentUser == null) {
       console.log('please login');
@@ -246,6 +227,20 @@ logRatingChange(rating, id){
   //   let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
   //   return toast.present();
   // }
+
+
+
+  
+  star1(value, key){
+    console.log("Method called", key.id, "value ", value); 
+
+   
+  
+    firebase.firestore().collection("Products").doc(key.id).set({
+      ratings : value
+    }, {merge : true})
+
+  }
 
   addWishlist(i) {
 
@@ -395,4 +390,23 @@ logRatingChange(rating, id){
       timer: 500
     })
    }
+   Info = []
+   adminInfo(){
+    this.db.collection('admins').get().then(snapshot => {
+    this.Info = [];
+    if (snapshot.empty) {
+           this.myProduct = false;
+         } else {
+           this.myProduct = true;
+           snapshot.forEach(doc => {
+             this.Info.push(doc.data());
+             console.log("admin", this.Info);
+           });
+           
+         }
+     })
+  }
+  allSpecials(event){}
+  TermsAndConditions(){}
+  PrivacyPolicy(){}
 }

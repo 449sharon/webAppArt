@@ -243,16 +243,17 @@ export class HomePage  {
       })
   }
   async allSpecials(event){
-
+  this.data.data = event
+  this.router.navigateByUrl('view-product-details');
     //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
     //  console.log('Image in the service ', this.data.data.image);
-    this.data.data = event
-    const modal = await this.modalController.create({
-      component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css',
-      componentProps: event
-    });
-    return await modal.present();
+  
+    // const modal = await this.modalController.create({
+    //   component:ViewProductDetailsPage,
+    //   cssClass: 'my-custom-modal-css',
+    //   componentProps: event
+    // });
+    // return await modal.present();
   /*    this.db.collection('sales').get().then(snapshot => {
       this.data.data.image = event.obj.image;
       this.data.data.name = event.obj.name;

@@ -12,11 +12,19 @@
     </ion-toolbar> 
          <div class="navigation-bar">
           <nav>
-            <ul class="menu">
+            <ul class="menu"   >
               <li class="logo"><img src="../../assets/Group 60.png" alt="" (click)="openHome()" ></li>         
-              <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end">Home</ion-button>
-              <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end">About Us</ion-button>             
-              <ion-button class="item" color="medium"  fill="clear" (click)="createFaqs()" slot="end">FARQ's</ion-button>
+              <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end"[class.active]="router.isActive('/string/path/'+you+'/need', false)" 
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">Home</ion-button>
+              <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end"[class.active]="router.isActive('/string/path/'+you+'/need', false)" 
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">About Us</ion-button>             
+              <ion-button
+               class="item" color="medium"  fill="clear" (click)="createFaqs()" slot="end" [class.active]="router.isActive('/string/path/'+you+'/need', false)" 
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">FARQ's
+            </ion-button>
               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="presentPopover($event)" > <ion-icon name="person"></ion-icon></ion-button>
                 <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
                  

@@ -6,15 +6,10 @@
   </ion-fab>
   <hr>
 </div>
-
-<!-- width="100px" height="100px" -->
 <ion-content>
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
   </div>
-  <!-- <div *ngIf="!myProduct" class="empty" >
-    <ion-title >This product is not available  currently.</ion-title>
-  </div> -->
   <div class="main-content">
     
     <div class="cartTitle">
@@ -86,10 +81,7 @@
       </ion-segment>
     </div>
 
-
-    <!---->
-    <!-- <button *ngFor="let button of [1,2,3,4]; let i = index" " (click)="placeOrder()"  
-  [ngClass]="{'active':isClicked[i]}" (click)="isClicked[i] = (isClicked[i]? false :true )">collection</button> -->
+    
     <div class="cartButton">
       <ion-button color="primary" expand="block" (click)="dismiss()" (click)="placeOrder()">Place order
         {{ getTotal() | currency: '&#82;'}} </ion-button>

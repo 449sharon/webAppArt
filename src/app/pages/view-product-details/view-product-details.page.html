@@ -13,24 +13,39 @@
     <div class="content"*ngFor="let p of Products">
       <div class="image-section">
     
+        <div class="image-views-section" >
 
+          <div>
+            <img src="../../../assets/view 2.JPG" alt="">
+          </div>
+          
+          <div>
+            <img src="../../../assets/view3.JPG" alt="">
+          </div>
+  
+          <div>
+            <img src="../../../assets/icon/view1.JPG" alt="">
+          </div>
+  
+  
+        </div>
         <div class="image-container"> 
                
-  <ion-fab  vertical="top" horizontal="end" slot="fixed">
+  <!-- <ion-fab  vertical="top" horizontal="end" slot="fixed">
     
       <ion-icon color="dark" name="heart" (click)=" presentToast($event) " (click)="addWishlist(p)"></ion-icon>
     
-  </ion-fab>
+  </ion-fab> -->
           <img src={{p.obj.image}} width="100%" height="100%" alt="">
         </div>
       </div>
       <div class="product-details">
         <div class="firstItems">
-          <div  class="product-name">
+          <div no=padding class="product-name">
             <ion-label>{{p.obj.name}}</ion-label>
           </div>
           <div class="product-price">
-            <ion-label>{{p.obj.price | currency: '&#82;'}}</ion-label>
+            <ion-label>{{p.obj.price | currency: '&#82;'}} <ion-label class="small" >per pack</ion-label> </ion-label>
 
           </div>
 
@@ -51,7 +66,7 @@
                 <input type="checkbox" value="S" [(ngModel)]="productSize.small" (click)="selectedSize($event)">
                 <span class="checkmark"></span>
               </label>
-            </div>
+            </div> 
             <div >
               <label class="container">M
                 <input type="checkbox" value="M" [(ngModel)]="productSize.medium" (click)="selectedSize($event)">
@@ -65,18 +80,192 @@
             </label>
             </div>
 
+            
+          <!-- <div class="sta">
+
+            <button (click)="star1(1, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(2, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(3, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(4, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(5, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+           
+          </div> -->
+
+          
           </div>
           <div class="quantity">
             <div  ><p>Qty:{{currentNumber}}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon></div>
+            <div> 
+              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>
+              <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
+             
+            </div>
            
           </div>
         </div>
         <div class="cartButton" >
           <ion-button color="primary" expand="block" (click)="addToCart(p)"  >add to cart</ion-button>
+          <br>
+          <ion-button color="tertiary" expand="block" (click)=" presentToast($event) " (click)="addWishlist(p)" >add to wishlist</ion-button>
+        </div>
+        <div class="tabs">
+          <div class="tab">
+            <input type="checkbox" id="chck1">
+            <label class="tab-label" for="chck1">Shipping Methods</label>
+            <div class="tab-content">
+
+
+            </div>
+          </div>
+           <div class="tab"> 
+            <input type="checkbox" id="chck2">
+            <label class="tab-label" for="chck2">Rating</label>
+            <div class="tab-content">
+
+
+
+
+            </div>
+          </div>
+         
+     
         </div>
       </div>
+     
     </div>
+    <div class="cards-section" >
+      <div>
+        <ion-title padding class="specials-title">Up to 80% sale</ion-title>
+      </div>
+      <div class="cards-container"  >
+
+              <!-- Fetching all products on special -->
+        <div   class="products-section" *ngFor="let event of proSales; let i=index;" >
+        <div class="cards"  [ngClass]="{'active': active==i}"  >
+          <div class="percent-off" >
+            <p>{{event.obj.percentage}} % off</p>
+
+          </div>
+          <img class="animated fadeInDown 2s" src="{{event.obj.image}}" (click)="allSpecials(event)" alt="">
+          <ion-label class="name">  {{event.obj.name}} </ion-label>
+          <ion-label class="price"> R&nbsp;{{event.obj.totalPrice}} <span class="span-tsrike" >{{event.obj.price}}</span>  </ion-label>
+         
+          <div class="stars">
+            <ion-icon name="star" color="warning"></ion-icon>
+            <ion-icon name="star" color="warning"></ion-icon>
+            <ion-icon name="star" color="warning"></ion-icon>
+            <ion-icon name="star" color="warning"></ion-icon>
+            <ion-icon name="star-outline" color="warning"></ion-icon>
+          </div>
+          <!-- <div class="icon-wish" (click)="addToWishlist(event.obj, event.id)"  [ngClass]="{'active': active==i}" >
+            <ion-icon name="heart"  ></ion-icon>
+          </div> -->
+       
+        </div>
+      </div>
+      </div>
+
+    </div>
+    <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
+      <div>
+        <ion-title>Contact Us</ion-title>
+      </div>
+      <div class="contactus">
+        <div class="contactUs-labels">
+          <div >
+            <ion-label class="heading2">Find Us</ion-label>
+            <div *ngFor = "let admin of Info" class="callUs-labels">
+              <div>
+                <span>
+                  <ion-icon padding name="call"></ion-icon>
+                </span>
+                <span>
+                  <ion-label>{{admin.phoneNumber}} </ion-label>
+                </span>
+              </div>
+              <div>
+                <span>
+                  <ion-icon padding name="mail"></ion-icon>
+                </span>
+                <span>
+                  <ion-label>{{admin.email}}</ion-label>
+                </span>
+                <div class="social-section" >
+  
+                  <div class="social" >
+                    <div> <img padding src="../../../assets/icons8_facebook_480px.png" width="30" height="30" > </div>
+                    <div> <img padding src="../../../assets/icons8_twitter_circled_60px_2.png" width="30" height="30" ></div>
+    
+    
+                  </div>
+                </div>
+  
+              </div>
+              <!-- <div>
+                <span>
+                  <ion-icon padding name="pin"></ion-icon>
+                </span>
+                <span>
+                  <ion-label>{{admin.address}}</ion-label>
+                </span>
+              </div> -->
+            </div>
+          </div>
+          <div >
+            <ion-label class="heading1">Visit Us</ion-label>
+            <div *ngFor = "let admin of Info" class="callUs-labels">
+      
+              <div>
+                <span>
+                  <ion-icon padding name="pin"></ion-icon>
+                </span>
+                <span>
+                  <ion-label>{{admin.address}}</ion-label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div >
+            <ion-label class="heading">Quick Links </ion-label>
+            <div *ngFor = "let admin of Info" class="callUs-labels">
+          
+      
+              <div>
+                <!-- <span>
+                  <ion-icon padding name="pin"></ion-icon>
+                </span> -->
+                <span >
+                  <li>
+                      <ion-label>FAQ's</ion-label>
+                </li>
+              
+                </span>
+                <span (click)="TermsAndConditions()" >
+                  <li>
+                     <ion-label>Terms & Conditions</ion-label>
+                  </li>
+                 
+                </span> 
+                <span (click)=" PrivacyPolicy()" >
+                  <li>
+                     <ion-label>Privacy Policy</ion-label>
+                  </li>
+                 
+                </span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <ion-toolbar color="primary">
+        <div class="footer">
+          <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
+          <div>
+            &copy; Pitseng Arts &amp; Crafts 2019
+          </div>
+        </div>
+      </ion-toolbar>
+    </div> 
   </div>
 </ion-content>

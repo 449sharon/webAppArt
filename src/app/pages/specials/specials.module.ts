@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { SpecialsPageRoutingModule } from './specials-routing.module';
 
 import { SpecialsPage } from './specials.page';
+import { StarRatingModule } from 'ionic4-star-rating';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    StarRatingModule,
     SpecialsPageRoutingModule
   ],
   declarations: [SpecialsPage]
