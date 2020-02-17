@@ -42,6 +42,7 @@ export class CategorylistPage implements OnInit {
 SpecialScrin = []
  proSales = [];
 
+ 
  dbWishlist = firebase.firestore().collection('Wishlist');
   constructor(private router: Router,  public modalController: ModalController,
     private data: ProductService, private activatedRouter : ActivatedRoute,

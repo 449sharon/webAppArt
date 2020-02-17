@@ -647,11 +647,11 @@ logRatingChange(rating, id){
   star1(value, key){
     console.log("Method called", key.id, "value ", value); 
 
-    firebase.firestore().collection("Rating").doc(key.id).set({
-      
-      id: key,
+   
+  
+    firebase.firestore().collection("Products").doc(key.id).set({
       ratings : value
-    })
+    }, {merge : true})
 
   }
 

@@ -56,6 +56,7 @@ export class AddToWishListPage implements OnInit {
   tempIndex = [] 
   addToTheCart = []
   productCode: any;
+  price: number;
   constructor(public modalController: ModalController,
     public toastController : ToastController,
     private cartService: CartServiceService,
@@ -161,11 +162,11 @@ export class AddToWishListPage implements OnInit {
       data.forEach(item => {
         let obj = {
           obj : item.data(), 
-          id : item.id
+          id : item.id,
+          price: this.price*this.quantity
         }
-         
         this.cart.push(obj)    
-        this.total+=item.data().price;
+        this.total+=(item.data().price);
       })
       return this.total
     })

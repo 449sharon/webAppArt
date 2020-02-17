@@ -3,7 +3,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { ActivatedRoute } from '@angular/router';
 //import { FileSaver } from 'file-saver';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+// import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 declare var require: any
 const FileSaver = require('file-saver');
 @Component({
@@ -61,7 +61,7 @@ export class TrackOrderPage implements OnInit {
   pageName;
   reciept = '';
   constructor(public modalController: ModalController, private render: Renderer2, public route: ActivatedRoute,
-     private http : HttpClient) {
+     ) {
     this.pageName = `${this.pageName}`;
     this.name = `${this.name}`;
     this.amount = `${this.amount}`;
