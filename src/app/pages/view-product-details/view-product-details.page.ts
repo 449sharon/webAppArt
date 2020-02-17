@@ -10,6 +10,7 @@ import { LoginPage } from '../login/login.page';
 import Swal from 'sweetalert2';
 import { ThrowStmt } from '@angular/compiler';
 import { Popover3Component } from 'src/app/components/popover3/popover3.component';
+import * as moment from 'moment'
 
 
 @Component({
@@ -192,7 +193,7 @@ export class ViewProductDetailsPage implements OnInit {
     console.log(i);
     this.dbCart.add({
       id: this.id,
-      timestamp: new Date().getTime(),
+      date: moment().format('MMMM Do YYYY, h:mm:ss a'),
       customerUid: this.customerUid,
        product_name: i.obj.name,
       productCode: i.obj.productCode,

@@ -172,22 +172,22 @@
           <div class="pedding-oders " *ngFor="let p of arr; let i=index;" [ngClass]="{'active': active==i}"
             (click)="showList(i, p)">
             <div class="image">
-              <img src="{{p.obj.image}}" alt="">
+              <img src="{{p.image}}" alt="">
             </div>
             <div class="details">
               <div class="invoice">
-                <ion-label>{{p.obj.name}}</ion-label>
+                <ion-label>{{p.name}}</ion-label>
               </div>
               <div class="purchase-date">
-                <ion-label>R {{p.obj.price | currency : '&#82;'}}</ion-label>
+                <ion-label>R {{p.price | currency : '&#82;'}}</ion-label>
               </div>
               <div class="expected-date">
                 <ion-label>Size:</ion-label>
-                <ion-label>{{p.obj.size}}</ion-label>
+                <ion-label>{{p.size}}</ion-label>
               </div>
               <div class="expected-date">
                 <ion-label>quantity: </ion-label>
-                <ion-label>{{p.obj.quantity}}</ion-label>
+                <ion-label>{{p.quantity}}</ion-label>
               </div>
             </div>
 

@@ -6,6 +6,7 @@ import { AddToWishListPage } from '../add-to-wish-list/add-to-wish-list.page';
 import { ProfilePage } from '../profile/profile.page';
 import * as firebase from 'firebase';
 import Swal from 'sweetalert2';
+import * as moment from 'moment'
 
 
 
@@ -23,9 +24,14 @@ export class AboutUsPage implements OnInit {
   isabout = false;
   service: any= [];
   isservice = false;
+  user = {
+    uid: '',
+    email: firebase.auth().currentUser.email
+  }
   message = {
     fullname: '',
     email: '',
+    subject: '',
     message:''
  }
  myProduct = false;
@@ -82,8 +88,10 @@ addMessage() {
    let customerUid = firebase.auth().currentUser.uid;
    this.dbMessages.add({
      customerUid: customerUid,
+     date: moment().format('MMMM Do YYYY, h:mm:ss a'),
      name : this.message.fullname,
      email : this.message.email,
+     subject : this.message.subject,
      message : this.message.message
 
      
@@ -96,6 +104,7 @@ addMessage() {
    this.message = {
     fullname: '',
     email: '',
+    subject :'',
     message:''
  }
 
