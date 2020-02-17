@@ -405,5 +405,7 @@ logRatingChange(rating, id){
          }
      })
   }
-  
+  allSpecials(event){}
+  TermsAndConditions(){}
+  PrivacyPolicy(){}
 }
