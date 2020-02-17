@@ -13,17 +13,11 @@
          <div class="navigation-bar">
           <nav>
             <ul class="menu"   >
-              <li class="logo"><img src="../../assets/Group 60.png" alt="" (click)="openHome()" ></li>         
-              <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end"[class.active]="router.isActive('/string/path/'+you+'/need', false)" 
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }">Home</ion-button>
-              <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end"[class.active]="router.isActive('/string/path/'+you+'/need', false)" 
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }">About Us</ion-button>             
+              <li class="logo"><img src="../../assets/Group 60.png" alt=""(click)="openHome()" ></li>         
+              <ion-button   class="item" color="medium"  fill="clear"  (click)="ShowActive('home')"  (click)="openHome()" slot="end" id="home" >Home</ion-button>
+              <ion-button  class="item" color="medium"  fill="clear" (click)="ShowActive('about')"  (click)="openAboutUS()" slot="end" id="about" >About Us</ion-button>             
               <ion-button
-               class="item" color="medium"  fill="clear" (click)="createFaqs()" slot="end" [class.active]="router.isActive('/string/path/'+you+'/need', false)" 
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }">FARQ's
+               class="item" color="medium"  fill="clear" (click)="createFaqs()" slot="end" id="faqs">FARQ's
             </ion-button>
               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="presentPopover($event)" > <ion-icon name="person"></ion-icon></ion-button>
                 <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
@@ -37,7 +31,6 @@
             </ul>
           </nav>
         </div>
-   
   </ion-header>  
   <ion-content></ion-content>
  <ion-router-outlet></ion-router-outlet>

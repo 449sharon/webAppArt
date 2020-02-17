@@ -227,8 +227,16 @@
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
     }
-
+ 
     
+  }
+  @media screen and (min-width:300px) and (max-width: 800px){
+    .modal-wrapper{
+      --width: 80% !important;
+      --height: 100% !important;
+      height: 100% !important;
+      width: 100% !important;
+    }
   }
 
 

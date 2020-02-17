@@ -9,21 +9,29 @@
     background-repeat: repeat-x;
     content: "";
   }
-// .cart-length{
-//   position: absolute;
+  ion-header{
+    background-color: white;
+  }
+.cart-length{
+  // position: absolute;
 //   left: 0;
 //   right: 0;
-//   bottom: 0;
-//   top: -4px;
+  // bottom: 0;
+  // top: 2px;
+  font-size: 14px;
 //   // font-size: small
-// }
+}
 .wish-length{
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  top: 9px;
+  top: 10.5px;
+  font-size: 14px;
 
+}
+.active{
+  background-color: red;
 }
 .large-icon{
   font-size: x-large ;
@@ -165,6 +173,9 @@
   }
   .item.button {
     order: 2;
+  }
+  .active{
+    color: red;
   }
   .item {
     width: 100%;

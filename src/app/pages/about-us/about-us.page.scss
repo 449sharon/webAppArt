@@ -7,7 +7,7 @@ ion-content {
     }
     .content{
     width: 100%;
-    height: 100%;
+    height: auto;
     // border:  solid red;
     display: flex;
     justify-content: center;
@@ -21,14 +21,13 @@ ion-content {
     
   }
   .main-cover{
-    width: 70%;
-    height: 100%;
+    width: 75%;
+    height: auto;
     margin: 0 auto;
     // border: solid black;
     display: flex;
     justify-items:center ;
     // align-items: center;
-    margin: 0 auto;
     flex-direction: column;
     // margin-bottom: 300px;
     background-color: #f1f1f1e8;
@@ -36,8 +35,9 @@ ion-content {
   }
   .whoWeAre{
     width: 100%;
+    padding-top: 20px;
     // background-color: #f1f1f1e8;
-    height: 700px;
+    // height: 700px;
     display: flex;
     margin: 0 auto;
     align-items: center;
@@ -62,16 +62,26 @@ ion-content {
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     margin: 0 auto;
-    background-color: #f7f7f78f;
+    background-color: #fffffffb;
     right: 7%;
     top: 25%;
     position: relative;
     ion-label {
-      font-weight: 100;
+      font-weight: 400;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #707070;padding: 16px;
+      color: #6A6A6A ;padding: 16px;
     }
-    
+        ion-title{
+        color: black;
+        font-size: 25px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+         p{
+        color: black;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 18px;
+        padding: 16px;
+      }
   }
   .services{
     // border:  solid blue;
@@ -80,15 +90,27 @@ ion-content {
     height: 700px;
     position: relative;
     top: 15%;
-    margin-bottom: 300px;
+    // margin-bottom: 300px;
     // background-color: #f7f7f78f;
   }
   .services-description-section{
     ion-label {
-      font-weight: 100;
+      font-weight: 400;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #707070;padding: 16px;
+      color: #6A6A6A ;
+      padding: 16px;
     }
+        ion-title{
+        color: black;
+        font-size: 25px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+         p{
+        color: black;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 18px;
+        padding: 16px;
+      }
     width: 30%;
     height: 456px;
     // height: 80%;
@@ -127,18 +149,16 @@ ion-content {
     border-radius: 10px;
   
   }
-  .whoWeAre > ion-label {
-    font-weight: 100;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #707070;padding: 16px;
+  .whoWeAre  {
+   
   }
-  p{
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 400;
-    color: #707070;
-    padding: 16px;
-  }
+  // p{
+  //   text-align: center;
+  //   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  //   font-weight: 400;
+  //   color: #707070;
+  //   padding: 16px;
+  // }
 
 
 
@@ -146,11 +166,12 @@ ion-content {
 
   .contactUs-section{
     width: 100%;
+    // height: 50%;
    //  height: 100%;
    //  border: solid black;
      // margin-top: 2%;
      margin-bottom: 10%;
-     margin-top: 300px;
+    //  margin-top: 300px;
  }
  .contactus{
       width: 100%;
