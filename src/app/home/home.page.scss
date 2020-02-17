@@ -35,7 +35,7 @@
   .content-container {
     height: 100%;
     width: 74%;
-    border: solid blue;
+    // border: solid blue;
     margin: 0 auto;
   }
   * {
@@ -67,18 +67,6 @@
     margin-right: 16px;
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
-    text-shadow: 0 1px 0 #ccc,
-    0 2px 0 #c9c9c9,
-    0 3px 0 #bbb,
-    0 4px 0 #b9b9b9,
-    0 5px 0 #aaa,
-    0 6px 1px rgba(0,0,0,.1),
-    0 0 5px rgba(0,0,0,.1),
-    0 1px 3px rgba(0,0,0,.3),
-    0 3px 5px rgba(0,0,0,.2),
-    0 5px 10px rgba(0,0,0,.25),
-    0 10px 10px rgba(0,0,0,.2),
-    0 20px 20px rgba(0,0,0,.15);
     &:hover {
       // box-shadow: 0px 0px 150px #000000;
   z-index: 2;
@@ -111,18 +99,6 @@
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
-    text-shadow: 0 1px 0 #ccc,
-    0 2px 0 #c9c9c9,
-    0 3px 0 #bbb,
-    0 4px 0 #b9b9b9,
-    0 5px 0 #aaa,
-    0 6px 1px rgba(0,0,0,.1),
-    0 0 5px rgba(0,0,0,.1),
-    0 1px 3px rgba(0,0,0,.3),
-    0 3px 5px rgba(0,0,0,.2),
-    0 5px 10px rgba(0,0,0,.25),
-    0 10px 10px rgba(0,0,0,.2),
-    0 20px 20px rgba(0,0,0,.15);
     &:hover {
       // box-shadow: 0px 0px 150px #000000;
   z-index: 2;
@@ -156,18 +132,6 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
 
     margin-right: 16px; 
-    text-shadow: 0 1px 0 #ccc,
-      0 2px 0 #c9c9c9,
-      0 3px 0 #bbb,
-      0 4px 0 #b9b9b9,
-      0 5px 0 #aaa,
-      0 6px 1px rgba(0,0,0,.1),
-      0 0 5px rgba(0,0,0,.1),
-      0 1px 3px rgba(0,0,0,.3),
-      0 3px 5px rgba(0,0,0,.2),
-      0 5px 10px rgba(0,0,0,.25),
-      0 10px 10px rgba(0,0,0,.2),
-      0 20px 20px rgba(0,0,0,.15);
       &:hover {
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
@@ -191,18 +155,6 @@
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
     margin-left: 16px;
-    text-shadow: 0 1px 0 #ccc,
-    0 2px 0 #c9c9c9,
-    0 3px 0 #bbb,
-    0 4px 0 #b9b9b9,
-    0 5px 0 #aaa,
-    0 6px 1px rgba(0,0,0,.1),
-    0 0 5px rgba(0,0,0,.1),
-    0 1px 3px rgba(0,0,0,.3),
-    0 3px 5px rgba(0,0,0,.2),
-    0 5px 10px rgba(0,0,0,.25),
-    0 10px 10px rgba(0,0,0,.2),
-    0 20px 20px rgba(0,0,0,.15);
     &:hover {
   z-index: 2;
   -webkit-transition: all 200ms ease-in;
@@ -223,6 +175,7 @@
   }
  
   .category-label {
+    // background-color: rgba(0, 0, 0, 0.349);
     color: white;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 2em;
@@ -232,6 +185,9 @@
     z-index: 99999999999999999999;
     bottom: 100px;
     padding-left: 16px;
+    background-color: #5656563f;
+    // color: transparent;
+    // text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
   }
   .category-button {
     color: white;
@@ -243,6 +199,9 @@
     z-index: 99999999999999999999;
     bottom: 100px;
     padding-left: 16px;
+    background-color: #5656563f;
+    // color: transparent;
+    // text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
   }
   .category-button:hover {
     transform: scale(1.1);
@@ -272,7 +231,7 @@
     font-size: 1.5rem;
   }
   .slides {
-    border: solid red;
+    // border: solid red;
     height: 500px;
     scroll-behavior: smooth;
   }
@@ -280,9 +239,10 @@
     margin-left: 16px;
   }
   .cards-section {
-    width: 90%;
+    width: 100%;
     height: 100%;
     margin: 0 auto;
+    // border: solid maroon;
   }
   .specials-title {
     text-align: left;
@@ -295,13 +255,14 @@
     margin-top: 16px;
     width: 100%;
     justify-content: space-evenly;
-    justify-content: space-around;
+    justify-content: space-between;
     justify-content: center;
     flex-wrap: wrap;
+    // border: solid orange;
   }
 
   .cards {
-    width: 234px;
+    width: 250px;
     height: 367px;
 
     display: flex;
@@ -322,15 +283,24 @@
   transform: scale(0.9);
     }
   }
+
+  .special-section{
+    width: 100%;
+    // border: solid darkblue;
+  }
+
   .products-section{
     display: flex;
     margin: auto;
     justify-content: center;
     justify-content: space-around;
     margin-bottom: 3%;
+    // border: solid violet;
   }
-  
-  .cards > img {
+  .image-con{
+    margin: 0 auto;
+  }
+  .cards > div > img {
     width: 222px;
     height: 268px;
     border-radius: 6px;
@@ -341,15 +311,18 @@
   .cards > ion-label {
     text-align: center;
   }
-  .cards > .price {
-    font-weight: bolder;
-    color: #4E4E4E;
-    font-size: 18px;
-  }
+ 
   .name {
-    font-size: 12px;
-    font-weight: lighter;
+    font-size: 15px;
+    font-weight: 400;
     color: #4E4E4E;
+    text-transform: capitalize;
+  }
+  .price{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
   }
   .stars {
     text-align: center;
@@ -357,7 +330,7 @@
   }
 
   .specials {
-    width: 1250px;
+    width: 1100;
     height: 372px;
     border-radius: 10px;
     text-align: center;
@@ -376,12 +349,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      height: 100;
-      width: 100%;
-      box-shadow:         inset 0 0 10px #000000;
+      box-shadow:inset 0 0 10px #000000;
   }
   .specials > ion-title{
-      color: white;
+      color: red;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       font-size: 3em;
       font-weight: 600;
@@ -391,18 +362,7 @@
     
       padding-left: 16px;
       left: 0%;
-      text-shadow: 0 1px 0 #ccc,
-      0 2px 0 #c9c9c9,
-      0 3px 0 #bbb,
-      0 4px 0 #b9b9b9,
-      0 5px 0 #aaa,
-      0 6px 1px rgba(0,0,0,.1),
-      0 0 5px rgba(0,0,0,.1),
-      0 1px 3px rgba(0,0,0,.3),
-      0 3px 5px rgba(0,0,0,.2),
-      0 5px 10px rgba(0,0,0,.25),
-      0 10px 10px rgba(0,0,0,.2),
-      0 20px 20px rgba(0,0,0,.15); ;
+     
   }
   .contactUs-section{
      width: 100%;
@@ -410,7 +370,7 @@
   }
   .contactus{
        width: 100%;
-      height: 300px;
+      height: 250px;
       padding-top: 20px;
       margin: 0 auto;
       display: flex;
@@ -422,8 +382,8 @@
       background-size: cover;
   }
   .contactUs-section > div > ion-title {
-      padding-top: 60px;
-      padding-bottom: 15px;
+      padding-top: 200px;
+      // padding-bottom: 50px;
       color: #4E4E4E;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-weight: 200;
@@ -487,6 +447,16 @@
           margin: 0 auto;
           padding-bottom: 8px;
       }
+      .callUs-labels > div > span > ion-label {
+        font-weight: 100;
+        // color: red;
+
+      }
+      .callUs-labels > div > span > li >  ion-label {
+        font-weight: 100;
+        // color: red;
+
+      }
       .callUs-labels > div > span > ion-icon{
           margin-right: 30px;
       }
@@ -516,14 +486,14 @@
     width: 80%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 .social{
   display: flex;
   flex-direction: row;
   width: 70%;
   justify-content: space-between;
-  padding-top: 8px;
+  padding-top:16px;
 }
 .social > div{
   display: flex;
@@ -598,7 +568,7 @@
       // left: 10%;
      margin-left: 200px;
     //   top: 37%;
-      bottom: 5%;
+      bottom: 15%;
       font-size: x-large;
       color: #777777;
       .active {

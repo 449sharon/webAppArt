@@ -72,9 +72,13 @@
                     <p>{{event.obj.percentage}} % off</p>
   
                   </div>
-                  <img class="animated fadeInDown 2s" src="{{event.obj.image}}" (click)="allSpecials(event)" alt="">
-                  <ion-label class="price"> R{{event.obj.totalprice}} <span class="span-tsrike" >{{event.obj.price}}</span>  </ion-label>
-                  <ion-label class="name">  {{event.obj.name}} </ion-label>
+                  <div class="image-con">
+                           <img class="animated fadeInDown 2s" src="{{event.obj.image}}" (click)="allSpecials(event)" alt="">
+                  </div>
+           
+                   <ion-label class="name">  {{event.obj.name}} </ion-label>
+                  <ion-label class="price"> R {{event.obj.totalPrice}} <span class="span-tsrike" >{{event.obj.price}}</span>  </ion-label>
+                 
                   <div class="stars">
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star" color="warning"></ion-icon>
@@ -93,7 +97,7 @@
               <div class="special-section" (click)="specialsAlso()">
                 <div *ngFor="let me of SpecialScrin" >
                 <div class="specials">
-                  <img src="{{me.obj.image}}">
+                  <img src="{{me.obj.image}}" height="200px"  >
                   <ion-title>Up to 50% off </ion-title>
                 </div>
               </div>
@@ -106,9 +110,10 @@
       </div>
     </div>
   </div>
+  
     <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
     <div>
-      <ion-title>Contact Us</ion-title>
+      <ion-title></ion-title>
     </div>
     <div class="contactus">
       <div class="contactUs-labels">
@@ -160,7 +165,7 @@
                 <ion-icon padding name="pin"></ion-icon>
               </span>
               <span>
-                <ion-label>{{admin.address}}</ion-label>
+                <ion-label  text-wrap >{{admin.address}}</ion-label>
               </span>
             </div>
           </div>

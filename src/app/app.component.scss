@@ -87,6 +87,10 @@
     text-decoration: none;
     list-style-type: none;
   }
+  .item .active {
+    text-decoration: underline;
+    color: red;
+  }
   .item:hover {
     text-decoration: underline;
   }
@@ -177,6 +181,7 @@
   }
   .item.active {
     display: block;
+    color: red;
   }
   /* Tablet menu */
   @media all and (min-width: 600px) {
