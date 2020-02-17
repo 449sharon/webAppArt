@@ -72,10 +72,11 @@
   .navigation-bar{
     width: 75%;
     margin: auto;
+    // border: solid black;
   }
   nav {
     // background: whitesmoke;
-    padding: 5px 20px;
+    // padding: 5px 20px;
     // overflow: hidden;
   }
   ul {
@@ -86,6 +87,10 @@
     text-decoration: none;
     list-style-type: none;
   }
+  .item .active {
+    text-decoration: underline;
+    color: red;
+  }
   .item:hover {
     text-decoration: underline;
   }
@@ -94,7 +99,7 @@
   }
   .menu > li {
     font-size: 16px;
-    padding: 15px 5px;
+    // padding: 15px 5px;
     white-space: nowrap;
   }
   .logo a,
@@ -152,6 +157,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    // border: solid red;
+    width: 100%;
   }
   .toggle {
     order: 1;
@@ -174,6 +181,7 @@
   }
   .item.active {
     display: block;
+    color: red;
   }
   /* Tablet menu */
   @media all and (min-width: 600px) {

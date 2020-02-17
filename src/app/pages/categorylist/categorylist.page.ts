@@ -35,6 +35,15 @@ export class CategorylistPage implements OnInit {
     email: '',
     message:''
  }
+ Homescreen = {
+  deco: null,
+  lamps: null,
+  pottery: null,
+  vase: null
+}
+SpecialScrin = []
+ proSales = [];
+
  
  dbWishlist = firebase.firestore().collection('Wishlist');
  
@@ -42,7 +51,12 @@ export class CategorylistPage implements OnInit {
     private data: ProductService, private activatedRouter : ActivatedRoute,
     public popoverController: PopoverController,  public toastCtrl: ToastController, public cartService: CartServiceService) { 
       this.adminInfo();
-      // this.getSpecials();
+      this.getSpecials();
+      this.getSpecials();
+   
+
+      //////
+      this.getPictures();
     }
   
   
@@ -98,7 +112,32 @@ logRatingChange(){
     })
   })
 }
-  
+getPictures(){
+  let obj = {id : '', obj : {}};
+  this.db.collection('Pictures').doc('images').get().then(snapshot => {
+    this.Homescreen = {
+      deco: null,
+      lamps: null,
+      pottery: null,
+      vase: null
+    }
+    if (!snapshot.exists) {
+            this.myProduct = false;
+          } else {
+            this.myProduct = true;
+              obj.id = snapshot.id;
+              obj.obj = snapshot.data();
+              this.Homescreen = {
+                deco: snapshot.data().deco,
+                lamps: snapshot.data().lamps,
+                pottery: snapshot.data().pottery,
+                vase: snapshot.data().vase
+              }
+              obj = {id : '', obj : {}};
+            console.log("xxc", this.Homescreen);
+          }
+     });
+}
   getProducts(){
     this.db.collection('Products').where('categories', '==', this.value).get().then((snapshot) =>{
       this.Products = []
@@ -120,12 +159,9 @@ logRatingChange(){
     console.log('My details ', event);
     
     this.data.data = event
-    const modal = await this.modalController.create({
-      component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css',
-      componentProps: event
-    });
-    return await modal.present();
+    this.router.navigateByUrl('view-product-details');
+
+
   }
   async createAddToWishList() {
     const modal = await this.modalController.create({
@@ -222,6 +258,68 @@ logRatingChange(){
   }
 
 
+
+  async allSpecials(event){
+
+    //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
+    //  console.log('Image in the service ', this.data.data.image);
+    this.data.data = event
+    const modal = await this.modalController.create({
+      component:ViewProductDetailsPage,
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
+    });
+    return await modal.present();
+  /*    this.db.collection('sales').get().then(snapshot => {
+      this.data.data.image = event.obj.image;
+      this.data.data.name = event.obj.name;
+      this.data.data.price = event.obj.price;
+      this.data.data.desc = event.obj.desc
+      this.data.data.productno = event.obj.productCode
+     })
+    }
+    async createViewProduct(event){
+    this.data.data = event
+    const modal = await this.modalController.create({
+      component:ViewProductDetailsPage,
+      cssClass: 'my-custom-modal-css',
+      componentProps: event
+    });
+    return await modal.present(); */
+  }
+
+     ///////////////// for sales
+  //   getSpecials(){
+  //   //  let obj = {id : '', obj : {}};
+  //   this.db.collection('Sales').limit(4).onSnapshot(snapshot => {
+  //     this.proSales = [];
+  //             snapshot.forEach(doc => {
+  //              // obj.id = doc.id;
+  //              // obj.obj = doc.data();
+  //               this.proSales.push({id : doc.id, obj : doc.data()});
+  //              // obj = {id : '', obj : {}};
+                
+  //             });
+  //             this.SpecialScrin.push(this.proSales[0])
+  //          // }
+  //      });
+  // }
+
+  getSpecials(){
+    //  let obj = {id : '', obj : {}};
+    this.db.collection('Sales').limit(4).onSnapshot(snapshot => {
+      this.proSales = [];
+              snapshot.forEach(doc => {
+               // obj.id = doc.id;
+               // obj.obj = doc.data();
+                this.proSales.push({id : doc.id, obj : doc.data()});
+               // obj = {id : '', obj : {}};
+                
+              });
+              this.SpecialScrin.push(this.proSales[0])
+           // }
+       });
+  }
 }
 
 
