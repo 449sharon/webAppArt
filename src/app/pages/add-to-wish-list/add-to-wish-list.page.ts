@@ -57,6 +57,7 @@ export class AddToWishListPage implements OnInit {
   addToTheCart = []
   productCode: any;
   price: number;
+  productCount=0;
   constructor(public modalController: ModalController,
     public toastController : ToastController,
     private cartService: CartServiceService,
@@ -74,6 +75,8 @@ export class AddToWishListPage implements OnInit {
     }, 2000);
   }
   ngOnInit() {
+    this.wishItemCount = this.cartService.getWishItemCount();
+    this.cartItemCount = this.cartService.getCartItemCount();
     this.getProducts();
   }
 
@@ -309,7 +312,6 @@ export class AddToWishListPage implements OnInit {
  
   removeCartItem(o) {
     this.dbWishlist.doc(o).delete()
-    // this.dbWishlist.doc(o.id).delete();
   }
  
   // getTotal() {

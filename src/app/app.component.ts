@@ -32,6 +32,8 @@ export class AppComponent {
     message:''
  }
 
+//  cartItemCounts = []
+
   
   constructor(
     private platform: Platform,
@@ -43,6 +45,23 @@ export class AppComponent {
     public popoverController: PopoverController,
     public toastCtrl: ToastController
   ) {
+    
+// firebase.auth().onAuthStateChanged(user => {
+//   if(user){
+//     firebase.firestore().collection("Cart").onSnapshot(data => {
+//       this.cartItemCounts = []
+//       data.forEach(item => {
+//         if(item.data().uid === firebase.auth().currentUser.uid){
+//           this.cartItemCounts.push(item.data())
+//         }
+//       })
+//     })
+
+//   }
+// })
+    
+
+
     this.initializeApp();
     // this.cartItemCount.next(this.cartItemCount.value + 1);
     this.cartItemCount = this.cartService.getCartItemCount();
