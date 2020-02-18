@@ -51,8 +51,6 @@ SpecialScrin = []
     private data: ProductService, private activatedRouter : ActivatedRoute,
     public popoverController: PopoverController,  public toastCtrl: ToastController, public cartService: CartServiceService) { 
       this.adminInfo();
-      this.getSpecials();
-      this.getSpecials();
    
 
       //////

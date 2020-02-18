@@ -19,6 +19,8 @@ import * as moment from 'moment';
   styleUrls: ['./view-product-details.page.scss'],
 })
 export class ViewProductDetailsPage implements OnInit {
+
+
   cartItemCount:BehaviorSubject<number>;
   wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
@@ -41,7 +43,7 @@ export class ViewProductDetailsPage implements OnInit {
     categories: '',
     name: '',
     price: 0,
-    productno: '',
+    productCode: '',
     desc: null,
     small: '',
     medium: '',
@@ -58,8 +60,8 @@ export class ViewProductDetailsPage implements OnInit {
     categories:'',
     lastcreated : '',
     name:'',
+    productCode: '',
     price:0,
-    productno:'',
     desc: null,
     items:'',
     sizes:'',
@@ -76,6 +78,8 @@ export class ViewProductDetailsPage implements OnInit {
   }
   id
   image = ""
+
+  CartNumber = 0;
   constructor(public modalController: ModalController,
     public productService: ProductService,
     public data: ProductService,
@@ -135,6 +139,7 @@ export class ViewProductDetailsPage implements OnInit {
   this.Mydata.categories = this.data.data.categories
   this.Mydata.lastcreated  = this.data.data.lastcreated
   this.Mydata.name = this.data.data.name
+  this.Mydata.productCode = this.data.data.productCode
   this.Mydata.price = this.data.data.price
   this.Mydata.desc = this.data.data.desc
   this.Mydata.items = this.data.data.items
@@ -214,7 +219,7 @@ console.log("This data is ",this.data.data);
     date: moment().format('MMMM Do YYYY, h:mm:ss a'),
     customerUid:firebase.auth().currentUser.uid,
     name:this.Mydata.name,
-
+    productCode:this.Mydata.productCode,
     desc:this.Mydata.desc,
     status:'received',
     size: this.sizes,
@@ -226,7 +231,7 @@ console.log("This data is ",this.data.data);
 
   })
    
-    this.cartItemCount.next(this.cartItemCount.value + 1);
+    // this.cartItemCount.next(this.cartItemCount.value + 1);
     // this.dismiss();
     this.toastPopover('ev')
     }
@@ -260,15 +265,6 @@ logRatingChange(rating, id){
     prod: id
   })
 }
-
-  ////////
-  /////
-  // async toastController(message) {
-  //   let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
-  //   return toast.present();
-  // }
-
-
 
   
   star1(value, key){
@@ -311,23 +307,9 @@ logRatingChange(rating, id){
       
         })
 
-     
-        // this.presentToast('ev')
        }
        this.wishItemCount.next(this.wishItemCount.value + 1);
-
-
     } 
-
-
-    //   if(firebase.auth().currentUser == null) {
-      // console.log('please login');
-      // this.ConfirmationAlert();
-      // this.createModalLogins();
-  
-        
-      // }else {
-      //   this.customerUid = firebase.auth().currentUser.uid;
   async toastPopover(ev) {
     const popover = await this.popoverController.create({
       component:Popover2Component,
@@ -425,6 +407,7 @@ logRatingChange(rating, id){
   this.Mydata.categories = event.categories
   this.Mydata.lastcreated  = event.lastcreated
   this.Mydata.name =event.name
+  this.Mydata.productCode = event.productCode
   this.Mydata.price = event.price
   this.Mydata.desc = event.desc
   this.Mydata.items = event.items
@@ -437,4 +420,5 @@ logRatingChange(rating, id){
 
   TermsAndConditions(){}
   PrivacyPolicy(){}
+  createFaqs(){}
 }

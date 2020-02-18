@@ -51,7 +51,7 @@
 
         </div>
         <div class="productcode">
-          <!-- <ion-label>Product Code: {{p.obj.productCode}}</ion-label> -->
+          <ion-label>Product Code: {{Mydata.productCode}}</ion-label>
         </div>
         <div  class="productDescription">
           <p>{{Mydata.desc}}</p>
@@ -88,8 +88,8 @@
           <div class="quantity">
             <div  ><p>Qty:{{currentNumber}}</p></div>
             <div> 
-              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>
-              <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="increment(Mydata)"></ion-icon>
+              <ion-icon name="remove-circle" color="danger" (click)="decrement(Mydata)"></ion-icon>
              
             </div>
            
