@@ -81,15 +81,7 @@
             </div>
 
             
-          <!-- <div class="sta">
-
-            <button (click)="star1(1, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-            <button (click)="star1(2, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-            <button (click)="star1(3, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-            <button (click)="star1(4, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-            <button (click)="star1(5, p)"> <ion-icon  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-           
-          </div> -->
+    
 
           
           </div>
@@ -110,19 +102,51 @@
         </div>
         <div class="tabs">
           <div class="tab">
-            <input type="checkbox" id="chck1">
-            <label class="tab-label" for="chck1">Shipping Methods</label>
+            <input type="checkbox" id="chck44">
+            <label class="tab-label" for="chck44">Shipping Methods</label>
             <div class="tab-content">
+              <div>
+                <ion-title>THE PRODUCTS CAN BE DELIVERED OR COLLECTED</ion-title>
+                <div>
+                  <ion-label color="danger" >
+                    collection and delivery around Soweto is FREE 
+                    we start processing an order after payment. currently deposit 
+payment only that is acceptable.
+                  </ion-label>
+                  <div>
+                    <p>
+                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                       labore et dolore magna aliquyam erat, sed diam voluptua.
+                        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita 
+                    </p>
+                  </div>
+                </div>
+              </div>
 
 
             </div>
           </div>
            <div class="tab"> 
-            <input type="checkbox" id="chck2">
-            <label class="tab-label" for="chck2">Rating</label>
+            <input type="checkbox" id="chck55">
+            <label class="tab-label" for="chck55">Rating</label>
             <div class="tab-content">
+              <div>
+                <ion-title>Choose Rating</ion-title>
+              </div>
+              <div>
+                <ion-label>
+                  happy with the product ? Share your thoughts through ratings.
+                </ion-label>
+              </div>
+      <div class="sta">
 
-
+            <button (click)="star1(1, p)"> <ion-icon color="warning"  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(2, p)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(3, p)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(4, p)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(5, p)"> <ion-icon  color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+           
+          </div>
 
 
             </div>
@@ -166,7 +190,108 @@
       </div>
 
     </div>
-    <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
+    <div id="IDofYourDivYouWantToGoTo" class="contactUs-section">  
+      <div>
+        <ion-title></ion-title>
+      </div>
+      <div class="contactus">
+        <div class="contactUs-labels">
+          <div >
+             <ion-label class="heading2">Find Us</ion-label>
+            <div style="display: flex; flex-direction: column;margin-left: 20px;" *ngFor = "let admin of Info" class="callUs-labels">
+              <div>
+                <span>
+                  <ion-icon  name="call"></ion-icon>
+                </span>
+                <span>
+                  <ion-label>{{admin.phoneNumber}} </ion-label>
+                </span>
+              </div> <br>
+              <div>
+                <span>
+                  <ion-icon  name="mail"></ion-icon>
+                </span>
+                <span>
+                  <ion-label class="ion-text-wrap">{{admin.email}}</ion-label>
+                </span>
+                <div class="social-section" >
+  
+                  <div class="social" >
+                    <div> <img  src="../../../assets/icons8_facebook_480px.png" width="30" height="30" > </div>
+                    <div> <img  src="../../../assets/icons8_twitter_circled_60px_2.png" width="30" height="30" ></div>
+    
+    
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+          <div >
+            <ion-label class="heading1">Visit Us</ion-label>
+            <div *ngFor = "let admin of Info" class="callUs-labels">
+      
+              <div>
+                <span>
+                  <ion-icon  name="pin"></ion-icon>
+                </span>
+                <span>
+                  <ion-label class="ion-text-wrap" >{{admin.address}}</ion-label>
+                </span> <br><br>
+                <span>
+                  <ion-label class="ion-text-wrap" >{{admin.streetAddress}}</ion-label>
+                </span><br> <br>
+                <span>
+                  <ion-label class="ion-text-wrap" >{{admin.city}}</ion-label>
+                </span><br><br>
+                <span>
+                  <ion-label class="ion-text-wrap" >{{admin.code}}</ion-label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div >
+            <ion-label class="heading">Quick Links </ion-label>
+            <div *ngFor = "let admin of Info" class="callUs-labels">
+          
+      
+              <div>
+       
+                <span (click)="createFaqs()">
+                  <li>
+                      <ion-label>FAQ's</ion-label>
+                </li>
+              
+                </span>
+                <span (click)="TermsAndConditions()" >
+                  <li>   
+                     <ion-label>Terms & Conditions</ion-label>
+                  </li>
+                 
+                </span> 
+                <span (click)=" PrivacyPolicy()" >
+                  <li>
+                     <ion-label>Privacy Policy</ion-label>
+                  </li>
+                 
+                </span>
+              </div>
+            </div>
+          </div>
+  
+          
+        </div>
+      </div>
+      <ion-toolbar color="primary">
+        <div class="footer">
+          <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
+          <div>
+            &copy; Pitseng Arts &amp; Crafts 2019
+          </div>
+        </div>
+      </ion-toolbar>
+    </div>
+    <!-- <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
       <div>
         <ion-title>Contact Us</ion-title>
       </div>
@@ -201,14 +326,7 @@
                 </div>
   
               </div>
-              <!-- <div>
-                <span>
-                  <ion-icon padding name="pin"></ion-icon>
-                </span>
-                <span>
-                  <ion-label>{{admin.address}}</ion-label>
-                </span>
-              </div> -->
+
             </div>
           </div>
           <div >
@@ -231,9 +349,7 @@
           
       
               <div>
-                <!-- <span>
-                  <ion-icon padding name="pin"></ion-icon>
-                </span> -->
+
                 <span >
                   <li>
                       <ion-label>FAQ's</ion-label>
@@ -266,6 +382,6 @@
           </div>
         </div>
       </ion-toolbar>
-    </div> 
+    </div>  -->
   </div>
 </ion-content>

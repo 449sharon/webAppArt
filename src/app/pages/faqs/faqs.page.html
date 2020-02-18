@@ -13,10 +13,33 @@
           <ion-title>FAQ's</ion-title>
         </div>
         <div class="search">
+          <!-- <div class="top-bar" (ionFocus)='onInput($event)'>
+            <h1 id="how-can-we-help">How can we help?</h1>
+            <input id="query" type="text" placeholder="Type keywords to find answers"
+                (ionFocus)='onInput($event)' [(ngModel)]="usersInput" (keyup)="searchresult(usersInput)">
+            <div class="searchResults" id="userSearchResults" *ngIf="usersInput">
+                <div id="QAAnswer">
+                    <div id="QAAnswers-answered" *ngFor="let items of searchArray">
+                        <div>
+                            <ion-item>{{items.data.question}}</ion-item>
+                            <i id="answer-description">{{items.data.answer}} </i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
 
 
           
-           <ion-searchbar showCancelButton="focus" placeholder="ask a question" cancelButtonText="Custom Cancel"></ion-searchbar> 
+           <ion-searchbar showCancelButton="focus" placeholder="ask a question"  (ionChange)="searchresult($event)" cancelButtonText="Custom Cancel"></ion-searchbar> 
+           <div id="QAAnswer">
+            <div id="QAAnswers-answered" *ngFor="let items of searchArray; let i = index">
+                <div (click)="ShowAnswer(items, i)">
+                    <ion-item>{{items.question1}}</ion-item>
+                    <i id="answer-description">{{items.answer}} </i>
+                </div>
+            </div>
+        </div>
         </div>
       </div>
       <div class="orders">
@@ -27,15 +50,15 @@
               <div class="tab">
                 <input type="checkbox" id="chck1">
                 <label class="tab-label" for="chck1">Orders and Shipments</label>
-                <div class="tab-content">
+                <div class="tab-content" >
 
-                  <div class="tab">
+                  <div class="tab" *ngFor= "let o of ordershipment">
                     <input type="checkbox" id="chck6">
-                    <label class="question tab-label" for="chck6">{{firstQues.question1}}</label>
+                    <label class="question tab-label" for="chck6">{{o.question1}}</label>
                     <div class="tab-content section">
                       <ion-label>Answers</ion-label>
                       <div class="answer-section">
-                        <div class="answer-question" >{{firstQues.answer1 }}
+                        <div class="answer-question" >{{o.answer }}
                         </div>
                         <div class="line" >
                           <div class="small-line" ></div>
@@ -52,30 +75,7 @@
 
                     </div>
                   </div>
-                  <div class="tab">
-                    <input type="checkbox" id="chck7">
-                    <label class="question tab-label" for="chck7">{{SecondQues.question2}}</label>
-                    <div class="tab-content section ">
-                      <ion-label>Answers</ion-label>
-                      <div class="answer-section">
-                        <div class="answer-question" >{{SecondQues.answer2}}
-                        </div>
-                        <div class="line" >
-                          <div class="small-line" ></div>
-
-                        </div>
-                        <div class="icon" >
-                          <img src="../../../assets/globe_bulb_240px.png" alt="">
-
-                        </div>
-                      </div>
-
-
-
-
-                    </div>
-                  </div>
-
+                
 
 
                 </div>
@@ -85,16 +85,16 @@
                 <label class="tab-label" for="chck2">Returns</label>
                 <div class="tab-content">
 
-                  <div class="tab">
+                  <div class="tab" *ngFor= "let r of Return">
                     <input type="checkbox" id="chck9">
-                    <label class="question tab-label" for="chck9">{{returnQues.question1}}</label>
+                    <label class="question tab-label" for="chck9">{{r.question1}}</label>
                     <div class="tab-content section">
                       <ion-label>Answers</ion-label>
                       <div class="answer-section">
-                        <div class="answer-question" >{{returnQues.answer1 }}
+                        <div class="answer-question" >
                         </div>
                         <div class="line" >
-                          <div class="small-line" ></div>
+                          <div class="small-line" >{{r.answer }}</div>
 
                         </div>
                         <div class="icon" >
@@ -108,29 +108,7 @@
 
                     </div>
                   </div>
-                  <div class="tab">
-                    <input type="checkbox" id="chck10">
-                    <label class="question tab-label" for="chck10">{{returns1Ques.question2}}</label>
-                    <div class="tab-content section ">
-                      <ion-label>Answers</ion-label>
-                      <div class="answer-section">
-                        <div class="answer-question" >{{returns1Ques.answer2}}
-                        </div>
-                        <div class="line" >
-                          <div class="small-line" ></div>
-
-                        </div>
-                        <div class="icon" >
-                          <img src="../../../assets/globe_bulb_240px.png" alt="">
-
-                        </div>
-                      </div>
-
-
-
-
-                    </div>
-                  </div>
+                  
 
 
 
@@ -141,16 +119,16 @@
                 <label class="tab-label" for="chck3">Refunds</label>
                 <div class="tab-content">
 
-                  <div class="tab">
+                  <div class="tab" *ngFor= "let f of Refund">
                     <input type="checkbox" id="chck11">
-                    <label class="question tab-label" for="chck11">{{refundQues.question1}}</label>
+                    <label class="question tab-label" for="chck11">{{f.question1}}</label>
                     <div class="tab-content section">
                       <ion-label>Answers</ion-label>
                       <div class="answer-section">
-                        <div class="answer-question" >{{refundQues.answer1 }}
+                        <div class="answer-question" >
                         </div>
                         <div class="line" >
-                          <div class="small-line" ></div>
+                          <div class="small-line" >{{f.answer }}</div>
 
                         </div>
                         <div class="icon" >
@@ -164,29 +142,7 @@
 
                     </div>
                   </div>
-                  <div class="tab">
-                    <input type="checkbox" id="chck12">
-                    <label class="question tab-label" for="chck12">{{refunds1Ques.question2}}</label>
-                    <div class="tab-content section ">
-                      <ion-label>Answers</ion-label>
-                      <div class="answer-section">
-                        <div class="answer-question" >{{refunds1Ques.answer2}}
-                        </div>
-                        <div class="line" >
-                          <div class="small-line" ></div>
-
-                        </div>
-                        <div class="icon" >
-                          <img src="../../../assets/globe_bulb_240px.png" alt="">
-
-                        </div>
-                      </div>
-
-
-
-
-                    </div>
-                  </div>
+                 
 
 
 
@@ -197,16 +153,16 @@
                 <label class="tab-label" for="chck4">Technical</label>
                 <div class="tab-content">
 
-                  <div class="tab">
+                  <div class="tab" *ngFor= "let t of Technical">
                     <input type="checkbox" id="chck13">
-                    <label class="question tab-label" for="chck13">{{technicalQues.question1}}</label>
+                    <label class="question tab-label" for="chck13">{{t.question1}}</label>
                     <div class="tab-content section">
                       <ion-label>Answers</ion-label>
                       <div class="answer-section">
-                        <div class="answer-question" >{{technicalQues.answer1 }}
+                        <div class="answer-question" >
                         </div>
                         <div class="line" >
-                          <div class="small-line" ></div>
+                          <div class="small-line" >{{t.answer }}</div>
 
                         </div>
                         <div class="icon" >
@@ -220,29 +176,7 @@
 
                     </div>
                   </div>
-                  <div class="tab">
-                    <input type="checkbox" id="chck14">
-                    <label class="question tab-label" for="chck14">{{technical1Ques.question2}}</label>
-                    <div class="tab-content section ">
-                      <ion-label>Answers</ion-label>
-                      <div class="answer-section">
-                        <div class="answer-question" >{{technical1Ques.answer2}}
-                        </div>
-                        <div class="line" >
-                          <div class="small-line" ></div>
-
-                        </div>
-                        <div class="icon" >
-                          <img src="../../../assets/globe_bulb_240px.png" alt="">
-
-                        </div>
-                      </div>
-
-
-
-
-                    </div>
-                  </div>
+                 
 
 
 
