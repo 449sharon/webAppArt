@@ -32,6 +32,9 @@ export class AppComponent {
     email: '',
     message:''
  }
+
+ CartNumber = 0;
+ CartNumber1 = 0
  active: string = ''
 
  
@@ -53,10 +56,10 @@ export class AppComponent {
 // firebase.auth().onAuthStateChanged(user => {
 //   if(user){
 //     firebase.firestore().collection("Cart").onSnapshot(data => {
-//       this.cartItemCounts = []
+//       this.cartItemCount = []
 //       data.forEach(item => {
-//         if(item.data().uid === firebase.auth().currentUser.uid){
-//           this.cartItemCounts.push(item.data())
+//         if(item.data().customerUid === firebase.auth().currentUser.uid){
+//           this.cartItemCount.push(item.data())
 //         }
 //       })
 //     })
@@ -79,6 +82,25 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+  ngOnInit(){
+
+    firebase.firestore().collection("Cart").onSnapshot(data => {
+      this.CartNumber = 0;
+      data.forEach(item => {
+        this.CartNumber += 1;
+      })
+    })
+
+    firebase.firestore().collection("WishList").onSnapshot(data => {
+      this.CartNumber1 = 0;
+      data.forEach(item => {
+        this.CartNumber1 += 1;
+      })
+    })
+
+  }
+
 
   Allspecials(){
     this.router.navigateByUrl('/specials');

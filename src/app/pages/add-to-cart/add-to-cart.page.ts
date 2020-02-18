@@ -301,6 +301,7 @@ export class AddToCartPage implements OnInit {
       }else{
         this.myCart = false;
       }
+     console.log("yyyyyyyy ", this.cartProduct.length);
      
   
     });
@@ -312,8 +313,8 @@ export class AddToCartPage implements OnInit {
     })
 
   }
-  minus(prod, index) {
-    let id = prod.id
+  minus(prod, id) {
+    // let id = prod.id
     if (prod.obj.quantity === 1) {
      this.toastController("You have reached minimum quantity");
     } else {

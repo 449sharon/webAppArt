@@ -28,13 +28,13 @@
         </div>
         <div class="prodactDetails-section">
           <div class="name">
-            <ion-label>{{ p.obj.product_name }}</ion-label>
+            <ion-label>{{ p.obj.name }}</ion-label>
           </div>
           <div class="price">
             <ion-label>{{ p.obj.price | currency:'R':'symbol' }} </ion-label>
           </div>
           <div class="code">
-            <ion-label>Code: {{ p.obj.productCode }}</ion-label>
+            <ion-label>Code: {{ p.obj.productno }}</ion-label>
           </div>
           <div class="Productselection">
             <div class="size">
@@ -46,8 +46,8 @@
                 <p no-padding>Qty: {{ p.obj.quantity }}</p>
               </div>
               <div>
-                <ion-icon name="remove-circle" color="danger" (click)="minus(p, j)"></ion-icon>
-                <ion-icon name="add-circle" color="success" (click)="plus(p, j)"></ion-icon>
+                <ion-icon name="remove-circle" color="danger" (click)="minus(p, j.id)"></ion-icon>
+                <ion-icon name="add-circle" color="success" (click)="plus(p, j.id)"></ion-icon>
               </div>
 
             </div>

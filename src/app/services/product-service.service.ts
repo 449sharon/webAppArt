@@ -8,18 +8,20 @@ import * as firebase from 'firebase';
 })
 export class ProductService {
 
-
-   data = {   id: '',
+id = ""
+   data = {  
    image: '',
    categories:'',
+   lastcreated : '',
    name:'',
-   price:null,
-   productno:'',
+   price:0,
+   productCode:'',
    desc: null,
    items:'',
-   small:'',
-   medium:'',
-   large: ''}
+   sizes:'',
+   quantity  : 1,
+   ratings : ''
+  }
 
   db = firebase.firestore();
   firestore
@@ -30,7 +32,7 @@ export class ProductService {
     categories:'',
     name:'',
     price:null,
-    productno:'',
+    productCode:'',
     desc: null,
     items:'',
     small:'',
