@@ -9,17 +9,19 @@ import * as firebase from 'firebase';
 export class ProductService {
 
 id = ""
-   data = {   id: '',
+   data = {  
    image: '',
    categories:'',
+   lastcreated : '',
    name:'',
-   price:null,
+   price:0,
    productno:'',
    desc: null,
    items:'',
-   small:'',
-   medium:'',
-   large: ''}
+   sizes:'',
+   quantity  : 1,
+   ratings : ''
+  }
 
   db = firebase.firestore();
   firestore

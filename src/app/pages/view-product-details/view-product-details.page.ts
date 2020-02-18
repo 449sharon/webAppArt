@@ -34,6 +34,8 @@ export class ViewProductDetailsPage implements OnInit {
   myProduct = false;
   sizes = null;
   MyObj = [];
+
+
   event = {
     image: '',
     categories: '',
@@ -48,6 +50,25 @@ export class ViewProductDetailsPage implements OnInit {
     amount: 0,
     total: 0
   };
+
+
+  Mydata = {
+
+    image: '',
+    categories:'',
+    lastcreated : '',
+    name:'',
+    price:0,
+    productno:'',
+    desc: null,
+    items:'',
+    sizes:'',
+    quantity  : 1,
+    ratings : ''
+
+   }
+
+
   productSize = {
     small: false,
     medium: false,
@@ -64,11 +85,26 @@ export class ViewProductDetailsPage implements OnInit {
     private router: Router,
     public popoverController: PopoverController) { 
       this.adminInfo();
-      this.getSpecials();
-      this.getSpecials();
+    
     }
 
   ngOnInit() {
+
+  
+
+    
+
+    this.db.collection('Sales').limit(4).onSnapshot(snapshot => {
+      this.proSales = [];
+              snapshot.forEach(doc => {
+              
+                this.proSales.push( doc.data());
+               
+              });
+              this.SpecialScrin.push(this.proSales[0])
+          
+       });
+
     this.wishItemCount = this.cartService.getWishItemCount();
     this.cartItemCount = this.cartService.getCartItemCount();
     console.log("Data in the view Details ", this.data.data);
@@ -92,10 +128,23 @@ export class ViewProductDetailsPage implements OnInit {
 
   ionViewWillEnter() {
 
-    this.Products.push(this.data.data)
-    console.log("rrtrtrtrt", this.Products);
-    
-    this.proSales.push(this.data.data)
+  
+
+  
+  this.Mydata.image = this.data.data.image
+  this.Mydata.categories = this.data.data.categories
+  this.Mydata.lastcreated  = this.data.data.lastcreated
+  this.Mydata.name = this.data.data.name
+  this.Mydata.price = this.data.data.price
+  this.Mydata.desc = this.data.data.desc
+  this.Mydata.items = this.data.data.items
+  this.Mydata.sizes = this.data.data.sizes
+  this.Mydata.quantity  = this.data.data.quantity
+  this.Mydata.ratings  = this.data.data.ratings
+
+console.log("This data is ",this.data.data);
+
+  
   }
   
   selectedSize(size) {
@@ -146,22 +195,9 @@ export class ViewProductDetailsPage implements OnInit {
     
   }
   
-  getSpecials(){
-    //  let obj = {id : '', obj : {}};
-    this.db.collection('Sales').limit(4).onSnapshot(snapshot => {
-      this.proSales = [];
-              snapshot.forEach(doc => {
-               // obj.id = doc.id;
-               // obj.obj = doc.data();
-                this.proSales.push({id : doc.id, obj : doc.data()});
-               // obj = {id : '', obj : {}};
-                
-              });
-              this.SpecialScrin.push(this.proSales[0])
-           // }
-       });
-  }
-  addToCart(i) {
+
+  
+  addToCart() {
     
     if(firebase.auth().currentUser == null) {
       console.log('please login');
@@ -173,23 +209,23 @@ export class ViewProductDetailsPage implements OnInit {
       this.customerUid = firebase.auth().currentUser.uid;
          let customerUid = firebase.auth().currentUser.uid;
 
-    console.log(i);
-    this.dbCart.add({
+  firebase.firestore().collection("Cart").doc().set({
+
+    date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+    customerUid:firebase.auth().currentUser.uid,
+    name:this.Mydata.name,
+
+    desc:this.Mydata.desc,
+    status:'received',
+    size: this.sizes,
+    price:this.Mydata.price,
+    quantity: this.Mydata.quantity,
+    image:this.Mydata.image,
+    amount:this.Mydata.price * this.Mydata.quantity
 
 
-      // id: this.id,
-      date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-      customerUid: this.customerUid,
-      name: i.obj.name,
-      productno: i.obj.productCode,
-      desc: i.obj.desc,
-      status:'received',
-      size: this.sizes,
-      price: i.obj.price,
-      quantity: this.event.quantity,
-      image: i.obj.image,
-      amount: i.obj.price * this.event.quantity
-    })
+  })
+   
     this.cartItemCount.next(this.cartItemCount.value + 1);
     // this.dismiss();
     this.toastPopover('ev')
@@ -246,83 +282,40 @@ logRatingChange(rating, id){
 
   }
 
-  addWishlist(i) {
+  addWishlist() {
 
-    console.log("Method Called ", i);
+
+
       if(firebase.auth().currentUser == null){
          console.log('please like this');
          this.ConfirmationAlertWish();
          this.createModalLogins()
        }else{
         this.customerUid = firebase.auth().currentUser.uid;
+
+
         firebase.firestore().collection("WishList").doc().set({
-  
-          // obj : {
-          //   uid : firebase.auth().currentUser.uid,
-          //   checked : false,
-          //   categories : i.obj.categories,
-          //   desc : i.obj.desc,
-          //   image : i.obj.image,
-          //   items : i.obj.items,
-          //   lastcreated : i.obj.lastcreated,
-          //   name : i.obj.name,
-          //   price : i.obj.price,
-          //   productno : i.obj.productCode,
-          //   quantity : i.obj.quantity,
-          //   size : i.obj.size
-          // },
-          // id: this.id,
-      timestamp: new Date().getTime(),
-      customerUid: this.customerUid,
-      name: i.obj.name,
-      productno: i.obj.productCode,
-      desc: i.obj.desc,
-      status:'received',
-      size: this.sizes,
-      price: i.obj.price,
-      quantity: this.event.quantity,
-      image: i.obj.image,
-      amount: i.obj.price * this.event.quantity
-         
+
+          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+          customerUid:firebase.auth().currentUser.uid,
+          name:this.Mydata.name,
+      
+          desc:this.Mydata.desc,
+          status:'received',
+          size: this.sizes,
+          price:this.Mydata.price,
+          quantity: this.Mydata.quantity,
+          image:this.Mydata.image,
+          amount:this.Mydata.price * this.Mydata.quantity
+      
+      
         })
+
+     
         // this.presentToast('ev')
        }
        this.wishItemCount.next(this.wishItemCount.value + 1);
-      //  this.dismiss();
-  //  if(firebase.auth().currentUser == null){
-  //    console.log('please like this');
-  //    this.ConfirmationAlertWish();
-  //   //  this.createModalLogins()
 
-  //  }else{
-  //   this.customerUid = firebase.auth().currentUser.uid; 
-  //     this.dbWishlist.add({
-  //     timestamp: new Date().getTime(),
-  //     customerUid: this.customerUid,
-  //     product_name: i.name,
-  //     productCode: i.productCode,
-  //     desc: i.desc,
-  //     size: this.sizes,
-  //     price: i.price,
-  //     quantity: this.event.quantity,
-  //     image: i.image,
-  //     amount: i.price * this.event.quantity
-  //         // product_name: i.name,
-  //         // productCode: i.productCode,
-  //         // size: this.sizes,
-  //         // price: i.price,
-  //         // quantity: this.event.quantity,
-  //         // image: i.image,
-  //     }).then(() => {
-  //       this.dismiss();
-  //       this.presentToast('ev')
-  //     })
-  //       .catch(err => {
-  //         console.error(err);
-  //       });
-  //  }
-
-  //       this.wishItemCount.next(this.wishItemCount.value + 1);
 
     } 
 
@@ -422,7 +415,26 @@ logRatingChange(rating, id){
          }
      })
   }
-  allSpecials(event){}
+
+
+  allSpecials(event){
+
+    console.log("Data here ", event);
+    
+  this.Mydata.image = event.image
+  this.Mydata.categories = event.categories
+  this.Mydata.lastcreated  = event.lastcreated
+  this.Mydata.name =event.name
+  this.Mydata.price = event.price
+  this.Mydata.desc = event.desc
+  this.Mydata.items = event.items
+  this.Mydata.sizes = event.sizes
+  this.Mydata.quantity = event.data.quantity
+  this.Mydata.ratings  = event.ratings
+    
+  }
+
+
   TermsAndConditions(){}
   PrivacyPolicy(){}
 }

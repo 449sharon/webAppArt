@@ -158,7 +158,20 @@ getPictures(){
   async createViewProduct(event) {
     console.log('My details ', event);
     
-    this.data.data = event
+ 
+
+
+    this.data.data.image  = event.obj.image
+    this.data.data.categories  = event.obj.categories
+    this.data.data.lastcreated   = event.obj.lastcreated
+    this.data.data.name  = event.obj.name
+    this.data.data.price  = event.obj.price
+    this.data.data.desc   = event.obj.desc
+    this.data.data.items  = event.obj.items
+    this.data.data.sizes  = event.obj.sizes
+    this.data.data.quantity  = event.obj.quantity
+    this.data.data.ratings  = event.obj.ratings
+   
     this.router.navigateByUrl('view-product-details');
 
 

@@ -17,32 +17,32 @@
     </div>
     <div class="ng-for-goes-here" *ngFor="let p of cart" >
       <div class="checkBox-add-to-cart" >
-        <ion-checkbox color="primary"  slot="start" (ionChange)="CheckBox($event, p)"></ion-checkbox>
+        <ion-checkbox color="primary"  slot="start" (ionChange)="CheckBox($event, p.id, p.obj.checked)"></ion-checkbox>
       </div>
     <div class="cart-item-section" >
 
       <div class="image-section" >
         <!-- <img src="../../../assets/Frame.jpg"  alt=""> -->
-        <img src="{{p.image}}">
+        <img src="{{p.obj.image}}">
       </div>
       <div class="prodactDetails-section" >
         <div class="name" >
-          <ion-label>{{ p.name }}</ion-label>
+          <ion-label>{{ p.obj.name }}</ion-label>
         </div>
         <div class="price" >
-          <ion-label>{{ p.price | currency:'R':'symbol' }}</ion-label>
+          <ion-label>{{ p.obj.price | currency:'R':'symbol' }}</ion-label>
         </div>
         <div class="code">
-          <ion-label>Code: {{ p.productno }}</ion-label>
+          <ion-label>Code: {{ p.obj.productno }}</ion-label>
         </div> 
         <div class="Productselection">
           <div class="size">
-            <p>Size:{{ p.size }} </p>
+            <p>Size:{{ p.obj.size }} </p>
 
           </div>
           <div class="quantity">
             <div>
-              <p no-padding>Qty: {{ p.quantity }}</p>
+              <p no-padding>Qty: {{ p.obj.quantity }}</p>
             </div>
             <div>
               <ion-icon name="remove-circle" color="danger" (click)="minus(p)"></ion-icon>
