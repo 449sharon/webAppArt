@@ -1,5 +1,3 @@
-
-
 import { ProductService } from 'src/app/services/product-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,6 +9,8 @@ import { AddToWishListPage } from '../add-to-wish-list/add-to-wish-list.page';
 import { ProfilePage } from '../profile/profile.page';
 import { Popover2Component } from 'src/app/components/popover2/popover2.component';
 import { Popover3Component } from 'src/app/components/popover3/popover3.component';
+import { BehaviorSubject } from 'rxjs';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-categorylist',
@@ -18,6 +18,8 @@ import { Popover3Component } from 'src/app/components/popover3/popover3.componen
   styleUrls: ['./categorylist.page.scss'],
 })
 export class CategorylistPage implements OnInit {
+  cartItemCount:BehaviorSubject<number>;
+  wishItemCount: BehaviorSubject<number>;
   active: boolean;
   db = firebase.firestore();
  value
@@ -44,9 +46,10 @@ SpecialScrin = []
 
  
  dbWishlist = firebase.firestore().collection('Wishlist');
+ 
   constructor(private router: Router,  public modalController: ModalController,
     private data: ProductService, private activatedRouter : ActivatedRoute,
-    public popoverController: PopoverController,  public toastCtrl: ToastController) { 
+    public popoverController: PopoverController,  public toastCtrl: ToastController, public cartService: CartServiceService) { 
       this.adminInfo();
       this.getSpecials();
       this.getSpecials();
@@ -64,6 +67,9 @@ SpecialScrin = []
   }
 
   ngOnInit() {
+    this.wishItemCount = this.cartService.getWishItemCount();
+    this.cartItemCount = this.cartService.getCartItemCount();
+    
     this.activatedRouter.queryParams.subscribe(params =>{
       console.log('value', this.router.getCurrentNavigation().extras.state.parms);
       this.value = this.router.getCurrentNavigation().extras.state.parms;
@@ -78,6 +84,7 @@ SpecialScrin = []
       // this. presentToast($event)
       
      })
+     this.wishItemCount.next(this.wishItemCount.value + 1);
  }
   Info = []
 adminInfo(){
