@@ -382,10 +382,12 @@
        width: 95%;
       height: 20%;
       padding-top: 20px;
+      padding-left: 50px;
       margin: 0 auto;
       display: flex;
       justify-content: center;
       justify-content: space-between;
+      // border: solid blueviolet;
 
   }
  
@@ -450,8 +452,8 @@
           margin-top: 20px;
       }
       .callUs-labels {
-        width: 60%;
-          padding-top: 25px;
+        width:100%;
+        padding-top: 15px;
           margin: 0 auto;
           // border: solid rgb(38, 0, 255);
           display: flex;
@@ -474,7 +476,7 @@
       
       .callUs-labels > div > span > ion-label {
         font-weight: 100;
-        // color: red;
+        padding-left: 30px;
 
       }
       .callUs-labels > div > span > li >  ion-label {
@@ -483,7 +485,7 @@
 
       }
       .callUs-labels > div > span > ion-icon{
-          margin-right: 30px;
+          // margin-right: 30px;
       }
       ion-label, ion-title {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -492,7 +494,7 @@
       .heading{
           font-weight: 600;
           font-size: 1rem;
-        margin-left: 100px;
+        // margin-left: 100px;
         // text-align: center;
          
       }
@@ -500,15 +502,18 @@
         font-weight: 600;
         font-size: 1rem;
         // text-align: center;
-      margin-left: 101px;
+      // margin-left: 101px;
        
     }
     .heading2{
       font-weight: 600;
       font-size: 1rem;
-    margin-left: 21px;
+    // margin-left: 21px;
     // text-align: center;
      
+  }
+  .address{
+    margin-left: 12px;
   }
   .social-section{
     width: 80%;
@@ -519,9 +524,10 @@
 .social{
   display: flex;
   flex-direction: row;
-  width: 50%;
+  width: 30%;
   justify-content: space-between;
   padding-top:16px;
+  // border: solid red;
 }
 .social > div{
   display: flex;
@@ -828,19 +834,19 @@
 .heading{
   font-weight: 600;
   font-size: 1rem;
-margin-left: 5px;
+margin-left: 105px;
  
 }
 .heading1{
 font-weight: 600;
 font-size: 1rem;
-margin-left: 0px;
+margin-left: 15px;
 
 }
 .heading2{
 font-weight: 600;
 font-size: 1rem;
-margin-left: 0px;
+margin-left: 25px;
 
 }
   .contactUs-section{
