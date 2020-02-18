@@ -160,6 +160,9 @@ getPictures(){
 
 
     this.data.data.image  = event.obj.image
+    this.data.data.imageSide  = event.obj.imageSide
+    this.data.data.imageBack  = event.obj.imageBack
+    this.data.data.imageTop  = event.obj.imageTop
     this.data.data.categories  = event.obj.categories
     this.data.data.lastcreated   = event.obj.lastcreated
     this.data.data.name  = event.obj.name

@@ -11,6 +11,9 @@ export class ProductService {
 id = ""
    data = {  
    image: '',
+   imageSide: '',
+    imageBack: '',
+    imageTop: '',
    categories:'',
    lastcreated : '',
    name:'',
@@ -29,6 +32,9 @@ id = ""
   event = {
     id: '',
     image: '',
+    imageSide: '',
+    imageBack: '',
+    imageTop: '',
     categories:'',
     name:'',
     price:null,

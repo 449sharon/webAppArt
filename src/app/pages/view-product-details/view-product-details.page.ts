@@ -57,6 +57,9 @@ export class ViewProductDetailsPage implements OnInit {
   Mydata = {
 
     image: '',
+    imageSide: '',
+    imageBack: '',
+    imageTop: '',
     categories:'',
     lastcreated : '',
     name:'',
@@ -136,6 +139,9 @@ export class ViewProductDetailsPage implements OnInit {
 
   
   this.Mydata.image = this.data.data.image
+  this.Mydata.imageSide = this.data.data.imageSide
+  this.Mydata.imageBack = this.data.data.imageBack
+  this.Mydata.imageTop = this.data.data.imageTop
   this.Mydata.categories = this.data.data.categories
   this.Mydata.lastcreated  = this.data.data.lastcreated
   this.Mydata.name = this.data.data.name
