@@ -95,6 +95,9 @@ ion-content {
     // margin-bottom: 300px;
     // background-color: #f7f7f78f;
   }
+  .address{
+    margin-left: 12px;
+  }
   .services-description-section{
     ion-label {
       font-weight: 400;
@@ -264,12 +267,17 @@ ion-content {
          padding-bottom: 8px;
      }
      .callUs-labels > div > span > ion-icon{
-         margin-right: 30px;
+        //  margin-right: 30px;
      }
      ion-label, ion-title {
          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
          
      }
+     .callUs-labels > div > span > ion-label {
+      font-weight: 100;
+      padding-left: 30px;
+
+    }
      .heading{
          font-weight: 600;
          font-size: 1rem;

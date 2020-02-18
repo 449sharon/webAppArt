@@ -85,7 +85,7 @@
           <div class="contactUs-labels">
             <div >
                <ion-label class="heading2">Find Us</ion-label>
-              <div style="display: flex; flex-direction: column;margin-left: 20px;" *ngFor = "let admin of Info" class="callUs-labels">
+              <div style="display: flex; flex-direction: column;" *ngFor = "let admin of Info" class="callUs-labels">
                 <div>
                   <span>
                     <ion-icon  name="call"></ion-icon>
@@ -93,7 +93,7 @@
                   <span>
                     <ion-label>{{admin.phoneNumber}} </ion-label>
                   </span>
-                </div> <br>
+                </div> 
                 <div>
                   <span>
                     <ion-icon  name="mail"></ion-icon>
@@ -124,15 +124,15 @@
                   </span>
                   <span>
                     <ion-label class="ion-text-wrap" >{{admin.address}}</ion-label>
-                  </span> <br><br>
+                  </span> <br>
                   <span>
-                    <ion-label class="ion-text-wrap" >{{admin.streetAddress}}</ion-label>
-                  </span><br> <br>
+                    <ion-label class=" address ion-text-wrap" >{{admin.streetAddress}}</ion-label>
+                  </span><br> 
                   <span>
-                    <ion-label class="ion-text-wrap" >{{admin.city}}</ion-label>
-                  </span><br><br>
+                    <ion-label class=" address ion-text-wrap" >{{admin.city}}</ion-label>
+                  </span><br>
                   <span>
-                    <ion-label class="ion-text-wrap" >{{admin.code}}</ion-label>
+                    <ion-label class=" address ion-text-wrap" >{{admin.code}}</ion-label>
                   </span>
                 </div>
               </div>

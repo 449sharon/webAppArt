@@ -234,6 +234,7 @@ export class AppComponent {
       // document.getElementById("home").style.textDecorationColor = "#B73225";
       document.getElementById("home").style.lightingColor = "#B73225";
       document.getElementById("about").style.textDecoration = "transparent";
+      document.getElementById("about").style.textDecoration = "transparent";
       
       // text-decoration: underline;
     }

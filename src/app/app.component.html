@@ -22,7 +22,11 @@
               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="presentPopover($event)" > <ion-icon name="person"></ion-icon></ion-button>
                 <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
                  
-                  <ion-icon  class="large-icon" name="cart"></ion-icon>   <ion-label  color="primary" class="cart-length">{{ cartItemCount | async }}</ion-label >
+                  <ion-icon  class="large-icon" name="cart"></ion-icon>
+                  <div class="background-of-cart" >
+                    <ion-label  color="light" class="cart-length">{{ cartItemCount | async }}</ion-label >
+                  </div>
+                  
                  </ion-button>
                  <ion-button class="item" color="medium"  fill="clear"  (click)="createAddToWishList()" slot="end"> 
                   <ion-icon  class="large-icon" name="heart"></ion-icon> <ion-label  color="primary" class="wish-length">{{ wishItemCount | async }}</ion-label >
