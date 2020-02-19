@@ -169,29 +169,29 @@
         </div>
       </div>
 
-      <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
+      <div id="IDofYourDivYouWantToGoTo" class="contactUs-section">  
         <div>
-          <ion-title>Contact Us</ion-title>
+          <ion-title></ion-title>
         </div>
         <div class="contactus">
           <div class="contactUs-labels">
             <div >
-              <ion-label class="heading2">Find Us</ion-label>
-              <div *ngFor = "let admin of Info" class="callUs-labels">
+               <ion-label class="heading2">Find Us</ion-label>
+              <div style="display: flex; flex-direction: column;" *ngFor = "let admin of Info" class="callUs-labels">
                 <div>
                   <span>
-                    <ion-icon padding name="call"></ion-icon>
+                    <ion-icon  name="call"></ion-icon>
                   </span>
                   <span>
                     <ion-label>{{admin.phoneNumber}} </ion-label>
                   </span>
-                </div>
+                </div> 
                 <div>
                   <span>
-                    <ion-icon padding name="mail"></ion-icon>
+                    <ion-icon  name="mail"></ion-icon>
                   </span>
                   <span>
-                    <ion-label>{{admin.email}}</ion-label>
+                    <ion-label class="ion-text-wrap">{{admin.email}}</ion-label>
                   </span>
                   <div class="social-section" >
     
@@ -212,10 +212,19 @@
         
                 <div>
                   <span>
-                    <ion-icon padding name="pin"></ion-icon>
+                    <ion-icon  name="pin"></ion-icon>
                   </span>
                   <span>
-                    <ion-label>{{admin.address}}</ion-label>
+                    <ion-label class="ion-text-wrap" >{{admin.address}}</ion-label>
+                  </span> <br>
+                  <span>
+                    <ion-label class=" address ion-text-wrap" >{{admin.streetAddress}}</ion-label>
+                  </span><br> 
+                  <span>
+                    <ion-label class=" address ion-text-wrap" >{{admin.city}}</ion-label>
+                  </span><br>
+                  <span>
+                    <ion-label class=" address ion-text-wrap" >{{admin.code}}</ion-label>
                   </span>
                 </div>
               </div>
@@ -226,6 +235,7 @@
             
         
                 <div>
+         
                   <span (click)="createFaqs()">
                     <li>
                         <ion-label>FAQ's</ion-label>
@@ -233,7 +243,7 @@
                 
                   </span>
                   <span (click)="TermsAndConditions()" >
-                    <li>
+                    <li>   
                        <ion-label>Terms & Conditions</ion-label>
                     </li>
                    
@@ -247,6 +257,7 @@
                 </div>
               </div>
             </div>
+    
             
           </div>
         </div>
@@ -258,5 +269,5 @@
             </div>
           </div>
         </ion-toolbar>
-      </div> 
+      </div>
 </ion-content>
