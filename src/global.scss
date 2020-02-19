@@ -230,6 +230,10 @@
  
     
   }
+  .resetModal .modal-wrapper{
+    --width: 20%;
+    --height: 20%;
+  }
   @media screen and (min-width:300px) and (max-width: 800px){
     .modal-wrapper{
       --width: 80% !important;
