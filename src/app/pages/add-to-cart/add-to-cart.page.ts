@@ -301,7 +301,6 @@ export class AddToCartPage implements OnInit {
       }else{
         this.myCart = false;
       }
-     console.log("yyyyyyyy ", this.cartProduct.length);
      
   
     });
