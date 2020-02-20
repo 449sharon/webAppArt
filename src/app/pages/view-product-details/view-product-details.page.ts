@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 import { ThrowStmt } from '@angular/compiler';
 import { Popover3Component } from 'src/app/components/popover3/popover3.component';
 import * as moment from 'moment';
-
+import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-view-product-details',
@@ -36,8 +36,8 @@ export class ViewProductDetailsPage implements OnInit {
   myProduct = false;
   sizes = null;
   MyObj = [];
-
-
+  cartForm : FormGroup;
+  size = [];
   event = {
     image: '',
     categories: '',
@@ -67,7 +67,7 @@ export class ViewProductDetailsPage implements OnInit {
     price:0,
     desc: null,
     items:'',
-    sizes:'',
+    sizes: [],
     quantity  : 1,
     ratings : ''
 
@@ -90,9 +90,13 @@ export class ViewProductDetailsPage implements OnInit {
     public toastCtrl: ToastController,
     public cartService: CartServiceService,
     private router: Router,
+    private fb: FormBuilder,
     public popoverController: PopoverController) { 
+     
       this.adminInfo();
-    
+      this.cartForm = this.fb.group({
+        size: new FormControl('', Validators.compose([Validators.required]))
+      })
     }
 
   ngOnInit() {
@@ -122,13 +126,13 @@ export class ViewProductDetailsPage implements OnInit {
 
    increment(p) {
     this.currentNumber = this.currentNumber + 1;
-    this.event.quantity = this.currentNumber
+    this.Mydata.quantity = this.currentNumber
   }
 
    decrement(p) {
     if (this.currentNumber > 1) {
       this.currentNumber = this.currentNumber - 1;
-      this.event.quantity = this.currentNumber;
+      this.Mydata.quantity = this.currentNumber;
     }
     return this.currentNumber;
   }
@@ -149,11 +153,11 @@ export class ViewProductDetailsPage implements OnInit {
   this.Mydata.price = this.data.data.price
   this.Mydata.desc = this.data.data.desc
   this.Mydata.items = this.data.data.items
-  this.Mydata.sizes = this.data.data.sizes
+  this.Mydata.sizes = this.data.data.sizes;
   this.Mydata.quantity  = this.data.data.quantity
   this.Mydata.ratings  = this.data.data.ratings
 
-console.log("This data is ",this.data.data);
+console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
 
   
   }
@@ -169,24 +173,36 @@ console.log("This data is ",this.data.data);
 
     switch (val) {
       case 'S':
-        this.productSize = {
-          small: true,
-          medium: false,
-          large: false
+        this.productSize.small = !this.productSize.small
+        if(this.productSize.small) {
+          this.size.push('S');
+          console.log(this.size);
+          
+        }else {
+          this.size.splice(this.size.indexOf('S') , 1);
+          console.log(this.size);
         }
         break;
       case 'M':
-        this.productSize = {
-          small: false,
-          medium: true,
-          large: false
+        this.productSize.medium = !this.productSize.medium
+        if(this.productSize.medium) {
+          this.size.push('M');
+          console.log(this.size);
+          
+        }else {
+          this.size.splice(this.size.indexOf('M') , 1);
+          console.log(this.size);
         }
         break;
       case 'L':
-        this.productSize = {
-          small: false,
-          medium: false,
-          large: true
+        this.productSize.large = !this.productSize.large
+        if(this.productSize.large) {
+          this.size.push('L');
+          console.log(this.size);
+          
+        }else {
+          this.size.splice(this.size.indexOf('L') , 1);
+          console.log(this.size);
         }
         break;
     }
@@ -228,7 +244,7 @@ console.log("This data is ",this.data.data);
     productCode:this.Mydata.productCode,
     desc:this.Mydata.desc,
     status:'received',
-    size: this.sizes,
+    size: this.size,
     price:this.Mydata.price,
     quantity: this.Mydata.quantity,
     image:this.Mydata.image,

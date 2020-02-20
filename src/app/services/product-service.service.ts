@@ -21,7 +21,7 @@ id = ""
    productCode:'',
    desc: null,
    items:'',
-   sizes:'',
+   sizes: [],
    quantity  : 1,
    ratings : ''
   }

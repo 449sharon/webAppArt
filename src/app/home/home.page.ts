@@ -243,33 +243,23 @@ export class HomePage  {
       })
   }
   async allSpecials(event){
-  this.data.data = event
-  this.router.navigateByUrl('view-product-details');
-    //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
-    //  console.log('Image in the service ', this.data.data.image);
-  
-    // const modal = await this.modalController.create({
-    //   component:ViewProductDetailsPage,
-    //   cssClass: 'my-custom-modal-css',
-    //   componentProps: event
-    // });
-    // return await modal.present();
-  /*    this.db.collection('sales').get().then(snapshot => {
-      this.data.data.image = event.obj.image;
-      this.data.data.name = event.obj.name;
-      this.data.data.price = event.obj.price;
-      this.data.data.desc = event.obj.desc
-      this.data.data.productno = event.obj.productCode
-     })
-    }
-    async createViewProduct(event){
-    this.data.data = event
-    const modal = await this.modalController.create({
-      component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css',
-      componentProps: event
-    });
-    return await modal.present(); */
+    
+    this.data.data.image  = event.obj.image
+    this.data.data.imageSide  = event.obj.imageSide
+    this.data.data.imageBack  = event.obj.imageBack
+    this.data.data.imageTop  = event.obj.imageTop
+    this.data.data.categories  = event.obj.categories
+    this.data.data.lastcreated   = event.obj.lastcreated
+    this.data.data.name  = event.obj.name
+    this.data.data.productCode = event.obj.productCode
+    this.data.data.price  = event.obj.price
+    this.data.data.desc   = event.obj.desc
+    this.data.data.items  = event.obj.items
+    this.data.data.sizes  = event.obj.sizes
+    this.data.data.quantity  = event.obj.quantity
+    this.data.data.ratings  = event.obj.ratings
+   
+    this.router.navigateByUrl('view-product-details');
   }
   specialsAlso(){
     this.router.navigateByUrl('/specials');

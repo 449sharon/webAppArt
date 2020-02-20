@@ -264,6 +264,7 @@ adminInfo(){
     this.data.data.categories  = event.obj.categories
     this.data.data.lastcreated   = event.obj.lastcreated
     this.data.data.name  = event.obj.name
+    this.data.data.productCode = event.obj.productCode
     this.data.data.price  = event.obj.price
     this.data.data.desc   = event.obj.desc
     this.data.data.items  = event.obj.items
