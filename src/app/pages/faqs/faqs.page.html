@@ -32,7 +32,7 @@
 
           
            <ion-searchbar showCancelButton="focus" placeholder="ask a question"  (ionChange)="searchresult($event)" cancelButtonText="Custom Cancel"></ion-searchbar> 
-           <div id="QAAnswer">
+           <div id="QAAnswer" [hidden]="val == ''"  *ngFor="let items of searchArray; let i = index"  >
             <div id="QAAnswers-answered" *ngFor="let items of searchArray; let i = index">
                 <div (click)="ShowAnswer(items, i)">
                     <ion-item>{{items.question1}}</ion-item>
@@ -91,10 +91,10 @@
                     <div class="tab-content section">
                       <ion-label>Answers</ion-label>
                       <div class="answer-section">
-                        <div class="answer-question" >
+                        <div class="answer-question" >{{r.answer }}
                         </div>
                         <div class="line" >
-                          <div class="small-line" >{{r.answer }}</div>
+                          <div class="small-line" ></div>
 
                         </div>
                         <div class="icon" >
@@ -125,10 +125,10 @@
                     <div class="tab-content section">
                       <ion-label>Answers</ion-label>
                       <div class="answer-section">
-                        <div class="answer-question" >
+                        <div class="answer-question" >{{f.answer }}
                         </div>
                         <div class="line" >
-                          <div class="small-line" >{{f.answer }}</div>
+                          <div class="small-line" ></div>
 
                         </div>
                         <div class="icon" >
@@ -159,10 +159,10 @@
                     <div class="tab-content section">
                       <ion-label>Answers</ion-label>
                       <div class="answer-section">
-                        <div class="answer-question" >
+                        <div class="answer-question" >{{t.answer }}
                         </div>
                         <div class="line" >
-                          <div class="small-line" >{{t.answer }}</div>
+                          <div class="small-line" ></div>
 
                         </div>
                         <div class="icon" >

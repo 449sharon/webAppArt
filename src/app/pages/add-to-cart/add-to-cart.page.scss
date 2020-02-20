@@ -246,16 +246,21 @@
 
 }
 
-.empty-cart{
+.empty{
 
 text-transform: none;
-  width: 80%;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
-  font-weight: bold;
-  font-family: serif;
-  font-weight: 10px ;
-  border: solid red;
+  font-size: 15px;
+  color: black;
+  // font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  // font-weight: 10px ;
+  // border: solid red;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  word-wrap: break-word;
 }
 
 

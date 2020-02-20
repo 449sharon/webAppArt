@@ -255,7 +255,7 @@ console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
    
     // this.cartItemCount.next(this.cartItemCount.value + 1);
     // this.dismiss();
-    this.toastPopover('ev')
+    this.toastPopover(event)
     }
 
  
@@ -331,13 +331,13 @@ logRatingChange(rating, id){
 
        }
        this.wishItemCount.next(this.wishItemCount.value + 1);
+       this.presentToast(event)
     } 
   async toastPopover(ev) {
     const popover = await this.popoverController.create({
       component:Popover2Component,
       event: ev,
-      
-      // cssClass: 'pop-over-style',
+      cssClass: 'wishlist',
       translucent: true,
     });
     
@@ -350,8 +350,7 @@ logRatingChange(rating, id){
     const popover = await this.popoverController.create({
       component:Popover3Component,
       event: ev,
-      
-      // cssClass: 'pop-over-style',
+      cssClass: 'wishlist',
       translucent: true,
     });
     

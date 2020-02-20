@@ -144,6 +144,27 @@ input:checked {
 
 }
 
+#QAAnswer{
+  z-index: 99999999999999999999999;
+  position: absolute;
+  background-color: rgb(235, 222, 222);
+  font-weight: bold;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: 70vh;
+  overflow: auto;
+ }
+ #QAAnswers-answered{
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-weight: 600;
+   font-size: 15px;
+   color: #707070;
+   padding: 16px;
+   background-color: white;
+   // height: 60vh;
+ }
+
 
 input:checked {
     + .question {

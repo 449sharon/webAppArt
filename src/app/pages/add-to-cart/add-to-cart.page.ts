@@ -208,6 +208,7 @@ import * as firebase from 'firebase';
 import * as moment from 'moment'
 import { ConfirmationPage } from '../confirmation/confirmation.page';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -225,7 +226,7 @@ export class AddToCartPage implements OnInit {
   productCode;
   key;
   total = 0;
-  myCart = false;
+  myCart  = false;
   // cart = [];
   // myArr = [];
   amount: number;
@@ -239,9 +240,10 @@ export class AddToCartPage implements OnInit {
   myProduct: boolean;
   id
 
-  dataInTheCart = []
+  // dataInTheCart = []
 
   constructor(public modalController: ModalController,
+    private router: Router,
     public toastCtrl: ToastController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
@@ -250,7 +252,18 @@ export class AddToCartPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    // this.getProducts();
+    // if(this.cartProduct.length === 0){
+    //   console.log('cart is empty',this.cartProduct.length)
+    //   document.getElementById("empty").style.display = "block";
+    // }else{
+    //   console.log('there is somthing inthe cart',this.cartProduct.length)
+    //   document.getElementById("empty").style.display = "none";
+      
+    // }
+
     setTimeout(() => {
+     
       this.loader = false;
     }, 2000);
   }
@@ -266,7 +279,7 @@ export class AddToCartPage implements OnInit {
     // })
     this.getProducts();
     this.trackOrder();
-
+    // this.removeCartItem(event);
   }
 
   ionViewWillLeave() {
@@ -352,8 +365,19 @@ export class AddToCartPage implements OnInit {
   removeCartItem(id) {
     this.dbCart.doc(id).delete();
     console.log("I am deleting you", id);
+    // this.router.navigateByUrl('/add-to-cart');
+  
   }
 
+  async createAddToWishList() {
+    const modal = await this.modalController.create({
+      component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
   getTotal() {
     return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
   }
@@ -369,8 +393,12 @@ export class AddToCartPage implements OnInit {
       this.orderProd.push(this.cartProduct[j]);
     }
     if (this.cartProduct.length === 0) {
+
+      
       this.toastController('You cannot place order with empty Cart');
+      this.myCart=false
     } else {
+      this.myCart=true
       this.dbOrder.doc('Pitseng' + key).set({
         totalPrice: inside,
         date: moment().format('MMMM Do YYYY, h:mm:ss a'),
