@@ -38,7 +38,8 @@
   
           
           </div>
-          <div class="buttons" >
+          <div class="btn" >
+            <div class="buttons" >
               <div  >
               <ion-button color="primary" expand="block" (click)="signupUser(signupForm)" (click)="dismiss()" [disabled]="!signupForm.valid" >register </ion-button>
 
@@ -50,14 +51,16 @@
 
           </div>  <div class="social-section" >
 
-              <div> <ion-title>or</ion-title> </div>
+              <div> <ion-title>OR</ion-title> </div>
               <div class="social" >
-                <div> <img src="../../../assets/icons8-facebook-96.png" alt=""></div>
-                <div><img src="../../../assets/icons8-google-96.png" alt=""></div>
+                <!-- <div> <img src="../../../assets/icons8-facebook-96.png" alt=""></div> -->
+                <ion-button class="googleBtn" (click)="googleSignin()" > <img src="../../../assets/google-plus-logo.png" width="30px" height="30px" alt="" >&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Sign in with google</ion-button>
 
 
               </div>
             </div>
+          </div>
+          
 
           
           </form>

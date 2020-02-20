@@ -1,4 +1,8 @@
+<div class="loader-container" *ngIf="loader">
+  <div class="loader">Loading...</div>
+</div>
 <ion-content>
+
   <div class="main-content">
     <div class="content">
       <div class=" left-side">
@@ -42,7 +46,8 @@
 
             <ion-label color="primary" (click)="resetPassword()">forget Password?</ion-label>
           </div>
-          <div class="buttons" >
+          <div class="btn" >
+            <div  class="buttons" >
               <div  >
               <ion-button color="primary" expand="block" type="submit"  [disabled]="!validations_form.valid" (click)="dismiss()" >Login </ion-button>
 
@@ -55,14 +60,22 @@
           </div>
             <div class="social-section" >
 
-              <div> <ion-title>or</ion-title> </div>
+              <div> <ion-title>OR</ion-title> </div>
               <div class="social" >
+                <ion-button class="googleBtn" (click)="googleSignin()" > <img src="../../../assets/google-plus-logo.png" width="30px" height="30px" alt="" >&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Sign in with google</ion-button>
+                <!-- <div class="field" id="searchform">
+                  <ion-input type="tel" id="searchterm" max="100" maxlength="2" [(ngModel)]='editPercentage' placeholder="promote e.g(30%)"></ion-input>
+                  <button type="button" id="search" (click)="promoteItem()"  >promote</button>
+                </div> -->
+                <!-- <img src="../../../assets/google-plus-logo.png" width="30px" height="30px" alt="" > -->
                 <!-- <div> <img src="../../../assets/icons8-facebook-96.png" alt="" (click)="facebookSignIn()"></div> -->
-                <div><img src="../../../assets/icons8-google-96.png" alt=""  (click)="googleSignin()"></div>
+                <!-- <div class="buttons"><img src="../../../assets/google-plus--v1 (1).png" alt=""  (click)="googleSignin()"></div> -->
 
 
               </div>
             </div>
+          </div>
+          
 
           
           </form>
