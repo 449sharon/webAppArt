@@ -33,6 +33,7 @@ export class ViewProductDetailsPage implements OnInit {
   proSales = [];
    currentNumber: number = 1;
   Products = [];
+  specials = []
   myProduct = false;
   sizes = null;
   MyObj = [];
@@ -103,7 +104,14 @@ export class ViewProductDetailsPage implements OnInit {
   ngOnInit() {
 
   
-
+    firebase.firestore().collection("Sales").orderBy("percentage", "desc").limit(1).onSnapshot(snapshot => {
+      this.specials = []
+      snapshot.forEach(data => {
+        this.specials.push(data.data())
+        console.log("Percentage ", data.data());
+        
+      })
+    })
     
 
     this.db.collection('Sales').limit(4).onSnapshot(snapshot => {

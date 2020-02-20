@@ -73,6 +73,7 @@ SpecialScrin = []
       this.value = this.router.getCurrentNavigation().extras.state.parms;
     })
     this.getProducts(); 
+    this.getSpecials()
   }
   addToWishlist(prod, id) {
     console.log("Product Info ",prod);
@@ -152,6 +153,8 @@ getPictures(){
       }
     })
   }
+
+  
   
   async createViewProduct(event) {
     console.log('My details ', event);

@@ -111,9 +111,11 @@
                 <ion-title>THE PRODUCTS CAN BE DELIVERED OR COLLECTED</ion-title>
                 <div>
                   <ion-label color="danger" >
-                    collection and delivery around Soweto is FREE 
+                    Delivery around soweto is charged according to KM's.
+                    Colections can be done within 7 working days
+                    <!-- collection and delivery around Soweto is FREE. 
                     we start processing an order after payment. currently deposit 
-payment only that is acceptable.
+payment only that is acceptable. -->
                   </ion-label>
                   <div>
                     <p>
@@ -160,8 +162,8 @@ payment only that is acceptable.
      
     </div>
     <div class="cards-section" >
-      <div>
-        <ion-title padding class="specials-title">Up to 80% sale</ion-title>
+      <div *ngFor="let sd of specials">
+        <ion-title padding class="specials-title">Up to {{sd.percentage}}% sale</ion-title>
       </div>
       <div class="cards-container"  >
 

@@ -318,7 +318,10 @@ export class AddToCartPage implements OnInit {
           let obj = { obj: item.data(), id: item.id }
           this.cartProduct1.push(obj)
           obj = { obj: {}, id: "" }
+          
+          
         }
+        console.log("kkkkk ", obj);
       })
 
 
@@ -399,7 +402,7 @@ export class AddToCartPage implements OnInit {
     return await modal.present();
   }
   getTotal() {
-    return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
+    return this.cartProduct1.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
   }
   ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.
@@ -408,11 +411,11 @@ export class AddToCartPage implements OnInit {
     console.log('hereTtooo ', inside);
     this.orderProd = [];
     let key = Math.floor(Math.random() * 100000);
-    for (let j = 0; j < this.cartProduct.length; j++) {
-      console.log('Products ', this.cartProduct[j]);
-      this.orderProd.push(this.cartProduct[j]);
+    for (let j = 0; j < this.cartProduct1.length; j++) {
+      console.log('Products ', this.cartProduct1[j]);
+      this.orderProd.push(this.cartProduct1[j]);
     }
-    if (this.cartProduct.length === 0) {
+    if (this.cartProduct1.length === 0) {
 
       
       this.toastController('You cannot place order with empty Cart');
