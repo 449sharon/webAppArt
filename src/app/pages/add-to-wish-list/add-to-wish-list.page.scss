@@ -6,7 +6,20 @@
 .heading > ion-fab > ion-icon {
     font-size: xx-large;
 }
-
+.empty{
+  // position: absolute;
+  // // left: 0;
+  // top: ;
+  // right: 0;
+  // bottom: 0;
+  font-weight: 400;
+  font-size: 18px;
+  color:black;
+  margin-top: 100px;
+  margin-bottom:100px ;
+  text-align: center;
+  text-transform: none;
+}
 .main-content{
     // border: solid red;
     height: 100%;

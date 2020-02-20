@@ -96,9 +96,9 @@
           </div>
         </div>
         <div class="cartButton" >
-          <ion-button color="primary" expand="block" (click)="addToCart()"  >add to cart</ion-button>
+          <ion-button color="primary" expand="block" (click)="addToCart($event)"  >add to cart</ion-button>
           <br>
-          <ion-button color="tertiary" expand="block" (click)=" presentToast($event) " (click)="addWishlist()" >add to wishlist</ion-button>
+          <ion-button color="tertiary" expand="block"  (click)="addWishlist($event)" >add to wishlist</ion-button>
         </div>
         <div class="tabs">
           <div class="tab">

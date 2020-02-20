@@ -147,9 +147,10 @@
 
                 </div>
             
-                <img class="animated fadeInDown 2s" src="{{event.obj.image}}" width="222" height="268" (click)=" createViewProduct(event)" alt="">
-                <ion-label class="price">R &nbsp; {{event.obj.totalPrice}} &nbsp; <span class="span-tsrike" >R &nbsp; {{event.obj.price}}</span> </ion-label>
+                <img class="animated fadeInDown 2s" src="{{event.obj.image}}" width="225" height="268" (click)=" createViewProduct(event)" alt="">
                 <ion-label class="name"> {{event.obj.name}} </ion-label>
+                <ion-label class="price">R&nbsp;{{event.obj.totalPrice}} &nbsp; <span class="span-tsrike" >R&nbsp;{{event.obj.price}}</span> </ion-label>
+                
                 
                 <div class="stars">  
                   <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#FFD700"
@@ -159,7 +160,7 @@
               </div>
 
                 <div class="icon-wish" (click)="addToWishlist(event.obj, event.id)">
-                  <ion-icon name="heart" ></ion-icon>
+                  <!-- <ion-icon name="heart" ></ion-icon> -->
                 </div>
                 
               </div> 

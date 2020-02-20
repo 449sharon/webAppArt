@@ -8,13 +8,17 @@
         <div class="categorySection animated fadeInDown 2s "  >
           <div class=" categoryList">
             <div class="cards-container" >
-             
+              <div *ngIf="Products.length == 0" class="empty" >
+                <ion-title >The chosen category has no products currently.
+                  Check other categories to continue shopping
+                </ion-title>
+              </div>
               <div  class="products-section" *ngFor="let event of Products; let i=index;">
               <div *ngIf="Products" class="cards"   [ngClass]="{'active': active==i}" (click)="showList(i)" >
                 
                 <img class="animated fadeInDown 2s" (click)=" createViewProduct(event)" src="{{event.obj.image}}" alt="">
                 <ion-label class="name"> {{event.obj.name}} </ion-label>
-                <ion-label class="price">R &nbsp; {{event.obj.price}}</ion-label>
+                <ion-label class="price">R&nbsp;{{event.obj.price}}</ion-label>
                 
                 
                 <div class="stars">  
@@ -25,7 +29,7 @@
               </div>
 
                 <div class="icon-wish" (click)=" presentToast($event) " (click)="addToWishlist(event.obj, event.id)">
-                  <ion-icon name="heart" ></ion-icon>
+                  <!-- <ion-icon name="heart" ></ion-icon> -->
                 </div>
                 
               </div> 

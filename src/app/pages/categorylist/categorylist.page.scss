@@ -25,6 +25,18 @@
   
   }
   
+  .empty{
+    // position: absolute;
+    // // left: 0;
+    // top: ;
+    // right: 0;
+    // bottom: 0;
+    font-weight: 600;
+    font-size: 18px;
+    color:black;
+    margin-top: 200px;
+    margin-bottom:200px ;
+  }
   ion-content{
       
   }
@@ -73,7 +85,7 @@
       flex-wrap: wrap;
     }
     .cards {
-      width: 234px;
+      width: 245px;
       height: 367px;
       // border:  solid rgb(10, 66, 250);
       display: flex;
@@ -94,7 +106,7 @@
      
   }
     .cards > img {
-      width: 222px;
+      width: 225px;
       height: 268px;
       border-radius: 6px;
       border: 0.5px solid #7070703a;
@@ -383,15 +395,7 @@
         border: 0.5px solid #70707042;
         &:hover {
           box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-      // z-index: 2;
-      // -webkit-transition: all 200ms ease-in;
-      // -webkit-transform: scale(0.9);
-      // -ms-transition: all 200ms ease-in;
-      // -ms-transform: scale(0.9);   
-      // -moz-transition: all 200ms ease-in;
-      // -moz-transform: scale(0.9);
-      // transition: all 200ms ease-in;
-      // transform: scale(0.9);
+ 
         }
       }
     

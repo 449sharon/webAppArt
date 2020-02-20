@@ -61,7 +61,7 @@ export class AddToWishListPage implements OnInit {
   productCode: any;
   price: number;
   productCount=0;
-  myCart: boolean;
+  myCart = false;
   constructor(public modalController: ModalController,
     public toastController : ToastController,
     private cartService: CartServiceService,
@@ -105,11 +105,14 @@ export class AddToWishListPage implements OnInit {
       let obj = {obj : {}, id : ""}
       data.forEach(item => {
         if(item.data().customerUid == firebase.auth().currentUser.uid){
+          this.myCart = true
           obj.obj = item.data()
           obj.id = item.id
           this.cart.push(obj)
           obj = {obj : {}, id : ""}
           console.log("my wishlist products", item.data());
+        }else  {
+          this.myCart = false
         }
       })
     })
