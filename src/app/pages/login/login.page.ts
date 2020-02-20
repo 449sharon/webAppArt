@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import Swal from 'sweetalert2';
 
@@ -16,26 +16,27 @@ import { ResetPasswordPage } from '../reset-password/reset-password.page';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  loader: boolean = true;
+  
   validations_form: FormGroup;
   errorMessage: string = '';
   
- 
+
   constructor(
  
     private navCtrl: NavController,
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public alertController: AlertController
  
   ) { }
+  loader: boolean = true;
   ionViewWillEnter() {
     setTimeout(() => {
       this.loader = false;
     }, 2000);
   }
-
   ngOnInit() {
  
     this.validations_form = this.formBuilder.group({
@@ -75,6 +76,7 @@ export class LoginPage implements OnInit {
     });
     // this.loader();
    this.success()
+  // this.loader 
   }
   facebookSignIn(){
     
@@ -154,18 +156,27 @@ export class LoginPage implements OnInit {
       'dismissed': true
     });
   }
-  success(){
-    Swal.fire({
-      icon: 'success',
-      title: 'Logged in successfully ',
-      showClass: {
-        popup: 'animated fadeInDown faster'
-      },
-      hideClass: {
-        popup: 'animated fadeOutUp faster'
-      },
-      showConfirmButton: false,
-      timer: 500
-    })
-   }
+  async success(){
+    const alert = await this.alertController.create({
+      header: 'Login',
+      subHeader: 'Success',
+      message: '',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+    
+      // const alert = await this.alertController.create({
+      //   header: '',
+      //   subHeader: '',
+      //   message: 'logging.....',
+       
+      // });
+  
+      // await alert.present();
+      // setTimeout(() => {
+      // }, 500)
+    }
+    
+   
 }
