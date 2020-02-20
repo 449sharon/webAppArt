@@ -15,12 +15,12 @@
     <div class="cartTitle">
       <ion-title>Cart</ion-title>
     </div>
-    <div *ngIf="cartProduct.length == 0" class="empty" >
+    <div *ngIf="cartProduct1.length == 0" class="empty" >
       <ion-title >
         Your cart list is empty, add some items.
       </ion-title>
     </div>
-    <div *ngFor="let p of cartProduct; let j of index" class="ng-for-goes-here">
+    <div *ngFor="let p of cartProduct1; let j of index" class="ng-for-goes-here">
       
     
 
@@ -94,7 +94,7 @@
 
     </div> -->
     <div class="cartButton">
-      <ion-button color="primary" expand="block"  (click)="placeOrder()">Place order
+      <ion-button color="primary" expand="block"  (click)="placeOrder()" [disabled]="cartProduct1.length  == 0">Place order
         {{ getTotal() | currency: '&#82;'}} </ion-button>
     </div>
     <!-- <div class="empty-cart" *ngIf="!myCart"  >

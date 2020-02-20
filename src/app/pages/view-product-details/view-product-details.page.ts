@@ -67,6 +67,7 @@ export class ViewProductDetailsPage implements OnInit {
     price:0,
     desc: null,
     items:'',
+    checked:false,
     sizes: [],
     quantity  : 1,
     ratings : ''
@@ -154,8 +155,10 @@ export class ViewProductDetailsPage implements OnInit {
   this.Mydata.desc = this.data.data.desc
   this.Mydata.items = this.data.data.items
   this.Mydata.sizes = this.data.data.sizes;
+  this.Mydata.checked = this.data.data.checked
   this.Mydata.quantity  = this.data.data.quantity
   this.Mydata.ratings  = this.data.data.ratings
+
 
 console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
 
@@ -324,8 +327,8 @@ logRatingChange(rating, id){
           price:this.Mydata.price,
           quantity: this.Mydata.quantity,
           image:this.Mydata.image,
-          amount:this.Mydata.price * this.Mydata.quantity
-      
+          amount:this.Mydata.price * this.Mydata.quantity,
+          checked : this.Mydata.checked 
       
         })
 

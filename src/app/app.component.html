@@ -2,8 +2,8 @@
   <ion-header>
     <ion-toolbar color="primary">
       <ion-title>
-        <div class="title">
-          <div class="text" padding>Special Up to 75%</div>
+        <div class="title" *ngFor="let sp of specials">
+          <div class="text" padding>Special Up to {{sp.percentage}}%</div>
           <div padding>
             <ion-button fill="outline" color="light" (click)="Allspecials()"> Shop Now </ion-button>
           </div>

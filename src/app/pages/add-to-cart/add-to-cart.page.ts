@@ -234,6 +234,7 @@ export class AddToCartPage implements OnInit {
   dbOrder = firebase.firestore().collection('Order');
   dbUser = firebase.firestore().collection('UserProfile');
   cartProduct = [];
+  cartProduct1 = []
   orderProd = [];
   loader: boolean = true;
   tempIndex: any;
@@ -270,9 +271,13 @@ export class AddToCartPage implements OnInit {
 
   ngOnInit() {
 
+
+
     // firebase.firestore().collection("Cart").onSnapshot(data => {
+    //   this.cartProduct = []
     //   data.forEach(item => {
-    //     this.dataInTheCart.push(item.data())
+    //     let obj = { obj: item.data(), id: item.id }
+    //     this.cartProduct.push(item.data())
     //     console.log("dataInTheCart ", item.data());
         
     //   })
@@ -303,21 +308,34 @@ export class AddToCartPage implements OnInit {
   }
 
   getProducts() {
-    firebase.firestore().collection("Cart").where("customerUid", "==", firebase.auth().currentUser.uid).onSnapshot(snapshot => {
-      if( this.cartProduct = []){
-        this.myCart = true;
-    snapshot.forEach(doc => {
-      let obj = { obj: doc.data(), id: doc.id }
-        this.cartProduct.push(obj)
-       console.log("my products", obj)
-      });
-      }else{
-        this.myCart = false;
-      }
+
+    firebase.firestore().collection("Cart").onSnapshot(snapshot => {
+
+      this.cartProduct1 = []
+      let obj = { obj: {}, id: "" }
+      snapshot.forEach(item => {
+        if(item.data().customerUid ==  firebase.auth().currentUser.uid){
+          let obj = { obj: item.data(), id: item.id }
+          this.cartProduct1.push(obj)
+          obj = { obj: {}, id: "" }
+        }
+      })
+
+
+    //   this.cartProduct = []
+    // snapshot.forEach(doc => {
+    //   let obj = { obj: doc.data(), id: doc.id }
+    //     this.cartProduct.push(obj)
+    //    console.log("my products", obj)
+    //   });
+      
      
   
     });
+
   }
+
+
   plus(prod, index) {
     let id = prod.id
     this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
@@ -325,6 +343,8 @@ export class AddToCartPage implements OnInit {
     })
 
   }
+
+
   minus(prod, id) {
     // let id = prod.id
     if (prod.obj.quantity === 1) {

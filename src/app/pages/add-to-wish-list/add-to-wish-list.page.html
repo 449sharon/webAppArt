@@ -21,9 +21,10 @@
         Your wishlist is empty, add some items.
       </ion-title>
     </div>
-    <div class="ng-for-goes-here" *ngFor="let p of cart" >
+    <div class="ng-for-goes-here" *ngFor="let p of cart; let j of index" >
       <div class="checkBox-add-to-cart" >
-        <ion-checkbox color="primary"  slot="start" (ionChange)="CheckBox($event, p.id, p.obj.checked)"></ion-checkbox>
+        <ion-button (click)="CheckBoxes(p, p.id, p.obj.checked)">Add to cart</ion-button>
+        <!-- <ion-checkbox color="primary"  slot="start" (ionChange)="CheckBoxes(p, p.id, p.obj.checked)"></ion-checkbox> -->
       </div>
     <div class="cart-item-section" >
 
@@ -51,8 +52,8 @@
               <p no-padding>Qty: {{ p.obj.quantity }}</p>
             </div>
             <div>
-              <ion-icon name="add-circle" color="success" (click)="plus( p.id)"></ion-icon>
-              <ion-icon name="remove-circle" color="danger" (click)="minus( p.id)"></ion-icon>
+              <ion-icon name="remove-circle" color="danger" (click)="minus(p, j.id)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="plus(p, j.id)"></ion-icon>
             </div>
 
           </div>
@@ -75,7 +76,7 @@
     </p>
   </div>
     <div class="cartButton" >
-      <ion-button color="primary" expand="block" (click)="addToCart()">add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
+      <ion-button color="primary" expand="block" (click)="addToCart()" [disabled]="cart.length  == 0">add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
     </div>
   </div>
   <div class="empty-cart" *ngIf="!myCart"  >

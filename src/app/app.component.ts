@@ -36,7 +36,7 @@ export class AppComponent {
  CartNumber = 0;
  CartNumber1 = 0
  active: string = ''
-
+ specials = []
  
 
 //  cartItemCounts = []
@@ -76,6 +76,7 @@ export class AppComponent {
    
   }
 
+  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -86,30 +87,42 @@ export class AppComponent {
   ngOnInit(){
 
     firebase.firestore().collection("Cart").onSnapshot(data => {
+
+      
       this.CartNumber = 0;
       data.forEach(item => {
-        this.CartNumber += 1;
+
+        if(item.data().customerUid == firebase.auth().currentUser.uid){
+          this.CartNumber += 1;
+        }
+       
+      })
+    })
+
+    firebase.firestore().collection("Sales").orderBy("percentage", "desc").limit(1).onSnapshot(snapshot => {
+      this.specials = []
+      snapshot.forEach(data => {
+        this.specials.push(data.data())
+        console.log("Percentage ", data.data());
+        
       })
     })
 
     firebase.firestore().collection("WishList").onSnapshot(data => {
       this.CartNumber1 = 0;
       data.forEach(item => {
-        this.CartNumber1 += 1;
+
+        if(item.data().customerUid == firebase.auth().currentUser.uid){
+          this.CartNumber1 += 1;
+        }
+       
       })
     })
 
   }
 
-
   Allspecials(){
-    this.router.navigateByUrl('/specials');
-    // let navigationExtras: NavigationExtras = {
-    //   state: {
-    //     parms: i
-    //   }
-    // }
-    // this.router.navigate(['categorylist'],navigationExtras)   
+    this.router.navigateByUrl('/specials');  
   }
   
   async createAddToWishList() {

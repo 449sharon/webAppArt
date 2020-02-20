@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Popover2Component } from 'src/app/components/popover2/popover2.component';
 
+
 @Component({
   selector: 'app-add-to-wish-list',
   templateUrl: './add-to-wish-list.page.html',
@@ -86,19 +87,49 @@ export class AddToWishListPage implements OnInit {
 
 /*ADDING MY ITEMS FROM WISHLIST TO THE CART*/
 
-  CheckBox(event, id, value){
+   async CheckBoxes(obj, id, value){
+
+    console.log(event," dddd ", obj.obj);
+   
+   
+ 
+    
+    firebase.firestore().collection("Cart").doc().set(
+      {
+      date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+      customerUid:firebase.auth().currentUser.uid,
+      name:obj.obj.name,
+      desc:obj.obj.desc,
+      status:'received',
+      size: this.sizes,
+      price:obj.obj.price,
+      quantity: obj.obj.quantity,
+      image:obj.obj.image,
+      amount:obj.obj.price * obj.obj.quantity,
+      checked : obj.obj.checked 
+    })
+   
+    firebase.firestore().collection("WishList").doc(id).delete()
+      const alert = await this.alertCtrl.create({
+        header: '',
+        subHeader: '',
+        message: 'Item added to Cart',
+        buttons: ['Ok']
+      });
+  
+      await alert.present();
+
+ 
+  
 
 
-    console.log(event," dddd ", value);
-    let checked : boolean = !value;
+   
 
-    firebase.firestore().collection("WishList").doc(id).set({checked : checked}, {merge : true})
+
    
   }
 
   getProducts() {
-
-    
 
     firebase.firestore().collection("WishList").onSnapshot(data => {
       this.cart = []
@@ -117,42 +148,10 @@ export class AddToWishListPage implements OnInit {
       })
     })
     
-    // this.dbWishlist.where("customerUid","==",firebase.auth().currentUser.uid).onSnapshot(data => {
-      
-    //   this.cart = []
-    //   data.forEach(item => {
-    //     let obj = {
-    //       obj : item.data(), 
-    //       id : item.id
-    //     }
-    //     this.cart.push(obj)    
-    //   })
-    // })
-
-//     console.log("mylist....");
-    
-//       this.dbWishlist.onSnapshot((res)=>{
-//       this.cart = [];
-//       let obj = {obj : {}, id : ""}
-//       res.forEach((doc)=>{
-
-//         obj.obj = doc.data()
-//         obj.id = doc.id
-
-//         this.cart.push(obj);
-//         obj = {obj : {}, id : ""}
-//         let i = this.cart.length
-//         this.cart[i -1]['productID'] 
-// console.log("vvv", this.cart);
-//       })
-//     })
   }
 
   
   addToCart() {
-    
- 
-      
 
       firebase.firestore().collection("WishList").onSnapshot(data => {
 
@@ -166,10 +165,6 @@ export class AddToWishListPage implements OnInit {
           }
         })
        })
-
-   
-
-
 
   }
 
@@ -199,15 +194,15 @@ export class AddToWishListPage implements OnInit {
     });
   }
 
-  plus(prod) {
+  plus(prod, index) {
     let id = prod.id
     this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
 
     })
 
   }
-  minus(prod) {
-    let id = prod.id
+  minus(prod, id) {
+    // let id = prod.id
     if (prod.obj.quantity === 1) {
     } else {
       this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
