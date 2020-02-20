@@ -15,10 +15,14 @@
     <div class="cartTitle">
       <ion-title>Cart</ion-title>
     </div>
-
-    <div *ngFor="let p of cartProduct; let j of index" class="ng-for-goes-here">
-
-
+    <div *ngIf="cartProduct1.length == 0" class="empty" >
+      <ion-title >
+        Your cart list is empty, add some items.
+      </ion-title>
+    </div>
+    <div *ngFor="let p of cartProduct1; let j of index" class="ng-for-goes-here">
+      
+    
 
       <div class="cart-item-section">
     
@@ -28,7 +32,7 @@
         </div>
         <div class="prodactDetails-section">
           <div class="name">
-            <ion-label>{{ p.obj.product_name }}</ion-label>
+            <ion-label>{{ p.obj.name }}</ion-label>
           </div>
           <div class="price">
             <ion-label>{{ p.obj.price | currency:'R':'symbol' }} </ion-label>
@@ -46,8 +50,8 @@
                 <p no-padding>Qty: {{ p.obj.quantity }}</p>
               </div>
               <div>
-                <ion-icon name="remove-circle" color="danger" (click)="minus(p, j)"></ion-icon>
-                <ion-icon name="add-circle" color="success" (click)="plus(p, j)"></ion-icon>
+                <ion-icon name="remove-circle" color="danger" (click)="minus(p, j.id)"></ion-icon>
+                <ion-icon name="add-circle" color="success" (click)="plus(p, j.id)"></ion-icon>
               </div>
 
             </div>
@@ -81,14 +85,21 @@
       </ion-segment>
     </div>
 
-    
+    <!-- <div id="cart-is-empty" >
+      <ion-label>
+        Can not place an order while the cart is empty
+        please add some items
+
+      </ion-label>
+
+    </div> -->
     <div class="cartButton">
-      <ion-button color="primary" expand="block" (click)="dismiss()" (click)="placeOrder()">Place order
+      <ion-button color="primary" expand="block"  (click)="placeOrder()" [disabled]="cartProduct1.length  == 0">Place order
         {{ getTotal() | currency: '&#82;'}} </ion-button>
     </div>
-    <div class="empty-cart" *ngIf="!myCart"  >
+    <!-- <div class="empty-cart" *ngIf="!myCart"  >
       <p>add something to your cart is empty</p>
-    </div>
+    </div> -->
   </div>
 
   

@@ -102,6 +102,7 @@
   }
   .text-field{
       padding: 16px;
+    //   border: solid red;
   
   }
   .text-field > ion-item{
@@ -135,17 +136,25 @@
   .buttons{
       display: flex;
       flex-direction: row;
-      width: 80%;
-      // border: solid blue;
+      width: 100%;
+    //   border: solid blue;
       justify-content: center;
-      margin: 0 auto;
-      justify-content: space-between;
-      justify-content:space-around;
+    //  padding-left: 16px;
+    //   justify-content: space-between;
+    //   justify-content:space-around;
       // padding-top: 8px;
   
   }
-  .buttons > ion-button {
+  .buttons > div {
       width: 50%;
+    //   border: solid fuchsia;
+      margin: 0;
+    //   padding-left: 8px;
+    //   padding-right: 88px;
+  }
+
+  .buttons > div > ion-button {
+width: 95%;
   }
   .social > div{
   
@@ -154,6 +163,11 @@
       border-radius: 50%;
       background-color: rgba(255, 255, 255, 0);
       margin:  0 auto;
+    //   border: solid darkcyan;
+  }
+  .btn{
+      width: 100%;
+      padding: 16px;
   }
   .social {
       display: flex;
@@ -161,10 +175,10 @@
       justify-content: center;
       justify-content: space-around;
       justify-content: space-between;
-      width: 60%;
+      width: 100%;
       margin: 0 auto;
       align-items: center;
-      // border: solid red;
+    //   border: solid rgb(225, 0, 255);
       align-items: center;
      
       
@@ -175,21 +189,28 @@
       height: 100%;
   }
   .social-section{
-      width: 80%;
+      width: 100%;
       // border: solid blue;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
+      margin: 0 auto;
   }
   .social-section > div > ion-title{
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 200;
+      font-weight: 400;
       color: #707070;
       font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
   
   }
   .error-message{
       color: red;
       font-size: medium;
+  }
+  .googleBtn{
+      width: 100%;
   }
   

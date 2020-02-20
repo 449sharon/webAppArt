@@ -258,13 +258,30 @@ adminInfo(){
   async createViewProduct(event) {
     console.log('My details ', event);
     
-    this.data.data = event
-    const modal = await this.modalController.create({
-      component:ViewProductDetailsPage,
-      cssClass: 'my-custom-modal-css',
-      componentProps: event
-    });
-    return await modal.present();
+    
+
+    this.data.data.image  = event.obj.image
+    this.data.data.categories  = event.obj.categories
+    this.data.data.lastcreated   = event.obj.lastcreated
+    this.data.data.name  = event.obj.name
+    this.data.data.productCode = event.obj.productCode
+    this.data.data.price  = event.obj.price
+    this.data.data.desc   = event.obj.desc
+    this.data.data.items  = event.obj.items
+    this.data.data.sizes  = event.obj.sizes
+    this.data.data.quantity  = event.obj.quantity
+    this.data.data.ratings  = event.obj.ratings
+   
+    this.router.navigateByUrl('view-product-details');
+
+    
+    // this.data.data = event
+    // const modal = await this.modalController.create({
+    //   component:ViewProductDetailsPage,
+    //   cssClass: 'my-custom-modal-css',
+    //   componentProps: event
+    // });
+    // return await modal.present();
   }
   async createAddToWishList() {
     const modal = await this.modalController.create({

@@ -22,6 +22,7 @@ import { CartServiceService } from './services/cart-service.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
    cartItemCount = new BehaviorSubject(0);
  wishItemCount = new BehaviorSubject(0);
   loader: boolean = true;
@@ -32,10 +33,15 @@ export class AppComponent {
     message:''
  }
 
+ CartNumber = 0;
+ CartNumber1 = 0
+ active: string = ''
+ specials = []
+ 
+
 //  cartItemCounts = []
 
-  
- active: boolean;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -50,10 +56,10 @@ export class AppComponent {
 // firebase.auth().onAuthStateChanged(user => {
 //   if(user){
 //     firebase.firestore().collection("Cart").onSnapshot(data => {
-//       this.cartItemCounts = []
+//       this.cartItemCount = []
 //       data.forEach(item => {
-//         if(item.data().uid === firebase.auth().currentUser.uid){
-//           this.cartItemCounts.push(item.data())
+//         if(item.data().customerUid === firebase.auth().currentUser.uid){
+//           this.cartItemCount.push(item.data())
 //         }
 //       })
 //     })
@@ -67,8 +73,10 @@ export class AppComponent {
     // this.cartItemCount.next(this.cartItemCount.value + 1);
     this.cartItemCount = this.cartService.getCartItemCount();
     this.wishItemCount = this.cartService.getWishItemCount();
+   
   }
 
+  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -76,14 +84,45 @@ export class AppComponent {
     });
   }
 
+  ngOnInit(){
+
+    firebase.firestore().collection("Cart").onSnapshot(data => {
+
+      
+      this.CartNumber = 0;
+      data.forEach(item => {
+
+        if(item.data().customerUid == firebase.auth().currentUser.uid){
+          this.CartNumber += 1;
+        }
+       
+      })
+    })
+
+    firebase.firestore().collection("Sales").orderBy("percentage", "desc").limit(1).onSnapshot(snapshot => {
+      this.specials = []
+      snapshot.forEach(data => {
+        this.specials.push(data.data())
+        console.log("Percentage ", data.data());
+        
+      })
+    })
+
+    firebase.firestore().collection("WishList").onSnapshot(data => {
+      this.CartNumber1 = 0;
+      data.forEach(item => {
+
+        if(item.data().customerUid == firebase.auth().currentUser.uid){
+          this.CartNumber1 += 1;
+        }
+       
+      })
+    })
+
+  }
+
   Allspecials(){
-    this.router.navigateByUrl('/specials');
-    // let navigationExtras: NavigationExtras = {
-    //   state: {
-    //     parms: i
-    //   }
-    // }
-    // this.router.navigate(['categorylist'],navigationExtras)   
+    this.router.navigateByUrl('/specials');  
   }
   
   async createAddToWishList() {
@@ -99,7 +138,9 @@ export class AppComponent {
     setTimeout(() => {
       this.loader = false;
     }, 2000);
+    
   }
+
 
   async createAddToCart() {
     const modal = await this.modalController.create({
@@ -110,6 +151,8 @@ export class AppComponent {
     });
     return await modal.present();
   }
+
+ updateActive = name => this.active = name;
 
   async createProfile() {
     const modal = await this.modalController.create({
@@ -214,132 +257,30 @@ export class AppComponent {
 
 
 
-  activeTab: string = ''
-  makeBold = "";
 
-  toggleTab(selectedTab) {
-    this.activeTab = selectedTab;
-    // console.log(this.activeTab);
-    // this.menuDrawer = 1;
-    // this.toggleSideMenu()
-    this.makeBold = "makeBold";
-    // console.log(this.makeBold);
-    if (selectedTab === "FAQs") {
-      document.getElementById("one").style.fontWeight = "bold"
-      document.getElementById("one").style.borderBottom = "2px solid yellow"
-      document.getElementById("two").style.fontWeight = "500"
-      document.getElementById("two").style.borderBottom = "0px solid yellow"
-      document.getElementById("three").style.fontWeight = "500"
-      document.getElementById("three").style.borderBottom = "0px solid yellow"
-      document.getElementById("four").style.fontWeight = "500"
-      document.getElementById("four").style.borderBottom = "0px solid yellow"
-      document.getElementById("five").style.fontWeight = "500"
-      document.getElementById("five").style.borderBottom = "0px solid yellow"
 
-      document.getElementById("oneS").style.fontWeight = "bold"
-      document.getElementById("oneS").style.background = "rgb(0, 8, 98)"
-      document.getElementById("twoS").style.fontWeight = "500"
-      document.getElementById("twoS").style.background = "transparent"
-      document.getElementById("threeS").style.fontWeight = "500"
-      document.getElementById("threeS").style.background = "transparent"
-      document.getElementById("fourS").style.fontWeight = "500"
-      document.getElementById("fourS").style.background = "transparent"
-      document.getElementById("fiveS").style.fontWeight = "500"
-      document.getElementById("fiveS").style.background = "transparent"
+
+  ShowActive(activeButton) {
+    console.log('this is active')
+    this.active = activeButton;
+
+    if (activeButton === "home") {
+      document.getElementById("home").style.textDecoration = "underline";
+      // document.getElementById("home").style.textDecorationColor = "#B73225";
+      document.getElementById("home").style.lightingColor = "#B73225";
+      document.getElementById("about").style.textDecoration = "transparent";
+      document.getElementById("about").style.textDecoration = "transparent";
+      
+      // text-decoration: underline;
     }
-    else if (selectedTab === "Terms and Privacy Policy") {
-      document.getElementById("one").style.fontWeight = "500"
-      document.getElementById("one").style.borderBottom = "0px solid yellow"
-      document.getElementById("two").style.fontWeight = "bold"
-      document.getElementById("two").style.borderBottom = "2px solid yellow"
-      document.getElementById("three").style.fontWeight = "500"
-      document.getElementById("three").style.borderBottom = "0px solid yellow"
-      document.getElementById("four").style.fontWeight = "500"
-      document.getElementById("four").style.borderBottom = "0px solid yellow"
-      document.getElementById("five").style.fontWeight = "500"
-      document.getElementById("five").style.borderBottom = "0px solid yellow"
-
-      document.getElementById("oneS").style.fontWeight = "500"
-      document.getElementById("oneS").style.background = "transparent"
-      document.getElementById("twoS").style.fontWeight = "500"
-      document.getElementById("twoS").style.background = "rgb(0, 8, 98)"
-      document.getElementById("threeS").style.fontWeight = "500"
-      document.getElementById("threeS").style.background = "transparent"
-      document.getElementById("fourS").style.fontWeight = "500"
-      document.getElementById("fourS").style.background = "transparent"
-      document.getElementById("fiveS").style.fontWeight = "500"
-      document.getElementById("fiveS").style.background = "transparent"
-    }
-    else if (selectedTab === "Payment Process") {
-      document.getElementById("one").style.fontWeight = "500"
-      document.getElementById("one").style.borderBottom = "0px solid yellow"
-      document.getElementById("two").style.fontWeight = "500"
-      document.getElementById("two").style.borderBottom = "0px solid yellow"
-      document.getElementById("three").style.fontWeight = "bold"
-      document.getElementById("three").style.borderBottom = "2px solid yellow"
-      document.getElementById("four").style.fontWeight = "500"
-      document.getElementById("four").style.borderBottom = "0px solid yellow"
-      document.getElementById("five").style.fontWeight = "500"
-      document.getElementById("five").style.borderBottom = "0px solid yellow"
-
-      document.getElementById("oneS").style.fontWeight = "bold"
-      document.getElementById("oneS").style.background = "rgb(0, 8, 98)"
-      document.getElementById("twoS").style.fontWeight = "500"
-      document.getElementById("twoS").style.background = "transparent"
-      document.getElementById("threeS").style.fontWeight = "500"
-      document.getElementById("threeS").style.background = "transparent"
-      document.getElementById("fourS").style.fontWeight = "500"
-      document.getElementById("fourS").style.background = "transparent"
-      document.getElementById("fiveS").style.fontWeight = "500"
-      document.getElementById("fiveS").style.background = "transparent"
-    }
-    else if (selectedTab === "About Company") {
-      document.getElementById("one").style.fontWeight = "500"
-      document.getElementById("one").style.borderBottom = "0px solid yellow"
-      document.getElementById("two").style.fontWeight = "500"
-      document.getElementById("two").style.borderBottom = "0px solid yellow"
-      document.getElementById("three").style.fontWeight = "500"
-      document.getElementById("three").style.borderBottom = "0px solid yellow"
-      document.getElementById("four").style.fontWeight = "bold"
-      document.getElementById("four").style.borderBottom = "2px solid yellow"
-      document.getElementById("five").style.fontWeight = "500"
-      document.getElementById("five").style.borderBottom = "0px solid yellow"
-
-      document.getElementById("oneS").style.fontWeight = "bold"
-      document.getElementById("oneS").style.background = "rgb(0, 8, 98)"
-      document.getElementById("twoS").style.fontWeight = "500"
-      document.getElementById("twoS").style.background = "transparent"
-      document.getElementById("threeS").style.fontWeight = "500"
-      document.getElementById("threeS").style.background = "transparent"
-      document.getElementById("fourS").style.fontWeight = "500"
-      document.getElementById("fourS").style.background = "transparent"
-      document.getElementById("fiveS").style.fontWeight = "500"
-      document.getElementById("fiveS").style.background = "transparent"
-    }
-    else if (selectedTab === "Disclaimer") {
-      document.getElementById("one").style.fontWeight = "500"
-      document.getElementById("one").style.borderBottom = "0px solid yellow"
-      document.getElementById("two").style.fontWeight = "500"
-      document.getElementById("two").style.borderBottom = "0px solid yellow"
-      document.getElementById("three").style.fontWeight = "500"
-      document.getElementById("three").style.borderBottom = "0px solid yellow"
-      document.getElementById("four").style.fontWeight = "500"
-      document.getElementById("four").style.borderBottom = "0px solid yellow"
-      document.getElementById("five").style.fontWeight = "bold"
-      document.getElementById("five").style.borderBottom = "2px solid yellow"
-
-      document.getElementById("oneS").style.fontWeight = "bold"
-      document.getElementById("oneS").style.background = "rgb(0, 8, 98)"
-      document.getElementById("twoS").style.fontWeight = "500"
-      document.getElementById("twoS").style.background = "transparent"
-      document.getElementById("threeS").style.fontWeight = "500"
-      document.getElementById("threeS").style.background = "transparent"
-      document.getElementById("fourS").style.fontWeight = "500"
-      document.getElementById("fourS").style.background = "transparent"
-      document.getElementById("fiveS").style.fontWeight = "500"
-      document.getElementById("fiveS").style.background = "transparent"
-    }
+    else if (activeButton === "about") {
 
 
+      document.getElementById("home").style.textDecoration = "transparent";
+      document.getElementById("about").style.textDecoration = "underline";
+  
+ 
+     }
+    
   }
 }

@@ -3,7 +3,7 @@
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
   </div>
-  <div class=" ">
+  
     <div class="content-container">
       <!-- starts landing page content -->
       <div class="content-section">
@@ -50,8 +50,8 @@
 
             </div>
             <div class="description-text">
-              <div>
-                <ion-title>With us you get to save!</ion-title>
+              <div  class="save-heading ion-text-wrap" >
+                <ion-title class="ion-text-wrap" >With us you get to save!</ion-title>
               </div>
               <div>
                 <p > With us every day is a special day for saving! you can never go wrong when you scroll down a litle bit and see what we have instore for you today.
@@ -87,7 +87,7 @@
                     <ion-icon name="star-outline" color="warning"></ion-icon>
                   </div>
                   <div class="icon-wish" (click)="addToWishlist(event.obj, event.id)"  [ngClass]="{'active': active==i}" >
-                    <ion-icon name="heart"  ></ion-icon>
+                    <!-- <ion-icon name="heart"  ></ion-icon> -->
                   </div>
                
                 </div>
@@ -109,17 +109,18 @@
         </div>
       </div>
     </div>
-  </div>
-  
-    <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
+    
+
+
+   <div id="IDofYourDivYouWantToGoTo" class="contactUs-section">  
     <div>
       <ion-title></ion-title>
     </div>
     <div class="contactus">
       <div class="contactUs-labels">
         <div >
-          <ion-label class="heading2">Find Us</ion-label>
-          <div *ngFor = "let admin of Info" class="callUs-labels">
+           <ion-label class="heading2">Find Us</ion-label>
+          <div style="display: flex; flex-direction: column;" *ngFor = "let admin of Info" class="callUs-labels">
             <div>
               <span>
                 <ion-icon padding name="call"></ion-icon>
@@ -127,13 +128,13 @@
               <span>
                 <ion-label>{{admin.phoneNumber}} </ion-label>
               </span>
-            </div>
+            </div> 
             <div>
               <span>
                 <ion-icon padding name="mail"></ion-icon>
               </span>
               <span>
-                <ion-label>{{admin.email}}</ion-label>
+                <ion-label class="ion-text-wrap">{{admin.email}}</ion-label>
               </span>
               <div class="social-section" >
 
@@ -146,14 +147,6 @@
               </div>
 
             </div>
-            <!-- <div>
-              <span>
-                <ion-icon padding name="pin"></ion-icon>
-              </span>
-              <span>
-                <ion-label>{{admin.address}}</ion-label>
-              </span>
-            </div> -->
           </div>
         </div>
         <div >
@@ -165,7 +158,16 @@
                 <ion-icon padding name="pin"></ion-icon>
               </span>
               <span>
-                <ion-label  text-wrap >{{admin.address}}</ion-label>
+                <ion-label class=" ion-text-wrap" >{{admin.address}}</ion-label>
+              </span> <br>
+              <span>
+                <ion-label class="address ion-text-wrap" >{{admin.streetAddress}}</ion-label>
+              </span><br> 
+              <span>
+                <ion-label class=" address ion-text-wrap" >{{admin.city}}</ion-label>
+              </span><br>
+              <span>
+                <ion-label class="address ion-text-wrap" >{{admin.code}}</ion-label>
               </span>
             </div>
           </div>
@@ -176,9 +178,7 @@
         
     
             <div>
-              <!-- <span>
-                <ion-icon padding name="pin"></ion-icon>
-              </span> -->
+     
               <span (click)="createFaqs()">
                 <li>
                     <ion-label>FAQ's</ion-label>
@@ -200,37 +200,7 @@
             </div>
           </div>
         </div>
-        <!-- <div class="callUs-labels">
-          <ion-label class="heading">Quick Links</ion-label>
-          <div class="messageInputs">
-                  <ion-item color="light">
-                    <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
-                  </ion-item>
-                  <ion-item>
-                    <ion-input type="email"   [(ngModel)]="message.email"  placeholder="Email address" required>
-                    </ion-input>
-                  </ion-item>
-                  <div>
-                    <ion-list>
-                      <ion-item>
-                        <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message" required></ion-textarea>
-                      </ion-item>
-                    </ion-list>
-                  </div>
-                  <div>
-                    <ion-button  (click)="addMessage()">Submit</ion-button>
-                  </div>
-               
-              </div> 
-              <div >
-                <span>
-                  <ion-icon padding name="pin"></ion-icon>
-                </span>
-                <span>
-                  <ion-label *ngFor = "let admin of Info">{{admin.address}}</ion-label>
-                </span>
-              </div>
-        </div> -->
+
         
       </div>
     </div>
@@ -242,5 +212,6 @@
         </div>
       </div>
     </ion-toolbar>
-  </div> 
+  </div>
+  
 </ion-content>

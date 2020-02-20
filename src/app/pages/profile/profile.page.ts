@@ -231,7 +231,10 @@ export class ProfilePage implements OnInit {
     name: '',
     number: '',
     address: '',
-
+    // streetAddress:'',
+    // city:'',   
+    // code:'',
+  
     email: '',
 
     uid: '',
@@ -321,8 +324,12 @@ export class ProfilePage implements OnInit {
       }
     }
   }
+  // address: '',
+  //   streetAddress:'',
+  //   city:'',   
+  //   code:'',
   createAccount() {
-    if (!this.profile.address || !this.profile.name || !this.profile.number) {
+    if (!this.profile.address || !this.profile.name || !this.profile.number ){
       this.errtext = 'Fields should not be empty'
     } else {
       if (!this.profile.image) {
@@ -350,6 +357,9 @@ export class ProfilePage implements OnInit {
           this.profile.name = doc.data().name
           this.profile.number = doc.data().number
           this.profile.email = doc.data().email
+          // this.profile.streetAddress = doc.data().streetAddress;
+          // this.profile.city = doc.data().city;
+          // this.profile.code = doc.data().code
 
         })
       }

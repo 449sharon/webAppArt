@@ -2,8 +2,8 @@
   <ion-header>
     <ion-toolbar color="primary">
       <ion-title>
-        <div class="title">
-          <div class="text" padding>Special Up to 75%</div>
+        <div class="title" *ngFor="let sp of specials">
+          <div class="text" padding>Special Up to {{sp.percentage}}%</div>
           <div padding>
             <ion-button fill="outline" color="light" (click)="Allspecials()"> Shop Now </ion-button>
           </div>
@@ -13,31 +13,31 @@
          <div class="navigation-bar">
           <nav>
             <ul class="menu"   >
-              <li class="logo"><img src="../../assets/Group 60.png" alt="" (click)="openHome()" ></li>         
-              <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end"[class.active]="router.isActive('/string/path/'+you+'/need', false)" 
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }">Home</ion-button>
-              <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end"[class.active]="router.isActive('/string/path/'+you+'/need', false)" 
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }">About Us</ion-button>             
+              <li class="logo"><img src="../../assets/Group 60.png" alt=""(click)="openHome()" ></li>         
+              <ion-button   class="item" color="medium"  fill="clear"  (click)="ShowActive('home')"  (click)="openHome()" slot="end" id="home" >Home</ion-button>
+              <ion-button  class="item" color="medium"  fill="clear" (click)="ShowActive('about')"  (click)="openAboutUS()" slot="end" id="about" >About Us</ion-button>             
               <ion-button
-               class="item" color="medium"  fill="clear" (click)="createFaqs()" slot="end" [class.active]="router.isActive('/string/path/'+you+'/need', false)" 
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }">FARQ's
+               class="item" color="medium"  fill="clear" (click)="createFaqs()" slot="end" id="faqs">FARQ's
             </ion-button>
               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="presentPopover($event)" > <ion-icon name="person"></ion-icon></ion-button>
                 <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
                  
-                  <ion-icon  class="large-icon" name="cart"></ion-icon>   <ion-label  color="primary" class="cart-length">{{ cartItemCount | async }}</ion-label >
+                  <ion-icon  class="large-icon" name="cart"></ion-icon>
+                  <div class="background-of-cart" >
+                    <ion-label  color="light" class="cart-length">{{ CartNumber }}</ion-label >
+                  </div>
+                  <div>
+                    
+                  </div>
+                  
                  </ion-button>
                  <ion-button class="item" color="medium"  fill="clear"  (click)="createAddToWishList()" slot="end"> 
-                  <ion-icon  class="large-icon" name="heart"></ion-icon> <ion-label  color="primary" class="wish-length">{{ wishItemCount | async }}</ion-label >
+                  <ion-icon  class="large-icon" name="heart"></ion-icon> <ion-label  color="light" class="cart-length">{{ CartNumber1 }}</ion-label >
                  </ion-button>
                  
             </ul>
           </nav>
         </div>
-   
   </ion-header>  
   <ion-content></ion-content>
  <ion-router-outlet></ion-router-outlet>

@@ -15,9 +15,16 @@
     <div class="cartTitle" >
       <ion-title>WishList <ion-icon name="heart" ></ion-icon> </ion-title>
     </div>
-    <div class="ng-for-goes-here" *ngFor="let p of cart" >
+
+    <div *ngIf="cart.length == 0" class="empty" >
+      <ion-title >
+        Your wishlist is empty, add some items.
+      </ion-title>
+    </div>
+    <div class="ng-for-goes-here" *ngFor="let p of cart; let j of index" >
       <div class="checkBox-add-to-cart" >
-        <ion-checkbox color="primary"  slot="start" (ionChange)="CheckBox($event, p)"></ion-checkbox>
+        <ion-button (click)="CheckBoxes(p, p.id, p.obj.checked)">Add to cart</ion-button>
+        <!-- <ion-checkbox color="primary"  slot="start" (ionChange)="CheckBoxes(p, p.id, p.obj.checked)"></ion-checkbox> -->
       </div>
     <div class="cart-item-section" >
 
@@ -33,38 +40,23 @@
           <ion-label>{{ p.obj.price | currency:'R':'symbol' }}</ion-label>
         </div>
         <div class="code">
-          <ion-label>Code: {{ p.obj.productCode }}</ion-label>
+          <ion-label>Code: {{ p.obj.productno }}</ion-label>
         </div> 
         <div class="Productselection">
-    <!--       <div class="size">
-            <p  >size:</p>
+          <div class="size">
+            <p>Size:{{ p.obj.size }} </p>
 
-            <div >
-              <label  class="container">S
-                <input type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-              </label>
+          </div>
+          <div class="quantity">
+            <div>
+              <p no-padding>Qty: {{ p.obj.quantity }}</p>
             </div>
-            <div >
-              <label class="container">M
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div >
-            <label class="container">L
-              <input type="checkbox">
-              <span class="checkmark"></span>
-            </label>
+            <div>
+              <ion-icon name="remove-circle" color="danger" (click)="minus(p, j.id)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="plus(p, j.id)"></ion-icon>
             </div>
 
-          </div> -->
-       <!--    <div class="quantity">
-            <div  ><p no-padding >Qty:  {{ currentNumber }}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="decreaseCartItem()"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increaseCartItem()"></ion-icon></div>
-           
-          </div> -->
+          </div>
         </div>
 
 
@@ -84,7 +76,10 @@
     </p>
   </div>
     <div class="cartButton" >
-      <ion-button color="primary" expand="block" (click)="addToCart()">add to cart   {{ total | currency:'R':'symbol' }} </ion-button>
+      <ion-button color="primary" expand="block" (click)="addToCart()" [disabled]="cart.length  == 0">add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
     </div>
+  </div>
+  <div class="empty-cart" *ngIf="!myCart"  >
+    <p>add something to your cart is empty</p>
   </div>
 </ion-content>

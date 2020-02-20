@@ -208,6 +208,7 @@ import * as firebase from 'firebase';
 import * as moment from 'moment'
 import { ConfirmationPage } from '../confirmation/confirmation.page';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -225,7 +226,7 @@ export class AddToCartPage implements OnInit {
   productCode;
   key;
   total = 0;
-  myCart = false;
+  myCart  = false;
   // cart = [];
   // myArr = [];
   amount: number;
@@ -233,15 +234,17 @@ export class AddToCartPage implements OnInit {
   dbOrder = firebase.firestore().collection('Order');
   dbUser = firebase.firestore().collection('UserProfile');
   cartProduct = [];
+  cartProduct1 = []
   orderProd = [];
   loader: boolean = true;
   tempIndex: any;
   myProduct: boolean;
   id
 
-  dataInTheCart = []
+  // dataInTheCart = []
 
   constructor(public modalController: ModalController,
+    private router: Router,
     public toastCtrl: ToastController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
@@ -250,23 +253,38 @@ export class AddToCartPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    // this.getProducts();
+    // if(this.cartProduct.length === 0){
+    //   console.log('cart is empty',this.cartProduct.length)
+    //   document.getElementById("empty").style.display = "block";
+    // }else{
+    //   console.log('there is somthing inthe cart',this.cartProduct.length)
+    //   document.getElementById("empty").style.display = "none";
+      
+    // }
+
     setTimeout(() => {
+     
       this.loader = false;
     }, 2000);
   }
 
   ngOnInit() {
 
-    firebase.firestore().collection("Cart").onSnapshot(data => {
-      data.forEach(item => {
-        this.dataInTheCart.push(item.data())
-        console.log("dataInTheCart ", item.data());
+
+
+    // firebase.firestore().collection("Cart").onSnapshot(data => {
+    //   this.cartProduct = []
+    //   data.forEach(item => {
+    //     let obj = { obj: item.data(), id: item.id }
+    //     this.cartProduct.push(item.data())
+    //     console.log("dataInTheCart ", item.data());
         
-      })
-    })
+    //   })
+    // })
     this.getProducts();
     this.trackOrder();
-
+    // this.removeCartItem(event);
   }
 
   ionViewWillLeave() {
@@ -290,21 +308,34 @@ export class AddToCartPage implements OnInit {
   }
 
   getProducts() {
-    firebase.firestore().collection("Cart").where("customerUid", "==", firebase.auth().currentUser.uid).onSnapshot(snapshot => {
-      if( this.cartProduct = []){
-        this.myCart = true;
-    snapshot.forEach(doc => {
-      let obj = { obj: doc.data(), id: doc.id }
-        this.cartProduct.push(obj)
-       console.log("my products", obj)
-      });
-      }else{
-        this.myCart = false;
-      }
+
+    firebase.firestore().collection("Cart").onSnapshot(snapshot => {
+
+      this.cartProduct1 = []
+      let obj = { obj: {}, id: "" }
+      snapshot.forEach(item => {
+        if(item.data().customerUid ==  firebase.auth().currentUser.uid){
+          let obj = { obj: item.data(), id: item.id }
+          this.cartProduct1.push(obj)
+          obj = { obj: {}, id: "" }
+        }
+      })
+
+
+    //   this.cartProduct = []
+    // snapshot.forEach(doc => {
+    //   let obj = { obj: doc.data(), id: doc.id }
+    //     this.cartProduct.push(obj)
+    //    console.log("my products", obj)
+    //   });
+      
      
   
     });
+
   }
+
+
   plus(prod, index) {
     let id = prod.id
     this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
@@ -312,8 +343,10 @@ export class AddToCartPage implements OnInit {
     })
 
   }
-  minus(prod, index) {
-    let id = prod.id
+
+
+  minus(prod, id) {
+    // let id = prod.id
     if (prod.obj.quantity === 1) {
      this.toastController("You have reached minimum quantity");
     } else {
@@ -352,8 +385,19 @@ export class AddToCartPage implements OnInit {
   removeCartItem(id) {
     this.dbCart.doc(id).delete();
     console.log("I am deleting you", id);
+    // this.router.navigateByUrl('/add-to-cart');
+  
   }
 
+  async createAddToWishList() {
+    const modal = await this.modalController.create({
+      component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
   getTotal() {
     return this.cartProduct.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
   }
@@ -369,8 +413,12 @@ export class AddToCartPage implements OnInit {
       this.orderProd.push(this.cartProduct[j]);
     }
     if (this.cartProduct.length === 0) {
+
+      
       this.toastController('You cannot place order with empty Cart');
+      this.myCart=false
     } else {
+      this.myCart=true
       this.dbOrder.doc('Pitseng' + key).set({
         totalPrice: inside,
         date: moment().format('MMMM Do YYYY, h:mm:ss a'),
