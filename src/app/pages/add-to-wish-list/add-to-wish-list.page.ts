@@ -229,10 +229,10 @@ export class AddToWishListPage implements OnInit {
     firebase.firestore().collection("WishList").doc(o).delete()
   }
  
-  // getTotal() {
-  //   return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
+  getTotal() {
+    return this.cart.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
     
-  // }
+  }
   sizeSelect(i, val, y) {
     this.sizes = i.detail.value;
    }
