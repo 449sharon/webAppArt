@@ -89,15 +89,15 @@
           <div class="quantity">
             <div  ><p>Qty:{{currentNumber}}</p></div>
             <div> 
-              <ion-icon name="add-circle" color="success" (click)="increment(Mydata)"></ion-icon>
-              <ion-icon name="remove-circle" color="danger" (click)="decrement(Mydata)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="increment()"></ion-icon>
+              <ion-icon name="remove-circle" color="danger" (click)="decrement()"></ion-icon>
              
             </div>
            
           </div>
         </div>
         <div class="cartButton" >
-          <ion-button color="primary" expand="block" (click)="addToCart($event)"  [disabled]="size.length  == 0">add to cart</ion-button>
+          <ion-button color="primary" expand="block" (click)="addToCart()"  [disabled]="size.length  == 0">add to cart</ion-button>
           <br>
           <ion-button color="tertiary" expand="block"  (click)="addWishlist($event)" [disabled]="size.length  == 0">add to wishlist</ion-button>
       

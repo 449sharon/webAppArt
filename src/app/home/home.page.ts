@@ -244,6 +244,8 @@ export class HomePage  {
   }
   async allSpecials(event){
     
+    console.log("Method called ", event);
+    
     this.data.data.image  = event.obj.image
     this.data.data.imageSide  = event.obj.imageSide
     this.data.data.imageBack  = event.obj.imageBack
@@ -256,7 +258,7 @@ export class HomePage  {
     this.data.data.desc   = event.obj.desc
     this.data.data.items  = event.obj.items
     this.data.data.sizes  = event.obj.sizes
-    this.data.data.quantity  = event.obj.quantity
+   
     this.data.data.ratings  = event.obj.ratings
    
     this.router.navigateByUrl('view-product-details');

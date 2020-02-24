@@ -94,7 +94,7 @@ export class AddToWishListPage implements OnInit {
    
  
     
-    firebase.firestore().collection("Cart").doc().set(
+    firebase.firestore().collection("MyCart").doc().set(
       {
       date: moment().format('MMMM Do YYYY, h:mm:ss a'),
       customerUid:firebase.auth().currentUser.uid,
@@ -103,7 +103,7 @@ export class AddToWishListPage implements OnInit {
       status:'received',
       size: this.sizes,
       price:obj.obj.price,
-      quantity: obj.obj.quantity,
+      quantity: this.currentNumber,
       image:obj.obj.image,
       amount:obj.obj.price * obj.obj.quantity,
       checked : obj.obj.checked 
@@ -158,11 +158,11 @@ export class AddToWishListPage implements OnInit {
         this.MyDataToCart = []
   
         data.forEach(item => {
-          if(item.data().checked){
+          // if(item.data().checked){
             //  this.MyDataToCart.push(item.data())
-            firebase.firestore().collection("Cart").doc().set(item.data())
+            firebase.firestore().collection("MyCart").doc().set(item.data())
              firebase.firestore().collection("WishList").doc(item.id).delete()
-          }
+          // }
         })
        })
 

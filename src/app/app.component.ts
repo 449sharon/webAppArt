@@ -86,7 +86,7 @@ export class AppComponent {
 
   ngOnInit(){
 
-    firebase.firestore().collection("Cart").onSnapshot(data => {
+    firebase.firestore().collection("MyCart").onSnapshot(data => {
 
       
       this.CartNumber = 0;
