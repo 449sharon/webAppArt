@@ -113,6 +113,15 @@ export class ViewProductDetailsPage implements OnInit {
       })
     })
     
+    // firebase.firestore().collection("Sales").orderBy("percentage", "desc").limit(1).onSnapshot(snapshot => {
+    //   this.specials = []
+    //   snapshot.forEach(data => {
+    //     this.specials.push(data.data())
+    //     console.log("Percentage ", data.data());
+        
+    //   })
+    // })
+    
 
     this.db.collection('Sales').limit(4).onSnapshot(snapshot => {
       this.proSales = [];
