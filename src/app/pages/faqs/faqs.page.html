@@ -9,32 +9,14 @@
     <div class="main-cover">
       <div class="search-section">
         <div class="faq-heading">
-
-          <ion-title>FAQ's</ion-title>
+           <ion-title>FAQ's</ion-title>
         </div>
         <div class="search">
-          <!-- <div class="top-bar" (ionFocus)='onInput($event)'>
-            <h1 id="how-can-we-help">How can we help?</h1>
-            <input id="query" type="text" placeholder="Type keywords to find answers"
-                (ionFocus)='onInput($event)' [(ngModel)]="usersInput" (keyup)="searchresult(usersInput)">
-            <div class="searchResults" id="userSearchResults" *ngIf="usersInput">
-                <div id="QAAnswer">
-                    <div id="QAAnswers-answered" *ngFor="let items of searchArray">
-                        <div>
-                            <ion-item>{{items.data.question}}</ion-item>
-                            <i id="answer-description">{{items.data.answer}} </i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
-          
+         
            <ion-searchbar showCancelButton="focus" placeholder="ask a question"  (ionChange)="searchresult($event)" cancelButtonText="Custom Cancel"></ion-searchbar> 
            <div id="QAAnswer" [hidden]="val == ''"  *ngFor="let items of searchArray; let i = index"  >
             <div id="QAAnswers-answered" *ngFor="let items of searchArray; let i = index">
-                <div (click)="ShowAnswer(items, i)">
+                <div>
                     <ion-item>{{items.question1}}</ion-item>
                     <i id="answer-description">{{items.answer}} </i>
                 </div>
@@ -43,8 +25,7 @@
         </div>
       </div>
       <div class="orders">
-
-        <div class="row">
+<div class="row">
           <div class="col">
             <div class="tabs">
               <div class="tab">
@@ -70,14 +51,9 @@
                         </div>
                       </div>
 
-
-
-
                     </div>
                   </div>
                 
-
-
                 </div>
               </div>
               <div class="tab">
@@ -102,16 +78,9 @@
 
                         </div>
                       </div>
-
-
-
-
                     </div>
                   </div>
                   
-
-
-
                 </div>
               </div>
               <div class="tab">
@@ -137,15 +106,9 @@
                         </div>
                       </div>
 
-
-
-
                     </div>
                   </div>
                  
-
-
-
                 </div>
               </div>
               <div class="tab">
@@ -171,15 +134,9 @@
                         </div>
                       </div>
 
-
-
-
                     </div>
                   </div>
                  
-
-
-
                 </div>
               </div>
             </div>
@@ -187,8 +144,6 @@
         </div>
 
       </div>
-
-
 
     </div>
   </div>
