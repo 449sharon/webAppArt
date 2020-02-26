@@ -256,6 +256,7 @@ adminInfo(){
      })
  }
   async createViewProduct(event) {
+
     console.log('My details ', event);
     
     
@@ -283,6 +284,8 @@ adminInfo(){
     // });
     // return await modal.present();
   }
+
+  
   async createAddToWishList() {
     const modal = await this.modalController.create({
       component:AddToWishListPage,

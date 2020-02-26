@@ -272,19 +272,27 @@ export class AddToCartPage implements OnInit {
   ngOnInit() {
 
 
+//Get data from the Cart
 
-    // firebase.firestore().collection("Cart").onSnapshot(data => {
-    //   this.cartProduct = []
-    //   data.forEach(item => {
-    //     let obj = { obj: item.data(), id: item.id }
-    //     this.cartProduct.push(item.data())
-    //     console.log("dataInTheCart ", item.data());
-        
-    //   })
-    // })
-    this.getProducts();
+    firebase.firestore().collection("MyCart").onSnapshot(snapshot => {
+      this.cartProduct1 = []
+      let obj = { obj: {}, id: "" }
+      snapshot.forEach(item => {
+        if(item.data().customerUid ==  firebase.auth().currentUser.uid){
+          let obj = { obj: item.data(), id: item.id }
+          this.cartProduct1.push(obj)
+          obj = { obj: {}, id: "" }    
+          console.log("my items in the cart ", obj);
+                
+        }
+      })
+
+    });
+
+
+   
     this.trackOrder();
-    // this.removeCartItem(event);
+   
   }
 
   ionViewWillLeave() {
@@ -307,75 +315,71 @@ export class AddToCartPage implements OnInit {
     })
   }
 
-  getProducts() {
-
-    firebase.firestore().collection("Cart").onSnapshot(snapshot => {
-
-      this.cartProduct1 = []
-      let obj = { obj: {}, id: "" }
-      snapshot.forEach(item => {
-        if(item.data().customerUid ==  firebase.auth().currentUser.uid){
-          let obj = { obj: item.data(), id: item.id }
-          this.cartProduct1.push(obj)
-          obj = { obj: {}, id: "" }
-          
-          
-        }
-        console.log("kkkkk ", obj);
-      })
 
 
-    //   this.cartProduct = []
-    // snapshot.forEach(doc => {
-    //   let obj = { obj: doc.data(), id: doc.id }
-    //     this.cartProduct.push(obj)
-    //    console.log("my products", obj)
-    //   });
-      
-     
+  // plus(prod, index) {
+  //   let id = prod.id
+  //   this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+
+  //   })
+
+  // }
+
+
+  // minus(prod, id) {
+  //   // let id = prod.id
+  //   if (prod.obj.quantity === 1) {
+  //    this.toastController("You have reached minimum quantity");
+  //   } else {
+  //     this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+
+  //     })
+  //   }
+  // }
+
   
-    });
-
-  }
-
-
-  plus(prod, index) {
-    let id = prod.id
-    this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
-
-    })
-
-  }
-
-
-  minus(prod, id) {
-    // let id = prod.id
-    if (prod.obj.quantity === 1) {
-     this.toastController("You have reached minimum quantity");
-    } else {
-      this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
-
-      })
-    }
-  }
 
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
     });
   }
-  private increment(p) {
-    this.currentNumber = this.currentNumber + 1;
-    this.cartProduct[p].quantity = this.currentNumber
-  }
+ 
 
-  private decrement(p) {
-    if (this.currentNumber > 1) {
-      this.currentNumber = this.currentNumber - 1;
-      this.cartProduct[p].quantity = this.currentNumber;
-    }
-    return this.currentNumber;
+  // increment() {
+  //   this.currentNumber = this.currentNumber + 1;
+  //   this.cartProduct1.quantity = this.currentNumber
+  // }
+
+  //  decrement() {
+  //   if (this.currentNumber > 1) {
+  //     this.currentNumber = this.currentNumber - 1;
+  //     this.cartProduct1.quantity = this.currentNumber;
+  //   }
+  //   return this.currentNumber;
+  // }
+  
+
+  plus(prod, index) {
+    let id = prod.id
+    this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+​
+    })
+​
   }
+​
+​
+  minus(prod, id) {
+    // let id = prod.id
+    if (prod.obj.quantity === 1) {
+     this.toastController("You have reached minimum quantity");
+    } else {
+      this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+​
+      })
+    }
+  }
+​
   decreaseCartItem(p) {
     this.cartProduct[p].prod.quantity--;
   }
@@ -386,7 +390,8 @@ export class AddToCartPage implements OnInit {
   }
 
   removeCartItem(id) {
-    this.dbCart.doc(id).delete();
+
+    firebase.firestore().collection("MyCart").doc(id).delete()
     console.log("I am deleting you", id);
     // this.router.navigateByUrl('/add-to-cart');
   
@@ -401,12 +406,17 @@ export class AddToCartPage implements OnInit {
     });
     return await modal.present();
   }
+
+
   getTotal() {
     return this.cartProduct1.reduce((i, j) => i + j.obj.price * j.obj.quantity, 0);
   }
+
   ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.
   placeOrder() {
+
+
     let inside = this.getTotal();
     console.log('hereTtooo ', inside);
     this.orderProd = [];
@@ -434,16 +444,30 @@ export class AddToCartPage implements OnInit {
         status: 'received',
         orderNumber: 'Pitseng' + key
       }).then(() => {
-        this.dbCart.where('customerUid', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
-          res.forEach((i) => {
-            this.dbCart.doc(i.id).delete();
+
+       
+          
+
+          firebase.firestore().collection("MyCart").onSnapshot(data => {
+            data.forEach(item => {
+              if(item.data().customerUid == firebase.auth().currentUser.uid){
+                     firebase.firestore().collection("MyCart").doc(item.id).delete()
+              }
+            })
           })
-        })
+
+    
+
+      
+
       })
       console.log('My prod ', this.orderProd);
       this.dismiss();
       this.SuccessModal(key);
     }
+
+  
+
   }
 
 

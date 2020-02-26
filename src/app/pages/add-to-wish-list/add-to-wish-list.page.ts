@@ -94,7 +94,7 @@ export class AddToWishListPage implements OnInit {
    
  
     
-    firebase.firestore().collection("Cart").doc().set(
+    firebase.firestore().collection("MyCart").doc().set(
       {
       date: moment().format('MMMM Do YYYY, h:mm:ss a'),
       customerUid:firebase.auth().currentUser.uid,
@@ -103,7 +103,7 @@ export class AddToWishListPage implements OnInit {
       status:'received',
       size: this.sizes,
       price:obj.obj.price,
-      quantity: obj.obj.quantity,
+      quantity: this.currentNumber,
       image:obj.obj.image,
       amount:obj.obj.price * obj.obj.quantity,
       checked : obj.obj.checked 
@@ -150,6 +150,18 @@ export class AddToWishListPage implements OnInit {
     
   }
 
+  increment() {
+    this.currentNumber = this.currentNumber + 1;
+    this.event.quantity = this.currentNumber
+  }
+
+   decrement() {
+    if (this.currentNumber > 1) {
+      this.currentNumber = this.currentNumber - 1;
+      this.event.quantity = this.currentNumber;
+    }
+    // return this.currentNumber;
+  }
   
   addToCart() {
 
@@ -158,11 +170,11 @@ export class AddToWishListPage implements OnInit {
         this.MyDataToCart = []
   
         data.forEach(item => {
-          if(item.data().checked){
+          // if(item.data().checked){
             //  this.MyDataToCart.push(item.data())
-            firebase.firestore().collection("Cart").doc().set(item.data())
+            firebase.firestore().collection("MyCart").doc().set(item.data())
              firebase.firestore().collection("WishList").doc(item.id).delete()
-          }
+          // }
         })
        })
 
@@ -194,22 +206,22 @@ export class AddToWishListPage implements OnInit {
     });
   }
 
-  plus(prod, index) {
-    let id = prod.id
-    this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+  // plus(prod, index) {
+  //   let id = prod.id
+  //   this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
 
-    })
+  //   })
 
-  }
-  minus(prod, id) {
-    // let id = prod.id
-    if (prod.obj.quantity === 1) {
-    } else {
-      this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+  // }
+  // minus(prod, id) {
+  //   // let id = prod.id
+  //   if (prod.obj.quantity === 1) {
+  //   } else {
+  //     this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
 
-      })
-    }
-  }
+  //     })
+  //   }
+  // }
 
   increaseCartItem() {
    this.currentNumber = this.currentNumber + 1;

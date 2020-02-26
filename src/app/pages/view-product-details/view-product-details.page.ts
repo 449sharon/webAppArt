@@ -54,7 +54,7 @@ export class ViewProductDetailsPage implements OnInit {
     total: 0
   };
 
-
+  imageSide = ""
   Mydata = {
 
     image: '',
@@ -113,15 +113,6 @@ export class ViewProductDetailsPage implements OnInit {
       })
     })
     
-    // firebase.firestore().collection("Sales").orderBy("percentage", "desc").limit(1).onSnapshot(snapshot => {
-    //   this.specials = []
-    //   snapshot.forEach(data => {
-    //     this.specials.push(data.data())
-    //     console.log("Percentage ", data.data());
-        
-    //   })
-    // })
-    
 
     this.db.collection('Sales').limit(4).onSnapshot(snapshot => {
       this.proSales = [];
@@ -152,11 +143,12 @@ export class ViewProductDetailsPage implements OnInit {
       this.currentNumber = this.currentNumber - 1;
       this.Mydata.quantity = this.currentNumber;
     }
-    return this.currentNumber;
+    // return this.currentNumber;
   }
 
   ionViewWillEnter() {
 
+ 
   
 
   
@@ -175,7 +167,8 @@ export class ViewProductDetailsPage implements OnInit {
   this.Mydata.checked = this.data.data.checked
   this.Mydata.quantity  = this.data.data.quantity
   this.Mydata.ratings  = this.data.data.ratings
-
+this.imageSide = this.data.data.imageSide
+console.log("Image side ",this.data.data.imageSide);
 
 console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
 
@@ -253,42 +246,57 @@ console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
 
       
     }else {
-      this.customerUid = firebase.auth().currentUser.uid;
-         let customerUid = firebase.auth().currentUser.uid;
 
-  firebase.firestore().collection("Cart").doc().set({
+    
 
-    date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-    customerUid:firebase.auth().currentUser.uid,
-    name:this.Mydata.name,
-    productCode:this.Mydata.productCode,
-    desc:this.Mydata.desc,
-    status:'received',
-    size: this.size,
-    price:this.Mydata.price,
-    quantity: this.Mydata.quantity,
-    image:this.Mydata.image,
-    amount:this.Mydata.price * this.Mydata.quantity
+        this.customerUid = firebase.auth().currentUser.uid;
+     
 
+        firebase.firestore().collection("MyCart").doc().set({
+      
+          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+          customerUid:firebase.auth().currentUser.uid,
+          name:this.Mydata.name,
+          productCode:this.Mydata.productCode,
+          desc:this.Mydata.desc,
+          status:'received',
+          size: this.size,
+          price:this.Mydata.price,
+          quantity: this.currentNumber,
+          image:this.Mydata.image,
+          amount:this.Mydata.price * this.Mydata.quantity
+      
+      
+        })
+         
+          // this.cartItemCount.next(this.cartItemCount.value + 1);
+          // this.dismiss();
+          this.toastPopover(event)
 
-  })
-   
-    // this.cartItemCount.next(this.cartItemCount.value + 1);
-    // this.dismiss();
-    this.toastPopover(event)
+        
+     
+
     }
 
  
   }
+
+
   getCartItemCount() {
     return this.cartItemCount;
   }
+
+
   getWishItemCount() {
     return this.cartItemCount;
   }
+
+
   createModalLogin() {
     throw new Error("Method not implemented.");
   }
+
+
   toastController(arg0: string) {
     throw new Error("Method not implemented.");
   }
@@ -298,6 +306,8 @@ console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
     'dismissed':true
   });
 }
+
+
 logRatingChange(rating, id){
  // console.log("changed rating: ",rating);
   // do your stuff
@@ -342,7 +352,7 @@ logRatingChange(rating, id){
           status:'received',
           size: this.sizes,
           price:this.Mydata.price,
-          quantity: this.Mydata.quantity,
+          quantity: this.currentNumber,
           image:this.Mydata.image,
           amount:this.Mydata.price * this.Mydata.quantity,
           checked : this.Mydata.checked 

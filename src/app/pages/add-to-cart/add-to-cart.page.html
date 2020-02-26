@@ -50,9 +50,15 @@
                 <p no-padding>Qty: {{ p.obj.quantity }}</p>
               </div>
               <div>
-                <ion-icon name="remove-circle" color="danger" (click)="minus(p, j.id)"></ion-icon>
+                 <ion-icon name="remove-circle" color="danger" (click)="minus(p, j.id)"></ion-icon>
                 <ion-icon name="add-circle" color="success" (click)="plus(p, j.id)"></ion-icon>
-              </div>
+              </div> 
+<!-- 
+              <div> 
+                <ion-icon name="add-circle" color="success" (click)="increment()"></ion-icon>
+                <ion-icon name="remove-circle" color="danger" (click)="decrement()"></ion-icon>
+               
+              </div> -->
 
             </div>
           </div>
