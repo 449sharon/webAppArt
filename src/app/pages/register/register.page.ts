@@ -121,5 +121,18 @@ success(){
     timer: 500
   })
  }
+//  async presentLoading() {
+//   const loading = await this.loadingCtrl.create({
+//     message: 'Logging in.....',
+//   }); 
+//   await loading.present();
+//   setTimeout(() => {
+//     loading.dismiss();
+//   }, 1000);
+
+//   // const { role, data } = await loading.onDidDismiss();
+
+//   // console.log('Loading dismissed!');
+// }
 }
 

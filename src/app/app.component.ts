@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform, ModalController, PopoverController, ToastController } from '@ionic/angular';
+import { Platform, ModalController, PopoverController, ToastController, LoadingController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router, NavigationExtras } from '@angular/router';
@@ -50,7 +50,8 @@ export class AppComponent {
     private cartService: CartServiceService,
     public modalController: ModalController,
     public popoverController: PopoverController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController
   ) {
     
 // firebase.auth().onAuthStateChanged(user => {
@@ -217,20 +218,16 @@ export class AppComponent {
        name : this.message.fullname,
        email : this.message.email,
        message : this.message.message
-  
-       
       }).then(() => {
         this.toastController('Message Sent!')
      }).catch(err => {
               console.error(err);
      });
-
      this.message = {
       fullname: '',
       email: '',
       message:''
    }
-
     }else{
       //this.createModalLogin();
     }
@@ -241,46 +238,92 @@ export class AppComponent {
   getWishItemCount(){
     return this.wishItemCount;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   ShowActive(activeButton) {
     console.log('this is active')
     this.active = activeButton;
-
     if (activeButton === "home") {
-      document.getElementById("home").style.textDecoration = "underline";
-      // document.getElementById("home").style.textDecorationColor = "#B73225";
-      document.getElementById("home").style.lightingColor = "#B73225";
-      document.getElementById("about").style.textDecoration = "transparent";
-      document.getElementById("about").style.textDecoration = "transparent";
-      
-      // text-decoration: underline;
+      document.getElementById("home").style.borderBottom = "5px solid #B73225";
+      document.getElementById("about").style.borderBottom = "transparent";
     }
     else if (activeButton === "about") {
-
-
-      document.getElementById("home").style.textDecoration = "transparent";
-      document.getElementById("about").style.textDecoration = "underline";
-  
- 
+      document.getElementById("home").style.borderBottom = "transparent";
+      document.getElementById("about").style.borderBottom = "5px solid #B73225";
      }
+  }
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Logging.....',
+    }); 
+    await loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1000);
+  }
+
+
+  menuToggle = 'menu';
+  showOptions(){
+    if(this.menuToggle === 'menu'){
+    this.menuToggle = 'close';
+    document.getElementById('opts').style.display = 'block';
+    } else {
+      this.menuToggle = 'menu';
+        document.getElementById('opts').style.display = 'none';
+    }
+  }
+  close = 'closeList'
+ 
+
+
+  openProS() {
+    this.showOptions();
+    this.router.navigateByUrl('/');
+  }
+
+
+  async openInvoiceS() {
+    this.showOptions();
+    const modal = await this.modalController.create({
+      component:ProfilePage,
+      cssClass: 'my-add-to-cart'
+    });
+    return await modal.present();
+  }
+  queriesS(){
+    this.showOptions();
+    this.router.navigateByUrl('/quries')
+  }
+  openAboutUSS(){
+    this.showOptions();
+    this.router.navigateByUrl('/about-us');
+    document.getElementById('opts').style.display='none'
+  }
+  async createFaqsS() {
+    this.showOptions();
+    const modal = await this.modalController.create({
+      component:FaqsPage,
+      cssClass: 'my-add-to-cart',
+    });
+    return await modal.present();
+  }
+  async addToWishList() {
+    this.showOptions();
+    const modal = await this.modalController.create({
+      component:AddToWishListPage,
+      cssClass: 'add-product',
+      
     
+    });
+    return await modal.present();
+  }
+  async addToCart() {
+    this.showOptions();
+    const modal = await this.modalController.create({
+      component:AddToCartPage,
+      cssClass: 'add-product',
+      
+    
+    });
+    return await modal.present();
   }
 }
