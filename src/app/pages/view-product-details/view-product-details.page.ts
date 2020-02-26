@@ -400,7 +400,7 @@ logRatingChange(rating, id){
       }
     })
     this.dismiss()
-   this.createModalLogins();
+  //  this.createModalLogins();
    }
 
 
@@ -415,7 +415,7 @@ logRatingChange(rating, id){
       }
     })
     this.dismiss()
-   this.createModalLogins();
+  //  this.createModalLogins();
    }
 
    success(){
