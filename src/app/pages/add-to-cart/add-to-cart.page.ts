@@ -317,43 +317,69 @@ export class AddToCartPage implements OnInit {
 
 
 
-  plus(prod, index) {
-    let id = prod.id
-    this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+  // plus(prod, index) {
+  //   let id = prod.id
+  //   this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
 
-    })
+  //   })
 
-  }
+  // }
 
 
-  minus(prod, id) {
-    // let id = prod.id
-    if (prod.obj.quantity === 1) {
-     this.toastController("You have reached minimum quantity");
-    } else {
-      this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+  // minus(prod, id) {
+  //   // let id = prod.id
+  //   if (prod.obj.quantity === 1) {
+  //    this.toastController("You have reached minimum quantity");
+  //   } else {
+  //     this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
 
-      })
-    }
-  }
+  //     })
+  //   }
+  // }
+
+  
 
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
     });
   }
-  private increment(p) {
-    this.currentNumber = this.currentNumber + 1;
-    this.cartProduct[p].quantity = this.currentNumber
-  }
+ 
 
-  private decrement(p) {
-    if (this.currentNumber > 1) {
-      this.currentNumber = this.currentNumber - 1;
-      this.cartProduct[p].quantity = this.currentNumber;
-    }
-    return this.currentNumber;
+  // increment() {
+  //   this.currentNumber = this.currentNumber + 1;
+  //   this.cartProduct1.quantity = this.currentNumber
+  // }
+
+  //  decrement() {
+  //   if (this.currentNumber > 1) {
+  //     this.currentNumber = this.currentNumber - 1;
+  //     this.cartProduct1.quantity = this.currentNumber;
+  //   }
+  //   return this.currentNumber;
+  // }
+  
+
+  plus(prod, index) {
+    let id = prod.id
+    this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+​
+    })
+​
   }
+​
+​
+  minus(prod, id) {
+    // let id = prod.id
+    if (prod.obj.quantity === 1) {
+     this.toastController("You have reached minimum quantity");
+    } else {
+      this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+​
+      })
+    }
+  }
+​
   decreaseCartItem(p) {
     this.cartProduct[p].prod.quantity--;
   }

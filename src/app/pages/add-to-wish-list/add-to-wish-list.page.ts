@@ -150,6 +150,18 @@ export class AddToWishListPage implements OnInit {
     
   }
 
+  increment() {
+    this.currentNumber = this.currentNumber + 1;
+    this.event.quantity = this.currentNumber
+  }
+
+   decrement() {
+    if (this.currentNumber > 1) {
+      this.currentNumber = this.currentNumber - 1;
+      this.event.quantity = this.currentNumber;
+    }
+    // return this.currentNumber;
+  }
   
   addToCart() {
 
@@ -194,22 +206,22 @@ export class AddToWishListPage implements OnInit {
     });
   }
 
-  plus(prod, index) {
-    let id = prod.id
-    this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+  // plus(prod, index) {
+  //   let id = prod.id
+  //   this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
 
-    })
+  //   })
 
-  }
-  minus(prod, id) {
-    // let id = prod.id
-    if (prod.obj.quantity === 1) {
-    } else {
-      this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+  // }
+  // minus(prod, id) {
+  //   // let id = prod.id
+  //   if (prod.obj.quantity === 1) {
+  //   } else {
+  //     this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
 
-      })
-    }
-  }
+  //     })
+  //   }
+  // }
 
   increaseCartItem() {
    this.currentNumber = this.currentNumber + 1;
