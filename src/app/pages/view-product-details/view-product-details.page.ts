@@ -347,7 +347,7 @@ logRatingChange(rating, id){
           date: moment().format('MMMM Do YYYY, h:mm:ss a'),
           customerUid:firebase.auth().currentUser.uid,
           name:this.Mydata.name,
-      
+          productCode:this.Mydata.productCode,
           desc:this.Mydata.desc,
           status:'received',
           size: this.sizes,
@@ -355,7 +355,7 @@ logRatingChange(rating, id){
           quantity: this.currentNumber,
           image:this.Mydata.image,
           amount:this.Mydata.price * this.Mydata.quantity,
-          checked : this.Mydata.checked 
+          // checked : this.Mydata.checked 
       
         })
 
