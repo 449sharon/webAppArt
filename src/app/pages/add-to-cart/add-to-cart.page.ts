@@ -281,8 +281,9 @@ export class AddToCartPage implements OnInit {
         if(item.data().customerUid ==  firebase.auth().currentUser.uid){
           let obj = { obj: item.data(), id: item.id }
           this.cartProduct1.push(obj)
-          obj = { obj: {}, id: "" }    
           console.log("my items in the cart ", obj);
+          obj = { obj: {}, id: "" }    
+          
                 
         }
       })

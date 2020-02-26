@@ -109,9 +109,9 @@
 
               <div class="special-section" (click)="specialsAlso()">
                 <div *ngFor="let me of SpecialScrin" >
-                <div class="specials">
+                <div class="specials" *ngFor="let sp of specials">
                   <img src="{{me.obj.image}}" height="200px"  >
-                  <ion-title>Up to 50% off </ion-title>
+                  <ion-title> Up to {{sp.percentage}}% off</ion-title>
                 </div>
               </div>
             </div>

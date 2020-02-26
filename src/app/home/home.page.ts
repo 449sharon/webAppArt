@@ -75,6 +75,7 @@ export class HomePage  {
    }
    SpecialScrin = []
    sizes = null;
+   specials = []
 
   constructor( public toastCtrl: ToastController, 
     private data: ProductService,private router: Router, 
@@ -83,41 +84,44 @@ export class HomePage  {
     this.adminInfo();
     this.getSpecials();
    
-
-    //////
-    this.getPictures();
-
- 
-
-    ///////
-    // this.validations_form = this.formBuilder.group({
-    //   email: new FormControl('', Validators.compose([
-    //     Validators.required,
-    //     Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    //   ])),
-    //   name: new FormControl('', Validators.compose([
-    //     Validators.required
-    //   ])),
-    //   message: new FormControl('', Validators.compose([
-    //    Validators.required
-    //   ])),
-    // });
+    // this.getPictures();
   }
 
-  // validation_messages = {
-  //   'email': [
-  //     { type: 'required', message: 'Email is required.' },
-  //     { type: 'pattern', message: 'Please enter a valid email.' }
-  //   ],
-  //   'message': [
-  //     { type: 'required', message: 'Password is required.' },
-  //     { type: 'pattern', message: 'Please enter your message' }
-  //   ],
-  //   'name': [
-  //     { type: 'required', message: 'Password is required.' },
-  //     { type: 'pattern', message: 'Please enter your fullname.' }
-  //   ]
-  // };
+  ngOnInit() {
+    this.db.collection('mainImage').doc('Deco').onSnapshot(data => {
+      this.Homescreen.deco = data.data().image;
+  
+      console.log('Not working!');
+      
+    })
+    this.db.collection('mainImage').doc('Vase').onSnapshot(data => {
+      this.Homescreen.vase = data.data().image;
+  
+      console.log('Not working!');
+      
+    })
+    
+    this.db.collection('mainImage').doc('Pottery').onSnapshot(data => {
+      this.Homescreen.pottery = data.data().image;
+  
+      console.log('Not working!');
+      
+    })
+    this.db.collection('mainImage').doc('Lamps').onSnapshot(data => {
+      this.Homescreen.lamps = data.data().image;
+  
+      console.log('Not working!');
+      
+    })
+    firebase.firestore().collection("Sales").orderBy("percentage", "desc").limit(1).onSnapshot(snapshot => {
+      this.specials = []
+      snapshot.forEach(data => {
+        this.specials.push(data.data())
+        console.log("Percentage ", data.data());
+        
+      })
+    })
+  }
 
 
   ionViewWillEnter() {
@@ -305,34 +309,6 @@ export class HomePage  {
        });
   }
 
-  getPictures(){
-  let obj = {id : '', obj : {}};
-  this.db.collection('Pictures').doc('images').get().then(snapshot => {
-    this.Homescreen = {
-      deco: null,
-      lamps: null,
-      pottery: null,
-      vase: null
-    }
-    if (!snapshot.exists) {
-            this.myProduct = false;
-          } else {
-            this.myProduct = true;
-              obj.id = snapshot.id;
-              obj.obj = snapshot.data();
-              this.Homescreen = {
-                deco: snapshot.data().deco,
-                lamps: snapshot.data().lamps,
-                pottery: snapshot.data().pottery,
-                vase: snapshot.data().vase
-              }
-              obj = {id : '', obj : {}};
-            console.log("xxc", this.Homescreen);
-          }
-     });
-}
-
-
 Info = []
 adminInfo(){
   this.db.collection('admins').get().then(snapshot => {
@@ -357,9 +333,6 @@ openAboutUS(){
   openHome(){
     this.router.navigateByUrl('/')
   }
-  // openCart(){
-  //   this.router.navigateByUrl('/add-to-cart')
-  // }
 
 addMessage() {
     if(firebase.auth().currentUser){
@@ -393,9 +366,7 @@ async toastController(message) {
     return toast.present();
 }
 
-ngOnInit() {
-  // this.allSpecials(this.event);
-}
+
 ////////
 /////
 
