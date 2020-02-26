@@ -20,12 +20,13 @@ export class AddToWishListPage implements OnInit {
    db = firebase.database();
    dbCart = firebase.firestore().collection('Cart');
   cart = [];
+  cartWish = [];
   myArr = [];
   mysize: string = '';
   sizes = [];
   quantity : number = 1;
   checkbox=[];
-  checked : boolean = false;
+  checked : boolean;
   name;
   key;
   total = 0;
@@ -55,10 +56,9 @@ export class AddToWishListPage implements OnInit {
   };
   value : boolean 
   tempIndex = [] 
-  addToTheCart = []
+  selectedItems = []
 
   MyDataToCart = []
-
   productCode: any;
   price: number;
   productCount=0;
@@ -88,36 +88,53 @@ export class AddToWishListPage implements OnInit {
 /*ADDING MY ITEMS FROM WISHLIST TO THE CART*/
 
    async CheckBoxes(obj, id, value){
-
-    console.log(event," dddd ", obj.obj);
-   
-   
- 
+     console.log("jjjjjjjjj ");
+     
+    let index = this.cart.indexOf(obj);
+        if (index === -1) {
+            if (event.target.checked) {
+                return this.cart.push(obj);
+            }
+        } else {
+            if (!event.target.checked) {
+                // return this.cart.splice(index, 1);
+            }
+        }
+        console.log("jjjjjjjjj ", obj);
     
-    firebase.firestore().collection("MyCart").doc().set(
-      {
-      date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-      customerUid:firebase.auth().currentUser.uid,
-      name:obj.obj.name,
-      desc:obj.obj.desc,
-      status:'received',
-      size: this.sizes,
-      price:obj.obj.price,
-      quantity: this.currentNumber,
-      image:obj.obj.image,
-      amount:obj.obj.price * obj.obj.quantity,
-      checked : obj.obj.checked 
-    })
+      
+
+
+
+
+
+
+
+        
+    // firebase.firestore().collection("MyCart").doc().set(
+    //   {
+    //   date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+    //   customerUid:firebase.auth().currentUser.uid,
+    //   name:obj.obj.name,
+    //   desc:obj.obj.desc,
+    //   status:'received',
+    //   size: this.sizes,
+    //   price:obj.obj.price,
+    //   quantity: this.currentNumber,
+    //   image:obj.obj.image,
+    //   amount:obj.obj.price * obj.obj.quantity,
+    //   checked : obj.obj.checked 
+    // })
    
-    firebase.firestore().collection("WishList").doc(id).delete()
-      const alert = await this.alertCtrl.create({
-        header: '',
-        subHeader: '',
-        message: 'Item added to Cart',
-        buttons: ['Ok']
-      });
+    // firebase.firestore().collection("WishList").doc(id).delete()
+    //   const alert = await this.alertCtrl.create({
+    //     header: '',
+    //     subHeader: '',
+    //     message: 'Item added to Cart',
+    //     buttons: ['Ok']
+    //   });
   
-      await alert.present();
+    //   await alert.present();
 
  
   
@@ -164,10 +181,10 @@ export class AddToWishListPage implements OnInit {
   }
   
   addToCart() {
+    this.cart = []
+      firebase.firestore().collection("WishList").where('checked','==', 'true').onSnapshot(data => {
 
-      firebase.firestore().collection("WishList").onSnapshot(data => {
-
-        this.MyDataToCart = []
+  
   
         data.forEach(item => {
           // if(item.data().checked){

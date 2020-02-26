@@ -351,3 +351,28 @@ ion-content {
       font-size: 20px;
   
   }
+@media screen and (min-width:602px) and (max-width){
+  
+}
+ 
+  @media screen and (min-width:800px)and (max-width: 1036px){
+    .main-cover{
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width:100px) and (max-width: 600px){
+    .whoWeAre{
+      flex-direction: column;
+    }
+    .image-section{
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+    .description-section, .services-description-section, .services-image-section{
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
