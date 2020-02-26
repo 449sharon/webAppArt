@@ -296,7 +296,6 @@ export class AppComponent {
   openAboutUSS(){
     this.showOptions();
     this.router.navigateByUrl('/about-us');
-    document.getElementById('opts').style.display='none'
   }
   async createFaqsS() {
     this.showOptions();

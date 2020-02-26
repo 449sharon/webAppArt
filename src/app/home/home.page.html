@@ -133,13 +133,13 @@
       <div class="contactUs-labels">
         <div >
            <ion-label class="heading2">Find Us</ion-label>
-          <div style="display: flex; flex-direction: column;" *ngFor = "let admin of Info" class="callUs-labels">
+          <div style="display: flex; flex-direction: column;" *ngFor = "let admin of Info" class="callUs-labels ion-text-wrap">
             <div>
               <span>
                 <ion-icon padding name="call"></ion-icon>
               </span>
               <span>
-                <ion-label>{{admin.phoneNumber}} </ion-label>
+                <ion-label >{{admin.phoneNumber}} </ion-label>
               </span>
             </div> 
             <div>
@@ -187,7 +187,7 @@
         </div>
         <div >
           <ion-label class="heading">Quick Links </ion-label>
-          <div *ngFor = "let admin of Info" class="callUs-labels">
+          <div  style="list-style: none;" *ngFor = "let admin of Info" class="callUs-labels">
         
     
             <div>

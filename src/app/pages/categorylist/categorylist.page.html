@@ -39,7 +39,7 @@
         </div>
         <div class="description-text">
           <div>
-            <ion-title>With us you get to save!</ion-title>
+            <ion-title class="ion-text-wrap"  >With us you get to save!</ion-title>
           </div>
           <div>
             <p > With us every day is a special day for saving! you can never go wrong when you scroll down a litle bit and see what we have instore for you today.
@@ -64,7 +64,12 @@
               <ion-label class="name">  {{event.obj.name}} </ion-label>
               <ion-label class="price"> R&nbsp;{{event.obj.totalPrice}} <span class="span-tsrike" >{{event.obj.price}}</span>  </ion-label>
              
-        
+              <div class="stars">  
+                <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#FFD700"
+                  defaultColor="#D3D3D3" readonly="true" rating="{{event.obj.ratings}}" fontSize="18px"
+                  (ratingChanged)="getProducts()">
+                </ionic4-star-rating>          
+            </div>
               <!-- <div class="icon-wish" (click)="addToWishlist(event.obj, event.id)"  [ngClass]="{'active': active==i}" >
                 <ion-icon name="heart"  ></ion-icon>
               </div> -->
@@ -102,7 +107,7 @@
                   <div class="social-section" >
     
                     <div class="social" >
-                      <div> <img padding src=".././../assets/icons8_facebook_480px.png" width="30" height="30" > </div>
+                      <div> <img padding src="../../../assets/icons8_facebook_480px.png" width="30" height="30" > </div>
                       <!-- <div> <img padding src="../../assets/icons8_twitter_circled_60px_2.png" width="30" height="30" ></div> -->
       
       
@@ -137,7 +142,7 @@
             </div>
             <div >
               <ion-label class="heading">Quick Links </ion-label>
-              <div *ngFor = "let admin of Info" class="callUs-labels">
+              <div  style="list-style: none;" *ngFor = "let admin of Info" class="callUs-labels">
             
         
                 <div>

@@ -92,6 +92,11 @@
             <input type="checkbox" id="chck1">
             <label class="tab-label" for="chck1">Pending Orders</label>
             <div class="tab-content">
+              <div *ngIf="Allorders.length == 0" class="empty" >
+                <ion-title >
+                  Your pending orders list is empty.
+                </ion-title>
+              </div>
               <div class="pedding-oders" *ngFor="let li of Allorders">
                 <div class="image" >
                    <img src="../../../assets/Frame.jpg" alt="">
@@ -120,7 +125,13 @@
             <input type="checkbox" id="chck2">
             <label class="tab-label" for="chck2">Order History</label>
             <div class="tab-content">
+              <div *ngIf="orderHistory.length == 0" class="empty" >
+                <ion-title >
+                  Your order History list is empty.
+                </ion-title>
+              </div>
               <div class="pedding-oders" *ngFor="let li of orderHistory">
+                
                 <div class="image" >
                    <img src="../../../assets/Frame.jpg" alt="">
                 </div>

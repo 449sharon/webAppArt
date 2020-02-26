@@ -210,7 +210,18 @@ margin: 0 auto;
     }
   }
   /* Mobile menu */
-  
+  .navigation-bar{
+    width: 75%;
+    margin: auto;
+    // border: solid blue;
+  }
+  #opts{
+    display: none;
+  }
+  #optsToggle{
+    float: right;
+    display: block;
+  }
   .menu {
     display: flex;
     flex-wrap: wrap;
@@ -298,7 +309,7 @@ margin: 0 auto;
     // }
   }
   /* Desktop menu */
-  @media all and (min-width: 900px) {
+  @media all and (min-width: 900px)and (max-width:1639px) {
     .navigation-bar{
       width: 75%;
       margin: auto;
@@ -347,7 +358,10 @@ margin: 0 auto;
       float: right;
       display: none;
     }
-
+    .navigation-bar{
+      width: 95%;
+      // border: solid red;
+    }
   }
 
   .floating-links{
