@@ -390,32 +390,32 @@ logRatingChange(rating, id){
   }
 
   ConfirmationAlert(){
-    Swal.fire({
-      title: 'Please login/sign up before adding items to your cart',
-      showClass: {
-        popup: 'animated fadeInDown faster'
-      },
-      hideClass: {
-        popup: 'animated fadeOutUp faster'
-      }
-    })
-    this.dismiss()
-   this.createModalLogins();
+  //   Swal.fire({
+  //     title: 'Please login/sign up before adding items to your cart',
+  //     showClass: {
+  //       popup: 'animated fadeInDown faster'
+  //     },
+  //     hideClass: {
+  //       popup: 'animated fadeOutUp faster'
+  //     }
+  //   })
+  //   this.dismiss()
+  // //  this.createModalLogins();
    }
 
 
    ConfirmationAlertWish(){
-    Swal.fire({
-      title: 'Please login/sign up before adding items to your wishlist',
-      showClass: {
-        popup: 'animated fadeInDown faster'
-      },
-      hideClass: {
-        popup: 'animated fadeOutUp faster'
-      }
-    })
-    this.dismiss()
-   this.createModalLogins();
+  //   Swal.fire({
+  //     title: 'Please login/sign up before adding items to your wishlist',
+  //     showClass: {
+  //       popup: 'animated fadeInDown faster'
+  //     },
+  //     hideClass: {
+  //       popup: 'animated fadeOutUp faster'
+  //     }
+  //   })
+  //   this.dismiss()
+  // //  this.createModalLogins();
    }
 
    success(){

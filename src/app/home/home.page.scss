@@ -1,913 +1,702 @@
-
-  ion-content {
+ion-content {
   //   position: relative;
   // margin-top: 50%;
   // bottom: 20%;
-  }
-  ion-title {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: lighter;
-    letter-spacing: 3px;
-    text-align: center;
-    // padding-right: 16px;
-  }
-  .title {
-    display: flex;
-    justify-content: center;
-  }
-  .title > div {
-    padding-left: 18px;
-    text-align: center;
-  }
-  .text{
-    padding-top: 8px;
-  }
-  .main-container {
+}
+ion-title {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  letter-spacing: 3px;
+  text-align: center;
+  // padding-right: 16px;
+}
+.title {
+  display: flex;
+  justify-content: center;
+}
+.title > div {
+  padding-left: 18px;
+  text-align: center;
+}
+.text {
+  padding-top: 8px;
+}
+.main-container {
   //   border: solid red;
-    height: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    //   margin-top: 2.5%;
-    justify-content: center;
-   
-  }
-  .content-container {
-    display: flex;
-    // height: 100%;
-    width: 74%;
-    flex-direction: column;
-    // min-height: 100vh;
-    // border: solid blue;
-    position: relative;
-    margin: 0 auto;
-    margin-bottom: 200px;
-    padding-top: 200px;
-  }
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-  
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  //   margin-top: 2.5%;
+  justify-content: center;
+}
+.content-container {
+  display: flex;
+  // height: 100%;
+  width: 74%;
+  flex-direction: column;
+  // min-height: 100vh;
+  // border: solid blue;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 200px;
+  padding-top: 200px;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
+// design category part
 
-  
-  // design category part
- 
-  .category-Container {
-    // border: solid black;
-    width: 100%;
-    height: 732px;
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
-    justify-content: space-around;
-    margin: 0 auto;
-  }
-  .First-Category-Block {
-    // border: solid red;
-    width: 50%;
-    height: 90%;
-    margin: 0 auto;
-    margin-right: 16px;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
-    &:hover {
-      // box-shadow: 0px 0px 150px #000000;
-  z-index: 2;
-  -webkit-transition: all 200ms ease-in;
-  -webkit-transform: scale(0.9);
-  -ms-transition: all 200ms ease-in;
-  -ms-transform: scale(0.9);   
-  -moz-transition: all 200ms ease-in;
-  -moz-transform: scale(0.9);
-  transition: all 200ms ease-in;
-  transform: scale(0.9);
-    }
-  }
-  .First-Category-Block > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-  }
-  .Second-Category-Block {
-    // border: solid lime;
-    width: 50%;
-    height: 90%;
-    margin: 0 auto;
-    margin-left: 13px;
-    // border-radius: 15px;
-  
-  }
-  .firstSecond-block {
-    height: 50%;
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
-    &:hover {
-      // box-shadow: 0px 0px 150px #000000;
-  z-index: 2;
-  -webkit-transition: all 200ms ease-in;
-  -webkit-transform: scale(0.9);
-  -ms-transition: all 200ms ease-in;
-  -ms-transform: scale(0.9);   
-  -moz-transition: all 200ms ease-in;
-  -moz-transform: scale(0.9);
-  transition: all 200ms ease-in;
-  transform: scale(0.9);
-    }
-  }
-  .firstSecond-block > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-  }
-  .container-bottom2 {
-    // border: solid black;
-    height: 50%;
-    display: flex;
-    flex-direction: row;
-    padding-top: 16px;
-  }
-  .seconSecond-block {
-    // border: solid rgb(119, 31, 119);
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
-
-    margin-right: 16px; 
-      &:hover {
+.category-Container {
+  // border: solid black;
+  width: 100%;
+  height: 732px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+.First-Category-Block {
+  // border: solid red;
+  width: 50%;
+  height: 90%;
+  margin: 0 auto;
+  margin-right: 16px;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
+  &:hover {
+    // box-shadow: 0px 0px 150px #000000;
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(0.9);
     -ms-transition: all 200ms ease-in;
-    -ms-transform: scale(0.9);   
+    -ms-transform: scale(0.9);
     -moz-transition: all 200ms ease-in;
     -moz-transform: scale(0.9);
     transition: all 200ms ease-in;
     transform: scale(0.9);
-      }
   }
-  .seconSecond-block > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-  }
-  .thirdSecond-block {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
-    margin-left: 16px;
-    &:hover {
-  z-index: 2;
-  -webkit-transition: all 200ms ease-in;
-  -webkit-transform: scale(0.9);
-  -ms-transition: all 200ms ease-in;
-  -ms-transform: scale(0.9);   
-  -moz-transition: all 200ms ease-in;
-  -moz-transform: scale(0.9);
-  transition: all 200ms ease-in;
-  transform: scale(0.9);
-    }
-  }
-  .thirdSecond-block > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-  }
- 
-  .category-label {
-    // background-color: rgba(0, 0, 0, 0.349);
-    color: white;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2em;
-    font-weight: 600;
-    margin-bottom: -2.5%;
-    position: relative;
-    z-index: 99999999999999999999;
-    bottom: 100px;
-    padding-left: 16px;
-    // background-color: #5656563f;
-    // color: transparent;
-    text-shadow: 2px 2px 3px rgba(58, 56, 56, 0.5);
-  }
-  .category-button {
-    color: white;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.2em;
-    font-weight: lighter;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-    z-index: 99999999999999999999;
-    bottom: 100px;
-    padding-left: 16px;
-    text-shadow: 2px 2px 3px rgba(34, 34, 34, 0.5);
-    // color: transparent;
-    // text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
-  }
-  .category-button:hover {
-    transform: scale(1.1);
-  }
-  .description-text {
-    height: auto;
-    width: 60%;
-    margin: auto;
-  }
-  .description-text > div > p {
-    text-align: center;
-    padding-top: 16px;
-    text-justify: inter-word;
-    text-align: justify;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: lighter;
-  }
-  .description-text > div > ion-title{
-      color: #4E4E4E;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 400;
-      font-size: 35px;
-  }
-  .middle-heading {
-    font-weight: bolder;
-    padding-bottom: 16px;
-    font-size: 1.5rem;
-  }
-  .slides {
-    // border: solid red;
-    height: 500px;
-    scroll-behavior: smooth;
-  }
-  .toolbar-button {
-    margin-left: 16px;
-  }
-  .cards-section {
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    // border: solid maroon;
-  }
-  .specials-title {
-    text-align: left;
-    border-bottom: solid black;
-    border-bottom: 0.5px solid #7070709D;
-  }
-  .cards-container {
-    display: flex;
-    margin: 0 auto;
-    margin-top: 16px;
-    width: 100%;
-    justify-content: space-evenly;
-    justify-content: space-between;
-    justify-content: center;
-    flex-wrap: wrap;
-    // border: solid orange;
-  }
-
-  .cards {
-    width: 250px;
-    height: 367px;
-
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    margin-bottom: 3%;
-    border-radius: 10px;
-    border: 0.5px solid #70707042;
-    &:hover {
-  z-index: 2;
-  -webkit-transition: all 200ms ease-in;
-  -webkit-transform: scale(0.9);
-  -ms-transition: all 200ms ease-in;
-  -ms-transform: scale(0.9);   
-  -moz-transition: all 200ms ease-in;
-  -moz-transform: scale(0.9);
-  transition: all 200ms ease-in;
-  transform: scale(0.9);
-    }
-  }
-
-  .special-section{
-    width: 100%;
-    // border: solid darkblue;
-  }
-
-  .products-section{
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    justify-content: space-around;
-    margin-bottom: 3%;
-    // border: solid violet;
-  }
-  .image-con{
-    margin: 0 auto;
-  }
-  .cards > div > img {
-    width: 222px;
-    height: 268px;
-    border-radius: 6px;
-    border: 0.5px solid #7070703A;
-    margin: 0 auto;
-    margin-top: 5px;
-  }
-  .cards > ion-label {
-    text-align: center;
-  }
- 
-  .name {
-    font-size: 15px;
-    font-weight: 400;
-    color: #4E4E4E;
-    text-transform: capitalize;
-  }
-  .price{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
-  }
-  .stars {
-    text-align: center;
-    font-size: 1.5rem;
-  }
-
-  .specials {
-    width: 1100;
-    height: 372px;
-    border-radius: 10px;
-    text-align: center;
-    margin: auto;
-    margin-top: 20px;
-    &:hover{
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    }
-
-  }
-  .specials ::before{
-    background-color: red;
-    
-  }
-  .specials > img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      box-shadow:inset 0 0 10px #000000;
-  }
-  .specials > ion-title{
-      color: red;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 3em;
-      font-weight: 600;
-      position: relative;
-      z-index: 99999999999999999999;
-      bottom: 250px;
-    
-      padding-left: 16px;
-      left: 0%;
-     
-  }
-  .contactUs-section{
-     width: 100%;
-     background:linear-gradient(0deg, rgba(14, 13, 13, 0.836), rgba(0, 0, 0, 0.836)), url("../../assets/photo-1493106641515-6b5631de4bb9.png");
-     background-repeat: no-repeat;
-     background-size: cover;
-
-  }
-  .contactus{
-       width: 95%;
-      height: 20%;
-      padding-top: 20px;
-      padding-left: 50px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      justify-content: space-between;
-      // border: solid blueviolet;
-
-  }
- 
-  .contactUs-section > div > ion-title {
-      // padding-top: 200px;
-      // padding-bottom: 50px;
-      color: #4E4E4E;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 200;
-      font-size: 35px;
-  }
-  .contactUs-labels{
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      justify-content: space-between;
-      width: 100%;
-      padding-top: 20px;
-      color: white;
-      margin: 0 auto;
-      // border: solid blueviolet;
-  }
-  .contactUs-labels > div{
-    width: 50%;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      margin-left: 150px;
-      // justify-content: space-around;
-      // border: solid orange;
-  }
-
-  .contactus > div {
-
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  .messageInputs{
-      padding-top: 25px;
-      
-  }
-  span > li > ion-label {
-    cursor: context-menu;
-    &:hover{
-      text-decoration: l;
-    }
-  }
-  .messageInputs > ion-item { 
-      height: 40px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-  }
-  .messageInputs > ion-item > ion-input {
-  text-align: left;
-  }
-  .messageInputs  >  div > ion-list > ion-item > ion-textarea {
-      text-align: left;
-      height: 100px;
-      margin-bottom: 20px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
-      .messageInputs  > div > ion-button {
-          margin-top: 20px;
-      }
-      .callUs-labels {
-        width:100%;
-        padding-top: 15px;
-          margin: 0 auto;
-          // border: solid rgb(38, 0, 255);
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-       
-         
-      }
-      .callUs-labels > div {
-          // margin-bottom: 30px; 
-          // margin: 0 auto;
-          padding-bottom: 8px;
-          // display: flex;
-          // flex-direction: column;
-          // border: solid violet;
-          width: 100%;
-          margin: 0 auto;
-      }
-      
-      .callUs-labels > div > span > ion-label {
-        font-weight: 100;
-        padding-left: 30px;
-
-      }
-      .callUs-labels > div > span > li >  ion-label {
-        font-weight: 100;
-        // color: red;
-
-      }
-      .callUs-labels > div > span > ion-icon{
-          // margin-right: 30px;
-      }
-      ion-label, ion-title {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          
-      }
-      .heading{
-          font-weight: 600;
-          font-size: 1rem;
-        // margin-left: 100px;
-        // text-align: center;
-         
-      }
-      .heading1{
-        font-weight: 600;
-        font-size: 1rem;
-        // text-align: center;
-      // margin-left: 101px;
-       
-    }
-    .heading2{
-      font-weight: 600;
-      font-size: 1rem;
-    // margin-left: 21px;
-    // text-align: center;
-     
-  }
-  .address{
-    margin-left: 12px;
-  }
-  .social-section{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 }
-.social{
+.First-Category-Block > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+.Second-Category-Block {
+  // border: solid lime;
+  width: 50%;
+  height: 90%;
+  margin: 0 auto;
+  margin-left: 13px;
+  // border-radius: 15px;
+}
+.firstSecond-block {
+  height: 50%;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
+  &:hover {
+    // box-shadow: 0px 0px 150px #000000;
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.9);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.9);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.9);
+    transition: all 200ms ease-in;
+    transform: scale(0.9);
+  }
+}
+.firstSecond-block > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+.container-bottom2 {
+  // border: solid black;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 16px;
+}
+.seconSecond-block {
+  // border: solid rgb(119, 31, 119);
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
+
+  margin-right: 16px;
+  &:hover {
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.9);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.9);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.9);
+    transition: all 200ms ease-in;
+    transform: scale(0.9);
+  }
+}
+.seconSecond-block > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+.thirdSecond-block {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.082), 0 10px 7px rgba(0, 0, 0, 0.048);
+  margin-left: 16px;
+  &:hover {
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.9);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.9);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.9);
+    transition: all 200ms ease-in;
+    transform: scale(0.9);
+  }
+}
+.thirdSecond-block > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.category-label {
+  // background-color: rgba(0, 0, 0, 0.349);
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: -2.5%;
+  position: relative;
+  z-index: 99999999999999999999;
+  bottom: 100px;
+  padding-left: 16px;
+  // background-color: #5656563f;
+  // color: transparent;
+  text-shadow: 2px 2px 3px rgba(58, 56, 56, 0.5);
+}
+.category-button {
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2em;
+  font-weight: lighter;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  z-index: 99999999999999999999;
+  bottom: 100px;
+  padding-left: 16px;
+  text-shadow: 2px 2px 3px rgba(34, 34, 34, 0.5);
+  // color: transparent;
+  // text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
+}
+.category-button:hover {
+  transform: scale(1.1);
+}
+.description-text {
+  height: auto;
+  width: 60%;
+  margin: auto;
+}
+.description-text > div > p {
+  text-align: center;
+  padding-top: 16px;
+  text-justify: inter-word;
+  text-align: justify;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+}
+.description-text > div > ion-title {
+  color: #4e4e4e;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 35px;
+}
+.middle-heading {
+  font-weight: bolder;
+  padding-bottom: 16px;
+  font-size: 1.5rem;
+}
+.slides {
+  // border: solid red;
+  height: 500px;
+  scroll-behavior: smooth;
+}
+.toolbar-button {
+  margin-left: 16px;
+}
+.cards-section {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  // border: solid maroon;
+}
+.specials-title {
+  text-align: left;
+  border-bottom: solid black;
+  border-bottom: 0.5px solid #7070709d;
+}
+.cards-container {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 16px;
+  width: 100%;
+  justify-content: space-evenly;
+  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  // border: solid orange;
+}
+
+.cards {
+  width: 250px;
+  height: 367px;
+
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-bottom: 3%;
+  border-radius: 10px;
+  border: 0.5px solid #70707042;
+  &:hover {
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.9);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.9);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.9);
+    transition: all 200ms ease-in;
+    transform: scale(0.9);
+  }
+}
+
+.special-section {
+  width: 100%;
+  // border: solid darkblue;
+}
+
+.products-section {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  justify-content: space-around;
+  margin-bottom: 3%;
+  // border: solid violet;
+}
+.image-con {
+  margin: 0 auto;
+}
+.cards > div > img {
+  width: 222px;
+  height: 268px;
+  border-radius: 6px;
+  border: 0.5px solid #7070703a;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+.cards > ion-label {
+  text-align: center;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 400;
+  color: #4e4e4e;
+  text-transform: capitalize;
+}
+.price {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+.stars {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.specials {
+  width: 1100;
+  height: 372px;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+}
+.specials ::before {
+  background-color: red;
+}
+.specials > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: inset 0 0 10px #000000;
+}
+.specials > ion-title {
+  color: red;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3em;
+  font-weight: 600;
+  position: relative;
+  z-index: 99999999999999999999;
+  bottom: 250px;
+
+  padding-left: 16px;
+  left: 0%;
+}
+.contactUs-section {
+  width: 100%;
+  background: linear-gradient(0deg, rgba(14, 13, 13, 0.836), rgba(0, 0, 0, 0.836)),
+    url("../../assets/photo-1493106641515-6b5631de4bb9.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.contactus {
+  width: 95%;
+  height: 20%;
+  padding-top: 20px;
+  padding-left: 50px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  // border: solid blueviolet;
+}
+
+.contactUs-section > div > ion-title {
+  // padding-top: 200px;
+  // padding-bottom: 50px;
+  color: #4e4e4e;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 200;
+  font-size: 35px;
+}
+.contactUs-labels {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 20px;
+  color: white;
+  margin: 0 auto;
+  // border: solid blueviolet;
+}
+.contactUs-labels > div {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-left: 150px;
+  // justify-content: space-around;
+  // border: solid orange;
+}
+
+.contactus > div {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.messageInputs {
+  padding-top: 25px;
+}
+span > li > ion-label {
+  cursor: context-menu;
+  &:hover {
+    text-decoration: l;
+  }
+}
+.messageInputs > ion-item {
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.messageInputs > ion-item > ion-input {
+  text-align: left;
+}
+.messageInputs > div > ion-list > ion-item > ion-textarea {
+  text-align: left;
+  height: 100px;
+  margin-bottom: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.messageInputs > div > ion-button {
+  margin-top: 20px;
+}
+.callUs-labels {
+  width: 100%;
+  padding-top: 15px;
+  margin: 0 auto;
+  // border: solid rgb(38, 0, 255);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.callUs-labels > div {
+  // margin-bottom: 30px;
+  // margin: 0 auto;
+  padding-bottom: 8px;
+  // display: flex;
+  // flex-direction: column;
+  // border: solid violet;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.callUs-labels > div > span > ion-label {
+  font-weight: 100;
+  padding-left: 30px;
+}
+.callUs-labels > div > span > li > ion-label {
+  font-weight: 100;
+  // color: red;
+}
+.callUs-labels > div > span > ion-icon {
+  // margin-right: 30px;
+}
+ion-label,
+ion-title {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.heading {
+  font-weight: 600;
+  font-size: 1rem;
+  // margin-left: 100px;
+  // text-align: center;
+}
+.heading1 {
+  font-weight: 600;
+  font-size: 1rem;
+  // text-align: center;
+  // margin-left: 101px;
+}
+.heading2 {
+  font-weight: 600;
+  font-size: 1rem;
+  // margin-left: 21px;
+  // text-align: center;
+}
+.address {
+  margin-left: 12px;
+}
+.social-section {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.social {
   display: flex;
   flex-direction: row;
   width: 30%;
   justify-content: space-between;
-  padding-top:16px;
+  padding-top: 16px;
   // border: solid red;
 }
-.social > div{
+.social > div {
   display: flex;
   flex-direction: row;
 }
-.social-section > div > ion-title{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 200;
-    color: #707070;
-    font-size: 20px;
-
+.social-section > div > ion-title {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 200;
+  color: #707070;
+  font-size: 20px;
 }
-      .title > div > img {
-          left: 0%;
-          text-align: left;
-      }
-      .footer{
-          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-          font-weight: lighter;
-          letter-spacing: 3px;
-          text-align: center;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          margin: auto;
-      }
-      .footer > div  {
-          margin: 0 auto;
-          margin-top: 10px;
-        
-      }
-      .footer  > img {
-        margin-left: 10px;
-      
-      }
-      .categoryList{
- 
-          height: 100%;
-      }
-      .ladingPage-Items{
-        // height:100% ;
-      }
-      .content-section{
-        // height: 100%;
-      }
-      
-      .categorySection{
-  
-        height: 100%;
-        margin-bottom: 39px;
-      }
-      .categoryList{
-        width: 90%;
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-      }
-      .wishListIcon{
-      text-align: right;
-      margin-right: 16px;
-      // padding-bottom: 26%;
-   
-      }
-  
-  
-      .active {
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-        color: #fff;
-    }
-    .icon-wish{
-      position: relative;
-      // left: 10%;
-     margin-left: 200px;
-    //   top: 37%;
-      bottom: 15%;
-      font-size: x-large;
-      color: #777777;
-      .active {
-        -webkit-transition: all 200ms ease-in;
-            -webkit-transform: scale(0.9);
-            -ms-transition: all 200ms ease-in;
-            -ms-transform: scale(0.9);   
-            -moz-transition: all 200ms ease-in;
-            -moz-transform: scale(0.9);
-            transition: all 200ms ease-in;
-            transform: scale(0.9);
-            background-color: #f7f7f7;
-      }
-     
-  
-    }
-    .icon-wish > ion-icon {
-      // box-shadow: 0 19px 38px rgba(165, 164, 164, 0.3), 0 15px 12px rgba(95, 94, 94, 0.22);
-    }
-    .percent-off{
-      position: absolute;
-      z-index: 99999999999999999;
-      margin-left: 16px;
-      margin-top: 16px;
-      color: red;
-    }
-    .span-tsrike{
-      text-decoration: line-through;
-    color: #707070;
-    font-style: italic;
-    font-weight: lighter;
-    font-size: 15px;
-    
-    }
-//     @media (max-width:600px) {
-    
-//       .category-Container{
-//           border: solid black;
-//     width: 100%;
-//     height: auto;
-//     display: flex;
-//     flex-direction: column;
-//     margin: 0 auto;
-//     justify-content: center;
-//     justify-content: space-around;
-//     margin: 0 auto;
-//     align-items: center;
-//     margin-top: 15px;
-      
-//       }
-// .First-Category-Block {
-//   width: 90%;
-//   height: 300px;
+.title > div > img {
+  left: 0%;
+  text-align: left;
+}
+.footer {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  letter-spacing: 3px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+}
+.footer > div {
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.footer > img {
+  margin-left: 10px;
+}
+.categoryList {
+  height: 100%;
+}
+.ladingPage-Items {
+  // height:100% ;
+}
+.content-section {
+  // height: 100%;
+}
 
-//       }
-//       .Second-Category-Block{
-//         width: 90%;
-//         height: 300px;
-//       }
-//       .container-bottom2 {
-//         display: flex;
-//         flex-direction: column;
-//         padding-top: 16px;
-//         height: 300px ;
-//       }
-//       .description-text {
-//         // height: 120px;
-//         // // border: solid black;
-//         // width: 60%;
-//         // margin: auto;
-//         display: none;
-//       }
-//       .description-text > div > p {
-//         // text-align: center;
-//         // padding-top: 16px;
-//         // text-justify: inter-word;
-//         // text-align: justify;
-//         // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-//         // font-weight: lighter;
-//       }
-//       .description-text > div > ion-title{
-//           // color: #4E4E4E;
-//           // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-//           // font-weight: 400;
-//           // font-size: 35px;
-//       }
-//       .special-section{
+.categorySection {
+  height: 100%;
+  margin-bottom: 39px;
+}
+.categoryList {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+.wishListIcon {
+  text-align: right;
+  margin-right: 16px;
+  // padding-bottom: 26%;
+}
 
-//       }
-
-
-//     }
-
-//     @media screen and (min-width: 100px) and (max-width: 600px) {
-//       .cards-container {
-//         margin-bottom: 100px;
-//       }
-    
-//       .container {
-//         position: relative;
-//         // top: 30px;
-//         padding: 8px;
-//         // display: none;
-//         min-width: 100%;
-//         // border: solid blue;
-//       }
-    
-//       .category-Container {
-//         padding-top: 100px;
-//         width: 100%;
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         margin: 0 auto;
-//         // border: solid red;
-    
-//         .First-Category-Block {
-//           padding: 0;
-//           width: 100%;
-//           height: 40%;
-//           margin: 0 auto;
-//           border-radius: 15px;
-//           background-color: rgb(240, 240, 240);
-//         }
-    
-//         .firstSecond-block {
-//           height: 40%;
-//         }
-    
-//         .firstSecond-block > img {
-//           width: 100%;
-//           height: 100%;
-//           object-fit: cover;
-//         }
-    
-//         .Second-Category-Block {
-//           width: 100%;
-//           height: 90%;
-//           margin: 0 auto;
-//           margin-top: 13px;
-//         }
-//       }
-    
-//       .container-bottom2 {
-//         height: 40%;
-//         display: flex;
-//         flex-direction: row;
-//         padding-top: 16px;
-//       }
-    
-//       .specials-overlay {
-//         display: none;
-//         height: 10%;
-//         width: 100%;
-//         padding: 8px;
-//       }
-    
-//       .specials > ion-title {
-//         color: white;
-//         // font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-//         position: relative;
-//         z-index: 99999999999999999999;
-//         bottom: 250px;
-//         padding-left: 8px;
-//         left: 0%;
-//       }
-    
-//       .specials > ion-title {
-//         font-size: 1rem;
-//         font-weight: 100;
-//       }
-//     }
-    
-//     @media screen and(min-width:601px) and (max-width: 869px) {
-//       ion-content {
-//         top: 0;
-       
-//       }
-//       .container {
-//       //  padding-bottom: 500px;
-//         position: relative;
-//         // top: 30px;
-//         padding: 8px;
-//         // display: none;
-//         min-width: 100%;
-//         // border: solid blue;
-//       }
-//       .category-Container {
-//         width: 100%;
-//         // border: solid red;
-//         .First-Category-Block {
-//           width: 50%;
-//         }
-//         .Second-Category-Block {
-//           width: 50%;
-//         }
-//         // .container-bottom2 {
-//         //   display: flex;
-//         //   flex-direction: column;
-//         //   height: 40%;
-//         //   padding-bottom: 16px;
-//         //   div {
-//         //     height: 80%;
-//         //   }
-//         // }
-//         // .thirdSecond-block{
-//         //   margin-right: 16px;
-//         // }
-//       }
-//     }
-//     @media screen and(min-width:870px) and (max-width: 1080px) {
-//     }
-    
-     
-
+.active {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  color: #fff;
+}
+.icon-wish {
+  position: relative;
+  // left: 10%;
+  margin-left: 200px;
+  //   top: 37%;
+  bottom: 15%;
+  font-size: x-large;
+  color: #777777;
+  .active {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.9);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.9);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.9);
+    transition: all 200ms ease-in;
+    transform: scale(0.9);
+    background-color: #f7f7f7;
+  }
+}
+.icon-wish > ion-icon {
+  // box-shadow: 0 19px 38px rgba(165, 164, 164, 0.3), 0 15px 12px rgba(95, 94, 94, 0.22);
+}
+.percent-off {
+  position: absolute;
+  z-index: 99999999999999999;
+  margin-left: 16px;
+  margin-top: 16px;
+  color: red;
+}
+.span-tsrike {
+  text-decoration: line-through;
+  color: #707070;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 15px;
+}
 
 @media screen and (min-width: 100px) and (max-width: 600px) {
+  .contactUs-section {
+    width: 100%;
+  }
+  // .callUs-labels > div > span > ion-label {
+  //   font-weight: 100;
+  //   padding-left: 0px;
+
+  // }
+  .contactus {
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 1px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    // border: solid blueviolet;
+  }
+
+  .contactUs-section > div > ion-title {
+    color: #4e4e4e;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 200;
+    font-size: 35px;
+  }
+  .contactUs-labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-around;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-top: 20px;
+    color: white;
+    margin: 0 auto;
+    // border: solid red;
+  }
+  .contactUs-labels > div {
+    flex: 1;
+    width: 20%;
+    margin: 0 auto;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    // border: solid orange;
+  }
   .description-text {
     height: auto;
     width: 100%;
     margin: auto;
-    
   }
-  .contactus{
-    width: 100%;
-    // border: solid blue;
-   height: 250px;
-}
-.heading{
-  font-weight: 600;
-  font-size: 1rem;
-margin-left: 105px;
- 
-}
-.heading1{
-font-weight: 600;
-font-size: 1rem;
-margin-left: 15px;
-
-}
-.heading2{
-font-weight: 600;
-font-size: 1rem;
-margin-left: 25px;
-
-}
-  .contactUs-section{
-    // border: solid green;
-    height: auto;
-    width: 100%;
-  }
-  .contactUs-labels{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    justify-content: space-between;
-    width: 100%;
-    padding-top: 0px;
-    color: white;
-    margin: auto;
-    // border: solid mediumaquamarine;
-}
-  .contactUs-section > div > ion-title {
-    padding-top: 10px;
-  }
-  .contactUs-labels > div{
-    width: 27%;
-    // border: solid red;
-  }
-
 
   .description-text > div > p {
     text-align: center;
     padding-top: 16px;
     text-justify: inter-word;
     text-align: justify;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-weight: lighter;
     width: 80%;
     padding-bottom: 50px;
     margin: 0 auto;
   }
-  .description-text > div > ion-title{
-      color: #4E4E4E;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 400;
-      font-size: 35px;
-      text-align: center;
-
+  .description-text > div > ion-title {
+    color: #4e4e4e;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    text-align: center;
   }
   .cards-container {
     margin-bottom: 100px;
   }
   .content-container {
-    height: 100%;
+    // height: 100%;
     width: 90%;
+    margin-bottom: 200px;
     // border: solid blue;
     margin: 0 auto;
   }
 
-  .mainContent-cover{
+  .mainContent-cover {
     // border: solid forestgreen;
     width: 100%;
   }
-  .landing{
+  .landing {
     // border: solid black;
   }
   .save-heading {
@@ -967,7 +756,23 @@ margin-left: 25px;
     flex-direction: row;
     padding-top: 16px;
   }
-
+  .specials {
+    width: 1100;
+    height: 200px;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+ 
+    &:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+  }
+  .special-section {
+    width: 100%;
+    // border: solid darkblue;
+    padding-bottom: 50px;
+  }
   .specials-overlay {
     display: none;
     height: 10%;
@@ -991,21 +796,19 @@ margin-left: 25px;
   }
 }
 
-
-
-
 @media screen and(min-width:601px) and (max-width: 869px) {
-  ion-content {
-    top: 0;
-   
+  .firstSecond-block > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .content-container {
+    width: 95%;
   }
   .container {
-  //  padding-bottom: 500px;
     position: relative;
-    // top: 30px;
     padding: 8px;
-    // display: none;
-    min-width: 100%;
+    width: 100%;
     // border: solid blue;
   }
   .category-Container {
@@ -1034,6 +837,5 @@ margin-left: 25px;
 @media screen and(min-width:870px) and (max-width: 1080px) {
 }
 
-@media screen and (max-height: 500px){
-
+@media screen and (max-height: 500px) {
 }

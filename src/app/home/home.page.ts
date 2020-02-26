@@ -1,9 +1,9 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef, NgModuleFactoryLoader } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, NgModuleFactoryLoader, } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 // import { CartService } from '../cart.service';
 import { AddToCartPage } from '../pages/add-to-cart/add-to-cart.page';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController, NavController } from '@ionic/angular';
 import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
@@ -76,7 +76,10 @@ export class HomePage  {
    SpecialScrin = []
    sizes = null;
 
-  constructor( public toastCtrl: ToastController, private data: ProductService,private router: Router, private cartService: CartServiceService, private render: Renderer2, public modalController: ModalController,) {
+  constructor( public toastCtrl: ToastController, 
+    private data: ProductService,private router: Router, 
+    private cartService: CartServiceService, private render: Renderer2,
+     public modalController: ModalController,public navCtrl: NavController) {
     this.adminInfo();
     this.getSpecials();
    
@@ -221,6 +224,19 @@ export class HomePage  {
     }
     this.router.navigate(['categorylist'],navigationExtras)   
   }
+  // goSpecials(data) {
+  //   let navigationExtras: NavigationExtras = {
+  //     queryParams: {
+  //       data: data,
+  //       col: 'specials',
+  //       //currency: JSON.stringify(currency),
+  //       // refresh: refresh
+  //     }
+  //   };
+  //   //this.router.navigate(['list', data])
+  //   this.navCtrl.navigateForward(['specials', data], navigationExtras);
+  // }
+  
   addToWishlist(prod, id) {
      console.log("Product Info ",prod);
      this.dbWishlist.doc(id).set({

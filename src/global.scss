@@ -114,8 +114,6 @@
   --width: 50%;
   --height: 60%;
   // animation-name: fadeInUp;
-
-
 }
 .track-order .modal-wrapper{
   --width: 808px;
@@ -237,12 +235,33 @@
   .wishlist{
     --background: black;
   }
-  @media screen and (min-width:300px) and (max-width: 800px){
+  @media screen and (min-width:300px) and (max-width: 850px){
     .modal-wrapper{
       --width: 80% !important;
       --height: 100% !important;
       height: 100% !important;
       width: 100% !important;
+    }
+
+    .login-register{
+
+      --width: 80%;
+      --height: 80%;
+      // animation-name: fadeInUp;
+    }
+
+  }
+
+  @media screen and (min-width:851px) and (max-width: 1424px){
+  
+    .add-product .modal-wrapper{
+        --width:65%;
+    }
+    .login-register{
+
+      --width: 70%;
+      --height: 80%;
+      // animation-name: fadeInUp;
     }
 
   }

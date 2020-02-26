@@ -11,8 +11,11 @@
       </ion-title>
     </ion-toolbar> 
          <div class="navigation-bar">
+          <ion-button id="optsToggle" icon-only fill="clear" (click)="showOptions()"> 
+            <ion-icon name="{{menuToggle}}"></ion-icon>
+          </ion-button>
           <nav>
-            <ul class="menu"   >
+            <ul class="menu">
               <li class="logo"><img src="../../assets/Group 60.png" alt=""(click)="openHome()" ></li>         
               <ion-button   class="item" color="medium"  fill="clear"  (click)="ShowActive('home')"  (click)="openHome()" slot="end" id="home" >Home</ion-button>
               <ion-button  class="item" color="medium"  fill="clear" (click)="ShowActive('about')"  (click)="openAboutUS()" slot="end" id="about" >About Us</ion-button>             
@@ -20,9 +23,7 @@
                class="item" color="medium"  fill="clear" (click)="createFaqs()" slot="end" id="faqs">FARQ's
             </ion-button>
               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="presentPopover($event)" > <ion-icon name="person"></ion-icon></ion-button>
-                <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
-                 
-                  <ion-icon  class="large-icon" name="cart"></ion-icon>
+                <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" ><ion-icon  class="large-icon" name="cart"></ion-icon>
                   <div class="background-of-cart" >
                     <ion-label  color="light" class="cart-length">{{ CartNumber }}</ion-label >
                   </div>
@@ -36,6 +37,39 @@
                  </ion-button>
                  
             </ul>
+
+            
+
+            <div class="floating-links" id="opts">
+
+              <ion-button class="itemF" color="medium" fill="clear" (click)="openProS()" slot="end">Home</ion-button><br>
+              <!-- <ion-button class="itemF" color="medium" fill="clear" (click)="openInvoiceS()" slot="end">Orders</ion-button><br>
+              <ion-button class="itemF" color="medium" fill="clear" slot="end" (click)="queriesS()">Queries</ion-button><br> -->
+              <ion-button class="itemF" color="medium" fill="clear" slot="end" (click)="ShowActive('about')"  (click)="openAboutUS()">About Us </ion-button><br>
+              <ion-button class="itemF" color="medium" fill="clear" slot="end"(click)="createFaqs()">FAQ's</ion-button><br>
+              <!-- <ion-button class="itemF" color="medium" fill="clear" slot="end" (click)="addProductS()">
+                <ion-icon name="add"></ion-icon>Product
+              </ion-button><br> -->
+              <ion-button class="itemF" color="medium" fill="clear" slot="end">
+                <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' placeholder="Search Products" value="" style='min-width: 10px;'>
+                </ion-searchbar>
+                <div no-padding fill="clear" class="search" lines="none" *ngIf="!isSearchbarOpened">
+                  <ion-icon slot="icon-only" color="medium" name="search" (click)="isSearchbarOpened=true"></ion-icon>
+                </div>
+              </ion-button><br>
+              <ion-button class="itemF" color="medium" fill="clear" slot="end"  (click)="addToCart()">
+                <ion-icon name="cart"></ion-icon>
+              </ion-button><br>
+              <ion-button class="itemF" color="medium" fill="clear" slot="end"  (click)="addToWishList()">
+                <ion-icon name="heart"></ion-icon>
+              </ion-button><br>
+              <ion-button class="itemF" color="medium" fill="clear" slot="end"  (click)="presentPopover($event)">
+                <ion-icon name="person"></ion-icon>
+              </ion-button>
+              
+      
+      
+            </div>
           </nav>
         </div>
   </ion-header>  

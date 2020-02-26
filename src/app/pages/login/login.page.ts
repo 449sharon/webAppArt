@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import Swal from 'sweetalert2';
 
@@ -28,7 +28,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     public modalController: ModalController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public loadingCtrl: LoadingController
  
   ) { }
   loader: boolean = true;
@@ -65,6 +66,8 @@ export class LoginPage implements OnInit {
  
  
   loginUser(value){
+     this.presentLoading()
+   
     // this.authService.loginUser(value)
     firebase.auth().signInWithEmailAndPassword(value.email, value.password)
     .then(res => {
@@ -74,13 +77,17 @@ export class LoginPage implements OnInit {
     }, err => {
       this.errorMessage = err.message;
     });
-    // this.loader();
-   this.success()
-  // this.loader 
+   
   }
   facebookSignIn(){
     
   }
+
+    dismissLoader(){
+  this.loadingCtrl.dismiss({
+    'dismissed':true
+  });
+}
   googleSignin() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().getRedirectResult().then( (result) => {
@@ -158,7 +165,7 @@ export class LoginPage implements OnInit {
   }
   async success(){
     const alert = await this.alertController.create({
-      header: 'Login',
+      header: 'Logging.....',
       subHeader: 'Success',
       message: '',
       buttons: ['OK']
@@ -178,5 +185,17 @@ export class LoginPage implements OnInit {
       // }, 500)
     }
     
-   
+    async presentLoading() {
+      const loading = await this.loadingCtrl.create({
+        message: 'Logging in.....',
+      }); 
+      await loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 1000);
+  
+      // const { role, data } = await loading.onDidDismiss();
+  
+      // console.log('Loading dismissed!');
+    }
 }

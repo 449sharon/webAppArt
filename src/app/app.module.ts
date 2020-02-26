@@ -25,6 +25,16 @@ import { Popover3Component } from './components/popover3/popover3.component';
 import {ResetPasswordPageModule } from './pages/reset-password/reset-password.module';
 
 import { HttpClientModule } from '@angular/common/http';
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDc9PEskrlCyE3ddSG_KqywzvxX2zg21w0",
+//   authDomain: "artcraft-74f59.firebaseapp.com",
+//   databaseURL: "https://artcraft-74f59.firebaseio.com",
+//   projectId: "artcraft-74f59",
+//   storageBucket: "artcraft-74f59.appspot.com",
+//   messagingSenderId: "822053210539",
+//   appId: "1:822053210539:web:de3610b2ee9a9c70046aee",
+//   measurementId: "G-RVQYY280G6"
+// };
 const firebaseConfig = {
   apiKey: "AIzaSyDc9PEskrlCyE3ddSG_KqywzvxX2zg21w0",
   authDomain: "artcraft-74f59.firebaseapp.com",

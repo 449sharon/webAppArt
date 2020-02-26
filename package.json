@@ -25,6 +25,7 @@
     "@ionic/angular": "^4.7.1",
     "@types/jquery": "^3.3.31",
     "animate.css": "^3.7.2",
+    "blurt": "^2.0.0",
     "core-js": "^2.5.4",
     "file-saver": "^2.0.2",
     "firebase": "^7.7.0",
