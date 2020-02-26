@@ -93,13 +93,14 @@ export class AddToWishListPage implements OnInit {
     let index = this.cart.indexOf(obj);
         if (index === -1) {
             if (event.target.checked) {
-                return this.cart.push(obj);
+              return this.cart.push(obj);
             }
         } else {
             if (!event.target.checked) {
                 // return this.cart.splice(index, 1);
             }
         }
+        
         console.log("jjjjjjjjj ", obj);
     
       
@@ -181,19 +182,43 @@ export class AddToWishListPage implements OnInit {
   }
   
   addToCart() {
-    this.cart = []
-      firebase.firestore().collection("WishList").where('checked','==', 'true').onSnapshot(data => {
+    
+      // firebase.firestore().collection("WishList").onSnapshot(data => {
 
+        
+  console.log(this.cart);
   
-  
-        data.forEach(item => {
-          // if(item.data().checked){
-            //  this.MyDataToCart.push(item.data())
-            firebase.firestore().collection("MyCart").doc().set(item.data())
-             firebase.firestore().collection("WishList").doc(item.id).delete()
-          // }
+        this.cart.forEach(item => {
+          if(item.checked === true){
+             console.log("my item ", item);
+             console.log("all of my items ", item.obj.name, item.obj.productCode, item.obj.desc, item.obj.size, item.obj.price, item.obj.quantity, item.obj.image);
+             firebase.firestore().collection("MyCart").add({
+
+          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+          customerUid:firebase.auth().currentUser.uid,
+          name:item.obj.name,
+          productCode:item.obj.productCode,
+          desc:item.obj.desc,
+          status:'received',
+          size: item.obj.size,
+          price:item.obj.price,
+          quantity: item.obj.quantity,
+          image:item.obj.image,
+          amount:item.obj.price * item.obj.quantity
+      
+
+             }).then(res => {
+              firebase.firestore().collection("WishList").doc(item.id).delete()
+             })
+             
+            // firebase.firestore().collection("MyCart").doc().set(item.data())
+            //  firebase.firestore().collection("WishList").doc(item.id).delete()
+             
+             
+          }
+          // console.log(item.data());
         })
-       })
+      //  })
 
   }
 
@@ -223,22 +248,24 @@ export class AddToWishListPage implements OnInit {
     });
   }
 
-  // plus(prod, index) {
-  //   let id = prod.id
-  //   this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+  plus(prod, index) {
+    let id = prod.id
+    this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
 
-  //   })
+    })
 
-  // }
-  // minus(prod, id) {
-  //   // let id = prod.id
-  //   if (prod.obj.quantity === 1) {
-  //   } else {
-  //     this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+  }
+  minus(prod, id) {
+    // let id = prod.id
+    if (prod.obj.quantity === 1) {
+    } else {
+      this.dbWishlist.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
 
-  //     })
-  //   }
-  // }
+      })
+    }
+  }
+
+  
 
   increaseCartItem() {
    this.currentNumber = this.currentNumber + 1;
