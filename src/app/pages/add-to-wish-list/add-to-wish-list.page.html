@@ -24,7 +24,7 @@
     <div class="ng-for-goes-here" *ngFor="let p of cart; let j of index" >
       <div class="checkBox-add-to-cart" >
     
-        <ion-checkbox color="primary"  slot="start" [checked]="p.checked"  (ionChange)="CheckBoxes(p, p.id, p.obj.isChecked); p.checked = !p.checked;"></ion-checkbox>
+        <ion-checkbox color="primary"  slot="start" [checked]="p.checked" [(ngModel)]="chec"  (ionChange)="CheckBoxes(p); p.checked = !p.checked;"></ion-checkbox>
       </div>
     <div class="cart-item-section" >
 
@@ -47,23 +47,17 @@
             <p>Size:{{ p.obj.size }} </p>
 
           </div>
+          
           <div class="quantity">
-            <div>
-              <p no-padding>Qty: {{p.obj.quantity}}</p>
-            </div>
-            <div>
-              <ion-icon name="add-circle" color="success" (click)="plus(p, j.id)"></ion-icon>
-              <ion-icon name="remove-circle" color="danger" (click)="minus(p, j.id)"></ion-icon>
-            </div>
-
-            
-            <!-- <div> 
-              <ion-icon name="add-circle" color="success" (click)="increment()"></ion-icon>
-              <ion-icon name="remove-circle" color="danger" (click)="decrement()"></ion-icon>
+            <div  ><p>Qty:{{ p.obj.quantity}}</p></div>
+            <div> 
+              <ion-icon name="add-circle" color="success" (click)="increment(j)"></ion-icon>
+              <ion-icon name="remove-circle" color="danger" (click)="decrement(j)"></ion-icon>
              
-            </div> -->
-
+            </div>
+           
           </div>
+
         </div>
         <!-- <ion-button (click)="CheckBoxes(p, p.id, p.obj.checked)">Add to cart</ion-button> -->
 

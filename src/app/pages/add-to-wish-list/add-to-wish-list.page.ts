@@ -86,65 +86,21 @@ export class AddToWishListPage implements OnInit {
   }
 
 /*ADDING MY ITEMS FROM WISHLIST TO THE CART*/
-
-   async CheckBoxes(obj, id, value){
-     console.log("jjjjjjjjj ");
-     
-    let index = this.cart.indexOf(obj);
-        if (index === -1) {
-            if (event.target.checked){
-              return this.cart.push(obj);
-            }
-        } else {
-            if (!event.target.checked){
-                // return this.cart.splice(index, 1);
-            }
-        }
-        
-        console.log("jjjjjjjjj ", obj);
+chec: boolean = false;
+   async CheckBoxes(obj){
+  console.log(this.chec)
     
-      
-
-
-
-
-
-
-
+    // let index = this.cart.indexOf(obj);
+    //     if (index === -1) {
+    //         if (event.target.checked){
+    //           return this.cart.push(obj);
+    //         }
+    //     } else {
+    //         if (!event.target.checked){
+    //             // return this.cart.splice(index, 1);
+    //         }
+    //     }
         
-    // firebase.firestore().collection("MyCart").doc().set(
-    //   {
-    //   date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-    //   customerUid:firebase.auth().currentUser.uid,
-    //   name:obj.obj.name,
-    //   desc:obj.obj.desc,
-    //   status:'received',
-    //   size: this.sizes,
-    //   price:obj.obj.price,
-    //   quantity: this.currentNumber,
-    //   image:obj.obj.image,
-    //   amount:obj.obj.price * obj.obj.quantity,
-    //   checked : obj.obj.checked 
-    // })
-   
-    // firebase.firestore().collection("WishList").doc(id).delete()
-    //   const alert = await this.alertCtrl.create({
-    //     header: '',
-    //     subHeader: '',
-    //     message: 'Item added to Cart',
-    //     buttons: ['Ok']
-    //   });
-  
-    //   await alert.present();
-
- 
-  
-
-
-   
-
-
-   
   }
 
   getProducts() {
@@ -168,17 +124,25 @@ export class AddToWishListPage implements OnInit {
     
   }
 
-  increment() {
-    this.currentNumber = this.currentNumber + 1;
-    this.event.quantity = this.currentNumber
+  increment(i) {
+
+    i.obj.quantity += 1
+    console.log("dfsdf ", i);
   }
 
-   decrement() {
-    if (this.currentNumber > 1) {
-      this.currentNumber = this.currentNumber - 1;
-      this.event.quantity = this.currentNumber;
+   decrement(i) {
+
+  
+   
+
+    if ( i.obj.quantity > 1) {
+      i.obj.quantity -= 1
+      console.log("dfsdf ", i);
+      // this.currentNumber = this.currentNumber - 1;
+      // this.quantity = this.currentNumber;
     }
     return this.currentNumber;
+
   }
   
   addToCart() {
