@@ -205,7 +205,7 @@
   ~ .tab-content {
     max-height: 100vh;
     padding: 1em;
-    margin-bottom: 200px;
+    // margin-bottom: 200px;
   }
   }
   .pedding-oders{
@@ -244,8 +244,22 @@
     color: #707070;
   }
   .track-button{
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
     padding-top: 16px;
     margin-bottom:160px ;
+  }
+  .empty{
+text-align: center;
+justify-content: center;
+display: flex;
+align-items: center;
+top: 0;
+bottom: 0;
+  }
+
+  .active {
+    transform: scaleX(1.1);
+    background-color: #f0f0f0;
+      // color: #fff;
   }
