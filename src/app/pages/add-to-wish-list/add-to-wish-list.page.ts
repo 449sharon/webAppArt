@@ -54,6 +54,7 @@ export class AddToWishListPage implements OnInit {
     amount: 0,
     total: 0
   };
+  
   value : boolean 
   tempIndex = [] 
   selectedItems = []
@@ -86,10 +87,12 @@ export class AddToWishListPage implements OnInit {
   }
 
 /*ADDING MY ITEMS FROM WISHLIST TO THE CART*/
-chec: boolean = false;
+
+
+
    async CheckBoxes(obj){
-  console.log(this.chec)
-    
+  console.log(obj)
+
     // let index = this.cart.indexOf(obj);
     //     if (index === -1) {
     //         if (event.target.checked){
