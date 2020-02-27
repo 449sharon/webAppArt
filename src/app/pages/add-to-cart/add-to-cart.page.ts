@@ -221,7 +221,7 @@ export class AddToCartPage implements OnInit {
   customerUid = firebase.auth().currentUser.uid;
   mysize: string = '';
   sizes = [];
-  quantity = 1;
+  quantity 
   name;
   productCode;
   key;
@@ -360,26 +360,46 @@ export class AddToCartPage implements OnInit {
   //   return this.currentNumber;
   // }
   
+  increment(i) {
 
-  plus(prod, index) {
-    let id = prod.id
-    this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
-​
-    })
-​
+    i.obj.quantity += 1
+    console.log("dfsdf ", i);
   }
-​
-​
-  minus(prod, id) {
-    // let id = prod.id
-    if (prod.obj.quantity === 1) {
-     this.toastController("You have reached minimum quantity");
-    } else {
-      this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
-​
-      })
+
+   decrement(i) {
+
+  
+   
+
+    if ( i.obj.quantity > 1) {
+      i.obj.quantity -= 1
+      console.log("dfsdf ", i);
+      // this.currentNumber = this.currentNumber - 1;
+      // this.quantity = this.currentNumber;
     }
+    return this.currentNumber;
+
   }
+
+//   plus(prod, index) {
+//     let id = prod.id
+//     this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(1) }).then(res => {
+// ​
+//     })
+// ​
+//   }
+// ​
+// ​
+//   minus(prod, id) {
+//     // let id = prod.id
+//     if (prod.obj.quantity === 1) {
+//      this.toastController("You have reached minimum quantity");
+//     } else {
+//       this.dbCart.doc(id).update({ quantity: firebase.firestore.FieldValue.increment(-1) }).then(res => {
+// ​
+//       })
+//     }
+//   }
 ​
   decreaseCartItem(p) {
     this.cartProduct[p].prod.quantity--;

@@ -92,11 +92,11 @@ export class AddToWishListPage implements OnInit {
      
     let index = this.cart.indexOf(obj);
         if (index === -1) {
-            if (event.target.checked) {
+            if (event.target.checked){
               return this.cart.push(obj);
             }
         } else {
-            if (!event.target.checked) {
+            if (!event.target.checked){
                 // return this.cart.splice(index, 1);
             }
         }
@@ -178,7 +178,7 @@ export class AddToWishListPage implements OnInit {
       this.currentNumber = this.currentNumber - 1;
       this.event.quantity = this.currentNumber;
     }
-    // return this.currentNumber;
+    return this.currentNumber;
   }
   
   addToCart() {
@@ -227,7 +227,6 @@ export class AddToWishListPage implements OnInit {
     const popover = await this.popoverController.create({
       component:Popover2Component,
       event: ev,
-      
       // cssClass: 'pop-over-style',
       translucent: true,
     });
@@ -265,7 +264,6 @@ export class AddToWishListPage implements OnInit {
     }
   }
 
-  
 
   increaseCartItem() {
    this.currentNumber = this.currentNumber + 1;
