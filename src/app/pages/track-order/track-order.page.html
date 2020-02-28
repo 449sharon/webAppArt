@@ -1,3 +1,7 @@
+
+<div class="loader-container" *ngIf="loader">
+  <div class="loader">Loading...</div>
+</div>
 <div class="heading">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
 
@@ -201,35 +205,15 @@
           <div class="tacking-heading">
             <p><span>Order Status</span> <br> <i>Your order is {{orderStatus}}</i></p>
           </div>
-          <!-- <div class="orderstatus">
-            <p><span>Order Status</span> <br> <i>Your order is {{status}}</i></p>
+          <!-- <div class="tracks">
+            <div class="circles-container">
+              <div id="one" style="font-size: 13px;">Order Received - 12 January 2020</div>
+              <div id="two" style="font-size: 13px;">Order is being processed - 13 January 2020</div>
+              <div id="three" style="font-size: 13px;">Order ready for delivery - 15 January 2020</div>
+              <div id="four" style="font-size: 13px;">Order Collected - 16 January 2020</div>
+            </div>
           </div> -->
-          <!-- Tracking progress (click)="showList()" *ngIf="!list" -->
-          <!-- <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
-
-            <div class="tracking-progress-bar">
-              <div
-                class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active">
-                1</div>
-
-              <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-              <div class="tracking-progress-bar__item tracking-progress-bar__item--active">2</div>
-
-              <span class="tracking-progress-bar__item__bar"></span>
-              <div class="tracking-progress-bar__item">3</div>
-
-              <span class="tracking-progress-bar__item__bar"></span>
-              <div class="tracking-progress-bar__item">4</div>
-            </div>
-
-            <div class="tracking-oder-labels">
-              <div class="one">order recieved</div>
-              <div class="two">being prepared</div>
-              <div class="three">order is ready</div>
-              <div class="four">delivered</div>
-            </div>
-
-          </div> boleto__wrapper  *ngIf="!list" -->
+         
 
 
         </div>

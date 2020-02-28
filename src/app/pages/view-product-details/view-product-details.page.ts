@@ -252,6 +252,7 @@ console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
         this.customerUid = firebase.auth().currentUser.uid;
      
 
+        
         firebase.firestore().collection("MyCart").doc().set({
       
           date: moment().format('MMMM Do YYYY, h:mm:ss a'),

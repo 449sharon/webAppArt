@@ -363,12 +363,108 @@ ion-content{
     margin-top: 8px;
 }
 .pdf{
-width: 40%;
+width: 50%;
 margin: 0 auto;
 text-align: center;
 }
 
+.tracks {
+    width: 20vw;
+ 
+    .text {
+      position: relative;
+      right: 8px;
+      top: 10px;
+      display: flex;
+      flex-flow: row;
+      width: 30vw;
+      justify-content: space-between;
+      font-weight: lighter;
+      text-align: center;
+      margin: 5px;
+      font-size: 15px;
+      // line-height: 20px;
+      // font-size: 1em;
+      #txt{
+        font-size: 12px;
+      }
+    }
+    flex: 2;
+    .circle-container {
+      width: 30vw;
+      margin: 0 auto;
+      display: flex;
+      flex-flow: row;
+      // border: 1px solid red;
+      text-align: center;
+    }
+    .circle-container > #one {
+      cursor: pointer;
+      width: 2vw;
+      height: 2vw;
+      border-radius: 50px;
+      border: 1px solid grey;
+      transition: 700ms;
+      font-weight: lighter;
+      font-size: 1em;
+    }
+    .circle-container > #two {
+      cursor: pointer;
+      width: 2vw;
+      height: 2vw;
+      border-radius: 50px;
+      border: 1px solid grey;
+      font-size: 1em;
+      transition: 700ms;
+      font-weight: lighter;
+    }
+    .circle-container > #three {
+      cursor: pointer;
+      width: 2vw;
+      height: 2vw;
+      border-radius: 50px;
+      border: 0.5px solid grey;
+      transition: 700ms;
+      font-size: 1em;
+      font-weight: lighter;
+    }
+    .circle-container > #four {
+      cursor: pointer;
+      width: 2vw;
+      height: 2vw;
+      border-radius: 50px;
+      border: 1px solid grey;
+      font-size: 1em;
+      transition: 700ms;
+      font-weight: lighter;
+    }
+    #line1,
+    #line2,
+    #line3 {
+      width: calc(33.33333333% - 28px);
+      height: 0;
+      margin-top: 13px;
+      transition: 700ms;
+      font-size: 0.8em;
+    }
+    #line1 {
+      border: 0.5px solid grey;
+    }
+    #line2 {
+      border: 0.5px solid grey;
+    }
+    #line3 {
+      border: 0.5px solid grey;
+    }
 
+    #one,
+    #two,
+    #three,
+    #four {
+      display: grid;
+      align-items: center;
+    }
+  }
  
 
 

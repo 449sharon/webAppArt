@@ -72,8 +72,16 @@ export class TrackOrderPage implements OnInit {
     this.totalPrice = `${this.totalPrice}`;
   
   }
-
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
+  }
   ngOnInit() {
+
+    setTimeout(() => {
+      this.showList(0, this.arr[0]);
+    }, 1000);
     /* this.arr.forEach((i)=>{
       console.log('My info ', i.prod);
     }) */
@@ -175,4 +183,6 @@ export class TrackOrderPage implements OnInit {
     this.loader = false;
 
   }
+
+ 
 }
