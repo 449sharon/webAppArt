@@ -91,15 +91,15 @@ export class AddToWishListPage implements OnInit {
      console.log("jjjjjjjjj ");
      
     let index = this.cart.indexOf(obj);
-        if (index === -1) {
-            if (event.target.checked){
-              return this.cart.push(obj);
-            }
-        } else {
-            if (!event.target.checked){
-                // return this.cart.splice(index, 1);
-            }
-        }
+        // if (index === -1) {
+        //     if (event.target.checked){
+        //       return this.cart.push(obj);
+        //     }
+        // } else {
+        //     if (!event.target.checked){
+        //         // return this.cart.splice(index, 1);
+        //     }
+        // }
         
         console.log("jjjjjjjjj ", obj);
     
