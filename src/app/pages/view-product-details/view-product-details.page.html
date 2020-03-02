@@ -97,9 +97,9 @@
           </div>
         </div>
         <div class="cartButton" >
-          <ion-button color="primary" expand="block" (click)="addToCart()"  [disabled]="size.length  == 0">add to cart</ion-button>
+          <ion-button color="primary" expand="block" (click)="addToCart(Mydata.productCode)"  [disabled]="size.length  == 0">add to cart</ion-button>
           <br>
-          <ion-button color="tertiary" expand="block"  (click)="addWishlist($event)" [disabled]="size.length  == 0">add to wishlist</ion-button>
+          <ion-button color="tertiary" expand="block"  (click)="addWishlist(Mydata.productCode)" [disabled]="size.length  == 0">add to wishlist</ion-button>
       
         </div>
         <div class="tabs">
@@ -144,11 +144,11 @@ payment only that is acceptable. -->
               </div>
       <div class="sta">
 
-            <button (click)="star1(1, p)"> <ion-icon color="warning"  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-            <button (click)="star1(2, p)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-            <button (click)="star1(3, p)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-            <button (click)="star1(4, p)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
-            <button (click)="star1(5, p)"> <ion-icon  color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(1, Mydata)"> <ion-icon color="warning"  class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(2, Mydata)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(3, Mydata)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(4, Mydata)"> <ion-icon color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
+            <button (click)="star1(5, Mydata)"> <ion-icon  color="warning" class="stars"  ios="ios-star" md="md-star"></ion-icon></button>
            
           </div>
 

@@ -24,7 +24,8 @@ id = ""
    checked : false,
    sizes: [],
    quantity  : 1,
-   ratings : ''
+   ratings : '',
+   id:''
   }
 
   db = firebase.firestore();

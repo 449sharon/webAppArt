@@ -76,8 +76,8 @@
       <span></span>
     </p>
   </div>
-    <div class="cartButton" >
-      <ion-button color="primary" expand="block" (click)="addToCart()" [disabled]="cart.length  == 0">add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
+    <div class="cartButton">
+      <ion-button color="primary" expand="block" (click)="addToCart(productCode)" [disabled]="cart.length  == 0">add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
     </div>
   </div>
   <div class="empty-cart" *ngIf="!myCart"  >

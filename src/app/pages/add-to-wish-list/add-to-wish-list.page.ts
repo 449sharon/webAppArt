@@ -148,47 +148,51 @@ export class AddToWishListPage implements OnInit {
 
   }
   
-  addToCart() {
+  addToCart(productCode) {
     
-      // firebase.firestore().collection("WishList").onSnapshot(data => {
-
-        
-  console.log(this.cart);
-  
-        this.cart.forEach(item => {
-          if(item.checked === true){
-             console.log("my item ", item);
-             console.log("all of my items ", item.obj.name, item.obj.productCode, item.obj.desc, item.obj.size, item.obj.price, item.obj.quantity, item.obj.image);
-             firebase.firestore().collection("MyCart").add({
-
-          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-          customerUid:firebase.auth().currentUser.uid,
-          name:item.obj.name,
-          productCode:item.obj.productCode,
-          desc:item.obj.desc,
-          status:'received',
-          size: item.obj.size,
-          price:item.obj.price,
-          quantity: item.obj.quantity,
-          image:item.obj.image,
-          amount:item.obj.price * item.obj.quantity
       
+    let addCart = firebase.firestore().collection('MyCart')
+  let increment: number = 0
+  addCart.where('productCode', '==', productCode).get().then((snapshot => {
+  if(snapshot.size > 0){
+   console.log('Do not add to wish list');
+    snapshot.forEach(data => {
+      increment = data.data().quantity + 1
+      addCart.doc(data.id).set({quantity: increment }, {merge: true});
+      console.log('items increment by one');
+      
+    })
+  }else{
 
-             }).then(res => {
-              firebase.firestore().collection("WishList").doc(item.id).delete()
-             })
-             
-            // firebase.firestore().collection("MyCart").doc().set(item.data())
-            //  firebase.firestore().collection("WishList").doc(item.id).delete()
-             
-             
-          }
-          // console.log(item.data());
+    console.log(this.cart);
+  
+    this.cart.forEach(item => {
+      if(item.checked === true){
+         console.log("my item ", item);
+         console.log("all of my items ", item.obj.name, item.obj.productCode, item.obj.desc, item.obj.size, item.obj.price, item.obj.quantity, item.obj.image);
+         firebase.firestore().collection("MyCart").add({
+
+      date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+      customerUid:firebase.auth().currentUser.uid,
+      name:item.obj.name,
+      productCode:item.obj.productCode,
+      desc:item.obj.desc,
+      status:'received',
+      size: item.obj.size,
+      price:item.obj.price,
+      quantity: item.obj.quantity,
+      image:item.obj.image,
+      amount:item.obj.price * item.obj.quantity
+      }).then(res => {
+        firebase.firestore().collection("WishList").doc(item.id).delete()
         })
-      //  })
+      }
+    })
 
   }
-
+        
+  }))
+  }
 
   async toastPopover(ev) {
     const popover = await this.popoverController.create({

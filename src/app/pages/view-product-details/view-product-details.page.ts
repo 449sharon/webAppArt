@@ -85,6 +85,8 @@ export class ViewProductDetailsPage implements OnInit {
   image = ""
 
   CartNumber = 0;
+  prodID = [];
+  cartID = []
   constructor(public modalController: ModalController,
     public productService: ProductService,
     public data: ProductService,
@@ -102,8 +104,18 @@ export class ViewProductDetailsPage implements OnInit {
     }
 
   ngOnInit() {
-
-  
+    this.db.collection('MyCart').get().then(snapshot => {
+       this.cartID = [];
+      snapshot.forEach(doc => {
+        this.cartID.push(doc.id);
+      }); 
+    })
+    this.db.collection('Products').get().then(snapshot => {
+      this.prodID = [];
+     snapshot.forEach(doc => {
+       this.prodID.push(doc.id);
+     }); 
+   })
     firebase.firestore().collection("Sales").orderBy("percentage", "desc").limit(1).onSnapshot(snapshot => {
       this.specials = []
       snapshot.forEach(data => {
@@ -148,10 +160,6 @@ export class ViewProductDetailsPage implements OnInit {
 
   ionViewWillEnter() {
 
- 
-  
-
-  
   this.Mydata.image = this.data.data.image
   this.Mydata.imageSide = this.data.data.imageSide
   this.Mydata.imageBack = this.data.data.imageBack
@@ -237,48 +245,57 @@ console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
   
 
   
-  addToCart() {
-    
-    if(firebase.auth().currentUser == null) {
-      console.log('please login');
-      this.ConfirmationAlert();
-    this.createModalLogins();
+  addToCart(productCode) {
 
+
+    console.log(productCode);
+  
+  let addCart = firebase.firestore().collection('MyCart')
+  let increment: number = 0
+  addCart.where('productCode', '==', productCode).get().then((snapshot => {
+  if(snapshot.size > 0){
+   console.log('Do not add to wish list');
+    snapshot.forEach(data => {
+      increment = data.data().quantity + 1
+      addCart.doc(data.id).set({quantity: increment }, {merge: true});
+      console.log('items increment by one');
       
-    }else {
-
+    })
+  }else{
+    console.log("I AM WORKING")
     
-
+      if(firebase.auth().currentUser == null){
+         console.log('please like this');
+         this.ConfirmationAlertWish();
+         this.createModalLogins()
+       }else{
         this.customerUid = firebase.auth().currentUser.uid;
-     
 
-        
+
         firebase.firestore().collection("MyCart").doc().set({
-      
+
           date: moment().format('MMMM Do YYYY, h:mm:ss a'),
           customerUid:firebase.auth().currentUser.uid,
           name:this.Mydata.name,
           productCode:this.Mydata.productCode,
           desc:this.Mydata.desc,
           status:'received',
-          size: this.size,
+          size: this.sizes,
           price:this.Mydata.price,
           quantity: this.currentNumber,
           image:this.Mydata.image,
-          amount:this.Mydata.price * this.Mydata.quantity
-      
+          amount:this.Mydata.price * this.Mydata.quantity,
+          
+          // checked : this.Mydata.checked 
       
         })
-         
-          // this.cartItemCount.next(this.cartItemCount.value + 1);
-          // this.dismiss();
-          this.toastPopover(event)
 
-        
-     
-
-    }
-
+       }
+       this.cartItemCount.next(this.cartItemCount.value + 1);
+       this.presentToast(event)
+  }
+  })) 
+    
  
   }
 
@@ -331,10 +348,23 @@ logRatingChange(rating, id){
 
   }
 
-  addWishlist() {
-
-
-
+  addWishlist(productCode) {
+  console.log(productCode);
+  
+  let wish = firebase.firestore().collection('WishList')
+  let increment: number = 0
+  wish.where('productCode', '==', productCode).get().then((snapshot => {
+  if(snapshot.size > 0){
+   console.log('Do not add to wish list');
+    snapshot.forEach(data => {
+      increment = data.data().quantity + 1
+      wish.doc(data.id).set({quantity: increment }, {merge: true});
+      console.log('items increment by one');
+      
+    })
+  }else{
+    console.log("I AM WORKING")
+    
       if(firebase.auth().currentUser == null){
          console.log('please like this');
          this.ConfirmationAlertWish();
@@ -356,6 +386,7 @@ logRatingChange(rating, id){
           quantity: this.currentNumber,
           image:this.Mydata.image,
           amount:this.Mydata.price * this.Mydata.quantity,
+          
           // checked : this.Mydata.checked 
       
         })
@@ -363,7 +394,17 @@ logRatingChange(rating, id){
        }
        this.wishItemCount.next(this.wishItemCount.value + 1);
        this.presentToast(event)
-    } 
+  }
+  })) 
+}
+
+  
+
+
+    // } 
+
+
+
   async toastPopover(ev) {
     const popover = await this.popoverController.create({
       component:Popover2Component,

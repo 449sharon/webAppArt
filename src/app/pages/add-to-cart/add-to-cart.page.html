@@ -93,7 +93,7 @@
 
     </div> -->
     <div class="cartButton">
-      <ion-button color="primary" expand="block"  (click)="placeOrder()" [disabled]="cartProduct1.length  == 0">Place order
+      <ion-button color="primary" expand="block"  (click)="placeOrder(cartProduct1)" [disabled]="cartProduct1.length  == 0">Place order
         {{ getTotal() | currency: '&#82;'}} </ion-button>
     </div>
     <!-- <div class="empty-cart" *ngIf="!myCart"  >

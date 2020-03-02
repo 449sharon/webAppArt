@@ -435,60 +435,58 @@ export class AddToCartPage implements OnInit {
 
   ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////// group orders together.
-  placeOrder() {
+  placeOrder(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      firebase.firestore().collection("MyCart").onSnapshot(snapshot => {
+        snapshot.forEach(item => {
+          if (item.id === arr[i].id) {
+            console.log("error adding");
+            
+          } else {
+            let inside = this.getTotal();
+            console.log('hereTtooo ', inside);
+            this.orderProd = [];
+            let key = Math.floor(Math.random() * 100000);
+            for (let j = 0; j < this.cartProduct1.length; j++) {
+              console.log('Products ', this.cartProduct1[j]);
+              this.orderProd.push(this.cartProduct1[j]);
+            }
+            if (this.cartProduct1.length === 0) {
+        
+              
+              this.toastController('You cannot place order with empty Cart');
+              this.myCart=false
+            } else {
+              this.myCart=true
+              this.dbOrder.doc('Pitseng' + key).set({
+                totalPrice: inside,
+                date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+                product: this.orderProd,
+                name: this.name,
+                size: this.sizes,
+                // productCode:this.productCode,
+                userID: firebase.auth().currentUser.uid,
+                pdfLink: "",
+                status: 'received',
+                orderNumber: 'Pitseng' + key
+              }).then(() => {
 
-
-    let inside = this.getTotal();
-    console.log('hereTtooo ', inside);
-    this.orderProd = [];
-    let key = Math.floor(Math.random() * 100000);
-    for (let j = 0; j < this.cartProduct1.length; j++) {
-      console.log('Products ', this.cartProduct1[j]);
-      this.orderProd.push(this.cartProduct1[j]);
+                  firebase.firestore().collection("MyCart").onSnapshot(data => {
+                    data.forEach(item => {
+                      if(item.data().customerUid == firebase.auth().currentUser.uid){
+                             firebase.firestore().collection("MyCart").doc(item.id).delete()
+                      }
+                    })
+                  })
+              })
+              console.log('My prod ', this.orderProd);
+              this.dismiss();
+              this.SuccessModal(key);
+            }
+          }
+        })
+      });
     }
-    if (this.cartProduct1.length === 0) {
-
-      
-      this.toastController('You cannot place order with empty Cart');
-      this.myCart=false
-    } else {
-      this.myCart=true
-      this.dbOrder.doc('Pitseng' + key).set({
-        totalPrice: inside,
-        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-        product: this.orderProd,
-        name: this.name,
-        size: this.sizes,
-        // productCode:this.productCode,
-        userID: firebase.auth().currentUser.uid,
-        pdfLink: "",
-        status: 'received',
-        orderNumber: 'Pitseng' + key
-      }).then(() => {
-
-       
-          
-
-          firebase.firestore().collection("MyCart").onSnapshot(data => {
-            data.forEach(item => {
-              if(item.data().customerUid == firebase.auth().currentUser.uid){
-                     firebase.firestore().collection("MyCart").doc(item.id).delete()
-              }
-            })
-          })
-
-    
-
-      
-
-      })
-      console.log('My prod ', this.orderProd);
-      this.dismiss();
-      this.SuccessModal(key);
-    }
-
-  
-
   }
 
 
