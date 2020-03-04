@@ -8,77 +8,86 @@
       <div class=" left-side">
 
       </div>
-      <div class="top-side" >
-        <div class="logo-side" >
+      <div class="top-side">
+        <div class="logo-side">
           <img src="../../../assets/pitseng Logo.png" alt="">
 
 
         </div>
-        <div class="form-side " >
+        <div class="form-side ">
           <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
-            <div class="logoImage" >
+            <div class="logoImage">
               <img class="logo" src="../../../assets/pitseng Logo.png" alt="">
             </div>
-          <div class="title" >
-            <ion-title>welcome back</ion-title>
-          </div>
-          <div class="text-field" >
-            <ion-item class="first" >
-              <ion-input placeholder="Email address" type="text" formControlName="email" > <ion-icon name="mail" color="dark"  slot="end"></ion-icon> </ion-input>
-            </ion-item>
-            <div class="validation-errors">
-              <ng-container *ngFor="let validation of validation_messages.email">
-                <div class="error-message"
-                  *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
-                   <ion-label  color="danger" >{{ validation.message }}</ion-label> 
+            <div class="title">
+              <ion-title>welcome back</ion-title>
+            </div>
+            <div class="text-field">
+              <ion-item class="first">
+                <ion-input placeholder="Email address" type="text" formControlName="email">
+                  <ion-icon name="mail" color="dark" slot="end"></ion-icon>
+                </ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.email">
+                  <div class="error-message"
+                    *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                    <ion-label color="danger">{{ validation.message }}</ion-label>
+                  </div>
+                </ng-container>
+              </div>
+              <ion-item>
+                <ion-input placeholder="password" type="password" formControlName="password" class="form-controll"
+                  required>
+                  <ion-icon name="lock" color="dark" slot="end" class="lock"></ion-icon>
+                </ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.password">
+                  <div class="error-message"
+                    *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                    <ion-label color="danger">{{ validation.message }}</ion-label>
+
+                  </div>
+                </ng-container>
+              </div>
+
+              <ion-button no-padding float-right class="password" color="primary" fill="clear" slot="end"
+                (click)="resetPassword()">forgot Password?</ion-button>
+            </div>
+            <div class="btn">
+              <div class="buttons">
+                <div>
+                  <ion-button color="primary" expand="block" type="submit" [disabled]="!validations_form.valid"
+                    >Login </ion-button>
                 </div>
-              </ng-container>
-            </div>
-            <ion-item>
-              <ion-input placeholder="password" type="password" formControlName="password" class="form-controll" required> <ion-icon name="lock" color="dark" slot="end" class="lock" ></ion-icon> </ion-input>
-            </ion-item>
-            <div class="validation-errors">
-              <ng-container *ngFor="let validation of validation_messages.password">
-                <div class="error-message" 
-                  *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
-                  <ion-label color="danger" >{{ validation.message }}</ion-label>
-                  
+                <div>
+                  <ion-button color="primary" expand="block" fill="outline"
+                    (click)="createModalRegister()"> Register </ion-button>
+
                 </div>
-              </ng-container>
-            </div>
 
-            <ion-button no-padding float-right class="password" color="primary" fill="clear" slot="end"(click)="resetPassword()" >forgot Password?</ion-button>
-          </div>
-          <div class="btn" >
-            <div  class="buttons" >
-              <div  >
-              <ion-button color="primary" expand="block" type="submit"  [disabled]="!validations_form.valid" (click)="dismiss()" >Login </ion-button>
+              </div>
+              <div class="social-section">
 
-            </div>
-                  <div  >
-              <ion-button color="primary" expand="block" fill="outline" (click)="dismiss()" (click)="createModalRegister()"> Register </ion-button>
-
-            </div>
-
-          </div>
-            <div class="social-section" >
-
-              <div> <ion-title>OR</ion-title> </div>
-              <div class="social" >
-                <!-- <ion-button class="googleBtn" (click)="googleSignin()" > <img src="../../../assets/google-plus-logo.png" width="30px" height="30px" alt="" >&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Sign in with google</ion-button> -->
+                <div>
+                  <ion-title>OR</ion-title>
+                </div>
+                <div class="social">
+                  <!-- <ion-button class="googleBtn" (click)="googleSignin()" > <img src="../../../assets/google-plus-logo.png" width="30px" height="30px" alt="" >&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Sign in with google</ion-button> -->
                   <button class="ui button google-auth__button">
                     <div class="google-auth__logo">
-                        <img  src="../../../assets/google-plus-logo.png" />
+                      <img src="../../../assets/google-plus-logo.png" />
                     </div>
-                  
+
                     Sign in to Google
                   </button>
+                </div>
               </div>
             </div>
-          </div>
-          
 
-          
+
+
           </form>
         </div>
 
@@ -88,4 +97,4 @@
 
   </div>
 
-</ion-content >
+</ion-content>
