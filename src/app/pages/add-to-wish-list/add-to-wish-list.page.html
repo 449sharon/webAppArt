@@ -11,7 +11,7 @@
 </div>
 <!-- width="100px" height="100px" -->
 <ion-content>
-  <div class="main-content" >
+  <div class="main-content">
     <div class="cartTitle" >
       <ion-title>WishList <ion-icon name="heart" ></ion-icon> </ion-title>
     </div>
@@ -21,7 +21,7 @@
         Your wishlist is empty, add some items.
       </ion-title>
     </div>
-    <div class="ng-for-goes-here" *ngFor="let p of cart; let j of index" >
+    <div class="ng-for-goes-here" *ngFor="let p of cart; let j of index">
       <div class="checkBox-add-to-cart" >
     
         <ion-checkbox color="primary"  slot="start" [checked]="p.checked"  (ionChange)= "CheckBoxes(p); p.checked = !p.checked;"></ion-checkbox>

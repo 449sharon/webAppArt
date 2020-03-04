@@ -1,7 +1,7 @@
 {
   "projects": {
     "default": "pitsengartapplication",
-    "hosting": "hotelmanagement-5b882",
+    "hosting": "pitsengartapplication",
     "hosing": "grocerylist-795b9"
   }
 }

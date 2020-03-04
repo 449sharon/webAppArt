@@ -6,6 +6,7 @@ import { CartServiceService } from 'src/app/services/cart-service.service';
 import * as moment from 'moment';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Popover2Component } from 'src/app/components/popover2/popover2.component';
+import { ProductService } from 'src/app/services/product-service.service';
 
 
 @Component({
@@ -54,6 +55,26 @@ export class AddToWishListPage implements OnInit {
     amount: 0,
     total: 0
   };
+
+  Mydata = {
+
+    image: '',
+    imageSide: '',
+    imageBack: '',
+    imageTop: '',
+    categories:'',
+    lastcreated : '',
+    name:'',
+    productCode: '',
+    price:0,
+    desc: null,
+    items:'',
+    checked:false,
+    sizes: [],
+    quantity  : 1,
+    ratings : ''
+
+   }
   
   value : boolean 
   tempIndex = [] 
@@ -67,6 +88,7 @@ export class AddToWishListPage implements OnInit {
   constructor(public modalController: ModalController,
     public toastController : ToastController,
     private cartService: CartServiceService,
+    public data: ProductService,
     public popoverController: PopoverController,
     private alertCtrl: AlertController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
@@ -79,6 +101,26 @@ export class AddToWishListPage implements OnInit {
     setTimeout(() => {
       this.loader = false;
     }, 2000);
+
+//     this.Mydata.image = this.data.data.image
+//   this.Mydata.imageSide = this.data.data.imageSide
+//   this.Mydata.imageBack = this.data.data.imageBack
+//   this.Mydata.imageTop = this.data.data.imageTop
+//   this.Mydata.categories = this.data.data.categories
+//   this.Mydata.lastcreated  = this.data.data.lastcreated
+//   this.Mydata.name = this.data.data.name
+//   this.Mydata.productCode = this.data.data.productCode
+//   this.Mydata.price = this.data.data.price
+//   this.Mydata.desc = this.data.data.desc
+//   this.Mydata.items = this.data.data.items
+//   this.Mydata.sizes = this.data.data.sizes;
+//   this.Mydata.checked = this.data.data.checked
+//   this.Mydata.quantity  = this.data.data.quantity
+//   this.Mydata.ratings  = this.data.data.ratings
+// console.log("Image side ",this.data.data.imageSide);
+
+// console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
+
   }
   ngOnInit() {
     this.wishItemCount = this.cartService.getWishItemCount();

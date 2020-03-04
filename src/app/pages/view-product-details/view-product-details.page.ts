@@ -140,9 +140,6 @@ export class ViewProductDetailsPage implements OnInit {
     this.wishItemCount = this.cartService.getWishItemCount();
     this.cartItemCount = this.cartService.getCartItemCount();
     console.log("Data in the view Details ", this.data.data);
-    // console.log('$(event)');
-    
-    // console.log(this.data.data.image);
   }
 
    increment(p) {
@@ -176,10 +173,6 @@ export class ViewProductDetailsPage implements OnInit {
   this.Mydata.quantity  = this.data.data.quantity
   this.Mydata.ratings  = this.data.data.ratings
 this.imageSide = this.data.data.imageSide
-console.log("Image side ",this.data.data.imageSide);
-
-console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
-
   
   }
   
@@ -245,10 +238,8 @@ console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
   
 
   
-  addToCart(productCode) {
+  addCart(productCode) {
 
-
-    console.log(productCode);
   
   let addCart = firebase.firestore().collection('MyCart')
   let increment: number = 0
@@ -256,10 +247,10 @@ console.log("This data is ",this.data.data , 'got', this.Mydata.sizes);
   if(snapshot.size > 0){
    console.log('Do not add to wish list');
     snapshot.forEach(data => {
-      increment = data.data().quantity + 1
+      increment = data.data().quantity +   this.Mydata.quantity 
       addCart.doc(data.id).set({quantity: increment }, {merge: true});
       console.log('items increment by one');
-      
+    
     })
   }else{
     console.log("I AM WORKING")
@@ -357,7 +348,7 @@ logRatingChange(rating, id){
   if(snapshot.size > 0){
    console.log('Do not add to wish list');
     snapshot.forEach(data => {
-      increment = data.data().quantity + 1
+      increment = data.data().quantity + this.Mydata.quantity
       wish.doc(data.id).set({quantity: increment }, {merge: true});
       console.log('items increment by one');
       
